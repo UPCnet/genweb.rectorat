@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="genweb.rectorat"
+    interface="genweb.rectorat.interfaces.IGenwebRectoratLayer"
+  />
+</layers>
