@@ -2,7 +2,7 @@
 genweb.rectorat
 ====================
 
-asd
+Bases de dades documentals
 
 How it works
 ============
