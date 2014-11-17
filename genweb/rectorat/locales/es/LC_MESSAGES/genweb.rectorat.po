@@ -1,0 +1,47 @@
+# Gettext Message File for GenWeb.
+# Roberto Diaz (UPCnet)
+msgid ""
+msgstr ""
+"Project-Id-Version: genweb.rectorat\n"
+"POT-Creation-Date: 2008-11-20 09:40\n"
+"PO-Revision-Date: 2010-06-04 11:20+0100\n"
+"Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
+"Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: es\n"
+"Language-Name: Spanish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: genweb.rectorat\n"
+
+msgid "Organ Govern"
+msgstr "Órgano de Gobierno"
+
+msgid "Creates an Organ de Govern"
+msgstr "Crea un Órgano de Govierno"
+
+msgid "Session"
+msgstr "Sessión"
+
+msgid "Creates a session"
+msgstr "Crea una Sessión"
+
+msgid "Document"
+msgstr "Documento"
+
+msgid "Creates a Document"
+msgstr "Crear un Documento"
+
+msgid "Esborrany"
+msgstr "Borrador"
+
+msgid "Pendent"
+msgstr "Pendient"
+
+msgid "Aprovat"
+msgstr "Aprobado"
+
+msgid "No aprovat"
+msgstr "No aprobado"

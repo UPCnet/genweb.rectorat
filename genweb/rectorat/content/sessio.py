@@ -8,6 +8,10 @@ from plone.app.textfield import RichText
 from genweb.rectorat import _
 
 
+class InvalidEmailError(schema.ValidationError):
+    __doc__ = u'Please enter a valid e-mail address.'
+
+
 class ISessio(form.Schema):
     """ Tipus Sessio: Per a cada Òrgan de Govern es podran crear
         totes les sessions que es considerin oportunes
@@ -25,7 +29,7 @@ class ISessio(form.Schema):
         required=False,
     )
 
-    horaIniciFi = schema.Datetime(
+    horaIniciFi = schema.Date(
         title=_(u"Hora d'inici i de fi"),
         description=_(u"Hora d'inici i de fi"),
         required=False,
@@ -58,3 +62,4 @@ class ISessio(form.Schema):
 
 class View(grok.View):
     grok.context(ISessio)
+    grok.template('sessio_view')

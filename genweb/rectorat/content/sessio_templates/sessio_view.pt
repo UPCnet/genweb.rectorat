@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+
+    <tal:block tal:condition="context/dataSessio">
+      <h4> Data de la Sessió </h4>
+      <span tal:content="python:context.dataSessio.strftime('%A %d %B de %Y')" />
+    </tal:block>
+
+    <tal:block tal:condition="context/llocConvocatoria">
+      <h4> Lloc de la convocatòria </h4>
+      <span tal:content="context/llocConvocatoria" />
+    </tal:block>
+
+<!--     <span  
+      tal:condition="context/dataSessio"
+      tal:content="python:context.toLocalizedTime(context.dataSessio, time_only=1)" />
+ -->
+
+    <tal:block tal:condition="context/horaIniciFi">
+      <h4> Hora d'inici </h4>
+      <span tal:content="python:context.horaIniciFi.strftime('%H:%M')" />
+    </tal:block>
+
+    <tal:block tal:condition="context/horaIniciFi">
+      <h4> Hora de fi</h4>
+      <span tal:content="python:context.horaIniciFi.strftime('%H:%M')" />
+    </tal:block>
+
+    <tal:block tal:condition="context/descripcioProposit">
+      <h4> Descripció del Propòsit </h4>
+    <div tal:replace="structure context/descripcioProposit/output" />
+    </tal:block>
+    
+    <tal:block tal:condition="context/membresConvocats">
+      <h4> Membres convocats </h4>
+      <span tal:content="context/membresConvocats" />
+    </tal:block>
+
+    <tal:block tal:condition="context/llistaAssistents">
+      <h4> Llista assistents </h4>
+      <span tal:content="context/llistaAssistents" />
+    </tal:block>
+
+    <tal:block tal:condition="context/ordreSessio">
+      <h4> Ordre de la Sessio </h4>
+    <div tal:replace="structure context/ordreSessio/output" />
+    </tal:block>
+
+    </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+

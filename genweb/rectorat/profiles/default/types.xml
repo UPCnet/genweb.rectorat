@@ -2,4 +2,5 @@
 <object name="portal_types">
   <object meta_type="Dexterity FTI" name="genweb.rectorat.sessio" />
   <object meta_type="Dexterity FTI" name="genweb.rectorat.organgovern" />
+  <object meta_type="Dexterity FTI" name="genweb.rectorat.document" />
 </object>

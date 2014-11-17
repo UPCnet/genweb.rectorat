@@ -3,8 +3,6 @@ from five import grok
 from zope import schema
 from plone.directives import form
 from plone.app.textfield import RichText
-
-
 from genweb.rectorat import _
 
 
@@ -31,9 +29,7 @@ class IOrgangovern(form.Schema):
         required=False,
     )
 
-    form.omitted('description')
-    description = schema.Bytes()
-
 
 class View(grok.View):
     grok.context(IOrgangovern)
+    grok.template('organgovern_view')

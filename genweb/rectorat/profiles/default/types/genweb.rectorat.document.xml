@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
-<object name="genweb.rectorat.sessio" meta_type="Dexterity FTI"
+<object name="genweb.rectorat.document" meta_type="Dexterity FTI"
    i18n:domain="genweb.rectorat"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">Session</property>
- <property name="description" i18n:translate="">Creates a session</property>
+ <property name="title" i18n:translate="">Document</property>
+ <property name="description" i18n:translate="">Crea un Document</property>
  <property name="icon_expr">string:${portal_url}/folder.gif</property>
- <property name="factory">genweb.rectorat.sessio</property>
+ <property name="factory">genweb.rectorat.document</property>
  <property
-    name="add_view_expr">string:${folder_url}/++add++genweb.rectorat.sessio</property>
+    name="add_view_expr">string:${folder_url}/++add++genweb.rectorat.document</property>
  <property name="link_target"></property>
  <property name="immediate_view">view</property>
- <property name="global_allow">False</property>
+ <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-  <element value="genweb.rectorat.document"/>
+  <element value="genweb.rectorat.sessio"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">view</property>
@@ -35,7 +35,7 @@
   <element
      value="plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle"/>
  </property>
- <property name="schema">genweb.rectorat.content.sessio.ISessio</property>
+ <property name="schema">genweb.rectorat.content.document.IDocument</property>
  <property
     name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
       &lt;schema /&gt;
