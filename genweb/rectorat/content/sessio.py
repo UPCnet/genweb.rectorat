@@ -88,6 +88,11 @@ def horaFiDefaultValue(data):
     time = datetime.datetime.today() + datetime.timedelta(hours=1)
     return time
 
+@form.default_value(field=ISessio['membresConvocats'])
+def membresConvocatsDefaultValue(data):
+    # copy members from Organ de Govern (parent object)
+    return data.context.membresOrgan
+
 
 class View(grok.View):
     grok.context(ISessio)
