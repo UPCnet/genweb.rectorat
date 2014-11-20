@@ -18,6 +18,8 @@
       <span tal:content="python:toLocalizedTime(context.dataSessio, long_format=1)"> Date and Time</span>
     </tal:block>
 
+    <span tal:content="python:context.dataSessio.strftime('%A %d %B de %Y')" />
+
     <tal:block tal:condition="context/llocConvocatoria">
       <h4> Lloc de la convocatòria </h4>
       <span tal:content="context/llocConvocatoria" />
@@ -52,6 +54,69 @@
       <h4> Ordre de la Sessio </h4>
     <div tal:replace="structure context/ordreSessio/output" />
     </tal:block>
+
+<metal:block define-macro="listing" extend-macro="context/folder_listing/macros/content-core">
+      <metal:entries fill-slot="entries">
+        <hr/><h3>Documents relacionats</h3>
+        <table class="listing"
+               summary="Content listing"
+               i18n:attributes="summary summary_content_listing;">
+            <thead>
+              <tr>
+                <th>&nbsp;
+                  <tal:title i18n:translate="listingheader_title">Title</tal:title>&nbsp;
+                </th>
+                <th>&nbsp;Creador&nbsp;</th>
+                <th>&nbsp;Estat Aprovació&nbsp;</th> 
+                <th>&nbsp;Fitxer&nbsp;</th>                 
+                <th>&nbsp;Darrera modificació&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <metal:block use-macro="context/folder_listing/macros/entries">
+                <metal:entry fill-slot="entry">
+                  <tr metal:define-macro="listitem" 
+                      tal:define="oddrow repeat/item/odd;
+                                  obj item/getObject">
+                    <td>
+                      <a href="#"
+                         tal:attributes="href item_url;
+                                         class string:$item_wf_state_class $item_type_class;
+                                         title item_description;"
+                         tal:content="item_title_or_id">
+                          Item Title
+                      </a>
+                    </td>
+                    <td tal:condition="show_about">
+                      <tal:name tal:condition="item_creator"
+                        tal:define="author python:pas_member.info(item_creator)">
+                        <a href="#"
+                           tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+                           tal:content="author/name_or_id"
+                           tal:omit-tag="not:author">
+                          Bob Dobalina
+                        </a>
+                      </tal:name>
+                    </td>
+                    <td tal:content="obj/estatAprovacio">
+                        Estat aprovació
+                    </td>
+                    <td tal:content="obj/fitxer">
+                        Fitxer
+                    </td>                    
+                    <td tal:condition="show_about"
+                        tal:content="python:toLocalizedTime(item_modified,long_format=1)">
+                      August 16, 2001 at 23:35:59
+                    </td>
+                  </tr>
+                </metal:entry>
+              </metal:block>
+            </tbody>
+          </table>
+        </metal:entries>
+      </metal:block>
+    <metal:subtopics use-macro="context/atct_topic_view/macros/folderlisting_macro" />
+
 
     </metal:content-core>
 </metal:content-core>

@@ -30,17 +30,6 @@ class IOrgangovern(form.Schema):
         required=True
     )
 
-    form.omitted('description')
-    description = schema.Text(
-        title=_PMF(u'label_description', default=u'Summary'),
-        description=_PMF(
-            u'help_description',
-            default=u'Used in item listings and search results.'
-        ),
-        required=False,
-        missing_value=u'',
-    )
-
     descripcioOrgan = RichText(
         title=_(u"Descripció de l'Òrgan de Govern"),
         # description=_(u"Descripció de l'Òrgan de Govern"),
@@ -56,7 +45,7 @@ class IOrgangovern(form.Schema):
 
     membresOrgan = schema.Text(
         title=_(u"Membres de l'Òrgan de Govern"),
-        # description=_(u"Membres de l'Òrgan de Govern"),
+        description=_(u"Indicar el nom dels assistents separats per comes"),
         required=False,
     )
 
