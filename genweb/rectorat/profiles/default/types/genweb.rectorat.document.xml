@@ -4,7 +4,7 @@
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Document</property>
  <property name="description" i18n:translate="">Document Description</property>
- <property name="icon_expr">string:${portal_url}/folder.gif</property>
+ <property name="icon_expr"></property>
  <property name="factory">genweb.rectorat.document</property>
  <property
     name="add_view_expr">string:${folder_url}/++add++genweb.rectorat.document</property>
@@ -23,15 +23,15 @@
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
+  <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
+  <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
+  <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
-  <element
-     value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-  <element
-     value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"/>
+  <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
+  <element value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"/>
   <element value="plone.app.relationfield.behavior.IRelatedItems"/>
-  <element
-     value="plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle"/>
+  <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle"/>
  </property>
  <property name="schema">genweb.rectorat.content.document.IDocument</property>
  <property

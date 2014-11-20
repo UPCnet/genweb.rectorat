@@ -8,10 +8,18 @@
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot directory="overrides" layer="..interfaces.IGenwebRectoratLayer" />
 
-    <!-- Publish static files -->
+
+    <!--   ++resource++genweb.rectorat.static/genweb_rectorat.css -->
     <browser:resourceDirectory
-      name="genweb.rectorat"
+      name="genweb.rectorat.static"
       directory="static"
       />
+
+
+    <!--   ++resource++genweb.rectorat.stylesheets/genweb_rectorat.css -->
+    <browser:resourceDirectory
+      name="genweb.rectorat.stylesheets"
+      directory="stylesheets"
+      />      
 
 </configure>
