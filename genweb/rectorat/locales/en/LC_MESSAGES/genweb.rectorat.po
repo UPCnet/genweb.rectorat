@@ -19,20 +19,20 @@ msgstr ""
 msgid "Organ Govern"
 msgstr "Organ de Govern"
 
-msgid "Creates an Organ de Govern"
-msgstr "Creates an Organ de Govern"
+msgid "Organ de Govern Description"
+msgstr "Organ de Govern Description"
 
 msgid "Session"
 msgstr "Session"
 
-msgid "Creates a session"
-msgstr "Creates a Session"
+msgid "Session Description"
+msgstr "Session Description"
 
 msgid "Document"
 msgstr "Document"
 
-msgid "Creates a Document"
-msgstr "Creates a Document"
+msgid "Document Description"
+msgstr "Document Description"
 
 msgid "Esborrany"
 msgstr "Draft"

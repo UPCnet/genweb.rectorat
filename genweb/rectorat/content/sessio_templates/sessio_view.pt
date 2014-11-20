@@ -8,11 +8,14 @@
 <body>
 
 <metal:content-core fill-slot="content-core">
-    <metal:content-core define-macro="content-core">
+    <metal:content-core define-macro="content-core" >
 
-    <tal:block tal:condition="context/dataSessio">
+<!--<span i18n:domain="plone" tal:content="context.dataSessio.strftime(%A, %d de %B de %Y')" /> -->
+<br/>
+    <tal:block tal:condition="context/dataSessio" 
+               tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
       <h4> Data de la Sessió </h4>
-      <span tal:content="python:context.dataSessio.strftime('%A %d %B de %Y')" />
+      <span tal:content="python:toLocalizedTime(context.dataSessio, long_format=1)"> Date and Time</span>
     </tal:block>
 
     <tal:block tal:condition="context/llocConvocatoria">
@@ -20,19 +23,14 @@
       <span tal:content="context/llocConvocatoria" />
     </tal:block>
 
-<!--     <span  
-      tal:condition="context/dataSessio"
-      tal:content="python:context.toLocalizedTime(context.dataSessio, time_only=1)" />
- -->
-
-    <tal:block tal:condition="context/horaIniciFi">
-      <h4> Hora d'inici </h4>
-      <span tal:content="python:context.horaIniciFi.strftime('%H:%M')" />
+    <tal:block tal:condition="context/horaInici">
+      <h4> Hora d'inici de la Sessió</h4>
+      <span tal:content="python:context.horaInici.strftime('%H:%M')" />
     </tal:block>
 
-    <tal:block tal:condition="context/horaIniciFi">
-      <h4> Hora de fi</h4>
-      <span tal:content="python:context.horaIniciFi.strftime('%H:%M')" />
+    <tal:block tal:condition="context/horaFi">
+      <h4> Hora de fi de la Sessió</h4>
+      <span tal:content="python:context.horaFi.strftime('%H:%M')" />
     </tal:block>
 
     <tal:block tal:condition="context/descripcioProposit">

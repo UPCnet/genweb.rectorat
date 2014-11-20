@@ -3,7 +3,7 @@
    i18n:domain="genweb.rectorat"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Session</property>
- <property name="description" i18n:translate="">Creates a session</property>
+ <property name="description" i18n:translate="">Session Description</property>
  <property name="icon_expr">string:${portal_url}/folder.gif</property>
  <property name="factory">genweb.rectorat.sessio</property>
  <property
@@ -24,7 +24,6 @@
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
-  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
   <element

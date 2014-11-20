@@ -3,7 +3,7 @@
    i18n:domain="genweb.rectorat"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Document</property>
- <property name="description" i18n:translate="">Crea un Document</property>
+ <property name="description" i18n:translate="">Document Description</property>
  <property name="icon_expr">string:${portal_url}/folder.gif</property>
  <property name="factory">genweb.rectorat.document</property>
  <property
@@ -13,7 +13,6 @@
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-  <element value="genweb.rectorat.sessio"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">view</property>
@@ -24,7 +23,6 @@
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
-  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
   <element

@@ -30,6 +30,17 @@
     <div tal:replace="structure context/fitxer" />
     </tal:block>
 
+
+                <p>
+                
+            </p>
+            <div>
+                <h2 i18n:translate="heading_file_contents">File contents</h2>
+                <pre tal:content="context/get_data|context/data|nothing">
+                </pre>
+            </div>
+
+
     </metal:content-core>
 </metal:content-core>
 

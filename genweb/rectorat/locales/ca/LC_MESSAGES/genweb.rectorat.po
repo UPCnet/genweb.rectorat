@@ -19,20 +19,20 @@ msgstr ""
 msgid "Organ Govern"
 msgstr "Òrgan de Govern"
 
-msgid "Creates an Organ de Govern"
-msgstr "Crear un Òrgan de Govern"
+msgid "Organ de Govern Description"
+msgstr "Contenidor que categoritzarà les sessions i la documentació associada a cadascuna d'elles"
 
 msgid "Session"
 msgstr "Sessió"
 
-msgid "Creates a session"
-msgstr "Crea una sessió"
+msgid "Session Description"
+msgstr "Per a cada Òrgan de Govern es podran crear totes les sessions que es considerin necessàries"
 
 msgid "Document"
 msgstr "Document"
 
-msgid "Creates a Document"
-msgstr "Crear un Document"
+msgid "Document Description"
+msgstr "Per cada sessió es podran crear tants documents com siguin necessaris per la convocatòria"
 
 msgid "Esborrany"
 msgstr "Esborrany"
