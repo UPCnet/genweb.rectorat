@@ -16,8 +16,6 @@
   <element value="genweb.rectorat.document"/>
  </property>
  <property name="allow_discussion">False</property>
-
-
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="klass">plone.dexterity.content.Container</property>

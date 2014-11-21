@@ -11,7 +11,7 @@ EMAIL_RE = u"([0-9a-zA-Z_&.'+-]+!)*[0-9a-zA-Z_&.'+-]+@(([0-9a-zA-Z]([0-9a-zA-Z-]
 
 
 class InvalidEmailError(schema.ValidationError):
-    __doc__ = u'Cal introduïr una adreça de correu vàlida'
+    __doc__ = _(u"Invalid email address")
 
 
 def isEmail(value):
@@ -31,24 +31,21 @@ class IOrgangovern(form.Schema):
     )
 
     descripcioOrgan = RichText(
-        title=_(u"Descripció de l'Òrgan de Govern"),
-        # description=_(u"Descripció de l'Òrgan de Govern"),
+        title=_(u"Organ Govern description"),
         required=False,
     )
 
     adrecaLlista = schema.TextLine(
-        title=_(u"Adreça de la llista de distribució"),
-        # description=_(u"Adreça de la llista de distribució"),
+        title=_(u"mail address"),
         constraint=isEmail,
         required=False,
     )
 
     membresOrgan = schema.Text(
-        title=_(u"Membres de l'Òrgan de Govern"),
+        title=_(u"Organ Govern members"),
         description=_(u"Indicar el nom dels assistents separats per comes"),
         required=False,
     )
-
 
 
 class View(grok.View):

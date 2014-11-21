@@ -29,29 +29,38 @@ class IDocument(form.Schema):
     )
 
     descripcioProposit = RichText(
-        title=_(u"Descripció del Propòsit"),
-        # description=_(u"Descripció del propòsit de la sessió"),
+        title=_(u"Proposal description"),
         required=False,
     )
 
     estatAprovacio = schema.Choice(
-        title=_(u"Estat Aprovació"),
-        # description=_(u"Estat Aprovació"),
+        title=_(u"Approval status"),
         vocabulary=estats,
         default='Esborrany',
     )
 
     comentariEstatAprovacio = RichText(
-        title=_(u"Comentari a l'estat d'aprovació"),
-        # description=_(u"Comentari a l'estat d'aprovació"),
+        title=_(u"Approval status comment"),
         required=False,
     )
 
     fitxer = NamedFile(
-        title=_(u"Annex amb el fitxer original"),
-        # description=_(u"Annex amb el fitxer original"),
+        title=_(u"Original file annex"),
         required=False,
     )
+
+    def getFileInfo(context):
+        from Products.CMFDefault.utils import decode
+
+        options = {}
+        options['title'] = context.Title()
+        options['description'] = context.Description()
+        options['content_type'] = context.getContentType()
+        options['id'] = context.getId()
+        options['size'] = context.get_size()
+        options['url'] = context.absolute_url()
+
+        return context.file_view_template(**decode(options))
 
 
 class View(grok.View):

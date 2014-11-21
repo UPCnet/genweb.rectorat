@@ -24,50 +24,42 @@ class ISessio(form.Schema):
     )
 
     dataSessio = schema.Date(
-        title=_(u"Data de la Sessió"),
-        # description=_(u"Data de la Sessió"),
+        title=_(u"Session date"),
         required=True,
     )
 
     llocConvocatoria = schema.TextLine(
-        title=_(u"Lloc de la convocatòria"),
-        # description=_(u"Lloc de la convocatòria"),
+        title=_(u"Session place"),
         required=False,
     )
 
     horaInici = schema.Time(
-        title=_(u"Hora d'inici de la Sessió"),
-        # description=_(u"Hora d'inici de la Sessió"),
+        title=_(u"Session start time"),
         required=False,
     )
 
     horaFi = schema.Time(
-        title=_(u"Hora de fi de la Sessió"),
-        # description=_(u"Hora de fi de la Sessió"),
+        title=_(u"Session end time"),
         required=False,
     )
 
     descripcioProposit = RichText(
-        title=_(u"Descripció del Propòsit"),
-        # description=_(u"Descripció del propòsit de la sessió"),
+        title=_(u"Proposal description"),
         required=False,
     )
 
     membresConvocats = schema.Text(
-        title=_(u"Membres convocats"),
-        # description=_(u"Membres convocats"),
+        title=_(u"Invited members"),
         required=False,
     )
 
     llistaAssistents = schema.Text(
-        title=_(u"Llista assistents"),
-        # description=_(u"Llista assistents"),
+        title=_(u"Incoming members list"),
         required=False,
     )
 
     ordreSessio = RichText(
-        title=_(u"Ordre de la Sessio"),
-        # description=_(u"Ordre de la Sessio"),
+        title=_(u"Session order"),
         required=False,
     )
 
@@ -87,6 +79,7 @@ def horaIniciDefaultValue(data):
 def horaFiDefaultValue(data):
     time = datetime.datetime.today() + datetime.timedelta(hours=1)
     return time
+
 
 @form.default_value(field=ISessio['membresConvocats'])
 def membresConvocatsDefaultValue(data):

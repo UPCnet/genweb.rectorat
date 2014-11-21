@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="genweb.rectorat">
 <body>
 
 <metal:content-core fill-slot="content-core">
@@ -14,62 +14,70 @@
 <br/>
     <tal:block tal:condition="context/dataSessio" 
                tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
-      <h4> Data de la Sessió </h4>
+      <h4 i18n:translate=""> Session date </h4>
       <span tal:content="python:toLocalizedTime(context.dataSessio, long_format=1)"> Date and Time</span>
     </tal:block>
 
     <span tal:content="python:context.dataSessio.strftime('%A %d %B de %Y')" />
 
     <tal:block tal:condition="context/llocConvocatoria">
-      <h4> Lloc de la convocatòria </h4>
+      <h4 i18n:translate=""> Session place </h4>
       <span tal:content="context/llocConvocatoria" />
     </tal:block>
 
     <tal:block tal:condition="context/horaInici">
-      <h4> Hora d'inici de la Sessió</h4>
+      <h4 i18n:translate=""> Session start time</h4>
       <span tal:content="python:context.horaInici.strftime('%H:%M')" />
     </tal:block>
 
     <tal:block tal:condition="context/horaFi">
-      <h4> Hora de fi de la Sessió</h4>
+      <h4 i18n:translate=""> Session end time</h4>
       <span tal:content="python:context.horaFi.strftime('%H:%M')" />
     </tal:block>
 
     <tal:block tal:condition="context/descripcioProposit">
-      <h4> Descripció del Propòsit </h4>
+      <h4 i18n:translate=""> Proposal description </h4>
     <div tal:replace="structure context/descripcioProposit/output" />
     </tal:block>
     
     <tal:block tal:condition="context/membresConvocats">
-      <h4> Membres convocats </h4>
+      <h4 i18n:translate=""> Invited members </h4>
       <span tal:content="context/membresConvocats" />
     </tal:block>
 
     <tal:block tal:condition="context/llistaAssistents">
-      <h4> Llista assistents </h4>
+      <h4 i18n:translate=""> Incoming members list </h4>
       <span tal:content="context/llistaAssistents" />
     </tal:block>
 
     <tal:block tal:condition="context/ordreSessio">
-      <h4> Ordre de la Sessio </h4>
+      <h4 i18n:translate=""> Session order </h4>
     <div tal:replace="structure context/ordreSessio/output" />
     </tal:block>
 
 <metal:block define-macro="listing" extend-macro="context/folder_listing/macros/content-core">
       <metal:entries fill-slot="entries">
-        <hr/><h3>Documents relacionats</h3>
+        <hr/><h3 i18n:translate="">Related documents</h3>
         <table class="listing"
                summary="Content listing"
                i18n:attributes="summary summary_content_listing;">
             <thead>
               <tr>
                 <th>&nbsp;
-                  <tal:title i18n:translate="listingheader_title">Title</tal:title>&nbsp;
+                  <tal:head i18n:translate="">Title</tal:head>&nbsp;
                 </th>
-                <th>&nbsp;Creador&nbsp;</th>
-                <th>&nbsp;Estat Aprovació&nbsp;</th> 
-                <th>&nbsp;Fitxer&nbsp;</th>                 
-                <th>&nbsp;Darrera modificació&nbsp;</th>
+                <th>&nbsp;
+                  <tal:head i18n:translate="">Creator</tal:head>&nbsp;
+                </th>
+                <th>&nbsp;
+                  <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
+                </th> 
+                <th>&nbsp;
+                  <tal:head i18n:translate="">Original file annex</tal:head>&nbsp;
+                </th>                 
+                <th>&nbsp;
+                  <tal:head i18n:translate="">Last modification</tal:head>&nbsp;
+                </th>
               </tr>
             </thead>
             <tbody>
