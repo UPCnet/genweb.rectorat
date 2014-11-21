@@ -41,12 +41,12 @@
     </tal:block>
     
     <tal:block tal:condition="context/membresConvocats">
-      <h4 i18n:translate=""> Invited members </h4>
+      <h4 i18n:translate=""> Incoming members list </h4>
       <span tal:content="context/membresConvocats" />
     </tal:block>
 
     <tal:block tal:condition="context/llistaAssistents">
-      <h4 i18n:translate=""> Incoming members list </h4>
+      <h4 i18n:translate=""> Invited members </h4>
       <span tal:content="context/llistaAssistents" />
     </tal:block>
 

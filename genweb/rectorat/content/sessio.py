@@ -49,12 +49,12 @@ class ISessio(form.Schema):
     )
 
     membresConvocats = schema.Text(
-        title=_(u"Invited members"),
+        title=_(u"Incoming members list"),
         required=False,
     )
 
     llistaAssistents = schema.Text(
-        title=_(u"Incoming members list"),
+        title=_(u"Invited members"),
         required=False,
     )
 

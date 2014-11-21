@@ -59,7 +59,7 @@ msgstr "Indicar el nombre de los asistentes, separados por comas"
 
 #: ./genweb/rectorat/content/organgovern.py:14
 msgid "Invalid email address"
-msgstr "Direcciónd e correo inválida"
+msgstr "Dirección de correo incorrecta"
 
 #: ./genweb/rectorat/content/sessio.py:52
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:44
@@ -165,5 +165,5 @@ msgstr "Dirección de correo de la lista de distribución"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:32
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:61
 msgid "summary_content_listing"
-msgstr ""
+msgstr "Actualmente no hay sesiones en este Órgano de Gobierno"
 
