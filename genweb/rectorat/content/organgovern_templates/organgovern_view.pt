@@ -11,19 +11,22 @@
   <metal:content-core fill-slot="content-core">
 <div>
     <tal:block tal:condition="context/descripcioOrgan">
-      <h4 i18n:translate=""> Organ Govern description </h4>
+      <label i18n:translate=""> Organ Govern description </label>
     <div tal:replace="structure context/descripcioOrgan/output" />
     </tal:block>
 
+    <tal:block tal:condition="context/adrecaLlista">
+      <label i18n:translate=""> mail address </label>
+      <span tal:content="context/adrecaLlista" />
+    </tal:block>  
+
     <tal:block tal:condition="context/membresOrgan">
-      <h4 i18n:translate=""> Organ Govern members </h4>
-      <span tal:content="context/membresOrgan" />
+      <br/>
+      <label i18n:translate=""> Organ Govern members </label>
+      <span tal:content="view/getSeparatedMembers" />
     </tal:block>
 
-    <tal:block tal:condition="context/adrecaLlista">
-      <h4 i18n:translate=""> mail address </h4>
-      <span tal:content="context/adrecaLlista" />
-    </tal:block>    
+
 </div>
 
     <metal:block define-macro="listing" extend-macro="context/folder_listing/macros/content-core">

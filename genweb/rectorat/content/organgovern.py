@@ -51,3 +51,7 @@ class IOrgangovern(form.Schema):
 class View(grok.View):
     grok.context(IOrgangovern)
     grok.template('organgovern_view')
+
+    def getSeparatedMembers(form):
+        # Returns members separates by comma
+        return None

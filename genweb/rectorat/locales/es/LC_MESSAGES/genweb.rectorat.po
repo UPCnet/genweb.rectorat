@@ -128,7 +128,7 @@ msgstr "Fecha de la sesión"
 #: ./genweb/rectorat/content/sessio.py:42
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:34
 msgid "Session end time"
-msgstr "Hora de fin de la sesión"
+msgstr "Hora de fin"
 
 #: ./genweb/rectorat/content/sessio.py:62
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:54
@@ -145,7 +145,7 @@ msgstr "Lugar de la convocatoria"
 #: ./genweb/rectorat/content/sessio.py:37
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:29
 msgid "Session start time"
-msgstr "Hora de inicio de la sesión"
+msgstr "Hora de inicio"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:31
 msgid "Sessions list"
