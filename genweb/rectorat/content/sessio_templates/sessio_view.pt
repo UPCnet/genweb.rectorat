@@ -8,46 +8,82 @@
 <body>
 
 <metal:content-core fill-slot="content-core">
-    <metal:content-core define-macro="content-core" >
+  <metal:content-core define-macro="content-core" >
 
-    <tal:block tal:condition="context/dataSessio" >
-      <h4 i18n:translate=""> Session date </h4>
-      <span tal:content="python:context.dataSessio.strftime('%A %d %B de %Y')"> Date and Time</span>
-    </tal:block>
-
-    <tal:block tal:condition="context/llocConvocatoria">
-      <h4 i18n:translate=""> Session place </h4>
-      <span tal:content="context/llocConvocatoria" />
-    </tal:block>
-
-    <tal:block tal:condition="context/horaInici">
-      <h4 i18n:translate=""> Session start time</h4>
-      <span tal:content="python:context.horaInici.strftime('%H:%M')" />
-    </tal:block>
-
-    <tal:block tal:condition="context/horaFi">
-      <h4 i18n:translate=""> Session end time</h4>
-      <span tal:content="python:context.horaFi.strftime('%H:%M')" />
-    </tal:block>
+  <table class="listing nosort"
+         summary="Content listing"
+         i18n:attributes="summary summary_content_listing;">
+      <thead>
+        <tr>
+          <th>&nbsp;
+            <tal:head i18n:translate="">Session date</tal:head>&nbsp;
+          </th>
+          <th>&nbsp;
+            <tal:head i18n:translate="">Session place</tal:head>&nbsp;
+          </th>
+          <th>&nbsp;
+            <tal:head i18n:translate="">Session start time</tal:head>&nbsp;
+          </th> 
+          <th>&nbsp;
+            <tal:head i18n:translate="">Session end time</tal:head>&nbsp;
+          </th>                 
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span tal:condition="context/dataSessio" >
+              <div style="text-align:center" tal:content="python:context.dataSessio.strftime('%A, %d de %B de %Y')">
+              </div>
+            </span>
+          </td>
+          <td>
+            <span tal:condition="context/llocConvocatoria">
+              <div style="text-align:center" tal:content="context/llocConvocatoria" >
+              </div>
+            </span>
+          </td>
+          <td>
+            <span tal:condition="context/horaInici">
+              <div style="text-align:center" tal:content="python:context.horaInici.strftime('%H:%M')">
+              </div>
+            </span>
+          </td>
+          <td>
+            <span tal:condition="context/horaFi">
+              <div style="text-align:center" tal:content="python:context.horaFi.strftime('%H:%M')">
+              </div>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <tal:block tal:condition="context/descripcioProposit">
-      <legend i18n:translate=""> Proposal description </legend>
-    <div tal:replace="structure context/descripcioProposit/output" />
-    <hr/>
+      <h3 i18n:translate=""> Proposal description </h3>
+      <div tal:replace="structure context/descripcioProposit/output" />
+      <hr/>
     </tal:block>
     
     <tal:block tal:condition="context/membresConvocats">
       <h4 i18n:translate=""> Incoming members list </h4>
-      <span tal:content="context/membresConvocats" />
+      <ul>
+        <i class="icon-user"></i>
+        <span tal:content="context/membresConvocats" />
+      </ul>
     </tal:block>
 
     <tal:block tal:condition="context/llistaAssistents">
       <h4 i18n:translate=""> Invited members </h4>
-      <span tal:content="context/llistaAssistents" />
+      <ul>
+        <i class="icon-user"></i>
+        <span tal:content="context/llistaAssistents" />
+      </ul>
     </tal:block>
 
     <tal:block tal:condition="context/ordreSessio">
-      <legend i18n:translate=""> Session order </legend>
+      <hr/>
+      <h3 i18n:translate=""> Session order </h3>
     <div tal:replace="structure context/ordreSessio/output" />
     </tal:block>
 

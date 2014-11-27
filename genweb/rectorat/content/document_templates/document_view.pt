@@ -11,8 +11,8 @@
     <metal:content-core define-macro="content-core">
 
     <tal:block tal:condition="context/descripcioProposit">
-      <legend i18n:translate=""> Proposal description </legend>
-    <div tal:replace="structure context/descripcioProposit/output" />
+      <h3 i18n:translate=""> Proposal description </h3>
+      <div tal:replace="structure context/descripcioProposit/output" />
     </tal:block>
 
     <tal:block tal:condition="context/numDoc">
@@ -31,7 +31,7 @@
     </tal:block>
 
     <tal:block tal:condition="context/comentariEstatAprovacio">
-      <h4 i18n:translate=""> Approval status comment </h4>
+      <h3 i18n:translate=""> Approval status comment </h3>
     <div tal:replace="structure context/comentariEstatAprovacio/output" />
     </tal:block>
 

@@ -12,20 +12,25 @@
   
     <div>
       <tal:block tal:condition="context/descripcioOrgan">
-        <legend i18n:translate=""> Organ Govern description </legend>
+        <h3 i18n:translate=""> Organ Govern description </h3>
         <div tal:replace="structure context/descripcioOrgan/output" />
         <hr/>
       </tal:block>
 
       <tal:block tal:condition="context/adrecaLlista">
-        <label i18n:translate=""> mail address </label>
-        <span tal:content="context/adrecaLlista" />
+        <h4 i18n:translate=""> mail address </h4>
+        <ul>
+          <i class="icon-envelope"></i>
+          <span tal:content="context/adrecaLlista" />
+        </ul>
       </tal:block>  
 
       <tal:block tal:condition="context/membresOrgan">
-        <br/>
-        <label i18n:translate=""> Organ Govern members </label>
-        <span tal:content="context/membresOrgan" />
+        <h4 i18n:translate=""> Organ Govern members </h4>
+        <ul>        
+          <i class="icon-user"></i>
+          <span tal:content="context/membresOrgan" />
+        </ul>
       </tal:block>
     </div>
 
