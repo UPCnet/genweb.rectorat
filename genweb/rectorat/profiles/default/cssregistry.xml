@@ -8,7 +8,7 @@
 
  <stylesheet title="" applyPrefix="False" authenticated="False" bundle=""
     cacheable="True" compression="safe" conditionalcomment="" cookable="True"
-    enabled="True" expression="" id="++genweb.rectorat++stylesheets/genweb.rectorat.css"
+    enabled="True" expression="" id="++resource++genweb.rectorat.stylesheets/genweb_rectorat.css"
     media="" rel="stylesheet" rendering="import" insert-after="++gw++stylesheets/genwebupc.css" />
 
 </object>

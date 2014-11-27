@@ -11,8 +11,18 @@
     <metal:content-core define-macro="content-core">
 
     <tal:block tal:condition="context/descripcioProposit">
-      <h4 i18n:translate=""> Proposal description </h4>
+      <legend i18n:translate=""> Proposal description </legend>
     <div tal:replace="structure context/descripcioProposit/output" />
+    </tal:block>
+
+    <tal:block tal:condition="context/numDoc">
+      <h4 i18n:translate=""> Document number </h4>
+    <div tal:replace="structure context/numDoc" />
+    </tal:block>
+
+    <tal:block tal:condition="context/proposalPoint">
+      <h4 i18n:translate=""> Proposal point number </h4>
+    <div tal:replace="structure context/proposalPoint" />
     </tal:block>
 
     <tal:block tal:condition="context/estatAprovacio">
@@ -25,10 +35,35 @@
     <div tal:replace="structure context/comentariEstatAprovacio/output" />
     </tal:block>
 
-    <tal:block>
-      <h4 i18n:translate=""> Original file annex </h4>
-    <div tal:content="context/getId" />
-    </tal:block>
+    <fieldset tal:condition="context/fitxersOriginal">
+      <legend i18n:translate="">Original files</legend>
+      <ul>
+        <tal:files repeat="item context/fitxersOriginal">
+          <li>
+            <a href=""
+               tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+               tal:content="item/filename">
+              Original files
+             </a>
+          </li>
+        </tal:files>
+      </ul>
+    </fieldset>    
+
+    <fieldset tal:condition="context/fitxersPerPublicar">
+      <legend i18n:translate="">Published files</legend>
+      <ul>
+        <tal:files repeat="item context/fitxersPerPublicar">
+          <li>
+            <a href=""
+               tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
+               tal:content="item/filename">
+              Published files
+            </a>
+          </li>
+        </tal:files>
+      </ul>
+    </fieldset>  
 
     </metal:content-core>
 </metal:content-core>

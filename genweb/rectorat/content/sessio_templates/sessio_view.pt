@@ -10,15 +10,10 @@
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core" >
 
-<!--<span i18n:domain="plone" tal:content="context.dataSessio.strftime(%A, %d de %B de %Y')" /> -->
-<br/>
-    <tal:block tal:condition="context/dataSessio" 
-               tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+    <tal:block tal:condition="context/dataSessio" >
       <h4 i18n:translate=""> Session date </h4>
-      <span tal:content="python:toLocalizedTime(context.dataSessio, long_format=1)"> Date and Time</span>
+      <span tal:content="python:context.dataSessio.strftime('%A %d %B de %Y')"> Date and Time</span>
     </tal:block>
-
-    <span tal:content="python:context.dataSessio.strftime('%A %d %B de %Y')" />
 
     <tal:block tal:condition="context/llocConvocatoria">
       <h4 i18n:translate=""> Session place </h4>
@@ -36,8 +31,9 @@
     </tal:block>
 
     <tal:block tal:condition="context/descripcioProposit">
-      <h4 i18n:translate=""> Proposal description </h4>
+      <legend i18n:translate=""> Proposal description </legend>
     <div tal:replace="structure context/descripcioProposit/output" />
+    <hr/>
     </tal:block>
     
     <tal:block tal:condition="context/membresConvocats">
@@ -51,11 +47,11 @@
     </tal:block>
 
     <tal:block tal:condition="context/ordreSessio">
-      <h4 i18n:translate=""> Session order </h4>
+      <legend i18n:translate=""> Session order </legend>
     <div tal:replace="structure context/ordreSessio/output" />
     </tal:block>
 
-<metal:block define-macro="listing" extend-macro="context/folder_listing/macros/content-core">
+    <metal:block define-macro="listing" extend-macro="context/folder_listing/macros/content-core">
       <metal:entries fill-slot="entries">
         <hr/><h3 i18n:translate="">Related documents</h3>
         <table class="listing"
@@ -73,8 +69,11 @@
                   <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
                 </th> 
                 <th>&nbsp;
-                  <tal:head i18n:translate="">Original file annex</tal:head>&nbsp;
+                  <tal:head i18n:translate="">Original files</tal:head>&nbsp;
                 </th>                 
+                <th>&nbsp;
+                  <tal:head i18n:translate="">Published files</tal:head>&nbsp;
+                </th>                                 
                 <th>&nbsp;
                   <tal:head i18n:translate="">Last modification</tal:head>&nbsp;
                 </th>
@@ -106,9 +105,32 @@
                     <td tal:content="obj/estatAprovacio">
                         Estat aprovació
                     </td>
-                    <td tal:content="obj/fitxer">
-                        Fitxer
-                    </td>                    
+                    <td tal:condition="obj/fitxersOriginal">
+                      <ul>
+                        <tal:files repeat="item obj/fitxersOriginal">
+                          <li>
+                            <a href=""
+                               tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+                               tal:content="item/filename">
+                              Original files
+                             </a>
+                          </li>
+                        </tal:files>
+                      </ul>
+                    </td>     
+                    <td tal:condition="obj/fitxersPerPublicar">
+                      <ul>
+                        <tal:files repeat="item obj/fitxersPerPublicar">
+                          <li>
+                            <a href=""
+                               tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
+                               tal:content="item/filename">
+                              Published files
+                            </a>
+                          </li>
+                        </tal:files>
+                      </ul>
+                    </td>                                    
                     <td tal:condition="show_about"
                         tal:content="python:toLocalizedTime(item_modified,long_format=1)">
                       August 16, 2001 at 23:35:59
@@ -120,8 +142,6 @@
           </table>
         </metal:entries>
       </metal:block>
-    <metal:subtopics use-macro="context/atct_topic_view/macros/folderlisting_macro" />
-
 
     </metal:content-core>
 </metal:content-core>

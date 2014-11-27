@@ -8,6 +8,11 @@ from plone.namedfile.field import NamedFile
 from plone.app.dexterity import PloneMessageFactory as _PMF
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from plone.directives import form as directivesform
+from plone.formwidget.multifile import MultiFileFieldWidget
+from plone.namedfile.field import NamedFile
+from zope.interface import Interface
+
 
 estats = SimpleVocabulary(
     [SimpleTerm(value=u'Esborrany', title=_(u'Esborrany')),
@@ -33,6 +38,16 @@ class IDocument(form.Schema):
         required=False,
     )
 
+    numDoc = schema.TextLine(
+        title=_(u'Document number'),
+        required=False
+    )
+
+    proposalPoint = schema.TextLine(
+        title=_(u'Proposal point number'),
+        required=False
+    )
+
     estatAprovacio = schema.Choice(
         title=_(u"Approval status"),
         vocabulary=estats,
@@ -44,23 +59,13 @@ class IDocument(form.Schema):
         required=False,
     )
 
-    fitxer = NamedFile(
-        title=_(u"Original file annex"),
-        required=False,
-    )
+    directivesform.widget(fitxersOriginal=MultiFileFieldWidget)
+    fitxersOriginal = schema.List(title=_(u"Original files"),
+                                  value_type=NamedFile())
 
-    def getFileInfo(context):
-        from Products.CMFDefault.utils import decode
-
-        options = {}
-        options['title'] = context.Title()
-        options['description'] = context.Description()
-        options['content_type'] = context.getContentType()
-        options['id'] = context.getId()
-        options['size'] = context.get_size()
-        options['url'] = context.absolute_url()
-
-        return context.file_view_template(**decode(options))
+    directivesform.widget(fitxersPerPublicar=MultiFileFieldWidget)
+    fitxersPerPublicar = schema.List(title=_(u"Published files"),
+                                     value_type=NamedFile())
 
 
 class View(grok.View):
