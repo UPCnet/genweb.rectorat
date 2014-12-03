@@ -10,60 +10,76 @@
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
 
-    <tal:block tal:condition="context/descripcioProposit">
-      <h3 i18n:translate=""> Proposal description </h3>
-      <div tal:replace="structure context/descripcioProposit/output" />
-    </tal:block>
-
-    <tal:block tal:condition="context/numDoc">
-      <h4 i18n:translate=""> Document number </h4>
-    <div tal:replace="structure context/numDoc" />
-    </tal:block>
-
-    <tal:block tal:condition="context/proposalPoint">
-      <h4 i18n:translate=""> Proposal point number </h4>
-    <div tal:replace="structure context/proposalPoint" />
-    </tal:block>
-
-    <tal:block tal:condition="context/estatAprovacio">
-      <h4 i18n:translate=""> Approval status </h4>
-    <div tal:replace="structure context/estatAprovacio" />
-    </tal:block>
-
-    <tal:block tal:condition="context/comentariEstatAprovacio">
-      <h3 i18n:translate=""> Approval status comment </h3>
-    <div tal:replace="structure context/comentariEstatAprovacio/output" />
-    </tal:block>
-
-    <fieldset tal:condition="context/fitxersOriginal">
-      <legend i18n:translate="">Original files</legend>
-      <ul>
-        <tal:files repeat="item context/fitxersOriginal">
-          <li>
-            <a href=""
-               tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
-               tal:content="item/filename">
-              Original files
-             </a>
+    <div style="clear:both;">
+      <div class="resultsBox">
+        <h3 style="text-align:center;"> Dades del document </h3>
+        <ul>        
+          <li tal:condition="context/proposalPoint">
+            <b i18n:translate=""> Point </b>
+            <span style="float:right;" tal:content="context/proposalPoint" />
           </li>
-        </tal:files>
-      </ul>
-    </fieldset>    
-
-    <fieldset tal:condition="context/fitxersPerPublicar">
-      <legend i18n:translate="">Published files</legend>
-      <ul>
-        <tal:files repeat="item context/fitxersPerPublicar">
-          <li>
-            <a href=""
-               tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
-               tal:content="item/filename">
-              Published files
-            </a>
+          <li tal:condition="context/numDoc">
+            <b i18n:translate=""> Number </b>
+            <span style="float:right;" tal:content="context/numDoc" />
           </li>
-        </tal:files>
-      </ul>
-    </fieldset>  
+          <li tal:condition="context/estatAprovacio">
+            <b i18n:translate=""> Status </b>
+            <span style="float:right;"
+                tal:content="context/estatAprovacio"
+                tal:attributes="class context/estatAprovacio" />
+          </li>                
+        <ul>        
+      </div>
+      <div style="width:80%; ">
+        <tal:block tal:condition="context/descripcioProposit">
+          <h3 i18n:translate=""> Proposal description </h3>
+          <div tal:replace="structure context/descripcioProposit/output" />
+        </tal:block>
+      </div>
+    
+    </div>
+
+    <div style="clear:both;">
+      <tal:block tal:condition="context/comentariEstatAprovacio">
+        <h3 i18n:translate=""> Approval status comment </h3>
+      <div tal:replace="structure context/comentariEstatAprovacio/output" />
+      </tal:block>
+    </div>
+
+    <div>
+      <fieldset tal:condition="context/fitxersOriginal">
+        <legend i18n:translate="">Original files</legend>
+        <ul>
+          <tal:files repeat="item context/fitxersOriginal">
+            <li>
+              <a href=""
+                 tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+                 tal:content="item/filename">
+                Original files
+               </a>
+            </li>
+          </tal:files>
+        </ul>
+      </fieldset>  
+    </div>  
+
+    <div>
+      <fieldset tal:condition="context/fitxersPerPublicar">
+        <legend i18n:translate="">Published files</legend>
+        <ul>
+          <tal:files repeat="item context/fitxersPerPublicar">
+            <li>
+
+              <a href=""
+                 tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
+                 tal:content="item/filename">
+                Published files
+              </a>
+            </li>
+          </tal:files>
+        </ul>
+      </fieldset> 
+    </div> 
 
     </metal:content-core>
 </metal:content-core>

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import locale
 import datetime
 from five import grok
 from zope import schema
@@ -90,3 +91,6 @@ def membresConvocatsDefaultValue(data):
 class View(grok.View):
     grok.context(ISessio)
     grok.template('sessio_view')
+
+    def dataSessio(data):
+        return "HOAL"

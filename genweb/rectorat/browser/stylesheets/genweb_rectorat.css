@@ -22,3 +22,72 @@ i.icon-genweb-rectorat-document,
 	background-position: -24px -24px !important;
 }
 
+.Esborrany {
+	background-color: #456211;
+	padding: 1px 4px 2px;
+	border-radius: 3px;
+	font-weight: bold;
+	line-height: 14px;
+	color: white;
+	vertical-align: baseline;
+	white-space: nowrap;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-align: center;
+}
+
+.Pendent {
+	background-color: #f0a436;
+	padding: 1px 4px 2px;
+	border-radius: 3px;
+	font-weight: bold;
+	line-height: 14px;
+	color: white;
+	vertical-align: baseline;
+	white-space: nowrap;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-align: center;
+}
+
+.Aprovat {
+	background-color: #007bc0;
+	padding: 1px 4px 2px;
+	border-radius: 3px;
+	font-weight: bold;
+	line-height: 14px;
+	color: white;
+	vertical-align: baseline;
+	white-space: nowrap;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-align: center;
+}
+
+.Rebutjat {
+	background-color: #a62e1f;
+	padding: 1px 4px 2px;
+	border-radius: 3px;
+	font-weight: bold;
+	line-height: 14px;
+	color: white;
+	vertical-align: baseline;
+	white-space: nowrap;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-align: center;
+}
+
+.resultsBox {
+	float:right; width:18%; 
+	clear:both;
+	background-color: #f2f2f2;
+	padding: 15px 15px 0px 15px;
+}
+
+.resultsBox li {
+	list-style: none;
+	border-bottom: 2px solid white;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.resultsBox ul {
+	margin: 20px;
+	}

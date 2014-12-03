@@ -18,7 +18,7 @@ estats = SimpleVocabulary(
     [SimpleTerm(value=u'Esborrany', title=_(u'Esborrany')),
      SimpleTerm(value=u'Pendent', title=_(u'Pendent')),
      SimpleTerm(value=u'Aprovat', title=_(u'Aprovat')),
-     SimpleTerm(value=u'No aprovat', title=_(u'No aprovat')),
+     SimpleTerm(value=u'Rebutjat', title=_(u'Rebutjat')),
      ]
     )
 
@@ -38,13 +38,13 @@ class IDocument(form.Schema):
         required=False,
     )
 
-    numDoc = schema.TextLine(
-        title=_(u'Document number'),
+    proposalPoint = schema.TextLine(
+        title=_(u'Proposal point number'),
         required=False
     )
 
-    proposalPoint = schema.TextLine(
-        title=_(u'Proposal point number'),
+    numDoc = schema.TextLine(
+        title=_(u'Document number'),
         required=False
     )
 

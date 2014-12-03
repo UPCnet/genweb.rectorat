@@ -28,7 +28,6 @@
       <tal:block tal:condition="context/membresOrgan">
         <h4 i18n:translate=""> Organ Govern members </h4>
         <ul>        
-          <i class="icon-user"></i>
           <span tal:content="context/membresOrgan" />
         </ul>
       </tal:block>
