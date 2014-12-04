@@ -22,7 +22,7 @@ i.icon-genweb-rectorat-document,
 	background-position: -24px -24px !important;
 }
 
-.Esborrany {
+.Draft {
 	background-color: #456211;
 	padding: 1px 4px 2px;
 	border-radius: 3px;
@@ -35,7 +35,7 @@ i.icon-genweb-rectorat-document,
 	text-align: center;
 }
 
-.Pendent {
+.Pending {
 	background-color: #f0a436;
 	padding: 1px 4px 2px;
 	border-radius: 3px;
@@ -48,7 +48,7 @@ i.icon-genweb-rectorat-document,
 	text-align: center;
 }
 
-.Aprovat {
+.Aproved {
 	background-color: #007bc0;
 	padding: 1px 4px 2px;
 	border-radius: 3px;
@@ -61,7 +61,7 @@ i.icon-genweb-rectorat-document,
 	text-align: center;
 }
 
-.Rebutjat {
+.Rejected {
 	background-color: #a62e1f;
 	padding: 1px 4px 2px;
 	border-radius: 3px;
@@ -75,7 +75,7 @@ i.icon-genweb-rectorat-document,
 }
 
 .resultsBox { 
-   background-color: #f2f2f2;
+   background-color: #eeeeee;
     clear: both;
     float: right;
     padding: 15px 15px 0;

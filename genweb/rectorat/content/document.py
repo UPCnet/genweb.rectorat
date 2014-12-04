@@ -3,22 +3,19 @@ from five import grok
 from zope import schema
 from plone.directives import form
 from plone.app.textfield import RichText
-from genweb.rectorat import _
 from plone.namedfile.field import NamedFile
-from plone.app.dexterity import PloneMessageFactory as _PMF
-
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.directives import form as directivesform
 from plone.formwidget.multifile import MultiFileFieldWidget
-from plone.namedfile.field import NamedFile
-from zope.interface import Interface
 
+from genweb.rectorat import _
+from plone.app.dexterity import PloneMessageFactory as _PMF
 
 estats = SimpleVocabulary(
-    [SimpleTerm(value=u'Esborrany', title=_(u'Esborrany')),
-     SimpleTerm(value=u'Pendent', title=_(u'Pendent')),
-     SimpleTerm(value=u'Aprovat', title=_(u'Aprovat')),
-     SimpleTerm(value=u'Rebutjat', title=_(u'Rebutjat')),
+    [SimpleTerm(value='Draft', title=_(u'Draft')),
+     SimpleTerm(value='Pending', title=_(u'Pending')),
+     SimpleTerm(value='Approved', title=_(u'Approved')),
+     SimpleTerm(value='Rejected', title=_(u'Rejected')),
      ]
     )
 
@@ -33,11 +30,6 @@ class IDocument(form.Schema):
         required=True
     )
 
-    descripcioProposit = RichText(
-        title=_(u"Proposal description"),
-        required=False,
-    )
-
     proposalPoint = schema.TextLine(
         title=_(u'Proposal point number'),
         required=False
@@ -48,10 +40,15 @@ class IDocument(form.Schema):
         required=False
     )
 
+    descripcioProposit = RichText(
+        title=_(u"Proposal description"),
+        required=False,
+    )
+
     estatAprovacio = schema.Choice(
         title=_(u"Approval status"),
         vocabulary=estats,
-        default='Esborrany',
+        default='Draft',
     )
 
     comentariEstatAprovacio = RichText(
@@ -61,11 +58,13 @@ class IDocument(form.Schema):
 
     directivesform.widget(fitxersOriginal=MultiFileFieldWidget)
     fitxersOriginal = schema.List(title=_(u"Original files"),
-                                  value_type=NamedFile())
+                                  value_type=NamedFile(),
+                                  required=False,)
 
     directivesform.widget(fitxersPerPublicar=MultiFileFieldWidget)
     fitxersPerPublicar = schema.List(title=_(u"Published files"),
-                                     value_type=NamedFile())
+                                     value_type=NamedFile(),
+                                     required=False,)
 
 
 class View(grok.View):

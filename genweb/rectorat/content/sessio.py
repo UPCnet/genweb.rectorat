@@ -5,9 +5,9 @@ from five import grok
 from zope import schema
 from plone.directives import form
 from plone.app.textfield import RichText
-from plone.app.dexterity import PloneMessageFactory as _PMF
 
 from genweb.rectorat import _
+from plone.app.dexterity import PloneMessageFactory as _PMF
 
 
 class InvalidEmailError(schema.ValidationError):
@@ -91,6 +91,3 @@ def membresConvocatsDefaultValue(data):
 class View(grok.View):
     grok.context(ISessio)
     grok.template('sessio_view')
-
-    def dataSessio(data):
-        return "HOAL"

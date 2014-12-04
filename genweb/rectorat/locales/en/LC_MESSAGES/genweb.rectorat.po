@@ -27,7 +27,7 @@ msgid "Approval status comment"
 msgstr "Approval status comment"
 
 #: ./genweb/rectorat/content/document.py:20
-msgid "Aprovat"
+msgid "Approved"
 msgstr "Approved"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:61
@@ -37,7 +37,7 @@ msgstr "Creator"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.document.xml
 msgid "Document"
-msgstr "Government document"
+msgstr "Document"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.document.xml
 msgid "Document Description"
@@ -48,8 +48,8 @@ msgid "Document number"
 msgstr "Document number"
 
 #: ./genweb/rectorat/content/document.py:18
-msgid "Esborrany"
-msgstr "Draft"
+msgid "Draft"
+msgstr "In development"
 
 #: ./genweb/rectorat/content/sessio.py:52
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:69
@@ -86,12 +86,12 @@ msgstr "Government Body"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:15
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern description"
-msgstr "Government Body description"
+msgstr "Description"
 
 #: ./genweb/rectorat/content/organgovern.py:45
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:29
 msgid "Organ Govern members"
-msgstr "Government Body members"
+msgstr "Members"
 
 #: ./genweb/rectorat/content/document.py:63
 #: ./genweb/rectorat/content/document_templates/document_view.pt:54
@@ -100,7 +100,7 @@ msgid "Original files"
 msgstr ""
 
 #: ./genweb/rectorat/content/document.py:19
-msgid "Pendent"
+msgid "Pending"
 msgstr "Pending"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:17
@@ -111,20 +111,20 @@ msgstr "Point:"
 #: ./genweb/rectorat/content/document_templates/document_view.pt:39
 #: ./genweb/rectorat/content/sessio.py:47
 msgid "Proposal description"
-msgstr "Proposal description"
+msgstr "Content"
 
 #: ./genweb/rectorat/content/document.py:42
 msgid "Proposal point number"
-msgstr "Proposal point number"
+msgstr "Point number"
 
 #: ./genweb/rectorat/content/document.py:67
 #: ./genweb/rectorat/content/document_templates/document_view.pt:71
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:111
 msgid "Published files"
-msgstr ""
+msgstr "Published files"
 
 #: ./genweb/rectorat/content/document.py:21
-msgid "Rebutjat"
+msgid "Rejected"
 msgstr "Rejected"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:92
@@ -133,11 +133,11 @@ msgstr "Related documents"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session"
-msgstr "Government Session"
+msgstr "Session"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session Description"
-msgstr "Session description"
+msgstr "Description"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
 #: ./genweb/rectorat/content/sessio.py:27

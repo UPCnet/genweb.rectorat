@@ -27,7 +27,7 @@ msgid "Approval status comment"
 msgstr "Comentari a l'estat d'aprovació"
 
 #: ./genweb/rectorat/content/document.py:20
-msgid "Aprovat"
+msgid "Approved"
 msgstr "Aprovat"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:61
@@ -37,7 +37,7 @@ msgstr "Creador"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.document.xml
 msgid "Document"
-msgstr "Document de Govern"
+msgstr "Document"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.document.xml
 msgid "Document Description"
@@ -48,8 +48,8 @@ msgid "Document number"
 msgstr "Número de document"
 
 #: ./genweb/rectorat/content/document.py:18
-msgid "Esborrany"
-msgstr "Esborrany"
+msgid "Draft"
+msgstr "En el·laboració"
 
 #: ./genweb/rectorat/content/sessio.py:52
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:69
@@ -80,18 +80,18 @@ msgstr "Número:"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern"
-msgstr "Òrgan de Govern"
+msgstr "Òrgan de govern"
 
 #: ./genweb/rectorat/content/organgovern.py:34
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:15
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern description"
-msgstr "Descripció de l'Òrgan de Govern"
+msgstr "Descripció"
 
 #: ./genweb/rectorat/content/organgovern.py:45
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:29
 msgid "Organ Govern members"
-msgstr "Membres de l'Òrgan de Govern"
+msgstr "Membres de l'òrgan de govern"
 
 #: ./genweb/rectorat/content/document.py:63
 #: ./genweb/rectorat/content/document_templates/document_view.pt:54
@@ -100,7 +100,7 @@ msgid "Original files"
 msgstr "Fitxers originals"
 
 #: ./genweb/rectorat/content/document.py:19
-msgid "Pendent"
+msgid "Pending"
 msgstr "Pendent"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:17
@@ -111,7 +111,7 @@ msgstr "Punt:"
 #: ./genweb/rectorat/content/document_templates/document_view.pt:39
 #: ./genweb/rectorat/content/sessio.py:47
 msgid "Proposal description"
-msgstr "Descripció del propòsit"
+msgstr "Contingut"
 
 #: ./genweb/rectorat/content/document.py:42
 msgid "Proposal point number"
@@ -124,7 +124,7 @@ msgid "Published files"
 msgstr "Fitxers publicats"
 
 #: ./genweb/rectorat/content/document.py:21
-msgid "Rebutjat"
+msgid "Rejected"
 msgstr "Rebutjat"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:92
@@ -133,11 +133,11 @@ msgstr "Documents relacionats"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session"
-msgstr "Sessió de Govern"
+msgstr "Sessió"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session Description"
-msgstr "Per a cada Òrgan de Govern es podran crear totes les sessions que es considerin necessàries"
+msgstr "Per a cada òrgan de govern es podran crear totes les sessions que es considerin necessàries"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
 #: ./genweb/rectorat/content/sessio.py:27
@@ -174,7 +174,7 @@ msgstr "Llistat de sessions"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:31
 msgid "Status"
-msgstr "Estat:"
+msgstr "Aprovació:"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:46
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:99
