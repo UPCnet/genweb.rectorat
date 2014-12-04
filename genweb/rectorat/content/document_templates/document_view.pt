@@ -46,39 +46,30 @@
       </tal:block>
     </div>
 
-    <div>
-      <fieldset tal:condition="context/fitxersOriginal">
+    <div tal:condition="context/fitxersOriginal">
         <legend i18n:translate="">Original files</legend>
         <ul>
-          <tal:files repeat="item context/fitxersOriginal">
-            <li>
+            <li tal:repeat="item context/fitxersOriginal">
               <a href=""
                  tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
                  tal:content="item/filename">
                 Original files
                </a>
             </li>
-          </tal:files>
         </ul>
-      </fieldset>  
     </div>  
 
-    <div>
-      <fieldset tal:condition="context/fitxersPerPublicar">
+    <div tal:condition="context/fitxersPerPublicar">
         <legend i18n:translate="">Published files</legend>
         <ul>
-          <tal:files repeat="item context/fitxersPerPublicar">
-            <li>
-
+            <li tal:repeat="item context/fitxersPerPublicar">
               <a href=""
                  tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
                  tal:content="item/filename">
                 Published files
               </a>
             </li>
-          </tal:files>
         </ul>
-      </fieldset> 
     </div> 
 
     </metal:content-core>

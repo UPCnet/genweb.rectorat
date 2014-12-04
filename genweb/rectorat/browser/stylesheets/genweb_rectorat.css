@@ -74,20 +74,28 @@ i.icon-genweb-rectorat-document,
 	text-align: center;
 }
 
-.resultsBox {
-	float:right; width:18%; 
-	clear:both;
-	background-color: #f2f2f2;
-	padding: 15px 15px 0px 15px;
+.resultsBox { 
+   background-color: #f2f2f2;
+    clear: both;
+    float: right;
+    padding: 15px 15px 0;
+    text-shadow: 1px 1px 0 white;
+    width: 18%;
 }
-
-.resultsBox li {
-	list-style: none;
-	border-bottom: 2px solid white;
-	padding-bottom: 10px;
-	padding-top: 10px;
-}
-
 .resultsBox ul {
-	margin: 20px;
-	}
+    margin: 10px 0 30px 5px;
+}
+.resultsBox li {
+    border-bottom: 1px solid white;
+    list-style: outside none none;
+    margin-left: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.resultsBox > h3 {
+    border-bottom: 1px solid;
+    margin-top: 0;
+    padding-bottom: 8px;
+    text-align: left !important;
+}
+
