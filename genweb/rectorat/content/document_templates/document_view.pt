@@ -24,7 +24,7 @@
           </li>
           <li tal:condition="context/estatAprovacio">
             <b i18n:translate=""> Status </b>
-            <span style="float:right;"
+            <span style="float:right;" i18n:translate=""
                 tal:content="context/estatAprovacio"
                 tal:attributes="class context/estatAprovacio" />
           </li>                
@@ -52,6 +52,7 @@
             <li tal:repeat="item context/fitxersOriginal">
               <a href=""
                  tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+                 i18n:attributes="alt Download; title Download"                                 
                  tal:content="item/filename">
                 Original files
                </a>
@@ -65,6 +66,7 @@
             <li tal:repeat="item context/fitxersPerPublicar">
               <a href=""
                  tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
+                 i18n:attributes="alt Download; title Download"
                  tal:content="item/filename">
                 Published files
               </a>

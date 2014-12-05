@@ -48,7 +48,7 @@ class IDocument(form.Schema):
     estatAprovacio = schema.Choice(
         title=_(u"Approval status"),
         vocabulary=estats,
-        default='Draft',
+        default=_(u'Draft'),
     )
 
     comentariEstatAprovacio = RichText(

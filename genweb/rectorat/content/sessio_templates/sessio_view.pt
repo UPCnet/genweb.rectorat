@@ -10,55 +10,38 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core" >
 
-  <div style="clear:both;">
-      <div class="resultsBox">
-        <h3 style="text-align:center;"> Dades de la sessió </h3>
-<ul>
-          <li>
-            <b i18n:translate="">Data:</b>
-            <span style="text-align:center" tal:content="python:context.dataSessio.strftime('%d/%b/%Y')"></span>
-          </li>
-          <li>
-            <b i18n:translate="">Lloc:</b>
-            <span style="text-align:center" tal:content="context/llocConvocatoria"></span>
-          </li>
-          <li>
-            <b i18n:translate="">Session start time</b>:
-            <span style="text-align:center" tal:content="python:context.horaInici.strftime('%H:%M')"></span>
-          </li> 
-          <li>
-            <b i18n:translate="">Session end time</b>:
-            <span style="text-align:center" tal:content="python:context.horaFi.strftime('%H:%M')"></span>
-          </li>                 
-        </ul>
+<div style="clear:both;">
+  <div class="resultsBox">
+    <h3 style="text-align: center;"> Dades de la sessió </h3>
+    <ul>
+      <li>
+        <b i18n:translate="">Data:</b>
+        <span style="float:right" 
+              tal:condition="context/dataSessio"
+              tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
+      </li>
+      <li>
+        <b i18n:translate="">Lloc:</b>
+        <span style="float:right" 
+              tal:condition="context/llocConvocatoria"
+              tal:content="context/llocConvocatoria"></span>
+      </li>
+      <li>
+        <b i18n:translate="">Session start time</b>:
+        <span style="float:right" 
+              tal:condition="context/horaInici"
+              tal:content="python:context.horaInici.strftime('%H:%M')"></span>
+      </li> 
+      <li>
+        <b i18n:translate="">Session end time</b>:
+        <span style="float:right" 
+              tal:condition="context/horaFi"
+              tal:content="python:context.horaFi.strftime('%H:%M')"></span>
+      </li>                 
+    </ul>
+  </div>
 
-<!--         <tr>
-          <td>
-              <div style="text-align:center" tal:content="context/dataSessio"></div>
-          </td>
-          <td>
-            <span tal:condition="context/llocConvocatoria">
-              <div style="text-align:center" tal:content="context/llocConvocatoria" >
-              </div>
-            </span>
-          </td>
-          <td>
-            <span tal:condition="context/horaInici">
-              <div style="text-align:center" tal:content="python:context.horaInici.strftime('%H:%M')">
-              </div>
-            </span>
-          </td>
-          <td>
-            <span tal:condition="context/horaFi">
-              <div style="text-align:center" tal:content="python:context.horaFi.strftime('%H:%M')">
-              </div>
-            </span>
-          </td>
-        </tr>
-      </tbody> -->
-    </div>
-
-<div style="width:80%;">
+  <div style="width:70%;">
     <tal:block tal:condition="context/descripcioProposit">
       <h3 i18n:translate=""> Proposal description </h3>
       <div tal:replace="structure context/descripcioProposit/output" />
@@ -96,24 +79,18 @@
                i18n:attributes="summary summary_content_listing;">
             <thead>
               <tr>
-                <th>&nbsp;
+                <th style="width: 45%">&nbsp;
                   <tal:head i18n:translate="">Title</tal:head>&nbsp;
                 </th>
-                <th>&nbsp;
-                  <tal:head i18n:translate="">Creator</tal:head>&nbsp;
-                </th>
-                <th>&nbsp;
+                <th style="width: 15%">&nbsp;
                   <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
                 </th> 
-                <th>&nbsp;
+                <th style="width: 20%">&nbsp;
                   <tal:head i18n:translate="">Original files</tal:head>&nbsp;
                 </th>                 
-                <th>&nbsp;
+                <th style="width: 20%">&nbsp;
                   <tal:head i18n:translate="">Published files</tal:head>&nbsp;
                 </th>                                 
-                <th>&nbsp;
-                  <tal:head i18n:translate="">Last modification</tal:head>&nbsp;
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -126,30 +103,25 @@
                       <a href="#"
                          tal:attributes="href item_url;
                                          class string:$item_wf_state_class $item_type_class;
-                                         title item_url;
-                                         alt item_url"
+                                         title item_title_or_id;
+                                         alt item_title_or_id"
                          tal:content="item_title_or_id">
                           Item Title
                       </a>
                     </td>
-                    <td>
-                      <tal:name tal:condition="item_creator"
-                                tal:define="author python:pas_member.info(item_creator)"
-                                tal:content="author/name_or_id">
-                          Bob Dobalina
-                      </tal:name>
-                    </td>
-                    <td>
-                        <tal:block tal:content="obj/estatAprovacio">
+                    <td style="text-align: center;">
+                        <span i18n:translate=""
+                              tal:content="obj/estatAprovacio"
+                              tal:attributes="class obj/estatAprovacio">
                           Estat aprovació
-                        </tal:block>
+                        </span>
                     </td>
                     <td>
                       <ul tal:condition="obj/fitxersOriginal">
                         <tal:files repeat="item obj/fitxersOriginal">
                           <li>
-                            <a href=""
-                               tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+                            <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+                               i18n:attributes="alt Download; title Download"
                                tal:content="item/filename">
                               Original files
                              </a>
@@ -161,8 +133,8 @@
                       <ul tal:condition="obj/fitxersPerPublicar">
                         <tal:files repeat="item obj/fitxersPerPublicar">
                           <li>
-                            <a href=""
-                               tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
+                            <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
+                               i18n:attributes="alt Download; title Download"
                                tal:content="item/filename">
                               Published files
                             </a>
@@ -170,12 +142,6 @@
                         </tal:files>
                       </ul>
                     </td>                                    
-                    <td>
-                        <tal:block tal:condition="show_about"
-                                   tal:content="python:toLocalizedTime(item_modified,long_format=1)">
-                           August 16, 2001 at 23:35:59
-                        </tal:block>
-                    </td>
                   </tr>
                 </metal:entry>
               </metal:block>
