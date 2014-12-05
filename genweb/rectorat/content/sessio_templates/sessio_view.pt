@@ -12,7 +12,8 @@
 
 <div style="clear:both;">
   <div class="resultsBox">
-    <h3 style="text-align: center;"> Dades de la sessió </h3>
+    <h3 style="text-align: center;"
+        i18n:translate=""> Session info </h3>
     <ul>
       <li>
         <b i18n:translate="">Data:</b>
@@ -41,7 +42,7 @@
     </ul>
   </div>
 
-  <div style="width:70%;">
+  <div style="width:76%;">
     <tal:block tal:condition="context/descripcioProposit">
       <h3 i18n:translate=""> Proposal description </h3>
       <div tal:replace="structure context/descripcioProposit/output" />
@@ -79,10 +80,10 @@
                i18n:attributes="summary summary_content_listing;">
             <thead>
               <tr>
-                <th style="width: 45%">&nbsp;
+                <th style="width: 42%">&nbsp;
                   <tal:head i18n:translate="">Title</tal:head>&nbsp;
                 </th>
-                <th style="width: 15%">&nbsp;
+                <th style="width: 18%">&nbsp;
                   <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
                 </th> 
                 <th style="width: 20%">&nbsp;

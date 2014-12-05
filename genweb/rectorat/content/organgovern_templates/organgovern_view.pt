@@ -41,20 +41,20 @@
                i18n:attributes="summary summary_content_listing;">
             <thead>
               <tr>
-                <th>&nbsp;
-                  <tal:title i18n:translate="">Title</tal:title>&nbsp;
+                <th style="width:34%">&nbsp;
+                  <tal:title i18n:translate="">Title</tal:title>
                 </th>
-                <th>&nbsp;
-                  <tal:head i18n:translate="">Session date</tal:head>&nbsp;
+                <th style="width:16%">&nbsp;
+                  <tal:head i18n:translate="">Session date</tal:head>
                 </th>
-                <th>&nbsp;
-                  <tal:head i18n:translate="">Session place</tal:head>&nbsp;
+                <th style="width:20%">&nbsp;
+                  <tal:head i18n:translate="">Session place</tal:head>
                 </th>                  
-                <th>&nbsp;
-                  <tal:head i18n:translate="">Session start time</tal:head>&nbsp;
+                <th style="width:13%">&nbsp;
+                  <tal:head i18n:translate="">Session start time</tal:head>
                 </th>
-                <th>&nbsp;
-                  <tal:head i18n:translate="">Session end time</tal:head>&nbsp;
+                <th style="width:17%">&nbsp;
+                  <tal:head i18n:translate="">Session end time</tal:head>
                 </th>
               </tr>
             </thead>
@@ -65,7 +65,7 @@
                   <tr metal:define-macro="listitem" 
                       tal:define="oddrow repeat/item/odd;
                                   obj item/getObject">
-                    <td>
+                    <td>&nbsp;
                       <a href="#"
                          tal:attributes="href item_url;
                                          class string:$item_wf_state_class $item_type_class;
@@ -80,25 +80,25 @@
                       <tal:data tal:condition="obj/dataSessio" 
                                 tal:content="python:obj.dataSessio.strftime('%d/%m/%Y')" >
                         Data de la Sessió
-                      </tal:data>&nbsp;
+                      </tal:data>
                     </td>                     
                     <td>&nbsp;
                       <tal:data tal:condition="obj/llocConvocatoria"
                                 tal:content="obj/llocConvocatoria">
                         Lloc Convocatoria
-                      </tal:data>&nbsp;
+                      </tal:data>
                     </td>                                 
                     <td>&nbsp;
                       <tal:data tal:condition="obj/horaInici"
                                 tal:content="python:obj.horaInici.strftime('%H:%M')">
                         Hora inici
-                      </tal:data>&nbsp;
+                      </tal:data>
                     </td>                 
                     <td>&nbsp;
                       <tal:data tal:condition="obj/horaFi"
                                 tal:content="python:obj.horaFi.strftime('%H:%M')">
                         Hora fi
-                      </tal:data>&nbsp;
+                      </tal:data>
                     </td>
                   </tr>
                 </metal:entry>

@@ -12,7 +12,8 @@
 
     <div style="clear:both;">
       <div class="resultsBox">
-        <h3 style="text-align:center;"> Dades del document </h3>
+        <h3 style="text-align:center;"
+            i18n:translate=""> Document info </h3>
         <ul>        
           <li tal:condition="context/proposalPoint">
             <b i18n:translate=""> Point </b>
@@ -30,23 +31,23 @@
           </li>                
         <ul>        
       </div>
-      <div style="width:80%; ">
+      <div style="width: 76%;">
         <tal:block tal:condition="context/descripcioProposit">
           <h3 i18n:translate=""> Proposal description </h3>
           <div tal:replace="structure context/descripcioProposit/output" />
         </tal:block>
       </div>
-    
     </div>
 
-    <div style="clear:both;">
+    <div style="clear:both; padding-top: 20px;">
       <tal:block tal:condition="context/comentariEstatAprovacio">
         <h3 i18n:translate=""> Approval status comment </h3>
       <div tal:replace="structure context/comentariEstatAprovacio/output" />
       </tal:block>
     </div>
 
-    <div tal:condition="context/fitxersOriginal">
+    <div tal:condition="context/fitxersOriginal"
+         style="padding-top:20px;">
         <legend i18n:translate="">Original files</legend>
         <ul>
             <li tal:repeat="item context/fitxersOriginal">
@@ -60,7 +61,8 @@
         </ul>
     </div>  
 
-    <div tal:condition="context/fitxersPerPublicar">
+    <div tal:condition="context/fitxersPerPublicar" 
+         style="padding-top:20px;">
         <legend i18n:translate="">Published files</legend>
         <ul>
             <li tal:repeat="item context/fitxersPerPublicar">

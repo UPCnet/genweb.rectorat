@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2014-12-05 10:25+0000\n"
+"POT-Creation-Date: 2014-12-05 10:39+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Domain: genweb.rectorat\n"
 
 #: ./genweb/rectorat/content/document.py:49
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:86
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:87
 msgid "Approval status"
 msgstr "Approval status"
 
 #: ./genweb/rectorat/content/document.py:55
-#: ./genweb/rectorat/content/document_templates/document_view.pt:44
+#: ./genweb/rectorat/content/document_templates/document_view.pt:45
 msgid "Approval status comment"
 msgstr "Approval status comment"
 
@@ -30,7 +30,7 @@ msgstr "Approval status comment"
 msgid "Approved"
 msgstr "Approved"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:18
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:19
 msgid "Data:"
 msgstr "Date:"
 
@@ -42,12 +42,16 @@ msgstr "Document"
 msgid "Document Description"
 msgstr "Document description"
 
+#: ./genweb/rectorat/content/document_templates/document_view.pt:15
+msgid "Document info"
+msgstr "Document info"
+
 #: ./genweb/rectorat/content/document.py:39
 msgid "Document number"
 msgstr "Document number"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:53
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:123
+#: ./genweb/rectorat/content/document_templates/document_view.pt:54
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:124
 msgid "Download"
 msgstr "Download file"
 
@@ -56,7 +60,7 @@ msgid "Draft"
 msgstr "In development"
 
 #: ./genweb/rectorat/content/sessio.py:53
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:55
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:56
 msgid "Incoming members list"
 msgstr "Incoming members list"
 
@@ -69,15 +73,15 @@ msgid "Invalid email address"
 msgstr "Invalid email address"
 
 #: ./genweb/rectorat/content/sessio.py:58
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:62
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:63
 msgid "Invited members"
 msgstr "Invited members"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:24
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:25
 msgid "Lloc:"
 msgstr "Place:"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:22
+#: ./genweb/rectorat/content/document_templates/document_view.pt:23
 msgid "Number"
 msgstr "Number:"
 
@@ -97,8 +101,8 @@ msgid "Organ Govern members"
 msgstr "Members"
 
 #: ./genweb/rectorat/content/document.py:60
-#: ./genweb/rectorat/content/document_templates/document_view.pt:50
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:89
+#: ./genweb/rectorat/content/document_templates/document_view.pt:51
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:90
 msgid "Original files"
 msgstr "Original files"
 
@@ -106,12 +110,12 @@ msgstr "Original files"
 msgid "Pending"
 msgstr "Pending"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:18
+#: ./genweb/rectorat/content/document_templates/document_view.pt:19
 msgid "Point"
 msgstr "Point:"
 
 #: ./genweb/rectorat/content/document.py:44
-#: ./genweb/rectorat/content/document_templates/document_view.pt:35
+#: ./genweb/rectorat/content/document_templates/document_view.pt:36
 #: ./genweb/rectorat/content/sessio.py:48
 msgid "Proposal description"
 msgstr "Content"
@@ -121,8 +125,8 @@ msgid "Proposal point number"
 msgstr "Point number"
 
 #: ./genweb/rectorat/content/document.py:65
-#: ./genweb/rectorat/content/document_templates/document_view.pt:64
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:92
+#: ./genweb/rectorat/content/document_templates/document_view.pt:65
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:93
 msgid "Published files"
 msgstr "Published files"
 
@@ -130,7 +134,7 @@ msgstr "Published files"
 msgid "Rejected"
 msgstr "Rejected"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:76
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:77
 msgid "Related documents"
 msgstr "Related documents"
 
@@ -149,12 +153,16 @@ msgstr "Session date"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:57
 #: ./genweb/rectorat/content/sessio.py:43
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:36
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:37
 msgid "Session end time"
 msgstr "Session end time"
 
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:15
+msgid "Session info"
+msgstr "Session info"
+
 #: ./genweb/rectorat/content/sessio.py:63
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:70
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:71
 msgid "Session order"
 msgstr "Session order"
 
@@ -165,7 +173,7 @@ msgstr "Session place"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:54
 #: ./genweb/rectorat/content/sessio.py:38
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:30
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:31
 msgid "Session start time"
 msgstr "Session start time"
 
@@ -173,12 +181,12 @@ msgstr "Session start time"
 msgid "Sessions list"
 msgstr "List of sessions"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:26
+#: ./genweb/rectorat/content/document_templates/document_view.pt:27
 msgid "Status"
 msgstr "Status:"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:45
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:83
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:84
 msgid "Title"
 msgstr "Title"
 
@@ -189,7 +197,7 @@ msgstr "Email address"
 
 #. Default: "Content listing"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:39
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:77
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:78
 msgid "summary_content_listing"
 msgstr "Summary content listing"
 
