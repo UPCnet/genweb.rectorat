@@ -80,16 +80,22 @@
                i18n:attributes="summary summary_content_listing;">
             <thead>
               <tr>
-                <th style="width: 42%">&nbsp;
+                <th style="width: 7%">&nbsp;
+                  <tal:head i18n:translate="">Punt</tal:head>&nbsp;
+                </th>
+                <th style="width: 7%">&nbsp;
+                  <tal:head i18n:translate="">Num</tal:head>&nbsp;
+                </th>     
+                <th style="width: 40%">&nbsp;
                   <tal:head i18n:translate="">Title</tal:head>&nbsp;
                 </th>
-                <th style="width: 18%">&nbsp;
+                <th style="width: 16%">&nbsp;
                   <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
                 </th> 
-                <th style="width: 20%">&nbsp;
+                <th style="width: 15%">&nbsp;
                   <tal:head i18n:translate="">Original files</tal:head>&nbsp;
                 </th>                 
-                <th style="width: 20%">&nbsp;
+                <th style="width: 15%">&nbsp;
                   <tal:head i18n:translate="">Published files</tal:head>&nbsp;
                 </th>                                 
               </tr>
@@ -100,6 +106,16 @@
                   <tr metal:define-macro="listitem" 
                       tal:define="oddrow repeat/item/odd;
                                   obj item/getObject">
+                    <td style="text-align: center;">
+                        <span tal:content="obj/proposalPoint">
+                          Punt
+                        </span>
+                    </td>
+                    <td style="text-align: center;">
+                        <span tal:content="obj/numDoc">
+                          Num
+                        </span>
+                    </td>                                                      
                     <td>
                       <a href="#"
                          tal:attributes="href item_url;
