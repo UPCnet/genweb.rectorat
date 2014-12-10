@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import locale
 import datetime
 from five import grok
 from zope import schema

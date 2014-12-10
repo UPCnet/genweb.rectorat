@@ -50,7 +50,8 @@
          style="padding-top:20px;">
         <legend i18n:translate="">Original files</legend>
         <ul>
-            <li tal:repeat="item context/fitxersOriginal">
+            <li tal:repeat="item context/fitxersOriginal" 
+                style="font-size: 15px; list-style:inside;">
               <a href=""
                  tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
                  i18n:attributes="alt Download; title Download"                                 
@@ -65,7 +66,8 @@
          style="padding-top:20px;">
         <legend i18n:translate="">Published files</legend>
         <ul>
-            <li tal:repeat="item context/fitxersPerPublicar">
+            <li tal:repeat="item context/fitxersPerPublicar" 
+                style="font-size: 15px; list-style:inside;">
               <a href=""
                  tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
                  i18n:attributes="alt Download; title Download"
