@@ -57,7 +57,7 @@ msgstr "Descarregar el fitxer"
 
 #: ./genweb/rectorat/content/document.py:15
 msgid "Draft"
-msgstr "En el·laboració"
+msgstr "En elaboració"
 
 #: ./genweb/rectorat/content/sessio.py:53
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:56
