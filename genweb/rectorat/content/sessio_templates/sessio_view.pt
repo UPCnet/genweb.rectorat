@@ -66,6 +66,13 @@
       </ul>
     </tal:block>
 
+    <tal:block tal:condition="context/llistaExcusats">
+      <h4 i18n:translate=""> Excused members </h4>
+      <ul>
+        <span tal:content="context/llistaExcusats" />
+      </ul>
+    </tal:block>
+
     <tal:block tal:condition="context/ordreSessio">
       <hr/>
       <h3 i18n:translate=""> Session order </h3>

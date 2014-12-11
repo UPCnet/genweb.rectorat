@@ -58,6 +58,11 @@ class ISessio(form.Schema):
         required=False,
     )
 
+    llistaExcusats = schema.Text(
+        title=_(u"Excused members"),
+        required=False,
+    )
+
     ordreSessio = RichText(
         title=_(u"Session order"),
         required=False,

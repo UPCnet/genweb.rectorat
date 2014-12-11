@@ -36,9 +36,9 @@ class IOrgangovern(form.Schema):
         required=False,
     )
 
-    adrecaLlista = schema.TextLine(
+    adrecaLlista = schema.Text(
         title=_(u"mail address"),
-        constraint=isEmail,
+        description=_(u"Enter email lists adresses, separated by commas."),
         required=False,
     )
 
