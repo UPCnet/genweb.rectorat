@@ -8,7 +8,15 @@
 <body>
 
 <metal:content-core fill-slot="content-core">
-    <metal:content-core define-macro="content-core">
+
+    <div tal:condition="context/notificationDate"
+         class="alert alert-danger" 
+         role="alert" 
+         style="background-color: #f2dede; color: #a94442; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #ebccd1">
+        <span i18n:translate="">Notification date</span>:
+      <span tal:content="context/notificationDate">
+      </span>
+    </div>
 
     <div style="clear:both;">
       <div class="resultsBox">
@@ -78,7 +86,6 @@
         </ul>
     </div> 
 
-    </metal:content-core>
 </metal:content-core>
 
 </body>

@@ -66,6 +66,11 @@ class IDocument(form.Schema):
                                      value_type=NamedFile(),
                                      required=False,)
 
+    notificationDate = schema.Text(
+        title=_(u"Notification date"),
+        required=False,
+    )
+
 
 class View(grok.View):
     grok.context(IDocument)

@@ -35,5 +35,10 @@
     <!-- Includes from dependencies to make test pass -->
     <include package="plone.formwidget.multifile" />
 
+    <subscriber
+      for=".content.document.IDocument
+              Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".browser.events.change.document_changed"
+    />
 
 </configure>
