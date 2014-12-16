@@ -2,11 +2,13 @@
 from five import grok
 from zope import schema
 from plone.directives import form
+from plone.directives import dexterity
 from plone.app.textfield import RichText
 from plone.namedfile.field import NamedFile
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.directives import form as directivesform
 from plone.formwidget.multifile import MultiFileFieldWidget
+from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
@@ -66,12 +68,24 @@ class IDocument(form.Schema):
                                      value_type=NamedFile(),
                                      required=False,)
 
-    notificationDate = schema.Text(
+    form.mode(notificationDate='hidden')
+    notificationDate = schema.TextLine(
         title=_(u"Notification date"),
         required=False,
     )
 
 
-class View(grok.View):
+class View(dexterity.DisplayForm):
     grok.context(IDocument)
     grok.template('document_view')
+
+
+class Edit(dexterity.EditForm):
+    """A standard edit form.
+    """
+    grok.context(IDocument)
+
+    def updateWidgets(self):
+        super(Edit, self).updateWidgets()
+        #self.widgets['notificationDate'].mode = 'hidden'
+        self.widgets['notificationDate'].mode = DISPLAY_MODE
