@@ -2,8 +2,13 @@
 import datetime
 from five import grok
 from zope import schema
+from plone import api
+
+from Products.CMFCore.utils import getToolByName
+from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
+from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
@@ -43,10 +48,10 @@ class ISessio(form.Schema):
         required=False,
     )
 
-    descripcioProposit = RichText(
-        title=_(u"Proposal description"),
-        required=False,
-    )
+    # descripcioProposit = RichText(
+    #     title=_(u"Proposal description"),
+    #     required=False,
+    # )
 
     membresConvocats = schema.Text(
         title=_(u"Incoming members list"),
@@ -65,6 +70,27 @@ class ISessio(form.Schema):
 
     ordreSessio = RichText(
         title=_(u"Session order"),
+        description=_(u"This content is not visible by anonymous"),
+        required=False,
+    )
+
+    publishContent = schema.Bool(
+        title=u'Mark this option to make publish content visible',
+        description=_(u"By default, only published will be visible"),
+        required=False,
+        default=True,
+    )
+
+    contentPublished = RichText(
+        title=_(u"Published content"),
+        description=_(u"This content will be visible if the previous mark is enabled"),
+        required=False,
+    )
+
+
+    form.mode(notificationDate='hidden')
+    notificationDate = schema.TextLine(
+        title=_(u"Notification date"),
         required=False,
     )
 
@@ -95,3 +121,52 @@ def membresConvocatsDefaultValue(data):
 class View(grok.View):
     grok.context(ISessio)
     grok.template('sessio_view')
+
+    def getLang(self):
+        wf_state = api.content.get_state(obj=self.context)
+        lang = getToolByName(self, 'portal_languages').getPreferredLanguage()
+
+        if wf_state == 'preparing':
+            if lang == 'ca':
+                return 'En preparació'
+            if lang == 'es':
+                return 'En preparación'
+            if lang == 'en':
+                return 'Preparing'
+
+        if wf_state == 'convocat':
+            return 'Convocada'
+
+        if wf_state == 'closed':
+            if lang == 'ca':
+                return 'Tancada'
+            if lang == 'es':
+                return 'Cerrada'
+            if lang == 'en':
+                return 'Closed'
+
+    def nextState(self):
+        wf_state = api.content.get_state(obj=self.context)
+        states = {'current': '', 'next': ''}
+        if wf_state == 'preparing':
+            states['current'] = 'preparing'
+            states['next'] = 'convocat'
+        if wf_state == 'convocat':
+            states['current'] = 'convocat'
+            states['next'] = 'closed'
+        if wf_state == 'closed':
+            states['current'] = 'closed'
+            states['next'] = 'preparing'
+        return states
+
+
+
+
+class Edit(dexterity.EditForm):
+    """A standard edit form.
+    """
+    grok.context(ISessio)
+
+    def updateWidgets(self):
+        super(Edit, self).updateWidgets()
+        self.widgets['notificationDate'].mode = DISPLAY_MODE
