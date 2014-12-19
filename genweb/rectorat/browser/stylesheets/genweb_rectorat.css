@@ -113,3 +113,5 @@ a#plone-contentmenu-workflow.dropdown-toggle:hover {
 	text-decoration: none;
  	background-color: #f2f2f2; 
  };
+
+ #plone-contentmenu-workflow { display:none;}

@@ -48,11 +48,6 @@ class ISessio(form.Schema):
         required=False,
     )
 
-    # descripcioProposit = RichText(
-    #     title=_(u"Proposal description"),
-    #     required=False,
-    # )
-
     membresConvocats = schema.Text(
         title=_(u"Incoming members list"),
         required=False,
@@ -145,18 +140,21 @@ class View(grok.View):
             if lang == 'en':
                 return 'Closed'
 
-    def nextState(self):
+    def getState(self):
+        # import ipdb;ipdb.set_trace()
         wf_state = api.content.get_state(obj=self.context)
         states = {'current': '', 'next': ''}
         if wf_state == 'preparing':
-            states['current'] = 'preparing'
-            states['next'] = 'convocat'
-        if wf_state == 'convocat':
-            states['current'] = 'convocat'
-            states['next'] = 'closed'
+            states['current'] = _(u"preparing")
+            states['next'] = _(u"convoquing")
+
+        if wf_state == 'convoquing' or wf_state == 'convocat':
+            states['current'] = _(u"convoquing")
+            states['next'] = _(u"closed")
+
         if wf_state == 'closed':
-            states['current'] = 'closed'
-            states['next'] = 'preparing'
+            states['current'] = _(u"closed")
+            states['next'] = _(u"preparing")
         return states
 
 

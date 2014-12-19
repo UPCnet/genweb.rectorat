@@ -21,9 +21,11 @@
     </a>
     <ul class="dropdown-menu pull-right actionMenuContent">
       <li>
-        <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=closed"
-           href="" title="" id="workflow-transition-closed" class="kssIgnore">
-            <span class="subMenuTitle">To close</span>
+        <a tal:define="wf view/getState" 
+           tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=${wf/next};
+                           id string:workflow-transition-${wf/next}"
+           href="" title="" class="kssIgnore">
+            <span class="subMenuTitle"  tal:content="wf/next">To close</span>
         </a>
       </li>
     </ul>
@@ -33,7 +35,7 @@
 <div style="clear:both; padding-top:12px;"/>
 
 <div tal:condition="context/notificationDate"
-     class="alert alert-danger" 
+     class="alert alert-info" 
      role="alert" 
      style="background-color: #f2dede; color: #a94442; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #ebccd1">
     <span i18n:translate="">Notification date</span>:
