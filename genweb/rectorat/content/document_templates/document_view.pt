@@ -30,10 +30,14 @@
           </li>                
         <ul>        
       </div>
-      <div style="width: 76%;">
-        <tal:block tal:condition="context/descripcioProposit">
+      <div style="width: 76%;" >
+        <tal:block tal:condition="not:context/choicedContent">
           <h3 i18n:translate=""> Proposal description </h3>
-          <div tal:replace="structure context/descripcioProposit/output|nothing" />
+          <div tal:replace="structure context/defaultContent/output|nothing" />
+        </tal:block>
+        <tal:block tal:condition="context/choicedContent">
+          <h3 i18n:translate=""> Proposal description </h3>
+          <div tal:replace="structure context/alternateContent/output|nothing" />
         </tal:block>
       </div>
     </div>

@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="rectorat_sessio_workflow"
-             xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-             i18n:domain="plone"
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             i18n:domain="genweb.rectorat"
+             workflow_id="rectorat_sessio_workflow"
              title="rectorat_session_workflow"
              description="Session: En preparació / Convocada (MAIL) / Tancada"
              state_variable="review_state"
              initial_state="preparing"
-             manager_bypass="False" >
+             manager_bypass="False" 
+             i18n:attributes="title; description">
 
  <permission>Access contents information</permission>
  <permission>Modify portal content</permission>
@@ -56,11 +57,13 @@
  </state>
 
  <transition transition_id="closed" 
-             title="Tancar"
+             title="Closed"
              new_state="closed"
              trigger="USER"
              before_script=""
-             after_script="" >
+             after_script=""
+             i18n:domain="genweb.rectorat"
+             i18n:attributes="title">
   <action url="%(content_url)s/content_status_modify?workflow_action=closed" 
           category="workflow" icon=""
           i18n:translate="">To close</action>
@@ -69,11 +72,13 @@
  </transition>
 
  <transition transition_id="convoquing"
-            title="Convocar"
+            title="To convone"
             new_state="convocat"
             trigger="USER"
             before_script=""
-            after_script="" >
+            after_script=""
+            i18n:domain="genweb.rectorat"
+            i18n:attributes="title">
   <action url="%(content_url)s/content_status_modify?workflow_action=convoquing"
           category="workflow" 
           icon=""
@@ -83,11 +88,13 @@
  </transition>
 
  <transition transition_id="preparing"
-             title="En preparació"
+             title="Preparing"
              new_state="preparing"
              trigger="USER"
              before_script=""
-             after_script="">
+             after_script=""
+             i18n:domain="genweb.rectorat"
+             i18n:attributes="title">
   <action url="%(content_url)s/content_status_modify?workflow_action=preparing"
           category="workflow"
           icon=""

@@ -41,8 +41,22 @@ class IDocument(form.Schema):
         required=False
     )
 
-    descripcioProposit = RichText(
+    defaultContent = RichText(
         title=_(u"Proposal description"),
+        description=_(u"Default content shown in the document view"),
+        required=False,
+    )
+
+    choicedContent = schema.Bool(
+        title=u'Mark this option to make alternate content visible',
+        description=_(u"By default, only default content will be visible, not the alternate content"),
+        required=False,
+        default=False,
+    )
+
+    alternateContent = RichText(
+        title=_(u"Alternate description"),
+        description=_(u"Content used to hide protected content"),
         required=False,
     )
 
@@ -56,6 +70,7 @@ class IDocument(form.Schema):
         title=_(u"Approval status comment"),
         required=False,
     )
+
 
     directivesform.widget(fitxersOriginal=MultiFileFieldWidget)
     fitxersOriginal = schema.List(title=_(u"Original files"),

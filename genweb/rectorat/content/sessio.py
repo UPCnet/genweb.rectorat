@@ -65,7 +65,12 @@ class ISessio(form.Schema):
 
     ordreSessio = RichText(
         title=_(u"Session order"),
-        description=_(u"This content is not visible by anonymous"),
+        required=False,
+    )
+
+    bodyMail = RichText(
+        title=_(u"Body Mail"),
+        description=_(u"Body Mail description"),
         required=False,
     )
 
