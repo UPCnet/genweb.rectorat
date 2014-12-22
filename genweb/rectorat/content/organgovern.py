@@ -54,5 +54,5 @@ class View(grok.View):
     grok.template('organgovern_view')
 
     def getSeparatedMembers(form):
-        # Returns members separates by comma
+        # TODO: Return members separated by comma
         return None

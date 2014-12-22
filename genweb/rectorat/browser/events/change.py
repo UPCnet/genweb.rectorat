@@ -4,9 +4,9 @@ from plone import api
 from time import strftime
 
 
-def document_changed(document, event):
-    """ If rectorat.document change WF to convoque, sends
-        email and shows the info in the template
+def sessio_changed(document, event):
+    """ If rectorat.document change WF to convoque, sends email and
+        shows the info in the template
     """
     # si passem estat a convocat cal enviar mail de convocatoria...
     try:
@@ -14,22 +14,24 @@ def document_changed(document, event):
         # Fiquem try per fer el bypass
         if event.transition.id == 'convoquing':
             lang = getToolByName(document, 'portal_languages').getPreferredLanguage()
+
             if lang == 'ca':
                 now = strftime("%d/%m/%Y %H:%M:%S")
                 document.notificationDate = now
                 subjectMail = "Convocada ordre del dia"
-                bodyMail = 'Catalan'
+                bodyMail = 'Contingut en Català'
             if lang == 'es':
                 now = strftime("%d/%m/%Y %H:%M:%S")
                 document.notificationDate = now
                 subjectMail = "Convocada orden del dia"
-                bodyMail = 'Spanish'
+                bodyMail = 'Contenido en castellano'
+
             if lang == 'en':
                 now = strftime("%Y-%m-%d %H:%M:%S")
                 document.notificationDate = now
                 subjectMail = "Convened agenda"
-                bodyMail = 'English'
-            # Send mail
+                bodyMail = 'English content'
+
             api.portal.send_email(recipient="bob@plone.org",
                                   sender="noreply@plone.org",
                                   subject=subjectMail,
@@ -38,6 +40,7 @@ def document_changed(document, event):
         else:
             # If WF state is not convoquing, do nothing
             pass
+
     except:
-        # If no change state do nothing
+        # No estem canviant d'estat, estem creant l'objecte, passem...
         pass

@@ -13,7 +13,7 @@
     <div>
       <tal:block tal:condition="context/descripcioOrgan">
         <h3 i18n:translate=""> Organ Govern description </h3>
-        <div tal:replace="structure context/descripcioOrgan/output" />
+        <div tal:replace="structure context/descripcioOrgan/output|nothing" />
         <hr/>
       </tal:block>
 

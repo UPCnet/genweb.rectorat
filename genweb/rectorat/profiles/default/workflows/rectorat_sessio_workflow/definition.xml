@@ -1,110 +1,143 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="rectorat_document_workflow" title="rectorat_document_workflow" description="A simple review workflow for comments" state_variable="review_state"         initial_state="preparing" manager_bypass="False" >
+<dc-workflow workflow_id="rectorat_sessio_workflow"
+             xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             i18n:domain="plone"
+             title="rectorat_session_workflow"
+             description="Session: En preparació / Convocada (MAIL) / Tancada"
+             state_variable="review_state"
+             initial_state="preparing"
+             manager_bypass="False" >
+
  <permission>Access contents information</permission>
  <permission>Modify portal content</permission>
  <permission>Reply to item</permission>
  <permission>View</permission>
- <state state_id="closed" title="Tancat" >
+ 
+ <state state_id="closed"
+        title="Closed"
+        i18n:attributes="title">
   <exit-transition transition_id="preparing" />
   <permission-map name="Access contents information" acquired="True">
-   
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
-   
   </permission-map>
   <permission-map name="Reply to item" acquired="False">
-   
   </permission-map>
   <permission-map name="View" acquired="True">
-   
   </permission-map>
-  
-  
  </state>
- <state state_id="convocat" title="Convocat" >
+
+ <state state_id="convocat"
+        title="Convened"
+        i18n:attributes="title">
   <exit-transition transition_id="closed" />
   <permission-map name="Access contents information" acquired="True">
-   
   </permission-map>
   <permission-map name="Modify portal content" acquired="True">
-   
   </permission-map>
   <permission-map name="Reply to item" acquired="True">
-   
   </permission-map>
   <permission-map name="View" acquired="True">
-   
   </permission-map>
-  
-  
  </state>
- <state state_id="preparing" title="En preparació" >
+
+ <state state_id="preparing"
+        title="Preparing"
+        i18n:attributes="title">
   <exit-transition transition_id="convoquing" />
   <permission-map name="Access contents information" acquired="True">
-   
   </permission-map>
   <permission-map name="Modify portal content" acquired="True">
-   
   </permission-map>
   <permission-map name="Reply to item" acquired="True">
-   
   </permission-map>
   <permission-map name="View" acquired="True">
-   
   </permission-map>
-  
-  
  </state>
- <transition transition_id="closed" title="Tancar" new_state="closed" trigger="USER" before_script="" after_script="" >
-  <action url="%(content_url)s/content_status_modify?workflow_action=closed" category="workflow" icon="">Tancar</action>
+
+ <transition transition_id="closed" 
+             title="Tancar"
+             new_state="closed"
+             trigger="USER"
+             before_script=""
+             after_script="" >
+  <action url="%(content_url)s/content_status_modify?workflow_action=closed" 
+          category="workflow" icon=""
+          i18n:translate="">To close</action>
   <guard >
   </guard>
-  
  </transition>
- <transition transition_id="convoquing" title="Convocar" new_state="convocat" trigger="USER" before_script="" after_script="" >
-  <action url="%(content_url)s/content_status_modify?workflow_action=convoquing" category="workflow" icon="">Convocar</action>
+
+ <transition transition_id="convoquing"
+            title="Convocar"
+            new_state="convocat"
+            trigger="USER"
+            before_script=""
+            after_script="" >
+  <action url="%(content_url)s/content_status_modify?workflow_action=convoquing"
+          category="workflow" 
+          icon=""
+          i18n:translate="">To convone</action>
   <guard >
   </guard>
-  
  </transition>
- <transition transition_id="preparing" title="En preparació" new_state="preparing" trigger="USER" before_script="" after_script="" >
-  <action url="%(content_url)s/content_status_modify?workflow_action=preparing" category="workflow" icon="">En preparació</action>
+
+ <transition transition_id="preparing"
+             title="En preparació"
+             new_state="preparing"
+             trigger="USER"
+             before_script=""
+             after_script="">
+  <action url="%(content_url)s/content_status_modify?workflow_action=preparing"
+          category="workflow"
+          icon=""
+          i18n:translate="">To prepare</action>
   <guard >
   </guard>
-  
  </transition>
  
- <variable variable_id="action" for_catalog="False" for_status="True" update_always="True" >
+ <variable variable_id="action"
+           for_catalog="False"
+           for_status="True"
+           update_always="True">
   <description>Previous transition</description>
   <default>
-   
    <expression>transition/getId|nothing</expression>
   </default>
   <guard >
   </guard>
  </variable>
- <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True" >
+ 
+ <variable variable_id="actor"
+           for_catalog="False"
+           for_status="True"
+           update_always="True" >
   <description>The ID of the user who performed the previous transition</description>
   <default>
-   
    <expression>user/getUserName</expression>
   </default>
   <guard >
   </guard>
  </variable>
- <variable variable_id="comments" for_catalog="False" for_status="True" update_always="True" >
+ 
+ <variable variable_id="comments"
+           for_catalog="False"
+           for_status="True"
+           update_always="True" >
   <description>Comment about the last transition</description>
   <default>
-   
    <expression>python:state_change.kwargs.get('comment', '')</expression>
   </default>
   <guard >
   </guard>
  </variable>
- <variable variable_id="review_history" for_catalog="False" for_status="False" update_always="False" >
+ 
+ <variable variable_id="review_history"
+           for_catalog="False"
+           for_status="False"
+           update_always="False" >
   <description>Provides access to workflow history</description>
   <default>
-   
    <expression>state_change/getHistory</expression>
   </default>
   <guard >
@@ -112,10 +145,13 @@
    <guard-permission>Review portal content</guard-permission>
   </guard>
  </variable>
- <variable variable_id="time" for_catalog="False" for_status="True" update_always="True" >
+
+ <variable variable_id="time"
+           for_catalog="False"
+           for_status="True"
+           update_always="True" >
   <description>When the previous transition was performed</description>
   <default>
-   
    <expression>state_change/getDateTime</expression>
   </default>
   <guard >

@@ -31,14 +31,13 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-
     <!-- Includes from dependencies to make test pass -->
     <include package="plone.formwidget.multifile" />
 
     <subscriber
-      for=".content.document.IDocument
+      for=".content.sessio.ISessio
               Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-      handler=".browser.events.change.document_changed"
+      handler=".browser.events.change.sessio_changed"
     />
 
 </configure>
