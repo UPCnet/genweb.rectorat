@@ -48,6 +48,12 @@ class IOrgangovern(form.Schema):
         required=False,
     )
 
+    fromMail = schema.TextLine(
+        title=_(u'From mail'),
+        description=_(u'Enter the from used in the mail form'),
+        required=False
+    )
+
 
 class View(grok.View):
     grok.context(IOrgangovern)

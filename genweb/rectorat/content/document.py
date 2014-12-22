@@ -36,8 +36,8 @@ class IDocument(form.Schema):
         required=False
     )
 
-    numDoc = schema.TextLine(
-        title=_(u'Document number'),
+    agreement = schema.TextLine(
+        title=_(u'Agreement number'),
         required=False
     )
 

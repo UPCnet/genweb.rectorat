@@ -69,20 +69,6 @@ class ISessio(form.Schema):
         required=False,
     )
 
-    publishContent = schema.Bool(
-        title=u'Mark this option to make publish content visible',
-        description=_(u"By default, only published will be visible"),
-        required=False,
-        default=True,
-    )
-
-    contentPublished = RichText(
-        title=_(u"Published content"),
-        description=_(u"This content will be visible if the previous mark is enabled"),
-        required=False,
-    )
-
-
     form.mode(notificationDate='hidden')
     notificationDate = schema.TextLine(
         title=_(u"Notification date"),
@@ -156,8 +142,6 @@ class View(grok.View):
             states['current'] = _(u"closed")
             states['next'] = _(u"preparing")
         return states
-
-
 
 
 class Edit(dexterity.EditForm):

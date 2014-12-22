@@ -19,7 +19,7 @@
   <exit-transition transition_id="preparing" />
   <permission-map name="Access contents information" acquired="True">
   </permission-map>
-  <permission-map name="Modify portal content" acquired="False">
+  <permission-map name="Modify portal content" acquired="True">
   </permission-map>
   <permission-map name="Reply to item" acquired="False">
   </permission-map>

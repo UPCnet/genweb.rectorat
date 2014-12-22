@@ -15,12 +15,12 @@
             i18n:translate=""> Document info </h3>
         <ul>        
           <li tal:condition="context/proposalPoint">
-            <b i18n:translate=""> Point </b>
+            <b i18n:translate=""> Point </b>:
             <span style="float:right;" tal:content="context/proposalPoint" />
           </li>
-          <li tal:condition="context/numDoc">
-            <b i18n:translate=""> Number </b>
-            <span style="float:right;" tal:content="context/numDoc" />
+          <li tal:condition="context/agreement">
+            <b i18n:translate=""> Agreement </b>:
+            <span style="float:right;" tal:content="context/agreement" />
           </li>
           <li tal:condition="context/estatAprovacio">
             <b i18n:translate=""> Status </b>

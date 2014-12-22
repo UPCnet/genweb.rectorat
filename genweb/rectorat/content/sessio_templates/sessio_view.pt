@@ -10,45 +10,15 @@
 <metal:content-core fill-slot="content-core">
 
 <div style="clear:both;" />
-<div class="resultsBox">
-  <h3 style="text-align: center;"
-      i18n:translate=""> Session info </h3>
-  <ul>
-    <li tal:condition="context/dataSessio">
-      <b i18n:translate="">Data:</b>
-      <span style="float:right" 
-            tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
-    </li>
-    <li tal:condition="context/llocConvocatoria">
-      <b i18n:translate="">Lloc:</b>
-      <span style="float:right" 
-            tal:content="context/llocConvocatoria"></span>
-    </li>
-    <li tal:condition="context/horaInici">
-      <b i18n:translate="">Session start time</b>:
-      <span style="float:right" 
-            tal:content="python:context.horaInici.strftime('%H:%M')"></span>
-    </li> 
-    <li tal:condition="context/horaFi">
-      <b i18n:translate="">Session end time</b>:
-      <span style="float:right" 
-            tal:content="python:context.horaFi.strftime('%H:%M')"></span>
-    </li>                 
-  </ul>
-</div>
-
-<div style="clear:both; padding-top:12px;"/>
-
 <div tal:condition="context/notificationDate"
      class="alert alert-info" 
      role="alert" 
-     style="background-color: #f2dede; color: #a94442; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #ebccd1">
+     style="background-color: #f2dede; color: #216f86; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #8fd1e3">
     <span i18n:translate="">Notification date</span>:
   <span tal:content="context/notificationDate">
   </span>
 </div>
 
-<div style="clear:both;" />
 <div class="resultsBox">
   <h3 style="text-align: center;"
       i18n:translate=""> Session info </h3>
@@ -75,14 +45,11 @@
     </li>                 
   </ul>
 </div>
+
 <div style="width:76%;">
-  <tal:block tal:condition="not:context/publishContent">
+  <tal:block tal:condition="context/ordreSessio">
     <h3 i18n:translate=""> Session order </h3>
-  <div tal:replace="structure context/ordreSessio/output|nothing" />
-  </tal:block>
-  <tal:block tal:condition="context/publishContent">
-    <h3 i18n:translate=""> Session order </h3>
-    <div tal:replace="structure context/contentPublished/output|nothing" />
+    <div tal:replace="structure context/ordreSessio/output|nothing" />
   </tal:block>
 </div>
 <div style="clear:both; padding-top:12px;">
@@ -115,12 +82,12 @@
         <thead>
           <tr>
             <th style="width: 8%">&nbsp;
-              <tal:head i18n:translate="">Punt</tal:head>&nbsp;
+              <tal:head i18n:translate="">Point</tal:head>&nbsp;
             </th>
-            <th style="width: 7%">&nbsp;
-              <tal:head i18n:translate="">Num</tal:head>&nbsp;
+            <th style="width: 8%">&nbsp;
+              <tal:head i18n:translate="">Agreement</tal:head>&nbsp;
             </th>     
-            <th style="width: 35%">&nbsp;
+            <th style="width: 34%">&nbsp;
               <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
             <th style="width: 18%">&nbsp;
@@ -142,12 +109,12 @@
                               obj item/getObject">
                 <td style="text-align: center;">
                     <span tal:content="obj/proposalPoint">
-                      Punt
+                      Point number
                     </span>
                 </td>
                 <td style="text-align: center;">
-                    <span tal:content="obj/numDoc">
-                      Num
+                    <span tal:content="obj/agreement">
+                      Agreement number
                     </span>
                 </td>                                                      
                 <td>
@@ -164,7 +131,7 @@
                     <span i18n:translate=""
                           tal:content="obj/estatAprovacio"
                           tal:attributes="class obj/estatAprovacio">
-                      Estat aprovació
+                      Approval status
                     </span>
                 </td>
                 <td>

@@ -53,7 +53,7 @@
                   <tal:head i18n:translate="">Session start time</tal:head>
                 </th>
                 <th style="width:17%">&nbsp;
-                  <tal:head i18n:translate="">Session end time</tal:head>
+                  <tal:head i18n:translate="">State</tal:head>
                 </th>
               </tr>
             </thead>
@@ -94,10 +94,11 @@
                       </tal:data>
                     </td>                 
                     <td>&nbsp;
-                      <tal:data tal:condition="obj/horaFi"
-                                tal:content="python:obj.horaFi.strftime('%H:%M')">
-                        Hora fi
-                      </tal:data>
+                      <span tal:content="item/review_state" 
+                        i18n:translate="" i18n:domain="plone"
+                        tal:attributes="class string:$item_wf_state_class">
+                        Status
+                      </span>
                     </td>
                   </tr>
                 </metal:entry>
