@@ -96,7 +96,8 @@
                     <td>&nbsp;
                       <span tal:content="item/review_state" 
                         i18n:translate="" i18n:domain="plone"
-                        tal:attributes="class string:$item_wf_state_class">
+                        tal:attributes="class string:$item_wf_state_class;" 
+                        style="text-transform:capitalize;">
                         Status
                       </span>
                     </td>

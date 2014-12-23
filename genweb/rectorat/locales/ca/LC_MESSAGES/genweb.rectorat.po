@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2014-12-22 15:58+0000\n"
+"POT-Creation-Date: 2014-12-23 09:38+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -134,6 +134,10 @@ msgstr "Llista d'assistents"
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:32
 msgid "Lloc:"
 msgstr "Lloc:"
+
+#: ./genweb/rectorat/content/document.py:51
+msgid "Mark this option to make alternate content visible"
+msgstr "Marqueu aquesta opció per mostrar el contingut alternatiu en comptes del per defecte"
 
 #: ./genweb/rectorat/content/sessio.py:79
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:17

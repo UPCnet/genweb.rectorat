@@ -48,7 +48,7 @@ class IDocument(form.Schema):
     )
 
     choicedContent = schema.Bool(
-        title=u'Mark this option to make alternate content visible',
+        title=_(u'Mark this option to make alternate content visible'),
         description=_(u"By default, only default content will be visible, not the alternate content"),
         required=False,
         default=False,
