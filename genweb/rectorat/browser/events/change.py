@@ -3,6 +3,10 @@ from Products.CMFCore.utils import getToolByName
 from plone import api
 from time import strftime
 
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+
+
 
 def sessio_changed(session, event):
     """ If rectorat.session change WF to convoque, sends email and
@@ -19,37 +23,40 @@ def sessio_changed(session, event):
             sessiontitle = session.Title()
             place = session.llocConvocatoria
             sessiondate = session.dataSessio.strftime("%d/%m/%Y")
-            starthour = session.horaInici.strftime("%H:%M:%S")
-            endHour = session.horaFi.strftime("%H:%M:%S")
+            starthour = session.horaInici.strftime("%H:%M")
+            endHour = session.horaFi.strftime("%H:%M")
             organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
             organ = api.content.get(path=organ_path)
 
-            sender = organ.fromMail
-            recipient = organ.adrecaLlista.split(',')
-
+            senderPerson = organ.fromMail
+            recipientPerson = organ.adrecaLlista.replace(' ','').encode('utf-8').split(',')
+            
             if lang == 'ca':
                 session.notificationDate = now
                 subjectMail = "Convocada ordre del dia: " + organ.title
                 bodyMail = '<h1>' + str(sessiontitle) + '</h1><br/>Lloc: ' + str(place) + "<br/>Hora d'inici: " + str(sessiondate) + '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + '<br/></br/>'
-
+                
             if lang == 'es':
                 session.notificationDate = now
                 subjectMail = "Convocada orden del dia: " + organ.title
                 bodyMail = '<h1>' + str(sessiontitle) + '</h1><br/>Lloc: ' + str(place) + "<br/>Hora d'inici: " + str(sessiondate) + '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + '<br/></br/>'
-
+                
             if lang == 'en':
-                now = strftime("%Y-%m-%d %H:%M:%S")
+                now = strftime("%Y-%m-%d %H:%M")
                 session.notificationDate = now
-
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
                 subjectMail = "Convened agenda: " + organ.title
-                bodyMail = '<h1>' + str(sessiontitle) + '</h1><br/>Lloc: ' + str(place) + "<br/>Hora d'inici: " + str(sessiondate) + '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + '<br/></br/>'
+                bodyMail = '<h1>' + str(sessiontitle) + '</h1><br/>Lloc: ' + str(place) + "<br/>Hora d'inici: " + str(sessiondate) + '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + '<br/></br/>'  
 
-            api.portal.send_email(recipient=recipient,
-                                  sender=sender,
-                                  subject=subjectMail,
-                                  body=bodyMail,
-                                  )
+            session.MailHost.send(bodyMail,
+                    mto=recipientPerson,
+                    mfrom=senderPerson,
+                    subject=subjectMail,
+                    encode=None,
+                    immediate=False,
+                    charset='utf8',
+                    msg_type='text/html')
+
         else:
             # If WF state is not convoquing, do nothing
             pass
@@ -57,3 +64,5 @@ def sessio_changed(session, event):
     except:
         # No estem canviant d'estat, estem creant l'objecte, passem...
         pass
+
+
