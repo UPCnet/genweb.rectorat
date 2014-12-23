@@ -30,12 +30,12 @@ def sessio_changed(session, event):
             if lang == 'ca':
                 session.notificationDate = now
                 subjectMail = "Convocada ordre del dia: " + organ.title
-                bodyMail = str(sessiontitle) + ' [' + str(place) + ' ' + str(sessiondate) + '] (' + str(starthour) + '-' + str(endHour) +')'
+                bodyMail = '<h1>' + str(sessiontitle) + '</h1><br/>Lloc: ' + str(place) + "<br/>Hora d'inici: " + str(sessiondate) + '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + '<br/></br/>'
 
             if lang == 'es':
                 session.notificationDate = now
                 subjectMail = "Convocada orden del dia: " + organ.title
-                bodyMail = str(sessiontitle) + ' [' + str(place) + ' ' + str(sessiondate) + '] (' + str(starthour) + '-' + str(endHour) +')'
+                bodyMail = '<h1>' + str(sessiontitle) + '</h1><br/>Lloc: ' + str(place) + "<br/>Hora d'inici: " + str(sessiondate) + '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + '<br/></br/>'
 
             if lang == 'en':
                 now = strftime("%Y-%m-%d %H:%M:%S")
@@ -43,7 +43,7 @@ def sessio_changed(session, event):
 
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
                 subjectMail = "Convened agenda: " + organ.title
-                bodyMail = str(sessiontitle) + ' [' + str(place) + ' ' + str(sessiondate) + '] (' + str(starthour) + '-' + str(endHour) +')'
+                bodyMail = '<h1>' + str(sessiontitle) + '</h1><br/>Lloc: ' + str(place) + "<br/>Hora d'inici: " + str(sessiondate) + '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + '<br/></br/>'
 
             api.portal.send_email(recipient=recipient,
                                   sender=sender,
