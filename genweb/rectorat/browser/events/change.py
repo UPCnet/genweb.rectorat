@@ -26,7 +26,9 @@ def sessio_changed(session, event):
             ordenField = session.ordreSessio.raw
             sessionLink = session.absolute_url()
             senderPerson = organ.fromMail
-            recipientPerson = organ.adrecaLlista.replace(' ','').encode('utf-8').split(',')
+            customBody = session.bodyMail.raw
+
+            recipientPerson = organ.adrecaLlista.replace(' ', '').encode('utf-8').split(',')
 
             if lang == 'ca':
                 session.notificationDate = now
@@ -36,25 +38,32 @@ def sessio_changed(session, event):
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
                            '<br/></br/><h2> Ordre </h2>' + ordenField + \
-                           "<br/><br/><hr/><p>Podeu consultar totes les dades a la web: <a href=" + str(sessionLink) + ">" + str(sessiontitle) + "</a></p>" 
+                           "<br/><br/><hr/><p>Podeu consultar totes les dades a la web: <a href=" + \
+                           str(sessionLink) + ">" + str(sessiontitle) + "</a></p><br/><br/>" + str(customBody) 
 
             if lang == 'es':
                 session.notificationDate = now
                 subjectMail = "Convocada orden del dia: " + organ.title
-                bodyMail = '<h2>' + str(sessiontitle) + '</h2><br/>Lloc: ' + str(place) + \
-                           "<br/>Hora d'inici: " + str(sessiondate) + \
-                           '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + \
-                           '<br/></br/><h2> Ordre </h2><br/>' + ordenField  
+                bodyMail = '<h2>' + str(sessiontitle) + '</h2>Lloc: ' + str(place) + \
+                           "<br/>Fecha: " + str(sessiondate) + \
+                           "<br/>Hora de inicio: " + str(starthour) + \
+                           "<br/>Hora de fin: " + str(endHour) + \
+                           '<br/></br/><h2> Orden </h2>' + ordenField + \
+                           "<br/><br/><hr/><p>Pueden consultar todos los datos en la web: <a href=" + \
+                           str(sessionLink) + ">" + str(sessiontitle) + "</a></p><br/><br/>" + str(customBody) 
 
             if lang == 'en':
                 now = strftime("%Y-%m-%d %H:%M")
                 session.notificationDate = now
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
                 subjectMail = "Convened agenda: " + organ.title
-                bodyMail = '<h2>' + str(sessiontitle) + '</h2><br/>Lloc: ' + str(place) + \
-                           "<br/>Hora d'inici: " + str(sessiondate) + \
-                           '<br/>Hora de fi: ' + str(starthour) + '-' + str(endHour) + \
-                           '<br/></br/><h2> Ordre </h2><br/>' + ordenField  
+                bodyMail = '<h2>' + str(sessiontitle) + '</h2>Lloc: ' + str(place) + \
+                           "<br/>Date: " + str(sessiondate) + \
+                           "<br/>Start time: " + str(starthour) + \
+                           "<br/>End time: " + str(endHour) + \
+                           '<br/></br/><h2> Order </h2>' + ordenField + \
+                           "<br/><br/><hr/><p>You can view the complete information on the web: <a href=" + \
+                           str(sessionLink) + ">" + str(sessiontitle) + "</a></p><br/><br/>" + str(customBody) 
 
             session.MailHost.send(bodyMail,
                                   mto=recipientPerson,
@@ -72,6 +81,7 @@ def sessio_changed(session, event):
     except:
         # No estem canviant d'estat, estem creant l'objecte, passem...
         pass
+
 
 
 
