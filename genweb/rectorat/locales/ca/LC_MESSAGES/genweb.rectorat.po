@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2014-12-23 09:38+0000\n"
+"POT-Creation-Date: 2014-12-24 10:23+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -55,17 +55,9 @@ msgstr "Contingut del mail que s'envia al passar a estat Convocat"
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr "Per defecte, es veurà el contingut per defecte, no el contingut alternatiu"
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Closed"
-msgstr "Tancat"
-
 #: ./genweb/rectorat/content/document.py:59
 msgid "Content used to hide protected content"
 msgstr "Es pot fer servir per ocultar contingut. Un camp intern de contingut, i un públic amb tota la informació permesa."
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Convened"
-msgstr "Convocat"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:27
 msgid "Data:"
@@ -174,10 +166,6 @@ msgstr "Derogat"
 msgid "Point"
 msgstr "Punt"
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Preparing"
-msgstr "En preparació"
-
 #: ./genweb/rectorat/content/document.py:45
 #: ./genweb/rectorat/content/document_templates/document_view.pt:35
 msgid "Proposal description"
@@ -239,10 +227,6 @@ msgstr "Lloc de la convocatòria"
 msgid "Session start time"
 msgstr "Hora d'inici"
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Session: En preparació / Convocada (MAIL) / Tancada"
-msgstr "Session: En preparació / Convocada (MAIL) / Tancada"
-
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:37
 msgid "Sessions list"
 msgstr "Llistat de sessions"
@@ -260,18 +244,6 @@ msgstr "Aprovació:"
 msgid "Title"
 msgstr "Títol"
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "To close"
-msgstr "Tancar"
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "To convone"
-msgstr "Convocar"
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "To prepare"
-msgstr "Preparar"
-
 #: ./genweb/rectorat/content/sessio.py:144
 msgid "closed"
 msgstr "Tancat"
@@ -288,10 +260,6 @@ msgstr "Adreça de la llista de distribució"
 #: ./genweb/rectorat/content/sessio.py:139
 msgid "preparing"
 msgstr "En preparació"
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "rectorat_session_workflow"
-msgstr "Fluxe de treball del tipus genweb.rectorat.sessio"
 
 #. Default: "Content listing"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:38

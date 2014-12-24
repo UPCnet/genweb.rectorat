@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-12-23 09:38+0000\n"
+"POT-Creation-Date: 2014-12-24 10:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,16 +56,8 @@ msgstr ""
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr ""
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Closed"
-msgstr ""
-
 #: ./genweb/rectorat/content/document.py:59
 msgid "Content used to hide protected content"
-msgstr ""
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Convened"
 msgstr ""
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:27
@@ -175,10 +167,6 @@ msgstr ""
 msgid "Point"
 msgstr ""
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Preparing"
-msgstr ""
-
 #: ./genweb/rectorat/content/document.py:45
 #: ./genweb/rectorat/content/document_templates/document_view.pt:35
 msgid "Proposal description"
@@ -240,10 +228,6 @@ msgstr ""
 msgid "Session start time"
 msgstr ""
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Session: En preparació / Convocada (MAIL) / Tancada"
-msgstr ""
-
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:37
 msgid "Sessions list"
 msgstr ""
@@ -261,18 +245,6 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "To close"
-msgstr ""
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "To convone"
-msgstr ""
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "To prepare"
-msgstr ""
-
 #: ./genweb/rectorat/content/sessio.py:144
 msgid "closed"
 msgstr ""
@@ -288,10 +260,6 @@ msgstr ""
 
 #: ./genweb/rectorat/content/sessio.py:139
 msgid "preparing"
-msgstr ""
-
-#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "rectorat_session_workflow"
 msgstr ""
 
 #. Default: "Content listing"

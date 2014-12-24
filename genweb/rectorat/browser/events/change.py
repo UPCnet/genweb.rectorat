@@ -38,7 +38,7 @@ def sessio_changed(session, event):
                 moreData = '<h2>' + str(sessiontitle) + '</h2>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
-                           '<br/></br/>' + str(customBody) + '<br/><h2> Ordre </h2>' + ordenField 
+                           '<br/></br/>' + str(customBody) + '<br/><h2> Ordre </h2>' + ordenField
                 bodyMail = introData + moreData.encode('utf-8')
 
             if lang == 'es':
