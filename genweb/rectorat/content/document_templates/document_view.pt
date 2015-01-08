@@ -42,28 +42,30 @@
       </div>
     </div>
 
-    <div style="clear:both; padding-top: 20px;">
+    <div style="clear:both; padding-top: 20px;" tal:condition="not:view/isAnonymous">
       <tal:block tal:condition="context/comentariEstatAprovacio">
         <h3 i18n:translate=""> Approval status comment </h3>
       <div tal:replace="structure context/comentariEstatAprovacio/output|nothing" />
       </tal:block>
     </div>
 
-    <div tal:condition="context/fitxersOriginal"
-         style="padding-top:20px;">
-        <legend i18n:translate="">Original files</legend>
-        <ul>
-            <li tal:repeat="item context/fitxersOriginal" 
-                style="font-size: 15px; list-style:inside;">
-              <a href=""
-                 tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
-                 i18n:attributes="alt Download; title Download"                                 
-                 tal:content="item/filename">
-                Original files
-               </a>
-            </li>
-        </ul>
-    </div>  
+    <tal:originals tal:condition="not:view/isAnonymous">
+      <div tal:condition="context/fitxersOriginal"
+           style="padding-top:20px;">
+          <legend i18n:translate="">Original files</legend>
+          <ul>
+              <li tal:repeat="item context/fitxersOriginal" 
+                  style="font-size: 15px; list-style:inside;">
+                <a href=""
+                   tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+                   i18n:attributes="alt Download; title Download"                                 
+                   tal:content="item/filename">
+                  Original files
+                 </a>
+              </li>
+          </ul>
+      </div>  
+    </tal:originals>
 
     <div tal:condition="context/fitxersPerPublicar" 
          style="padding-top:20px;">

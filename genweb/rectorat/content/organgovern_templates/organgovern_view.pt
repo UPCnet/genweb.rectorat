@@ -17,12 +17,14 @@
         <hr/>
       </tal:block>
 
-      <tal:block tal:condition="context/adrecaLlista">
-        <h4 i18n:translate=""> mail address </h4>
-        <ul>
-          <span tal:content="context/adrecaLlista" />
-        </ul>
-      </tal:block>  
+      <tal:mail tal:condition="not:view/isAnonymous">
+        <tal:block tal:condition="context/adrecaLlista">
+          <h4 i18n:translate=""> mail address </h4>
+          <ul>
+            <span tal:content="context/adrecaLlista" />
+          </ul>
+        </tal:block>  
+      </tal:mail>
 
       <tal:block tal:condition="context/membresOrgan">
         <h4 i18n:translate=""> Organ Govern members </h4>
@@ -94,10 +96,9 @@
                       </tal:data>
                     </td>                 
                     <td>&nbsp;
-                      <span tal:content="item/review_state" 
-                        i18n:translate="" i18n:domain="plone"
-                        tal:attributes="class string:$item_wf_state_class;" 
-                        style="text-transform:capitalize;">
+                      <span tal:content="item/review_state"
+                            i18n:translate=""
+                            tal:attributes="class string:$item_wf_state;">
                         Status
                       </span>
                     </td>

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from five import grok
 from zope import schema
-from plone.directives import form
+from plone.autoform import directives as form
+from plone.supermodel import model
 
 from plone.app.textfield import RichText
 from plone.namedfile.field import NamedFile
@@ -21,7 +22,7 @@ estats = SimpleVocabulary(
     )
 
 
-class IDocument(form.Schema):
+class IDocument(model.Schema):
     """ Tipus Sessio: Per a cada Òrgan de Govern es podran crear
         totes les sessions que es considerin oportunes
     """
@@ -71,12 +72,15 @@ class IDocument(form.Schema):
         required=False,
     )
 
-
+    form.read_permission(fitxersOriginal='cmf.ReviewPortalContent')
+    form.write_permission(fitxersOriginal='cmf.ReviewPortalContent')
     directivesform.widget(fitxersOriginal=MultiFileFieldWidget)
     fitxersOriginal = schema.List(title=_(u"Original files"),
                                   value_type=NamedFile(),
                                   required=False,)
-
+    
+    form.read_permission(fitxersOriginal='cmf.ReviewPortalContent')
+    form.write_permission(fitxersOriginal='cmf.ReviewPortalContent')
     directivesform.widget(fitxersPerPublicar=MultiFileFieldWidget)
     fitxersPerPublicar = schema.List(title=_(u"Published files"),
                                      value_type=NamedFile(),
@@ -86,3 +90,10 @@ class IDocument(form.Schema):
 class View(grok.View):
     grok.context(IDocument)
     grok.template('document_view')
+
+    def isAnonymous(self):
+        from plone import api
+        if api.user.is_anonymous():
+            return True
+        else:
+            return False

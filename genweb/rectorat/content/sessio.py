@@ -108,6 +108,13 @@ class View(grok.View):
     grok.context(ISessio)
     grok.template('sessio_view')
 
+    def isAnonymous(self):
+        from plone import api
+        if api.user.is_anonymous():
+            return True
+        else:
+            return False
+
     def getLang(self):
         wf_state = api.content.get_state(obj=self.context)
         lang = getToolByName(self, 'portal_languages').getPreferredLanguage()
@@ -132,7 +139,6 @@ class View(grok.View):
                 return 'Closed'
 
     def getState(self):
-        # import ipdb;ipdb.set_trace()
         wf_state = api.content.get_state(obj=self.context)
         states = {'current': '', 'next': ''}
         if wf_state == 'preparing':

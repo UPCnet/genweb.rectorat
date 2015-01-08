@@ -62,3 +62,16 @@ class View(grok.View):
     def getSeparatedMembers(form):
         # TODO: Return members separated by comma
         return None
+
+    def isAnonymous(self):
+        from plone import api
+        # get current logged user
+        current = api.user.get_current().id
+        # get user roles
+        #roles = api.user.get_roles(username=current)   
+        #if 'Authenticated' in roles:
+
+        if api.user.is_anonymous():
+            return True
+        else:
+            return False

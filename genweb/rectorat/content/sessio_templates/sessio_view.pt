@@ -90,10 +90,10 @@
             <th style="width: 34%">&nbsp;
               <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
-            <th style="width: 18%">&nbsp;
+            <th style="width: 18%" tal:condition="not:view/isAnonymous">&nbsp;
               <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
             </th> 
-            <th style="width: 15%">&nbsp;
+            <th style="width: 15%" tal:condition="not:view/isAnonymous">&nbsp;
               <tal:head i18n:translate="">Original files</tal:head>&nbsp;
             </th>                 
             <th style="width: 15%">&nbsp;
@@ -127,14 +127,14 @@
                       Item Title
                   </a>
                 </td>
-                <td style="text-align: center;">
+                <td style="text-align: center;" tal:condition="not:view/isAnonymous">
                     <span i18n:translate=""
                           tal:content="obj/estatAprovacio"
                           tal:attributes="class obj/estatAprovacio">
                       Approval status
                     </span>
                 </td>
-                <td>
+                <td tal:condition="not:view/isAnonymous">
                   <ul tal:condition="obj/fitxersOriginal">
                     <tal:files repeat="item obj/fitxersOriginal">
                       <li>
