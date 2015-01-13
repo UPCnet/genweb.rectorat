@@ -135,10 +135,10 @@
                     </span>
                 </td>
                 <td tal:condition="not:view/isAnonymous">
-                  <ul tal:condition="obj/fitxersOriginal">
-                    <tal:files repeat="item obj/fitxersOriginal">
+                  <ul tal:condition="obj/OriginalFiles">
+                    <tal:files repeat="item obj/OriginalFiles">
                       <li>
-                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
+                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.OriginalFiles/@@download/${repeat/item/index};"
                            i18n:attributes="alt Download; title Download"
                            tal:content="item/filename">
                           Original files
@@ -148,10 +148,10 @@
                   </ul>
                 </td>     
                 <td>
-                  <ul tal:condition="obj/fitxersPerPublicar">
-                    <tal:files repeat="item obj/fitxersPerPublicar">
+                  <ul tal:condition="obj/PublishedFiles">
+                    <tal:files repeat="item obj/PublishedFiles">
                       <li>
-                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
+                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.PublishedFiles/@@download/${repeat/item/index};"
                            i18n:attributes="alt Download; title Download"
                            tal:content="item/filename">
                           Published files

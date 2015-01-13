@@ -17,7 +17,7 @@
         <hr/>
       </tal:block>
 
-      <tal:mail tal:condition="not:view/isAnonymous">
+      <tal:mail tal:condition="view/isEditor">
         <tal:block tal:condition="context/adrecaLlista">
           <h4 i18n:translate=""> mail address </h4>
           <ul>

@@ -1,17 +1,30 @@
 # -*- coding: utf-8 -*-
+
+from plone.dexterity.browser.view import DefaultView
+
+from z3c.form.interfaces import IEditForm
 from five import grok
 from zope import schema
-from plone.autoform import directives as form
-from plone.supermodel import model
 
 from plone.app.textfield import RichText
+from plone.autoform import directives
 from plone.namedfile.field import NamedFile
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from plone.directives import form as directivesform
+# from plone.directives import form as directivesform
 from plone.formwidget.multifile import MultiFileFieldWidget
+
+from plone.directives import dexterity
+
+#from plone.directives import form
+from plone.autoform import directives as form
+#from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
+
+
+from plone.supermodel import model
+#from plone.autoform.directives import read_permission, write_permission
 
 estats = SimpleVocabulary(
     [SimpleTerm(value='Draft', title=_(u'Draft')),
@@ -61,33 +74,34 @@ class IDocument(model.Schema):
         required=False,
     )
 
+    form.mode(estatAprovacio='hidden')
     estatAprovacio = schema.Choice(
         title=_(u"Approval status"),
         vocabulary=estats,
         default=_(u'Draft'),
     )
 
+    directives.read_permission(comentariEstatAprovacio='cmf.ManagePortal')
+    directives.write_permission(comentariEstatAprovacio='cmf.ManagePortal')
     comentariEstatAprovacio = RichText(
         title=_(u"Approval status comment"),
         required=False,
     )
 
-    form.read_permission(fitxersOriginal='cmf.ReviewPortalContent')
-    form.write_permission(fitxersOriginal='cmf.ReviewPortalContent')
-    directivesform.widget(fitxersOriginal=MultiFileFieldWidget)
-    fitxersOriginal = schema.List(title=_(u"Original files"),
-                                  value_type=NamedFile(),
-                                  required=False,)
-    
-    form.read_permission(fitxersOriginal='cmf.ReviewPortalContent')
-    form.write_permission(fitxersOriginal='cmf.ReviewPortalContent')
-    directivesform.widget(fitxersPerPublicar=MultiFileFieldWidget)
-    fitxersPerPublicar = schema.List(title=_(u"Published files"),
-                                     value_type=NamedFile(),
-                                     required=False,)
+    directives.read_permission(OriginalFiles='cmf.ManagePortal')
+    directives.write_permission(OriginalFiles='cmf.ManagePortal')
+    form.widget(OriginalFiles=MultiFileFieldWidget)
+    OriginalFiles = schema.List(title=_(u"Original files"),
+                                value_type=NamedFile(),
+                                required=False,)
+
+    form.widget(PublishedFiles=MultiFileFieldWidget)
+    PublishedFiles = schema.List(title=_(u"Published files"),
+                                 value_type=NamedFile(),
+                                 required=False,)
 
 
-class View(grok.View):
+class View(dexterity.DisplayForm):
     grok.context(IDocument)
     grok.template('document_view')
 

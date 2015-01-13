@@ -4,6 +4,7 @@ from five import grok
 from zope import schema
 from plone.directives import form
 from plone.app.textfield import RichText
+from plone import api
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
@@ -63,15 +64,21 @@ class View(grok.View):
         # TODO: Return members separated by comma
         return None
 
-    def isAnonymous(self):
-        from plone import api
-        # get current logged user
-        current = api.user.get_current().id
-        # get user roles
-        #roles = api.user.get_roles(username=current)   
-        #if 'Authenticated' in roles:
-
+    def isEditor(self):
+        # Check if user has admin role to show the bottom information box
+        # (only for managers)
         if api.user.is_anonymous():
-            return True
+            # is anon
+            canViewContent = False
         else:
-            return False
+            # Is a validated user...
+            username = api.user.get_current().getProperty('id')
+            # get username
+            roles = api.user.get_roles(username=username)
+            # And check roles
+            #import ipdb;ipdb.set_trace()
+            if 'Editor' in roles:
+                canViewContent = True
+            else:
+                canViewContent = False
+        return canViewContent

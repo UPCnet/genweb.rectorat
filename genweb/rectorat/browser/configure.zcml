@@ -8,18 +8,26 @@
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot directory="overrides" layer="..interfaces.IGenwebRectoratLayer" />
 
-
     <!--   ++resource++genweb.rectorat.static/genweb_rectorat.css -->
     <browser:resourceDirectory
       name="genweb.rectorat.static"
       directory="static"
       />
 
-
     <!--   ++resource++genweb.rectorat.stylesheets/genweb_rectorat.css -->
     <browser:resourceDirectory
       name="genweb.rectorat.stylesheets"
       directory="stylesheets"
-      />      
+      />     
+
+    <!-- Overrides multifile download to assign permissions --> 
+    <browser:page
+      name="download"
+      for="plone.formwidget.multifile.interfaces.IMultiFileWidget"
+      class=".widget.Download"
+      permission="zope2.View"
+      layer="..interfaces.IGenwebRectoratLayer"
+      />
+
 
 </configure>

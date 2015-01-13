@@ -30,6 +30,7 @@
           </li>                
         <ul>        
       </div>
+
       <div style="width: 76%;" >
         <tal:block tal:condition="not:context/choicedContent">
           <h3 i18n:translate=""> Proposal description </h3>
@@ -42,46 +43,27 @@
       </div>
     </div>
 
-    <div style="clear:both; padding-top: 20px;" tal:condition="not:view/isAnonymous">
+    <div style="clear:both; padding-top: 20px;">
       <tal:block tal:condition="context/comentariEstatAprovacio">
         <h3 i18n:translate=""> Approval status comment </h3>
       <div tal:replace="structure context/comentariEstatAprovacio/output|nothing" />
       </tal:block>
     </div>
 
-    <tal:originals tal:condition="not:view/isAnonymous">
-      <div tal:condition="context/fitxersOriginal"
+    <tal:originals>
+      <div tal:condition="python: 'OriginalFiles' in view.w"
            style="padding-top:20px;">
           <legend i18n:translate="">Original files</legend>
-          <ul>
-              <li tal:repeat="item context/fitxersOriginal" 
-                  style="font-size: 15px; list-style:inside;">
-                <a href=""
-                   tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersOriginal/@@download/${repeat/item/index};"
-                   i18n:attributes="alt Download; title Download"                                 
-                   tal:content="item/filename">
-                  Original files
-                 </a>
-              </li>
-          </ul>
-      </div>  
+          <div tal:content="structure view/w/OriginalFiles/render" />
+    </div>
     </tal:originals>
 
-    <div tal:condition="context/fitxersPerPublicar" 
+    <div tal:condition="python: 'PublishedFiles' in view.w"
          style="padding-top:20px;">
         <legend i18n:translate="">Published files</legend>
-        <ul>
-            <li tal:repeat="item context/fitxersPerPublicar" 
-                style="font-size: 15px; list-style:inside;">
-              <a href=""
-                 tal:attributes="href string:${context/absolute_url}/@@edit/++widget++form.widgets.fitxersPerPublicar/@@download/${repeat/item/index};"
-                 i18n:attributes="alt Download; title Download"
-                 tal:content="item/filename">
-                Published files
-              </a>
-            </li>
-        </ul>
+        <div tal:content="structure view/w/PublishedFiles/render" />
     </div> 
+    <br/><br/>
 
 </metal:content-core>
 
