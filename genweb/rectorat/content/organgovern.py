@@ -64,21 +64,23 @@ class View(grok.View):
         # TODO: Return members separated by comma
         return None
 
-    def isEditor(self):
+    def isAuthenticated(self):
         # Check if user has admin role to show the bottom information box
         # (only for managers)
         if api.user.is_anonymous():
             # is anon
             canViewContent = False
         else:
-            # Is a validated user...
-            username = api.user.get_current().getProperty('id')
-            # get username
-            roles = api.user.get_roles(username=username)
-            # And check roles
-            #import ipdb;ipdb.set_trace()
-            if 'Editor' in roles:
-                canViewContent = True
-            else:
-                canViewContent = False
+            # # Is a validated user...
+            # username = api.user.get_current().getProperty('id')
+            # # get username
+            # roles = api.user.get_roles(username=username)
+            # # And check roles
+            # if 'Editor' in roles or 'Manager' in roles:
+            #     canViewContent = True
+            # else:
+            #     canViewContent = False
+
+            # All validated users can view this
+            canViewContent = True
         return canViewContent

@@ -81,8 +81,6 @@ class IDocument(model.Schema):
         default=_(u'Draft'),
     )
 
-    directives.read_permission(comentariEstatAprovacio='cmf.ManagePortal')
-    directives.write_permission(comentariEstatAprovacio='cmf.ManagePortal')
     comentariEstatAprovacio = RichText(
         title=_(u"Approval status comment"),
         required=False,
@@ -105,9 +103,9 @@ class View(dexterity.DisplayForm):
     grok.context(IDocument)
     grok.template('document_view')
 
-    def isAnonymous(self):
+    def isAuthenticated(self):
         from plone import api
         if api.user.is_anonymous():
-            return True
-        else:
             return False
+        else:
+            return True
