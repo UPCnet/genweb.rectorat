@@ -40,7 +40,7 @@ def sessio_changed(session, event):
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
                            '<br/><br/><h2> Ordre </h2>' + ordenField
-                bodyMail =  moreData.encode('utf-8') + introData
+                bodyMail = moreData.encode('utf-8') + introData
 
             if lang == 'es':
                 session.notificationDate = now
@@ -84,9 +84,3 @@ def sessio_changed(session, event):
     except:
         # No estem canviant d'estat, estem creant l'objecte, passem...
         pass
-
-
-
-
-
-

@@ -1,30 +1,17 @@
 # -*- coding: utf-8 -*-
-
-from plone.dexterity.browser.view import DefaultView
-
-from z3c.form.interfaces import IEditForm
 from five import grok
 from zope import schema
-
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.namedfile.field import NamedFile
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-# from plone.directives import form as directivesform
 from plone.formwidget.multifile import MultiFileFieldWidget
-
 from plone.directives import dexterity
-
-#from plone.directives import form
 from plone.autoform import directives as form
-#from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE
-
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
-
-
 from plone.supermodel import model
-#from plone.autoform.directives import read_permission, write_permission
+
 
 estats = SimpleVocabulary(
     [SimpleTerm(value='Draft', title=_(u'Draft')),

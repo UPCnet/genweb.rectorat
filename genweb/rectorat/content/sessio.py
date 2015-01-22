@@ -8,7 +8,7 @@ from Products.CMFCore.utils import getToolByName
 from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
-from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE
+from z3c.form.interfaces import DISPLAY_MODE
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF

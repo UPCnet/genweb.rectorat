@@ -71,16 +71,5 @@ class View(grok.View):
             # is anon
             canViewContent = False
         else:
-            # # Is a validated user...
-            # username = api.user.get_current().getProperty('id')
-            # # get username
-            # roles = api.user.get_roles(username=username)
-            # # And check roles
-            # if 'Editor' in roles or 'Manager' in roles:
-            #     canViewContent = True
-            # else:
-            #     canViewContent = False
-
-            # All validated users can view this
             canViewContent = True
         return canViewContent

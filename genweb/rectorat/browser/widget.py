@@ -1,18 +1,14 @@
 from Acquisition import aq_inner
 from plone.namedfile.utils import set_headers, stream_data
 from Products.Five.browser import BrowserView
-from z3c.form.interfaces import IFieldWidget, IDataManager, NO_VALUE
-from z3c.form.widget import FieldWidget, Widget
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
-from zope.component import getMultiAdapter, queryMultiAdapter
-from zope.interface import implements, implementer
+from z3c.form.interfaces import IDataManager
+from zope.component import getMultiAdapter
+from zope.interface import implements
 from zope.publisher.interfaces import IPublishTraverse, NotFound
-
-from plone.formwidget.multifile.interfaces import IMultiFileWidget
-from plone.formwidget.multifile.utils import get_icon_for
 
 from plone import api
 from AccessControl import Unauthorized
+
 
 class Download(BrowserView):
     """Download a file via ++widget++widget_name/@@download/filename"""
@@ -27,7 +23,7 @@ class Download(BrowserView):
     def publishTraverse(self, request, name):
 
         try:
-            if self.file_index is None: # ../@@download/file_index
+            if self.file_index is None:  # ../@@download/file_index
                 self.file_index = int(name)
                 return self
             elif self.file_index == name:
@@ -61,8 +57,8 @@ class Download(BrowserView):
         set_headers(file_, self.request.response, filename=filename)
 
         if 'OriginalFiles' in self.context.id:
-        # Original Files only visible by validated users...
-        # Add permissions to "download file"
+            #  Original Files only visible by validated users...
+            #  Add permissions to "download file"
             if api.user.is_anonymous():
                 # is anon
                 raise Unauthorized('You have no permissions to download this file.')
