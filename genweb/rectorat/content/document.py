@@ -11,6 +11,7 @@ from plone.autoform import directives as form
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from plone.supermodel import model
+from z3c.form.interfaces import INPUT_MODE, DISPLAY_MODE, HIDDEN_MODE
 
 
 estats = SimpleVocabulary(
@@ -96,3 +97,13 @@ class View(dexterity.DisplayForm):
             return False
         else:
             return True
+
+
+class Edit(dexterity.EditForm):
+    """A standard edit form.
+    """
+    grok.context(IDocument)
+
+    def updateWidgets(self):
+        super(Edit, self).updateWidgets()
+        self.widgets['estatAprovacio'].mode = INPUT_MODE
