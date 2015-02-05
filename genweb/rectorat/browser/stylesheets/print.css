@@ -55,7 +55,8 @@
 
 	#content a:link:after, 
 	#content a:visited:after {
-   		content: " [" attr(href) "] ";
+   		content: "" !important;
+   		font-size:100%;
 	}
 
 }
