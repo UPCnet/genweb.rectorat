@@ -4,7 +4,7 @@ from five import grok
 from zope import schema
 from plone import api
 
-from Products.CMFCore.utils import getToolByName
+
 from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
@@ -45,6 +45,12 @@ class ISessio(form.Schema):
 
     horaFi = schema.Time(
         title=_(u"Session end time"),
+        required=False,
+    )
+
+    adrecaLlista = schema.Text(
+        title=_(u"mail address"),
+        description=_(u"Enter email lists adresses, separated by commas."),
         required=False,
     )
 
@@ -104,55 +110,21 @@ def membresConvocatsDefaultValue(data):
     return data.context.membresOrgan
 
 
+@form.default_value(field=ISessio['adrecaLlista'])
+def adrecaLlistaDefaultValue(data):
+    # copy adrecaLlista from Organ de Govern (parent object)
+    return data.context.adrecaLlista
+
+
 class View(grok.View):
     grok.context(ISessio)
     grok.template('sessio_view')
 
     def isAnonymous(self):
-        from plone import api
         if api.user.is_anonymous():
             return True
         else:
             return False
-
-    def getLang(self):
-        wf_state = api.content.get_state(obj=self.context)
-        lang = getToolByName(self, 'portal_languages').getPreferredLanguage()
-
-        if wf_state == 'preparing':
-            if lang == 'ca':
-                return 'En preparació'
-            if lang == 'es':
-                return 'En preparación'
-            if lang == 'en':
-                return 'Preparing'
-
-        if wf_state == 'convocat':
-            return 'Convocada'
-
-        if wf_state == 'closed':
-            if lang == 'ca':
-                return 'Tancada'
-            if lang == 'es':
-                return 'Cerrada'
-            if lang == 'en':
-                return 'Closed'
-
-    def getState(self):
-        wf_state = api.content.get_state(obj=self.context)
-        states = {'current': '', 'next': ''}
-        if wf_state == 'preparing':
-            states['current'] = _(u"preparing")
-            states['next'] = _(u"convoquing")
-
-        if wf_state == 'convoquing' or wf_state == 'convocat':
-            states['current'] = _(u"convoquing")
-            states['next'] = _(u"closed")
-
-        if wf_state == 'closed':
-            states['current'] = _(u"closed")
-            states['next'] = _(u"preparing")
-        return states
 
 
 class Edit(dexterity.EditForm):

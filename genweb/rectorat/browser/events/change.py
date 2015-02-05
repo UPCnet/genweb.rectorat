@@ -14,7 +14,6 @@ def sessio_changed(session, event):
         # Fiquem try per fer el bypass
         if event.transition.id == 'convoquing':
             lang = getToolByName(session, 'portal_languages').getPreferredLanguage()
-
             now = strftime("%d/%m/%Y %H:%M:%S")
             sessiontitle = session.Title()
             place = session.llocConvocatoria
@@ -23,19 +22,28 @@ def sessio_changed(session, event):
             endHour = session.horaFi.strftime("%H:%M")
             organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
             organ = api.content.get(path=organ_path)
-            ordenField = session.ordreSessio.raw
             sessionLink = session.absolute_url()
             senderPerson = organ.fromMail
-            customBody = session.bodyMail.raw
 
-            recipientPerson = organ.adrecaLlista.replace(' ', '').encode('utf-8').split(',')
+            if session.ordreSessio is None:
+                ordenField = ''
+            else:
+                ordenField = str(session.ordreSessio.raw)
+
+            # If no Body ? Continue? Bypass? ...
+            if session.bodyMail is None:
+                customBody = ''
+            else:
+                customBody = str(session.bodyMail.raw)
+
+            recipientPerson = session.adrecaLlista.replace(' ', '').encode('utf-8').split(',')
 
             if lang == 'ca':
                 session.notificationDate = now
                 subjectMail = "Convocada ordre del dia: " + organ.title
-                introData ="<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
-                           str(sessionLink) + ">" + str(sessiontitle) + "</a></p>" 
-                moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
+                introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
+                            str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
+                moreData = '</br/>' + customBody + '<h2>' + str(sessiontitle) + \
                            '</h2>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
@@ -45,9 +53,9 @@ def sessio_changed(session, event):
             if lang == 'es':
                 session.notificationDate = now
                 subjectMail = "Convocada orden del día: " + organ.title
-                introData ="<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
-                           str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"          
-                moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
+                introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
+                            str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
+                moreData = '</br/>' + customBody + '<h2>' + str(sessiontitle) + \
                            '</h2>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
                            "<br/>Hora de inicio: " + str(starthour) + \
                            "<br/>Hora de finalización: " + str(endHour) + \
@@ -59,9 +67,9 @@ def sessio_changed(session, event):
                 session.notificationDate = now
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
                 subjectMail = "Convened agenda: " + organ.title
-                introData ="<br/><hr/><p>You can view the complete session information here:: <a href=" + \
-                           str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
+                introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
+                            str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
+                moreData = '</br/>' + customBody + '<h2>' + str(sessiontitle) + \
                            '</h2>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
                            "<br/>Start time: " + str(starthour) + \
                            "<br/>End time: " + str(endHour) + \
