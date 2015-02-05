@@ -28,11 +28,6 @@
       <span style="float:right" 
             tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
     </li>
-    <li tal:condition="context/llocConvocatoria">
-      <b i18n:translate="">Lloc:</b>
-      <span style="float:right" 
-            tal:content="context/llocConvocatoria"></span>
-    </li>
     <li tal:condition="context/horaInici">
       <b i18n:translate="">Session start time</b>:
       <span style="float:right" 
@@ -43,10 +38,15 @@
       <span style="float:right" 
             tal:content="python:context.horaFi.strftime('%H:%M')"></span>
     </li>                 
+    <li tal:condition="context/llocConvocatoria">
+      <b i18n:translate="">Lloc:</b>
+      <span style="float:right" 
+            tal:content="context/llocConvocatoria"></span>
+    </li>    
   </ul>
 </div>
 
-<div style="width:76%;">
+<div style="width:70%;">
   <tal:block tal:condition="context/ordreSessio">
     <h3 i18n:translate=""> Session order </h3>
     <div tal:replace="structure context/ordreSessio/output|nothing" />
