@@ -22,12 +22,14 @@
             <b i18n:translate=""> Agreement </b>:
             <span style="float:right;" tal:content="context/agreement" />
           </li>
-          <li tal:condition="context/estatAprovacio">
-            <b i18n:translate=""> Status </b>
-            <span style="float:right;" i18n:translate=""
-                tal:content="context/estatAprovacio"
-                tal:attributes="class context/estatAprovacio" />
-          </li>                
+          <tal:omit-tag condition="view/isAuthenticated">
+            <li tal:condition="context/estatAprovacio">
+              <b i18n:translate=""> Status </b>
+              <span style="float:right;" i18n:translate=""
+                  tal:content="context/estatAprovacio"
+                  tal:attributes="class context/estatAprovacio" />
+            </li>
+          </tal:omit-tag>
         <ul>        
       </div>
 

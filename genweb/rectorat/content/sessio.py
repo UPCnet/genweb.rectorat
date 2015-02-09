@@ -120,11 +120,11 @@ class View(grok.View):
     grok.context(ISessio)
     grok.template('sessio_view')
 
-    def isAnonymous(self):
+    def isAuthenticated(self):
         if api.user.is_anonymous():
-            return True
-        else:
             return False
+        else:
+            return True
 
 
 class Edit(dexterity.EditForm):

@@ -10,16 +10,18 @@
 <metal:content-core fill-slot="content-core">
 
 <div style="clear:both;" />
-<div tal:condition="context/notificationDate"
-     class="alert alert-info" 
-     role="alert" 
-     style="background-color: #f2dede; color: #216f86; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #8fd1e3">
-    <span i18n:translate="">Notification date</span>:
-    <span tal:content="context/notificationDate"></span>
-    <br/>
-    <span i18n:translate="">Notified persons</span>:
-    <span tal:content="context/adrecaLlista"></span>
-</div>
+<tal:omit-tag tal:condition="view/isAuthenticated">
+  <div tal:condition="context/notificationDate"
+       class="alert alert-info" 
+       role="alert" 
+       style="background-color: #f2dede; color: #216f86; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #8fd1e3; margin:10px;">
+      <span i18n:translate="">Notification date</span>:
+      <span tal:content="context/notificationDate"></span>
+      <br/>
+      <span i18n:translate="">Notified persons</span>:
+      <span tal:content="context/adrecaLlista"></span>
+  </div>
+</tal:omit-tag>
 
 <div class="resultsBox">
   <h3 style="text-align: center;"
@@ -92,10 +94,10 @@
             <th style="width: 34%">&nbsp;
               <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
-            <th style="width: 18%" tal:condition="not:view/isAnonymous">&nbsp;
+            <th style="width: 18%" tal:condition="view/isAuthenticated">&nbsp;
               <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
             </th> 
-            <th style="width: 15%" tal:condition="not:view/isAnonymous">&nbsp;
+            <th style="width: 15%" tal:condition="view/isAuthenticated">&nbsp;
               <tal:head i18n:translate="">Original files</tal:head>&nbsp;
             </th>                 
             <th style="width: 15%">&nbsp;
@@ -129,14 +131,14 @@
                       Item Title
                   </a>
                 </td>
-                <td style="text-align: center;" tal:condition="not:view/isAnonymous">
+                <td style="text-align: center;" tal:condition="view/isAuthenticated">
                     <span i18n:translate=""
                           tal:content="obj/estatAprovacio"
                           tal:attributes="class obj/estatAprovacio">
                       Approval status
                     </span>
                 </td>
-                <td tal:condition="not:view/isAnonymous">
+                <td tal:condition="view/isAuthenticated">
                   <ul tal:condition="obj/OriginalFiles">
                     <tal:files repeat="item obj/OriginalFiles">
                       <li>

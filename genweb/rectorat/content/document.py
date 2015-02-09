@@ -12,6 +12,7 @@ from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from plone.supermodel import model
 from z3c.form.interfaces import INPUT_MODE, DISPLAY_MODE, HIDDEN_MODE
+from plone import api
 
 
 estats = SimpleVocabulary(
@@ -89,7 +90,6 @@ class View(dexterity.DisplayForm):
     grok.template('document_view')
 
     def isAuthenticated(self):
-        from plone import api
         if api.user.is_anonymous():
             return False
         else:
