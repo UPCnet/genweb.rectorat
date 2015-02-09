@@ -252,7 +252,7 @@ msgstr "Title"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:22
 #: ./genweb/rectorat/content/sessio.py:52
 msgid "mail address"
-msgstr "Email address"
+msgstr "Notification address used at this Government"
 
 #. Default: "Content listing"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:40

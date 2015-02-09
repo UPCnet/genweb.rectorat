@@ -62,7 +62,6 @@ class IDocument(model.Schema):
         required=False,
     )
 
-    form.mode(estatAprovacio='hidden')
     estatAprovacio = schema.Choice(
         title=_(u"Approval status"),
         vocabulary=estats,
@@ -74,8 +73,6 @@ class IDocument(model.Schema):
         required=False,
     )
 
-    directives.read_permission(OriginalFiles='cmf.ManagePortal')
-    directives.write_permission(OriginalFiles='cmf.ManagePortal')
     form.widget(OriginalFiles=MultiFileFieldWidget)
     OriginalFiles = schema.List(title=_(u"Original files"),
                                 value_type=NamedFile(),

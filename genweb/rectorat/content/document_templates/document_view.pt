@@ -31,13 +31,11 @@
         <ul>        
       </div>
 
-      <div style="width: 76%;" >
+      <div style="width: 70%;" >
         <tal:block tal:condition="not:context/choicedContent">
-          <h3 i18n:translate=""> Proposal description </h3>
           <div tal:replace="structure context/defaultContent/output|nothing" />
         </tal:block>
         <tal:block tal:condition="context/choicedContent">
-          <h3 i18n:translate=""> Proposal description </h3>
           <div tal:replace="structure context/alternateContent/output|nothing" />
         </tal:block>
       </div>
@@ -52,7 +50,7 @@
       </div>
     </div:>
 
-    <tal:originals>
+    <tal:originals tal:condition="view/isAuthenticated">
       <div tal:condition="python: 'OriginalFiles' in view.w"
            style="padding-top:20px;">
           <legend i18n:translate="">Original files</legend>
@@ -62,7 +60,7 @@
 
     <div tal:condition="python: 'PublishedFiles' in view.w"
          style="padding-top:20px;">
-        <legend i18n:translate="">Published files</legend>
+        <legend  tal:condition="view/isAuthenticated" i18n:translate="">Published files</legend>
         <div tal:content="structure view/w/PublishedFiles/render" />
     </div> 
     <br/><br/>

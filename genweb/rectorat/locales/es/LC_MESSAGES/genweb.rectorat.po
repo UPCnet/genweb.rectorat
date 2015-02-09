@@ -90,7 +90,7 @@ msgstr "En desarrollo"
 #: ./genweb/rectorat/content/organgovern.py:42
 #: ./genweb/rectorat/content/sessio.py:53
 msgid "Enter email lists adresses, separated by commas."
-msgstr "Indicar las direcciones de las listas de distribución, separadas por comas."
+msgstr "Indicar la lista/direcciones separadas por comas."
 
 #: ./genweb/rectorat/content/organgovern.py:54
 msgid "Enter the from used in the mail form"
@@ -252,7 +252,7 @@ msgstr "Título"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:22
 #: ./genweb/rectorat/content/sessio.py:52
 msgid "mail address"
-msgstr "Dirección de correo de la lista de distribución"
+msgstr "Direcciones de notificación de este Órgano"
 
 #. Default: "Content listing"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:40

@@ -51,7 +51,7 @@ class ISessio(form.Schema):
     adrecaLlista = schema.Text(
         title=_(u"mail address"),
         description=_(u"Enter email lists adresses, separated by commas."),
-        required=False,
+        required=True,
     )
 
     membresConvocats = schema.Text(
