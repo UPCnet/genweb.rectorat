@@ -138,7 +138,7 @@ msgstr "Data de notificació"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:20
 msgid "Notified persons"
-msgstr "Notificacions:"
+msgstr "Notificacions"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern"
