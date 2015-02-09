@@ -88,7 +88,7 @@
             <th style="width: 8%">&nbsp;
               <tal:head i18n:translate="">Point</tal:head>&nbsp;
             </th>
-            <th style="width: 8%">&nbsp;
+            <th style="width: 10%">&nbsp;
               <tal:head i18n:translate="">Agreement</tal:head>&nbsp;
             </th>     
             <th style="width: 34%">&nbsp;
