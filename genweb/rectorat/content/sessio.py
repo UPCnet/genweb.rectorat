@@ -12,6 +12,7 @@ from z3c.form.interfaces import DISPLAY_MODE
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
+from collective import dexteritytextindexer
 
 
 class InvalidEmailError(schema.ValidationError):
@@ -23,6 +24,7 @@ class ISessio(form.Schema):
         totes les sessions que es considerin oportunes
     """
 
+    dexteritytextindexer.searchable('title')
     title = schema.TextLine(
         title=_PMF(u'label_title', default=u'Title'),
         required=True
@@ -69,6 +71,7 @@ class ISessio(form.Schema):
         required=False,
     )
 
+    dexteritytextindexer.searchable('ordreSessio')
     ordreSessio = RichText(
         title=_(u"Session order"),
         required=False,

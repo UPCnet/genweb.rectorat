@@ -8,6 +8,8 @@ from plone import api
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
+from collective import dexteritytextindexer
+
 
 EMAIL_RE = u"([0-9a-zA-Z_&.'+-]+!)*[0-9a-zA-Z_&.'+-]+@(([0-9a-zA-Z]([0-9a-zA-Z-]*[0-9a-z-A-Z])?\.)+[a-zA-Z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$"
 
@@ -27,11 +29,13 @@ class IOrgangovern(form.Schema):
         totes les sessions que es considerin oportunes
     """
 
+    dexteritytextindexer.searchable('title')
     title = schema.TextLine(
         title=_PMF(u'label_title', default=u'Title'),
         required=True
     )
 
+    dexteritytextindexer.searchable('descripcioOrgan')
     descripcioOrgan = RichText(
         title=_(u"Organ Govern description"),
         required=False,

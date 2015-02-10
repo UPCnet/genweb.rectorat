@@ -13,6 +13,7 @@ from plone.app.dexterity import PloneMessageFactory as _PMF
 from plone.supermodel import model
 from z3c.form.interfaces import INPUT_MODE, DISPLAY_MODE, HIDDEN_MODE
 from plone import api
+from collective import dexteritytextindexer
 
 
 estats = SimpleVocabulary(
@@ -29,6 +30,7 @@ class IDocument(model.Schema):
         totes les sessions que es considerin oportunes
     """
 
+    dexteritytextindexer.searchable('title')
     title = schema.TextLine(
         title=_PMF(u'label_title', default=u'Title'),
         required=True
@@ -44,6 +46,7 @@ class IDocument(model.Schema):
         required=False
     )
 
+    dexteritytextindexer.searchable('defaultContent')
     defaultContent = RichText(
         title=_(u"Proposal description"),
         description=_(u"Default content shown in the document view"),
@@ -57,6 +60,7 @@ class IDocument(model.Schema):
         default=False,
     )
 
+    dexteritytextindexer.searchable('alternateContent')
     alternateContent = RichText(
         title=_(u"Alternate description"),
         description=_(u"Content used to hide protected content"),
@@ -69,16 +73,19 @@ class IDocument(model.Schema):
         default=_(u'Draft'),
     )
 
+    dexteritytextindexer.searchable('comentariEstatAprovacio')
     comentariEstatAprovacio = RichText(
         title=_(u"Approval status comment"),
         required=False,
     )
 
+    dexteritytextindexer.searchable('OriginalFiles')
     form.widget(OriginalFiles=MultiFileFieldWidget)
     OriginalFiles = schema.List(title=_(u"Original files"),
                                 value_type=NamedFile(),
                                 required=False,)
 
+    dexteritytextindexer.searchable('PublishedFiles')
     form.widget(PublishedFiles=MultiFileFieldWidget)
     PublishedFiles = schema.List(title=_(u"Published files"),
                                  value_type=NamedFile(),
