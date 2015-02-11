@@ -36,6 +36,7 @@
   <element value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
   <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle"/>
   <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />  
+  <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />  
  </property>
  
  <property
