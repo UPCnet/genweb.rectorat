@@ -32,7 +32,8 @@ setup(name='genweb.rectorat',
       install_requires=[
           'setuptools',
           'plone.app.dexterity [grok]',
-          'plone.formwidget.multifile'
+          'plone.formwidget.multifile',
+          'collective.dexteritytextindexer',
       ],
       extras_require={'test': ['plone.app.testing',
                                'plone.app.testing[robot]>=4.2.2',
