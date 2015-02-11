@@ -56,17 +56,17 @@ class ISessio(form.Schema):
         required=True,
     )
 
-    membresConvocats = schema.Text(
+    membresConvocats = RichText(
         title=_(u"Incoming members list"),
         required=False,
     )
 
-    llistaAssistents = schema.Text(
+    llistaAssistents = RichText(
         title=_(u"Invited members"),
         required=False,
     )
 
-    llistaExcusats = schema.Text(
+    llistaExcusats = RichText(
         title=_(u"Excused members"),
         required=False,
     )

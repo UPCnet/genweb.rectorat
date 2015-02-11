@@ -47,7 +47,7 @@ class IOrgangovern(form.Schema):
         required=False,
     )
 
-    membresOrgan = schema.Text(
+    membresOrgan = RichText(
         title=_(u"Organ Govern members"),
         description=_(u"Indicar el nom dels assistents separats per comes"),
         required=False,

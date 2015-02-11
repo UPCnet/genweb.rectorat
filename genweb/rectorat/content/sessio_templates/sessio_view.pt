@@ -61,19 +61,19 @@
     <hr/>
     <h4 i18n:translate=""> Incoming members list </h4>
     <ul>
-      <span tal:content="context/membresConvocats" />
+      <div tal:replace="structure context/membresConvocats/output|nothing" />
     </ul>
   </tal:block>
   <tal:block tal:condition="context/llistaAssistents">
     <h4 i18n:translate=""> Invited members </h4>
     <ul>
-      <span tal:content="context/llistaAssistents" />
+      <div tal:replace="structure context/llistaAssistents/output|nothing" />
     </ul>
   </tal:block>
   <tal:block tal:condition="context/llistaExcusats">
     <h4 i18n:translate=""> Excused members </h4>
     <ul>
-      <span tal:content="context/llistaExcusats" />
+      <div tal:replace="structure context/llistaExcusats/output|nothing" />
     </ul>
   </tal:block>
 </div>
