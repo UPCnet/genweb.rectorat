@@ -53,7 +53,7 @@ def sessio_changed(session, event):
                            '</h2>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
-                           '<br/><br/><h2> Ordre </h2>' + str(ordenField)
+                           '<br/><br/><h2> Ordre del dia </h2>' + str(ordenField)
                 bodyMail = moreData + str(introData)
 
             if lang == 'es':
@@ -65,7 +65,7 @@ def sessio_changed(session, event):
                            '</h2>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
                            "<br/>Hora de inicio: " + str(starthour) + \
                            "<br/>Hora de finalización: " + str(endHour) + \
-                           '<br/><br/><h2> Orden </h2>' + str(ordenField)
+                           '<br/><br/><h2> Orden del día </h2>' + str(ordenField)
                 bodyMail = moreData + str(introData)
 
             if lang == 'en':
@@ -79,7 +79,7 @@ def sessio_changed(session, event):
                            '</h2>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
                            "<br/>Start time: " + str(starthour) + \
                            "<br/>End time: " + str(endHour) + \
-                           '<br/><br/><h2> Order </h2>' + str(ordenField)
+                           '<br/><br/><h2> Contents </h2>' + str(ordenField)
                 bodyMail = moreData + str(introData)
 
             # Sending Mail!
