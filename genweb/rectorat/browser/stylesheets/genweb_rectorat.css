@@ -22,6 +22,14 @@ i.icon-genweb-rectorat-document,
 	background-position: -24px -24px !important;
 }
 
+dt.contenttype-genweb-rectorat-acta:before, 
+i.icon-genweb-rectorat-acta,
+#listing-table a.contenttype-genweb-rectorat-acta:before, 
+.template-folder_tabular_view .listing a.contenttype-genweb-rectorat-acta:before
+{
+	background-position: -24px -24px !important;
+}
+
 .elaboració, .desarrollo {
 	background-color: #456211;
 	padding: 1px 4px 2px;
