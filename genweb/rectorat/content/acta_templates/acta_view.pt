@@ -9,30 +9,49 @@
 
 <metal:content-core fill-slot="content-core">
 
-    <div style="clear:both;">
-
-
-      <div style="width: 70%;" >
-        
+        <tal:block tal:condition="context/ordreSessio">
+          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Session order </h3>
+          <div tal:replace="structure context/ordreSessio/output|nothing" />
+          <hr/>
+        </tal:block>
+        <tal:block tal:condition="context/actaBody">
+          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Acta Body </h3>
+          <div tal:replace="structure context/actaBody/output|nothing" />
+        </tal:block>
+      <div style="clear:both; padding-top:12px;">
+        <tal:block tal:condition="context/membresConvocats">
+          <hr/>
+          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Incoming members list </h4>
+          <ul>
+            <div tal:replace="structure context/membresConvocats/output|nothing" />
+          </ul>
+        </tal:block>
+        <tal:block tal:condition="context/membresConvidats">
+          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Invited members </h4>
+          <ul>
+            <div tal:replace="structure context/membresConvidats/output|nothing" />
+          </ul>
+        </tal:block>
+        <tal:block tal:condition="context/llistaExcusats">
+          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Excused members </h4>
+          <ul>
+            <div tal:replace="structure context/llistaExcusats/output|nothing" />
+          </ul>
+        </tal:block>
+          <tal:block tal:condition="context/llistaNoAssistens">
+          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Missing members </h4>
+          <ul>
+            <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
+          </ul>
+        </tal:block>
       </div>
-    </div>
-
-
-
     <tal:originals tal:condition="view/isAuthenticated">
-      <div tal:condition="python: 'OriginalFiles' in view.w"
-           style="padding-top:20px;">
-          <legend i18n:translate="">Original files</legend>
-          <div tal:content="structure view/w/OriginalFiles/render" />
-    </div>
+      <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-top:20px;">
+        <legend i18n:translate=""> Files </legend>
+        <div tal:content="structure view/w/OriginalFiles/render" />
+      </div>
     </tal:originals>
 
-    <div tal:condition="python: 'PublishedFiles' in view.w"
-         style="padding-top:20px;">
-        <legend  tal:condition="view/isAuthenticated" i18n:translate="">Published files</legend>
-        <div tal:content="structure view/w/PublishedFiles/render" />
-    </div> 
-    <br/><br/>
 
 </metal:content-core>
 

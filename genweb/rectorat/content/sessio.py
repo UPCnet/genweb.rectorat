@@ -13,6 +13,7 @@ from z3c.form.interfaces import DISPLAY_MODE
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from collective import dexteritytextindexer
+from Products.CMFCore.utils import getToolByName
 
 
 class InvalidEmailError(schema.ValidationError):
@@ -61,7 +62,7 @@ class ISessio(form.Schema):
         required=False,
     )
 
-    llistaAssistents = RichText(
+    membresConvidats = RichText(
         title=_(u"Invited members"),
         required=False,
     )
@@ -128,6 +129,21 @@ class View(grok.View):
             return False
         else:
             return True
+
+    def DocumentsInside(self):
+        """ Retorna les dades de Directoris en format JSON
+        """
+        portal_catalog = getToolByName(self, 'portal_catalog')
+        # Cerca contingut per mostar al carousel en diversos idiomes
+        data = portal_catalog.searchResults(portal_type='genweb.rectorat.document')
+        return data
+
+    def ActasInside(self):
+        """ Retorna les actes que tenim aquí dintre creades
+        """
+        portal_catalog = getToolByName(self, 'portal_catalog')
+        data = portal_catalog.searchResults(portal_type='genweb.rectorat.acta')
+        return data
 
 
 class Edit(dexterity.EditForm):

@@ -31,7 +31,7 @@ class IActa(form.Schema):
         required=False,
     )
 
-    llistaAssistents = RichText(
+    membresConvidats = RichText(
         title=_(u"Invited members"),
         required=False,
     )
@@ -60,21 +60,15 @@ class IActa(form.Schema):
 
     dexteritytextindexer.searchable('OriginalFiles')
     form.widget(OriginalFiles=MultiFileFieldWidget)
-    OriginalFiles = schema.List(title=_(u"Original files"),
+    OriginalFiles = schema.List(title=_(u"Files"),
                                 value_type=NamedFile(),
                                 required=False,)
 
-    dexteritytextindexer.searchable('PublishedFiles')
-    form.widget(PublishedFiles=MultiFileFieldWidget)
-    PublishedFiles = schema.List(title=_(u"Published files"),
-                                 value_type=NamedFile(),
-                                 required=False,)
 
-
-@form.default_value(field=IActa['llistaAssistents'])
-def llistaAssistentsDefaultValue(data):
-    # copy llistaAssistents from Session (parent object)
-    return data.context.llistaAssistents
+@form.default_value(field=IActa['membresConvidats'])
+def membresConvidatsDefaultValue(data):
+    # copy membresConvidats from Session (parent object)
+    return data.context.membresConvidats
 
 
 @form.default_value(field=IActa['membresConvocats'])

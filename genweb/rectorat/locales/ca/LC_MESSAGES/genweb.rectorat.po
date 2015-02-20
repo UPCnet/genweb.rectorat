@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-02-05 10:49+0000\n"
+"POT-Creation-Date: 2015-02-20 11:20+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -16,54 +16,66 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: genweb.rectorat\n"
 
+#: ./genweb/rectorat/profiles/default/types/genweb.rectorat.acta.xml
+msgid "Acta"
+msgstr "Acta"
+
+#: ./genweb/rectorat/content/acta.py:57
+msgid "Acta Body"
+msgstr "Acta"
+
+#: ./genweb/rectorat/profiles/default/types/genweb.rectorat.acta.xml
+msgid "Acta Description"
+msgstr "Descripció de l'Acta"
+
 #: ./genweb/rectorat/content/document_templates/document_view.pt:22
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:90
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:92
 msgid "Agreement"
 msgstr "Acord"
 
-#: ./genweb/rectorat/content/document.py:42
+#: ./genweb/rectorat/content/document.py:45
 msgid "Agreement number"
 msgstr "Número d'acord"
 
-#: ./genweb/rectorat/content/document.py:60
+#: ./genweb/rectorat/content/document.py:65
 msgid "Alternate description"
 msgstr "Contingut alternatiu"
 
-#: ./genweb/rectorat/content/document.py:67
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:96
+#: ./genweb/rectorat/content/document.py:71
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:98
 msgid "Approval status"
 msgstr "Estat d'aprovació"
 
-#: ./genweb/rectorat/content/document.py:73
+#: ./genweb/rectorat/content/document.py:78
 #: ./genweb/rectorat/content/document_templates/document_view.pt:49
 msgid "Approval status comment"
 msgstr "Comentari a l'estat d'aprovació"
 
-#: ./genweb/rectorat/content/document.py:20
+#: ./genweb/rectorat/content/document.py:22
 msgid "Approved"
 msgstr "Aprovat"
 
-#: ./genweb/rectorat/content/sessio.py:78
+#: ./genweb/rectorat/content/sessio.py:81
 msgid "Body Mail"
 msgstr "Camp de text del mail"
 
-#: ./genweb/rectorat/content/sessio.py:79
+#: ./genweb/rectorat/content/sessio.py:82
 msgid "Body Mail description"
 msgstr "Contingut del mail que s'envia al passar a estat Convocat"
 
-#: ./genweb/rectorat/content/document.py:54
+#: ./genweb/rectorat/content/document.py:58
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr "Per defecte, es veurà el contingut per defecte, no el contingut alternatiu"
 
-#: ./genweb/rectorat/content/document.py:61
+#: ./genweb/rectorat/content/document.py:66
 msgid "Content used to hide protected content"
 msgstr "Es pot fer servir per ocultar contingut. Un camp intern de contingut, i un públic amb tota la informació permesa."
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:29
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:31
 msgid "Data:"
 msgstr "Data:"
 
-#: ./genweb/rectorat/content/document.py:48
+#: ./genweb/rectorat/content/document.py:52
 msgid "Default content shown in the document view"
 msgstr "Contingut que es mostrarà a la vista del document"
 
@@ -79,64 +91,75 @@ msgstr "Per cada sessió es podran crear tants documents com siguin necessaris p
 msgid "Document info"
 msgstr "Dades del document"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:143
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:146
 msgid "Download"
 msgstr "Descarregar el fitxer"
 
-#: ./genweb/rectorat/content/document.py:18
+#: ./genweb/rectorat/content/document.py:20
 msgid "Draft"
 msgstr "En elaboració"
 
-#: ./genweb/rectorat/content/organgovern.py:42
-#: ./genweb/rectorat/content/sessio.py:53
+#: ./genweb/rectorat/content/organgovern.py:46
+#: ./genweb/rectorat/content/sessio.py:55
 msgid "Enter email lists adresses, separated by commas."
 msgstr "Indicar la llista/adreces separades per comes."
 
-#: ./genweb/rectorat/content/organgovern.py:54
+#: ./genweb/rectorat/content/organgovern.py:58
 msgid "Enter the from used in the mail form"
 msgstr "Indicar el from que es farà servir per l'enviament de correus"
 
-#: ./genweb/rectorat/content/sessio.py:68
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:72
+#: ./genweb/rectorat/content/acta.py:40
+#: ./genweb/rectorat/content/sessio.py:70
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:74
 msgid "Excused members"
-msgstr "Llista d'excusats"
+msgstr "Llista de membres excusats"
 
-#: ./genweb/rectorat/content/organgovern.py:53
+#: ./genweb/rectorat/content/acta.py:63
+msgid "Files"
+msgstr "Fitxers annexats"
+
+#: ./genweb/rectorat/content/organgovern.py:57
 msgid "From mail"
-msgstr "Adreça de correu del FROM"
+msgstr "Adreça de correu que es farà servir al FROM del missatge"
 
-#: ./genweb/rectorat/content/sessio.py:58
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:60
+#: ./genweb/rectorat/content/acta.py:30
+#: ./genweb/rectorat/content/sessio.py:60
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:62
 msgid "Incoming members list"
-msgstr "Llista dels membres convocats"
+msgstr "Llista de membres convocats"
 
-#: ./genweb/rectorat/content/organgovern.py:48
+#: ./genweb/rectorat/content/organgovern.py:52
 msgid "Indicar el nom dels assistents separats per comes"
 msgstr "Indicar el nom o correu dels assistents, separats per comes"
 
-#: ./genweb/rectorat/content/organgovern.py:16
+#: ./genweb/rectorat/content/organgovern.py:18
 msgid "Invalid email address"
 msgstr "Adreça de correu incorrecta"
 
-#: ./genweb/rectorat/content/sessio.py:63
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:66
+#: ./genweb/rectorat/content/acta.py:35
+#: ./genweb/rectorat/content/sessio.py:65
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:68
 msgid "Invited members"
-msgstr "Llista d'assistents"
+msgstr "Llista de membres convidats"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:44
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:46
 msgid "Lloc:"
 msgstr "Lloc:"
 
-#: ./genweb/rectorat/content/document.py:53
+#: ./genweb/rectorat/content/document.py:57
 msgid "Mark this option to make alternate content visible"
 msgstr "Marqueu aquesta opció per mostrar el contingut alternatiu en comptes del per defecte"
 
-#: ./genweb/rectorat/content/sessio.py:85
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:17
+#: ./genweb/rectorat/content/acta.py:45
+msgid "Missing members"
+msgstr "Llista de membres absents"
+
+#: ./genweb/rectorat/content/sessio.py:88
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:18
 msgid "Notification date"
 msgstr "Data de notificació"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:20
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:21
 msgid "Notified persons"
 msgstr "Notificacions"
 
@@ -144,52 +167,51 @@ msgstr "Notificacions"
 msgid "Organ Govern"
 msgstr "Òrgan de govern"
 
-#: ./genweb/rectorat/content/organgovern.py:36
+#: ./genweb/rectorat/content/organgovern.py:40
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:15
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern description"
 msgstr "Descripció"
 
-#: ./genweb/rectorat/content/organgovern.py:47
+#: ./genweb/rectorat/content/organgovern.py:51
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:30
 msgid "Organ Govern members"
 msgstr "Membres de l'òrgan de govern"
 
-#: ./genweb/rectorat/content/document.py:80
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:25
+#: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/document_templates/document_view.pt:58
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:99
 msgid "Original files"
 msgstr "Fitxers interns"
 
-#: ./genweb/rectorat/content/document.py:19
+#: ./genweb/rectorat/content/document.py:21
 msgid "Pending"
 msgstr "Derogat"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:18
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:87
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:89
 msgid "Point"
 msgstr "Punt"
 
-#: ./genweb/rectorat/content/document.py:47
-#: ./genweb/rectorat/content/document_templates/document_view.pt:36
+#: ./genweb/rectorat/content/document.py:51
 msgid "Proposal description"
 msgstr "Contingut"
 
-#: ./genweb/rectorat/content/document.py:37
+#: ./genweb/rectorat/content/document.py:40
 msgid "Proposal point number"
 msgstr "Punt del document"
 
-#: ./genweb/rectorat/content/document.py:85
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:32
+#: ./genweb/rectorat/content/document.py:90
 #: ./genweb/rectorat/content/document_templates/document_view.pt:65
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:102
 msgid "Published files"
 msgstr "Fitxers públics"
 
-#: ./genweb/rectorat/content/document.py:21
+#: ./genweb/rectorat/content/document.py:23
 msgid "Rejected"
 msgstr "Rebutjat"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:80
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:82
 msgid "Related documents"
 msgstr "Documents relacionats"
 
@@ -202,32 +224,33 @@ msgid "Session Description"
 msgstr "Per a cada òrgan de govern es podran crear totes les sessions que es considerin necessàries"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
-#: ./genweb/rectorat/content/sessio.py:32
+#: ./genweb/rectorat/content/sessio.py:34
 msgid "Session date"
 msgstr "Data de la sessió"
 
-#: ./genweb/rectorat/content/sessio.py:47
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:39
+#: ./genweb/rectorat/content/sessio.py:49
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:41
 msgid "Session end time"
 msgstr "Hora de fi"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:25
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:27
 msgid "Session info"
 msgstr "Dades de la sessió"
 
-#: ./genweb/rectorat/content/sessio.py:73
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:53
+#: ./genweb/rectorat/content/acta.py:51
+#: ./genweb/rectorat/content/sessio.py:76
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:55
 msgid "Session order"
 msgstr "Ordre"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:52
-#: ./genweb/rectorat/content/sessio.py:37
+#: ./genweb/rectorat/content/sessio.py:39
 msgid "Session place"
 msgstr "Lloc de la convocatòria"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:55
-#: ./genweb/rectorat/content/sessio.py:42
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:34
+#: ./genweb/rectorat/content/sessio.py:44
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:36
 msgid "Session start time"
 msgstr "Hora d'inici"
 
@@ -239,24 +262,23 @@ msgstr "Llistat de sessions"
 msgid "State"
 msgstr "Estat"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:26
+#: ./genweb/rectorat/content/document_templates/document_view.pt:27
 msgid "Status"
 msgstr "Aprovació:"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:46
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:93
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:95
 msgid "Title"
 msgstr "Títol"
 
-#: ./genweb/rectorat/content/organgovern.py:41
+#: ./genweb/rectorat/content/organgovern.py:45
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:22
-#: ./genweb/rectorat/content/sessio.py:52
+#: ./genweb/rectorat/content/sessio.py:54
 msgid "mail address"
 msgstr "Adreces de notificació d'aquest Òrgan"
 
 #. Default: "Content listing"
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:40
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:81
 msgid "summary_content_listing"
 msgstr "Llistat de continguts"
 
