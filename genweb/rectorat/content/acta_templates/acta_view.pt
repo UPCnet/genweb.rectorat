@@ -9,15 +9,6 @@
 
 <metal:content-core fill-slot="content-core">
 
-        <tal:block tal:condition="context/ordreSessio">
-          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Session order </h3>
-          <div tal:replace="structure context/ordreSessio/output|nothing" />
-          <hr/>
-        </tal:block>
-        <tal:block tal:condition="context/actaBody">
-          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Acta Body </h3>
-          <div tal:replace="structure context/actaBody/output|nothing" />
-        </tal:block>
       <div style="clear:both; padding-top:12px;">
         <tal:block tal:condition="context/membresConvocats">
           <hr/>
@@ -45,6 +36,15 @@
           </ul>
         </tal:block>
       </div>
+ <tal:block tal:condition="context/ordreSessio">
+          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Session order </h3>
+          <div tal:replace="structure context/ordreSessio/output|nothing" />
+          <hr/>
+        </tal:block>
+        <tal:block tal:condition="context/actaBody">
+          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Acta Body </h3>
+          <div tal:replace="structure context/actaBody/output|nothing" />
+        </tal:block>
     <tal:originals tal:condition="view/isAuthenticated">
       <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-top:20px;">
         <legend i18n:translate=""> Files </legend>

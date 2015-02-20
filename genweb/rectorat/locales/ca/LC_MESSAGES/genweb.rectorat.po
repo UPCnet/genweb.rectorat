@@ -152,7 +152,7 @@ msgstr "Marqueu aquesta opció per mostrar el contingut alternatiu en comptes de
 
 #: ./genweb/rectorat/content/acta.py:45
 msgid "Missing members"
-msgstr "Llista de membres absents"
+msgstr "Llista de membres no assistents"
 
 #: ./genweb/rectorat/content/sessio.py:88
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:18
@@ -241,7 +241,7 @@ msgstr "Dades de la sessió"
 #: ./genweb/rectorat/content/sessio.py:76
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:55
 msgid "Session order"
-msgstr "Ordre"
+msgstr "Ordre del dia"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:52
 #: ./genweb/rectorat/content/sessio.py:39
