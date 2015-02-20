@@ -116,7 +116,8 @@
           </tr>
         </thead>
           <tal:documents repeat="item view/DocumentsInside">
-            <tal:block tal:define="obj item/getObject">
+            <tal:block tal:define="obj item/getObject;
+                                   wf_state item/portal_workflow">
               <tr >
                 <td style="text-align: center;">
                     <span tal:content="obj/proposalPoint">
@@ -130,7 +131,8 @@
                 </td>                                                      
                 <td>
                   <a href="#"
-                     tal:attributes="href obj/absolute_url;"
+                     tal:attributes="href obj/absolute_url;
+                                     class string:state-${wf_state/review_state}"
                      tal:content="obj/title">
                       Item Title
                   </a>
