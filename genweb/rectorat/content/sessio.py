@@ -135,14 +135,20 @@ class View(grok.View):
         """
         portal_catalog = getToolByName(self, 'portal_catalog')
         # Cerca contingut per mostar al carousel en diversos idiomes
-        data = portal_catalog.searchResults(portal_type='genweb.rectorat.document')
+        folder_path = '/'.join(self.context.getPhysicalPath())
+
+        data = portal_catalog.searchResults(portal_type='genweb.rectorat.document',
+                                            path={'query': folder_path, 'depth': 1})
+
         return data
 
     def ActasInside(self):
         """ Retorna les actes que tenim aquí dintre creades
         """
+        folder_path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self, 'portal_catalog')
-        data = portal_catalog.searchResults(portal_type='genweb.rectorat.acta')
+        data = portal_catalog.searchResults(portal_type='genweb.rectorat.acta',
+                                            path={'query': folder_path, 'depth': 1})
         return data
 
 
