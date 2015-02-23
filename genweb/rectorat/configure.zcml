@@ -6,6 +6,7 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"    
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="genweb.rectorat">
 
     <five:registerPackage package="." initialize=".initialize" />
@@ -33,13 +34,13 @@
     />
 
     <i18n:registerTranslations directory="locales" />
-<!-- 
+
     <include package="z3c.jbot" file="meta.zcml" />
 
     <browser:jbot
        directory="templates"
        layer=".interfaces.IGenwebRectoratLayer"
-    /> -->
+    />
 
 
 
