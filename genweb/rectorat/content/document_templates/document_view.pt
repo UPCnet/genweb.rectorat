@@ -52,6 +52,13 @@
       </div>
     </div:>
 
+    <div tal:condition="python: 'PublishedFiles' in view.w"
+         style="padding-top:20px;">
+        <legend  tal:condition="view/isAuthenticated" i18n:translate="">Published files</legend>
+        <div tal:content="structure view/w/PublishedFiles/render" />
+    </div> 
+    <br/><br/>
+
     <tal:originals tal:condition="view/isAuthenticated">
       <div tal:condition="python: 'OriginalFiles' in view.w"
            style="padding-top:20px;">
@@ -59,13 +66,6 @@
           <div tal:content="structure view/w/OriginalFiles/render" />
     </div>
     </tal:originals>
-
-    <div tal:condition="python: 'PublishedFiles' in view.w"
-         style="padding-top:20px;">
-        <legend  tal:condition="view/isAuthenticated" i18n:translate="">Published files</legend>
-        <div tal:content="structure view/w/PublishedFiles/render" />
-    </div> 
-    <br/><br/>
 
 </metal:content-core>
 

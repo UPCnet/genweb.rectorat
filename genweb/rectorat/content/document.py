@@ -79,17 +79,17 @@ class IDocument(model.Schema):
         required=False,
     )
 
-    dexteritytextindexer.searchable('OriginalFiles')
-    form.widget(OriginalFiles=MultiFileFieldWidget)
-    OriginalFiles = schema.List(title=_(u"Original files"),
-                                value_type=NamedFile(),
-                                required=False,)
-
     dexteritytextindexer.searchable('PublishedFiles')
     form.widget(PublishedFiles=MultiFileFieldWidget)
     PublishedFiles = schema.List(title=_(u"Published files"),
                                  value_type=NamedFile(),
                                  required=False,)
+
+    dexteritytextindexer.searchable('OriginalFiles')
+    form.widget(OriginalFiles=MultiFileFieldWidget)
+    OriginalFiles = schema.List(title=_(u"Original files"),
+                                value_type=NamedFile(),
+                                required=False,)
 
 
 class View(dexterity.DisplayForm):
