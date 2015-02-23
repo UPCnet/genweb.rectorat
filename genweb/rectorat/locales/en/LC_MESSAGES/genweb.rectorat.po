@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-02-23 10:24+0000\n"
+"POT-Creation-Date: 2015-02-23 13:19+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -20,8 +20,8 @@ msgstr ""
 msgid "Acta"
 msgstr ""
 
-#: ./genweb/rectorat/content/acta.py:61
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:43
+#: ./genweb/rectorat/content/acta.py:81
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:71
 msgid "Acta Body"
 msgstr ""
 
@@ -56,6 +56,11 @@ msgstr "Approval status comment"
 msgid "Approved"
 msgstr "Approved"
 
+#: ./genweb/rectorat/content/acta.py:51
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:41
+msgid "Attending members"
+msgstr ""
+
 #: ./genweb/rectorat/content/sessio.py:86
 msgid "Body Mail"
 msgstr ""
@@ -72,6 +77,7 @@ msgstr ""
 msgid "Content used to hide protected content"
 msgstr ""
 
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:17
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:31
 msgid "Data:"
 msgstr "Date:"
@@ -100,46 +106,49 @@ msgstr "Download file"
 msgid "Draft"
 msgstr "In development"
 
-#: ./genweb/rectorat/content/organgovern.py:46
+#: ./genweb/rectorat/content/organgovern.py:47
 #: ./genweb/rectorat/content/sessio.py:56
 msgid "Enter email lists adresses, separated by commas."
 msgstr "Enter email lists adresses, separated by commas."
 
-#: ./genweb/rectorat/content/organgovern.py:58
+#: ./genweb/rectorat/content/organgovern.py:59
 msgid "Enter the from used in the mail form"
 msgstr "Enter the addess mail used in form, from send mails"
 
-#: ./genweb/rectorat/content/acta.py:43
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:25
+#: ./genweb/rectorat/content/acta.py:63
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:53
 #: ./genweb/rectorat/content/sessio.py:74
 msgid "Excused members"
 msgstr "Excused members list"
 
-#: ./genweb/rectorat/content/acta.py:67
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:50
+#: ./genweb/rectorat/content/acta.py:87
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:78
 msgid "Files"
 msgstr ""
 
-#: ./genweb/rectorat/content/organgovern.py:57
+#: ./genweb/rectorat/content/organgovern.py:58
 msgid "From mail"
 msgstr "From address"
 
-#: ./genweb/rectorat/content/acta.py:31
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:13
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:99
+msgid "Historic"
+msgstr ""
+
 #: ./genweb/rectorat/content/sessio.py:62
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:62
 msgid "Incoming members list"
 msgstr "Incoming members list"
 
-#: ./genweb/rectorat/content/organgovern.py:52
+#: ./genweb/rectorat/content/organgovern.py:53
 msgid "Indicar el nom dels assistents separats per comes"
 msgstr "Enter the name or the email of the attendees, separated by commas"
 
-#: ./genweb/rectorat/content/organgovern.py:18
+#: ./genweb/rectorat/content/organgovern.py:19
 msgid "Invalid email address"
 msgstr "Invalid email address"
 
-#: ./genweb/rectorat/content/acta.py:37
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:19
+#: ./genweb/rectorat/content/acta.py:57
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:47
 #: ./genweb/rectorat/content/sessio.py:68
 msgid "Invited members"
 msgstr "Invited members"
@@ -148,6 +157,7 @@ msgstr "Invited members"
 msgid "Llistat d'actes"
 msgstr ""
 
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:32
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:46
 msgid "Lloc:"
 msgstr "Place:"
@@ -156,8 +166,8 @@ msgstr "Place:"
 msgid "Mark this option to make alternate content visible"
 msgstr "Mark this option to make alternate content visible"
 
-#: ./genweb/rectorat/content/acta.py:49
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:31
+#: ./genweb/rectorat/content/acta.py:69
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:59
 msgid "Missing members"
 msgstr ""
 
@@ -174,13 +184,13 @@ msgstr "Notified"
 msgid "Organ Govern"
 msgstr "Government Body"
 
-#: ./genweb/rectorat/content/organgovern.py:40
+#: ./genweb/rectorat/content/organgovern.py:41
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:15
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern description"
 msgstr "Description"
 
-#: ./genweb/rectorat/content/organgovern.py:51
+#: ./genweb/rectorat/content/organgovern.py:52
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:29
 msgid "Organ Govern members"
 msgstr "Members"
@@ -230,62 +240,61 @@ msgstr "Session"
 msgid "Session Description"
 msgstr "Description"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:47
+#: ./genweb/rectorat/content/acta.py:30
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 #: ./genweb/rectorat/content/sessio.py:35
 msgid "Session date"
 msgstr "Session date"
 
+#: ./genweb/rectorat/content/acta.py:45
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:27
 #: ./genweb/rectorat/content/sessio.py:50
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:41
 msgid "Session end time"
 msgstr "Session end time"
 
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:13
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:27
 msgid "Session info"
 msgstr "Session info"
 
-#: ./genweb/rectorat/content/acta.py:55
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:37
+#: ./genweb/rectorat/content/acta.py:75
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:65
 #: ./genweb/rectorat/content/sessio.py:80
 msgid "Session order"
 msgstr "Order"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:50
+#: ./genweb/rectorat/content/acta.py:35
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:47
 #: ./genweb/rectorat/content/sessio.py:40
 msgid "Session place"
 msgstr "Session place"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:53
-#: ./genweb/rectorat/content/sessio.py:45
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:36
+#: ./genweb/rectorat/content/acta.py:40
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:22
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:50
 msgid "Session start time"
 msgstr "Session start time"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:37
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:36
 msgid "Sessions list"
-msgstr "List of sessions"
+msgstr ""
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:56
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:53
 msgid "State"
-msgstr "Review state"
+msgstr ""
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:27
 msgid "Status"
 msgstr "Status:"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:41
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:102
 msgid "Title"
 msgstr "Title"
 
-#: ./genweb/rectorat/content/organgovern.py:45
+#: ./genweb/rectorat/content/organgovern.py:46
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:22
 #: ./genweb/rectorat/content/sessio.py:55
 msgid "mail address"
 msgstr "Notification address used at this Government"
-
-#. Default: "Content listing"
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:38
-msgid "summary_content_listing"
-msgstr "Summary content listing"
 

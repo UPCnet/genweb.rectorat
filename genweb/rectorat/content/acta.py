@@ -26,9 +26,29 @@ class IActa(form.Schema):
         required=True
     )
 
+    dataSessio = schema.Date(
+        title=_(u"Session date"),
+        required=False,
+    )
+
+    llocConvocatoria = schema.TextLine(
+        title=_(u"Session place"),
+        required=False,
+    )
+
+    horaInici = schema.Time(
+        title=_(u"Session start time"),
+        required=False,
+    )
+
+    horaFi = schema.Time(
+        title=_(u"Session end time"),
+        required=False,
+    )
+
     dexteritytextindexer.searchable('membresConvocats')
     membresConvocats = RichText(
-        title=_(u"Incoming members list"),
+        title=_(u"Attending members"),
         required=False,
     )
 
@@ -92,6 +112,26 @@ def ordreSessioDefaultValue(data):
     # copy ordreSessio from Session (parent object)
     return data.context.ordreSessio
 
+@form.default_value(field=IActa['dataSessio'])
+def dataSessioDefaultValue(data):
+    # copy dataSessio from Session (parent object)
+    return data.context.dataSessio
+
+@form.default_value(field=IActa['llocConvocatoria'])
+def llocConvocatoriaDefaultValue(data):
+    # copy llocConvocatoria from Session (parent object)
+    return data.context.llocConvocatoria    
+
+@form.default_value(field=IActa['horaInici'])
+def horaIniciDefaultValue(data):
+    # copy horaInici from Session (parent object)
+    return data.context.horaInici    
+
+@form.default_value(field=IActa['horaFi'])
+def horaFiDefaultValue(data):
+    # copy horaFi from Session (parent object)
+    return data.context.horaFi                    
+
 
 @form.default_value(field=IActa['actaBody'])
 def actaBodyDefaultValue(data):
@@ -114,3 +154,10 @@ class Edit(dexterity.EditForm):
     """A standard edit form.
     """
     grok.context(IActa)
+
+    def updateWidgets(self):
+        super(Edit, self).updateWidgets()
+        self.widgets['dataSessio'].mode = HIDDEN_MODE    
+        self.widgets['llocConvocatoria'].mode = HIDDEN_MODE    
+        self.widgets['horaInici'].mode = HIDDEN_MODE    
+        self.widgets['horaFi'].mode = HIDDEN_MODE            

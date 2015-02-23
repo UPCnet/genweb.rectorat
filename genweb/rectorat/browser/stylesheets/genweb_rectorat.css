@@ -30,7 +30,7 @@ i.icon-genweb-rectorat-acta,
 	background-position: -24px -24px !important;
 }
 
-.elaboració, .desarrollo {
+.elaboració, .desarrollo, .convocat {
 	background-color: #456211;
 	padding: 1px 4px 2px;
 	border-radius: 3px;
@@ -43,7 +43,7 @@ i.icon-genweb-rectorat-acta,
 	text-align: center;
 }
 
-.Pending {
+.Pending, .preparing {
 	background-color: #f0a436;
 	padding: 1px 4px 2px;
 	border-radius: 3px;
@@ -56,7 +56,7 @@ i.icon-genweb-rectorat-acta,
 	text-align: center;
 }
 
-.Approved {
+.Approved, .closed {
 	background-color: #007bc0;
 	padding: 1px 4px 2px;
 	border-radius: 3px;

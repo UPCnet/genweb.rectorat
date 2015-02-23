@@ -9,6 +9,7 @@ from plone import api
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from collective import dexteritytextindexer
+from Products.CMFCore.utils import getToolByName
 
 
 EMAIL_RE = u"([0-9a-zA-Z_&.'+-]+!)*[0-9a-zA-Z_&.'+-]+@(([0-9a-zA-Z]([0-9a-zA-Z-]*[0-9a-z-A-Z])?\.)+[a-zA-Z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$"
@@ -77,3 +78,24 @@ class View(grok.View):
         else:
             canViewContent = True
         return canViewContent
+
+    def SessionsInside(self):
+        """ Retorna les sessions d'aquí dintre (sense tenir compte estat)
+        """
+        portal_catalog = getToolByName(self, 'portal_catalog')
+        # Cerca contingut per mostar al carousel en diversos idiomes
+        folder_path = '/'.join(self.context.getPhysicalPath())
+
+        data = portal_catalog.searchResults(portal_type='genweb.rectorat.sessio',
+                                            path={'query': folder_path, 'depth': 1})
+
+        return data
+
+    def FoldersInside(self):
+        """ Retorna les carpetes que hi ha dintre que són les que marquen com Historic
+        """
+        folder_path = '/'.join(self.context.getPhysicalPath())
+        portal_catalog = getToolByName(self, 'portal_catalog')
+        data = portal_catalog.searchResults(portal_type='Folder',
+                                            path={'query': folder_path, 'depth': 1})
+        return data        
