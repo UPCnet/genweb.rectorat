@@ -59,27 +59,24 @@
 <div style="clear:both; padding-top:12px;">
   <tal:block tal:condition="context/membresConvocats">
     <hr/>
-    <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Incoming members list </h4>
-    <ul>
-      <div tal:replace="structure context/membresConvocats/output|nothing" />
-    </ul>
+    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Incoming members list </h3>
+    <div tal:replace="structure context/membresConvocats/output|nothing" />
+    <hr/>
   </tal:block>
   <tal:block tal:condition="context/membresConvidats">
-    <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Invited members </h4>
-    <ul>
-      <div tal:replace="structure context/membresConvidats/output|nothing" />
-    </ul>
+    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Invited members </h3>
+    <div tal:replace="structure context/membresConvidats/output|nothing" />
+    <hr/>
   </tal:block>
   <tal:block tal:condition="context/llistaExcusats">
-    <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Excused members </h4>
-    <ul>
-      <div tal:replace="structure context/llistaExcusats/output|nothing" />
-    </ul>
+    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Excused members </h3>
+    <div tal:replace="structure context/llistaExcusats/output|nothing" />
+    <hr/>
   </tal:block>
 </div>
 
 <tal:actes tal:define="item view/ActasInside" tal:condition="item">
-  <hr/><h3 i18n:translate="" i18n:domain="genweb.rectorat">Llistat d'actes</h3>
+  <h3 i18n:translate="" i18n:domain="genweb.rectorat">Llistat d'actes</h3>
   <tal:documents repeat="item view/ActasInside">
     <li tal:define="obj item/getObject">
       <a tal:attributes="href obj/absolute_url"
@@ -91,7 +88,7 @@
 </tal:actes>
 
   <tal:RelatedDocs tal:define="item view/DocumentsInside" tal:condition="item">
-    <hr/><h3 i18n:translate="" i18n:domain="genweb.rectorat">Related documents</h3>
+    <h3 i18n:translate="" i18n:domain="genweb.rectorat">Related documents</h3>
     <table class="listing">
         <thead>
           <tr>
@@ -177,7 +174,7 @@
             </tal:block>
           </tal:documents>
       </table>
-</tal:RelatedDocs>
+  </tal:RelatedDocs>
 
 </metal:content-core>
 
