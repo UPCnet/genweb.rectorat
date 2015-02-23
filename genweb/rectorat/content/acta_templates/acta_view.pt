@@ -9,52 +9,48 @@
 
 <metal:content-core fill-slot="content-core">
 
-  <div style="clear:both; padding-top:12px;">
+  <tal:block tal:condition="context/membresConvocats">
+    <h3 i18n:translate=""> Incoming members list </h3>
+    <div tal:replace="structure context/membresConvocats/output|nothing" />
+    <hr/>
+  </tal:block>
 
-    <tal:block tal:condition="context/membresConvocats">
-      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Incoming members list </h3>
-      <div tal:replace="structure context/membresConvocats/output|nothing" />
-      <hr/>
-    </tal:block>
+  <tal:block tal:condition="context/membresConvidats">
+    <h3 i18n:translate=""> Invited members </h3>
+    <div tal:replace="structure context/membresConvidats/output|nothing" />
+    <hr/>
+  </tal:block>
 
-    <tal:block tal:condition="context/membresConvidats">
-      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Invited members </h3>
-      <div tal:replace="structure context/membresConvidats/output|nothing" />
-      <hr/>
-    </tal:block>
+  <tal:block tal:condition="context/llistaExcusats">
+    <h3 i18n:translate=""> Excused members </h3>
+    <div tal:replace="structure context/llistaExcusats/output|nothing" />
+    <hr/>
+  </tal:block>
 
-    <tal:block tal:condition="context/llistaExcusats">
-      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Excused members </h3>
-      <div tal:replace="structure context/llistaExcusats/output|nothing" />
-      <hr/>
-    </tal:block>
-
-      <tal:block tal:condition="context/llistaNoAssistens">
-      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Missing members </h3>
-      <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
-      <hr/>
-    </tal:block>
-
-  </div>
+  <tal:block tal:condition="context/llistaNoAssistens">
+    <h3 i18n:translate=""> Missing members </h3>
+    <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
+    <hr/>
+  </tal:block>
 
   <tal:block tal:condition="context/ordreSessio">
-    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Session order </h3>
+    <h3 i18n:translate=""> Session order </h3>
     <div tal:replace="structure context/ordreSessio/output|nothing" />
     <hr/>
   </tal:block>
 
   <tal:block tal:condition="context/actaBody">
-    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Acta Body </h3>
+    <h3 i18n:translate=""> Acta Body </h3>
     <div tal:replace="structure context/actaBody/output|nothing" />
     <hr/>
   </tal:block>
 
-  <tal:originals>
-    <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-bottom:12px;">
+  <tal:bck:files tal:condition="python: 'OriginalFiles' in view.w" >
+    <tal:files tal:condition="python:getattr(context, 'OriginalFiles', None)">
       <h3 i18n:translate=""> Files </h3>
-      <div tal:content="structure view/w/OriginalFiles/render" />
-    </div>
-  </tal:originals>
+      <div tal:content="structure view/w/OriginalFiles/render" style="padding-bottom:22px;"/>
+    </tal:files>
+  </tal:bck:files>
 
 </metal:content-core>
 

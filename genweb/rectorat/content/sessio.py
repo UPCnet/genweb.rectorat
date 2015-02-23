@@ -8,7 +8,7 @@ from plone import api
 from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
-from z3c.form.interfaces import DISPLAY_MODE
+from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
@@ -57,16 +57,19 @@ class ISessio(form.Schema):
         required=True,
     )
 
+    dexteritytextindexer.searchable('membresConvocats')
     membresConvocats = RichText(
         title=_(u"Incoming members list"),
         required=False,
     )
 
+    dexteritytextindexer.searchable('membresConvidats')
     membresConvidats = RichText(
         title=_(u"Invited members"),
         required=False,
     )
 
+    dexteritytextindexer.searchable('llistaExcusats')
     llistaExcusats = RichText(
         title=_(u"Excused members"),
         required=False,
@@ -78,6 +81,7 @@ class ISessio(form.Schema):
         required=False,
     )
 
+    dexteritytextindexer.searchable('bodyMail')
     bodyMail = RichText(
         title=_(u"Body Mail"),
         description=_(u"Body Mail description"),
@@ -131,7 +135,7 @@ class View(grok.View):
             return True
 
     def DocumentsInside(self):
-        """ Retorna les dades de Directoris en format JSON
+        """ Retorna els documents creats aquí dintre (sense tenir compte estat)
         """
         portal_catalog = getToolByName(self, 'portal_catalog')
         # Cerca contingut per mostar al carousel en diversos idiomes
@@ -143,7 +147,7 @@ class View(grok.View):
         return data
 
     def ActasInside(self):
-        """ Retorna les actes que tenim aquí dintre creades
+        """ Retorna les actes creades aquí dintre (sense tenir compte estat)
         """
         folder_path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self, 'portal_catalog')
@@ -159,4 +163,4 @@ class Edit(dexterity.EditForm):
 
     def updateWidgets(self):
         super(Edit, self).updateWidgets()
-        self.widgets['notificationDate'].mode = DISPLAY_MODE
+        self.widgets['notificationDate'].mode = HIDDEN_MODE

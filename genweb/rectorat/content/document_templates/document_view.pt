@@ -43,29 +43,33 @@
     </div>
   </div>
 
+  <div style="clear:both;"></div>
   <div tal:condition="view/isAuthenticated">
     <div style="clear:both; padding-top: 20px;">
       <tal:block tal:condition="context/comentariEstatAprovacio">
         <hr/>      
         <h3 i18n:translate=""> Approval status comment </h3>
         <div tal:replace="structure context/comentariEstatAprovacio/output|nothing" />
-        <hr/>      
       </tal:block>
     </div>
-
   </div>
 
   <div tal:condition="python: 'PublishedFiles' in view.w">
-    <h3  tal:condition="view/isAuthenticated" i18n:translate="">Published files</h3>
-    <div tal:content="structure view/w/PublishedFiles/render" />
-    <hr/>
+    <tal:files tal:condition="python:getattr(context, 'PublishedFiles', None)">
+      <hr/>
+      <h3  i18n:translate="">Published files</h3>
+      <div tal:content="structure view/w/PublishedFiles/render" />
+
+    </tal:files>
   </div> 
 
   <tal:originals tal:condition="view/isAuthenticated">
-    <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-bottom:20px;">
-      <h3 i18n:translate="">Original files</h3>
-      <div tal:content="structure view/w/OriginalFiles/render" />
-      <hr/>        
+    <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-bottom:22px;">
+      <tal:files tal:condition="python:getattr(context, 'OriginalFiles', None)">
+        <hr/>        
+        <h3 i18n:translate="">Original files</h3>
+        <div tal:content="structure view/w/OriginalFiles/render" />
+      </tal:files>
     </div>
   </tal:originals>
 

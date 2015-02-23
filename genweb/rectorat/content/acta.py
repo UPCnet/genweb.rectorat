@@ -26,21 +26,25 @@ class IActa(form.Schema):
         required=True
     )
 
+    dexteritytextindexer.searchable('membresConvocats')
     membresConvocats = RichText(
         title=_(u"Incoming members list"),
         required=False,
     )
 
+    dexteritytextindexer.searchable('membresConvidats')
     membresConvidats = RichText(
         title=_(u"Invited members"),
         required=False,
     )
 
+    dexteritytextindexer.searchable('llistaExcusats')
     llistaExcusats = RichText(
         title=_(u"Excused members"),
         required=False,
     )
 
+    dexteritytextindexer.searchable('llistaNoAssistens')
     llistaNoAssistens = RichText(
         title=_(u"Missing members"),
         required=False,

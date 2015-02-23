@@ -46,7 +46,7 @@ def sessio_changed(session, event):
 
             if lang == 'ca':
                 session.notificationDate = now
-                subjectMail = "Convocada ordre del dia: " + organ.title
+                subjectMail = "Convocada ordre del dia: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
@@ -58,7 +58,7 @@ def sessio_changed(session, event):
 
             if lang == 'es':
                 session.notificationDate = now
-                subjectMail = "Convocada orden del día: " + organ.title
+                subjectMail = "Convocada orden del día: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
@@ -72,7 +72,7 @@ def sessio_changed(session, event):
                 now = strftime("%Y-%m-%d %H:%M")
                 session.notificationDate = now
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-                subjectMail = "Convened agenda: " + organ.title
+                subjectMail = "Convened agenda: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \

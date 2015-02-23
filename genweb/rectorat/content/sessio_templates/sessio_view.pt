@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="ca"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="genweb.rectorat">
 <body>
 
 <metal:content-core fill-slot="content-core">
@@ -15,35 +15,35 @@
        class="alert alert-info" 
        role="alert" 
        style="background-color: #f2dede; color: #216f86; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #8fd1e3; margin:10px;" >
-      <span i18n:translate="" i18n:domain="genweb.rectorat">Notification date</span>:
+      <span i18n:translate="">Notification date</span>:
       <span tal:content="context/notificationDate"></span>
       <br/>
-      <span i18n:translate="" i18n:domain="genweb.rectorat">Notified persons</span>:
+      <span i18n:translate="">Notified persons</span>:
       <span tal:content="context/adrecaLlista"></span>
   </div>
 </tal:omit-tag>
 
 <div class="resultsBox">
   <h3 style="text-align: center;"
-      i18n:translate="" i18n:domain="genweb.rectorat"> Session info </h3>
+      i18n:translate=""> Session info </h3>
   <ul>
     <li tal:condition="context/dataSessio">
-      <b i18n:translate="" i18n:domain="genweb.rectorat">Data:</b>
+      <b i18n:translate="">Data:</b>
       <span style="float:right" 
             tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
     </li>
     <li tal:condition="context/horaInici">
-      <b i18n:translate="" i18n:domain="genweb.rectorat">Session start time</b>:
+      <b i18n:translate="">Session start time</b>:
       <span style="float:right" 
             tal:content="python:context.horaInici.strftime('%H:%M')"></span>
     </li> 
     <li tal:condition="context/horaFi">
-      <b i18n:translate="" i18n:domain="genweb.rectorat">Session end time</b>:
+      <b i18n:translate="">Session end time</b>:
       <span style="float:right" 
             tal:content="python:context.horaFi.strftime('%H:%M')"></span>
     </li>                 
     <li tal:condition="context/llocConvocatoria">
-      <b i18n:translate="" i18n:domain="genweb.rectorat">Lloc:</b>
+      <b i18n:translate="">Lloc:</b>
       <span style="float:right" 
             tal:content="context/llocConvocatoria"></span>
     </li>    
@@ -52,63 +52,63 @@
 
 <div style="width:70%;">
   <tal:block tal:condition="context/ordreSessio">
-    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Session order </h3>
+    <h3 i18n:translate=""> Session order </h3>
     <div tal:replace="structure context/ordreSessio/output|nothing" />
   </tal:block>
 </div>
 <div style="clear:both; padding-top:12px;">
   <tal:block tal:condition="context/membresConvocats">
     <hr/>
-    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Incoming members list </h3>
+    <h3 i18n:translate=""> Incoming members list </h3>
     <div tal:replace="structure context/membresConvocats/output|nothing" />
-    <hr/>
   </tal:block>
   <tal:block tal:condition="context/membresConvidats">
-    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Invited members </h3>
-    <div tal:replace="structure context/membresConvidats/output|nothing" />
     <hr/>
+    <h3 i18n:translate=""> Invited members </h3>
+    <div tal:replace="structure context/membresConvidats/output|nothing" />
   </tal:block>
   <tal:block tal:condition="context/llistaExcusats">
-    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Excused members </h3>
-    <div tal:replace="structure context/llistaExcusats/output|nothing" />
     <hr/>
+    <h3 i18n:translate=""> Excused members </h3>
+    <div tal:replace="structure context/llistaExcusats/output|nothing" />
   </tal:block>
 </div>
 
 <tal:actes tal:define="item view/ActasInside" tal:condition="item">
-  <h3 i18n:translate="" i18n:domain="genweb.rectorat">Llistat d'actes</h3>
+  <hr/>
+  <h3 i18n:translate="">Llistat d'actes</h3>
   <tal:documents repeat="item view/ActasInside">
     <li tal:define="obj item/getObject">
       <a tal:attributes="href obj/absolute_url"
          tal:content="obj/title">
-        Link a Acta
+          Link a Acta
        </a>
     </li>
   </tal:documents>
 </tal:actes>
 
   <tal:RelatedDocs tal:define="item view/DocumentsInside" tal:condition="item">
-    <h3 i18n:translate="" i18n:domain="genweb.rectorat">Related documents</h3>
+    <h3 i18n:translate="">Related documents</h3>
     <table class="listing">
         <thead>
           <tr>
             <th style="width: 8%">&nbsp;
-              <tal:head i18n:translate="" i18n:domain="genweb.rectorat">Point</tal:head>&nbsp;
+              <tal:head i18n:translate="">Point</tal:head>&nbsp;
             </th>
             <th style="width: 10%">&nbsp;
-              <tal:head i18n:translate="" i18n:domain="genweb.rectorat">Agreement</tal:head>&nbsp;
+              <tal:head i18n:translate="">Agreement</tal:head>&nbsp;
             </th>     
             <th style="width: 34%">&nbsp;
-              <tal:head i18n:translate="" i18n:domain="genweb.rectorat">Title</tal:head>&nbsp;
+              <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
             <th style="width: 18%" tal:condition="view/isAuthenticated">&nbsp;
-              <tal:head i18n:translate="" i18n:domain="genweb.rectorat">Approval status</tal:head>&nbsp;
+              <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
             </th> 
             <th style="width: 15%" tal:condition="view/isAuthenticated">&nbsp;
-              <tal:head i18n:translate="" i18n:domain="genweb.rectorat">Original files</tal:head>&nbsp;
+              <tal:head i18n:translate="">Original files</tal:head>&nbsp;
             </th>                 
             <th style="width: 15%">&nbsp;
-              <tal:head i18n:translate="" i18n:domain="genweb.rectorat">Published files</tal:head>&nbsp;
+              <tal:head i18n:translate="">Published files</tal:head>&nbsp;
             </th>                                 
           </tr>
         </thead>
@@ -136,7 +136,6 @@
                 </td>
                 <td style="text-align: center;" tal:condition="view/isAuthenticated">
                     <span i18n:translate=""
-                          i18n:domain="genweb.rectorat"
                           tal:content="obj/estatAprovacio"
                           tal:attributes="class obj/estatAprovacio">
                       Approval status
@@ -147,7 +146,6 @@
                     <tal:files repeat="item obj/OriginalFiles">
                       <li>
                         <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.OriginalFiles/@@download/${repeat/item/index};"
-                           i18n:domain="genweb.rectorat"
                            i18n:attributes="alt Download; title Download"
                            tal:content="item/filename">
                           Original files
@@ -161,7 +159,6 @@
                     <tal:files repeat="item obj/PublishedFiles">
                       <li>
                         <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.PublishedFiles/@@download/${repeat/item/index};"
-                           i18n:domain="genweb.rectorat"
                            i18n:attributes="alt Download; title Download"
                            tal:content="item/filename">
                           Published files
