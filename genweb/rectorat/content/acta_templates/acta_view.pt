@@ -2,56 +2,59 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
       metal:use-macro="context/main_template/macros/master"
+      lang="en"
       i18n:domain="genweb.rectorat">
 <body>
 
 <metal:content-core fill-slot="content-core">
 
-      <div style="clear:both; padding-top:12px;">
-        <tal:block tal:condition="context/membresConvocats">
-          <hr/>
-          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Incoming members list </h4>
-          <ul>
-            <div tal:replace="structure context/membresConvocats/output|nothing" />
-          </ul>
-        </tal:block>
-        <tal:block tal:condition="context/membresConvidats">
-          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Invited members </h4>
-          <ul>
-            <div tal:replace="structure context/membresConvidats/output|nothing" />
-          </ul>
-        </tal:block>
-        <tal:block tal:condition="context/llistaExcusats">
-          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Excused members </h4>
-          <ul>
-            <div tal:replace="structure context/llistaExcusats/output|nothing" />
-          </ul>
-        </tal:block>
-          <tal:block tal:condition="context/llistaNoAssistens">
-          <h4 i18n:translate="" i18n:domain="genweb.rectorat"> Missing members </h4>
-          <ul>
-            <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
-          </ul>
-        </tal:block>
-      </div>
- <tal:block tal:condition="context/ordreSessio">
-          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Session order </h3>
-          <div tal:replace="structure context/ordreSessio/output|nothing" />
-          <hr/>
-        </tal:block>
-        <tal:block tal:condition="context/actaBody">
-          <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Acta Body </h3>
-          <div tal:replace="structure context/actaBody/output|nothing" />
-        </tal:block>
-    <tal:originals tal:condition="view/isAuthenticated">
-      <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-top:20px;">
-        <legend i18n:translate=""> Files </legend>
-        <div tal:content="structure view/w/OriginalFiles/render" />
-      </div>
-    </tal:originals>
+  <div style="clear:both; padding-top:12px;">
 
+    <tal:block tal:condition="context/membresConvocats">
+      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Incoming members list </h3>
+      <div tal:replace="structure context/membresConvocats/output|nothing" />
+      <hr/>
+    </tal:block>
+
+    <tal:block tal:condition="context/membresConvidats">
+      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Invited members </h3>
+      <div tal:replace="structure context/membresConvidats/output|nothing" />
+      <hr/>
+    </tal:block>
+
+    <tal:block tal:condition="context/llistaExcusats">
+      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Excused members </h3>
+      <div tal:replace="structure context/llistaExcusats/output|nothing" />
+      <hr/>
+    </tal:block>
+
+      <tal:block tal:condition="context/llistaNoAssistens">
+      <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Missing members </h3>
+      <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
+      <hr/>
+    </tal:block>
+
+  </div>
+
+  <tal:block tal:condition="context/ordreSessio">
+    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Session order </h3>
+    <div tal:replace="structure context/ordreSessio/output|nothing" />
+    <hr/>
+  </tal:block>
+
+  <tal:block tal:condition="context/actaBody">
+    <h3 i18n:translate="" i18n:domain="genweb.rectorat"> Acta Body </h3>
+    <div tal:replace="structure context/actaBody/output|nothing" />
+    <hr/>
+  </tal:block>
+
+  <tal:originals>
+    <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-bottom:12px;">
+      <h3 i18n:translate=""> Files </h3>
+      <div tal:content="structure view/w/OriginalFiles/render" />
+    </div>
+  </tal:originals>
 
 </metal:content-core>
 
