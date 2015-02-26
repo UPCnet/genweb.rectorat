@@ -9,7 +9,15 @@
 
 <metal:content-core fill-slot="content-core">
 
+  <tal:omit-tag condition="view/isAuthenticated">
+    <a class="btn btn-info" style="float:right"
+          tal:attributes="href string:printActa">
+        <i class="icon-print icon-white"></i> <span i18n:translate=""> Print Acta </span>
+    </a>
+  </tal:omit-tag>
+  
   <div class="resultsBox">
+
     <h3 style="text-align: center;"
         i18n:translate=""> Session info </h3>
     <ul>
@@ -61,6 +69,7 @@
     <hr/>
   </tal:block>
 </div>
+
   <tal:block tal:condition="context/ordreSessio">
     <h3 i18n:translate=""> Session order </h3>
     <div tal:replace="structure context/ordreSessio/output|nothing" />

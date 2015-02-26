@@ -112,31 +112,39 @@ def ordreSessioDefaultValue(data):
     # copy ordreSessio from Session (parent object)
     return data.context.ordreSessio
 
-@form.default_value(field=IActa['dataSessio'])
-def dataSessioDefaultValue(data):
-    # copy dataSessio from Session (parent object)
-    return data.context.dataSessio
-
-@form.default_value(field=IActa['llocConvocatoria'])
-def llocConvocatoriaDefaultValue(data):
-    # copy llocConvocatoria from Session (parent object)
-    return data.context.llocConvocatoria    
-
-@form.default_value(field=IActa['horaInici'])
-def horaIniciDefaultValue(data):
-    # copy horaInici from Session (parent object)
-    return data.context.horaInici    
-
-@form.default_value(field=IActa['horaFi'])
-def horaFiDefaultValue(data):
-    # copy horaFi from Session (parent object)
-    return data.context.horaFi                    
-
 
 @form.default_value(field=IActa['actaBody'])
 def actaBodyDefaultValue(data):
     # copy ordreSessio from Session in Acta
     return data.context.ordreSessio
+
+
+# Hidden field used only to render and generate the PDF
+@form.default_value(field=IActa['dataSessio'])
+def dataSessioDefaultValue(data):
+    # copy dataSessio from Session (parent object)
+    return data.context.dataSessio
+
+
+# Hidden field used only to render and generate the PDF
+@form.default_value(field=IActa['llocConvocatoria'])
+def llocConvocatoriaDefaultValue(data):
+    # copy llocConvocatoria from Session (parent object)
+    return data.context.llocConvocatoria
+
+
+# Hidden field used only to render and generate the PDF
+@form.default_value(field=IActa['horaInici'])
+def horaIniciDefaultValue(data):
+    # copy horaInici from Session (parent object)
+    return data.context.horaInici
+
+
+# Hidden field used only to render and generate the PDF
+@form.default_value(field=IActa['horaFi'])
+def horaFiDefaultValue(data):
+    # copy horaFi from Session (parent object)
+    return data.context.horaFi
 
 
 class View(dexterity.DisplayForm):
@@ -157,7 +165,7 @@ class Edit(dexterity.EditForm):
 
     def updateWidgets(self):
         super(Edit, self).updateWidgets()
-        self.widgets['dataSessio'].mode = HIDDEN_MODE    
-        self.widgets['llocConvocatoria'].mode = HIDDEN_MODE    
-        self.widgets['horaInici'].mode = HIDDEN_MODE    
-        self.widgets['horaFi'].mode = HIDDEN_MODE            
+        self.widgets['dataSessio'].mode = HIDDEN_MODE
+        self.widgets['llocConvocatoria'].mode = HIDDEN_MODE
+        self.widgets['horaInici'].mode = HIDDEN_MODE
+        self.widgets['horaFi'].mode = HIDDEN_MODE

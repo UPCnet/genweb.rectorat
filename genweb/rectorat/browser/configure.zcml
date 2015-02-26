@@ -29,5 +29,14 @@
       layer="..interfaces.IGenwebRectoratLayer"
       />
 
+    <!-- Used to print custom ACTA -->
+    <browser:page
+      for="*"
+      name="printActa"
+      class=".views.ActaPrintView"
+      layer="..interfaces.IGenwebRectoratLayer"          
+      permission="zope2.View"
+    />        
+
 
 </configure>

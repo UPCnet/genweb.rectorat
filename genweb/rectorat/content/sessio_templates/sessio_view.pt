@@ -88,6 +88,7 @@
 </tal:actes>
 
   <tal:RelatedDocs tal:define="item view/DocumentsInside" tal:condition="item">
+    <hr/>
     <h3 i18n:translate="">Related documents</h3>
     <table class="listing">
         <thead>

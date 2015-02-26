@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb.rectorat">
+
+<head>
+    <style type="text/css">
+        a:hover {text-decoration:none;}
+        a {text-decoration:none;}
+        .plain a {color:#555555;font-family: 'Source Sans Pro', sans-serif;font-size: 13px;}
+        body {font-family: 'Source Sans Pro', 
+              sans-serif;font-size: 11px;
+              color: #333333;
+              width:733px;}
+        h2 {margin-bottom:25px !important;}
+        h3 {font-family: 'Source Sans Pro', 
+              sans-serif;font-size: 13px;
+              }
+    </style>
+
+     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,733,600' rel='stylesheet' type='text/css'>
+     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="++genweb++stylesheets/genwebupc.css">
+
+    <title>Acta</title>
+</head>
+
+<body>
+
+    <div style="padding: 10px 20px 40px 20px; background-color:white;">
+      
+<h1 style="text-align: center">CONSELL DE GOVERN</h1>
+        <hr/>
+
+        <div class="container-fluid" style="border-bottom: 1px solid #b2b2b2;">
+          <div class="row-fluid">
+            <div class="span12" style="margin-bottom: 0px">
+              <div class="row-fluid">
+                <div class="span7">
+                    <th style="display: inline-block;"><strong>Acta:</strong></th>
+                    <tal:omit-tag tal:content="context/Title"></tal:omit-tag>
+                    <br/>
+                    <th style="display: inline-block;"><strong>Lloc de realització:</strong></th>
+                    <span tal:content="context/llocConvocatoria"></span>
+                </div>
+                <div class="span5">
+                    <th style="display: inline-block;"><strong>Sessió del dia:</strong></th>
+                    <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
+                    <br/>
+                    <th style="display: inline-block;"><strong>Hora d'inici:</strong></th> 
+                    <span tal:content="python:context.horaInici.strftime('%H:%M')"></span>                          
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+        <tal:block tal:condition="context/membresConvocats">
+            <h3 i18n:translate=""> Attending members </h3>
+            <div tal:replace="structure context/membresConvocats/output|nothing" />
+        </tal:block>
+
+        <tal:block tal:condition="context/llistaExcusats">
+            <h3 i18n:translate=""> Excused members </h3>
+            <div tal:replace="structure context/llistaExcusats/output|nothing" />
+        </tal:block>
+
+        <tal:block tal:condition="context/llistaNoAssistens">
+            <h3 i18n:translate=""> Missing members </h3>
+            <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
+        </tal:block>
+
+        <tal:block tal:condition="context/membresConvidats">
+            <h3 i18n:translate=""> Invited members </h3>
+            <div tal:replace="structure context/membresConvidats/output|nothing" />
+        </tal:block>
+
+        <tal:block tal:condition="context/ordreSessio">
+            <h3 i18n:translate=""> Session order </h3>
+            <div tal:replace="structure context/ordreSessio/output|nothing" />
+        </tal:block>
+
+        <tal:block tal:condition="context/actaBody">
+            <h3 i18n:translate=""> Acta Body </h3>
+            <div tal:replace="structure context/actaBody/output|nothing" />
+        </tal:block>
+
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span12">
+            <br/>
+              <div class="row-fluid">
+                <div class="span9">EL SECRETARI</div>
+                <div class="span3">EL PRESIDENT</div>
+              </div>
+              <div class="row-fluid">
+                <div class="span9"><br/><br/><br/>Francisco Javier Navallas Ramos<br/>
+                Barcelona, <span tal:content="view/currentDate"> 10 de febrer de 2015</span></div>
+                <div class="span3"><br/><br/><br/>Enric Fossas Colet</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="float: right">
+            
+        </div>
+
+        <!-- <span tal:replace="python:DateTime().strftime(view/currentDate)"></span> -->
+    </div>
+
+</body>
+</html>
