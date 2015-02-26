@@ -44,17 +44,25 @@
               <div class="row-fluid">
                 <div class="span7">
                     <th style="display: inline-block;"><strong>Acta:</strong></th>
-                    <tal:omit-tag tal:content="context/Title"></tal:omit-tag>
+                    <tal:omit-tag tal:condition="context/Title">
+                        <span tal:content="context/Title"></span>
+                    </tal:omit-tag>
                     <br/>
                     <th style="display: inline-block;"><strong>Lloc de realització:</strong></th>
-                    <span tal:content="context/llocConvocatoria"></span>
+                    <tal:omit-tag tal:condition="context/llocConvocatoria">
+                        <span tal:content="context/llocConvocatoria"></span>
+                    </tal:omit-tag>
                 </div>
                 <div class="span5">
                     <th style="display: inline-block;"><strong>Sessió del dia:</strong></th>
-                    <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
+                    <tal:omit-tag tal:condition="context/dataSessio">
+                        <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
+                    </tal:omit-tag>
                     <br/>
                     <th style="display: inline-block;"><strong>Hora d'inici:</strong></th> 
-                    <span tal:content="python:context.horaInici.strftime('%H:%M')"></span>                          
+                    <tal:omit-tag tal:condition="context/horaInici">
+                        <span tal:content="python:context.horaInici.strftime('%H:%M')"></span>
+                    </tal:omit-tag>
                 </div>
               </div>
               
