@@ -82,6 +82,12 @@ class IActa(form.Schema):
         required=False,
     )
 
+    dexteritytextindexer.searchable('footer')
+    footer = RichText(
+        title=_(u"Footer"),
+        required=False,
+    )
+
     dexteritytextindexer.searchable('OriginalFiles')
     form.widget(OriginalFiles=MultiFileFieldWidget)
     OriginalFiles = schema.List(title=_(u"Files"),

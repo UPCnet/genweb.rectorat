@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-02-26 17:06+0000\n"
+"POT-Creation-Date: 2015-02-27 12:29+0000\n"
 "PO-Revision-Date: 2010-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -123,10 +123,16 @@ msgstr "Indicar la dirección de correo utilizada en el campo 'from' cuando se e
 msgid "Excused members"
 msgstr "Listado de excusados"
 
-#: ./genweb/rectorat/content/acta.py:87
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:87
+#: ./genweb/rectorat/content/acta.py:93
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:93
 msgid "Files"
 msgstr "Ficheros"
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:96
+#: ./genweb/rectorat/content/acta.py:87
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:86
+msgid "Footer"
+msgstr "Pie del Acta"
 
 #: ./genweb/rectorat/content/organgovern.py:58
 msgid "From mail"

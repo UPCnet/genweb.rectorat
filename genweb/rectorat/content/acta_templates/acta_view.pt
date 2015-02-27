@@ -82,6 +82,12 @@
     <hr/>
   </tal:block>
 
+  <tal:block tal:condition="context/footer">
+    <h3 i18n:translate=""> Footer </h3>
+    <div tal:replace="structure context/footer/output|nothing" />
+    <hr/>
+  </tal:block>  
+
   <tal:bck:files tal:condition="python: 'OriginalFiles' in view.w" >
     <tal:files tal:condition="python:getattr(context, 'OriginalFiles', None)">
       <h3 i18n:translate=""> Files </h3>

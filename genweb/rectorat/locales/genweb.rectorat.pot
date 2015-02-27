@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-26 17:06+0000\n"
+"POT-Creation-Date: 2015-02-27 12:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,9 +124,15 @@ msgstr ""
 msgid "Excused members"
 msgstr ""
 
-#: ./genweb/rectorat/content/acta.py:87
-#: ./genweb/rectorat/content/acta_templates/acta_view.pt:87
+#: ./genweb/rectorat/content/acta.py:93
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:93
 msgid "Files"
+msgstr ""
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:96
+#: ./genweb/rectorat/content/acta.py:87
+#: ./genweb/rectorat/content/acta_templates/acta_view.pt:86
+msgid "Footer"
 msgstr ""
 
 #: ./genweb/rectorat/content/organgovern.py:58

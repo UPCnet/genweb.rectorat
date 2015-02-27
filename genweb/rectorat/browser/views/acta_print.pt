@@ -92,6 +92,11 @@
             <div tal:replace="structure context/actaBody/output|nothing" />
         </tal:block>
 
+        <tal:block tal:condition="context/footer">
+          <br/>
+            <div tal:replace="structure context/footer/output|nothing" />
+        </tal:block>        
+
         <div class="container-fluid">
           <div class="row-fluid">
             <div class="span12">
