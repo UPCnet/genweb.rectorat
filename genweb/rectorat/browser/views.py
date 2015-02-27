@@ -11,5 +11,5 @@ class ActaPrintView(NewsletterBase):
     def currentDate(self):
         #import ipdb;ipdb.set_trace()
         #date = api.portal.get_localized_time(datetime.today())
-        date = datetime.today().strftime("%d de %b de %Y")
+        date = datetime.today().strftime("%d/%m/%Y")
         return date
