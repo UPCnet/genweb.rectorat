@@ -49,11 +49,11 @@ def sessio_changed(session, event):
                 subjectMail = "Convocada ordre del dia: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
-                           '</h2>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
+                moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                           '</strong>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
-                           '<br/><br/><h2> Ordre del dia </h2>' + str(ordenField)
+                           '<br/><br/><strong> Ordre del dia </strong>' + str(ordenField)
                 bodyMail = moreData + str(introData)
 
             if lang == 'es':
@@ -61,11 +61,11 @@ def sessio_changed(session, event):
                 subjectMail = "Convocada orden del día: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
-                           '</h2>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
+                moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                           '</strong>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
                            "<br/>Hora de inicio: " + str(starthour) + \
                            "<br/>Hora de finalización: " + str(endHour) + \
-                           '<br/><br/><h2> Orden del día </h2>' + str(ordenField)
+                           '<br/><br/><strong> Orden del día </strong>' + str(ordenField)
                 bodyMail = moreData + str(introData)
 
             if lang == 'en':
@@ -75,11 +75,11 @@ def sessio_changed(session, event):
                 subjectMail = "Convened agenda: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '</br/>' + str(customBody) + '<h2>' + str(sessiontitle) + \
-                           '</h2>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
+                moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                           '</strong>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
                            "<br/>Start time: " + str(starthour) + \
                            "<br/>End time: " + str(endHour) + \
-                           '<br/><br/><h2> Contents </h2>' + str(ordenField)
+                           '<br/><br/><strong> Contents </strong>' + str(ordenField)
                 bodyMail = moreData + str(introData)
 
             # Sending Mail!

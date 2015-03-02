@@ -50,7 +50,6 @@ class IOrgangovern(form.Schema):
 
     membresOrgan = RichText(
         title=_(u"Organ Govern members"),
-        description=_(u"Indicar el nom dels assistents separats per comes"),
         required=False,
     )
 
@@ -64,10 +63,6 @@ class IOrgangovern(form.Schema):
 class View(grok.View):
     grok.context(IOrgangovern)
     grok.template('organgovern_view')
-
-    def getSeparatedMembers(form):
-        # TODO: Return members separated by comma
-        return None
 
     def isAuthenticated(self):
         # Check if user has admin role to show the bottom information box

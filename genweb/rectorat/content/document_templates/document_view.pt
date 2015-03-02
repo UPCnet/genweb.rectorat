@@ -9,37 +9,41 @@
 
 <metal:content-core fill-slot="content-core">
 
-  <div style="clear:both;">
-    <div class="resultsBox">
-      <h3 style="text-align:center;"
-          i18n:translate=""> Document info </h3>
-      <ul>        
-        <li tal:condition="context/proposalPoint">
-          <b i18n:translate=""> Point </b>:
-          <span style="float:right;" tal:content="context/proposalPoint" />
-        </li>
-        <li tal:condition="context/agreement">
-          <b i18n:translate=""> Agreement </b>:
-          <span style="float:right;" tal:content="context/agreement" />
-        </li>
-        <tal:omit-tag condition="view/isAuthenticated">
-          <li tal:condition="context/estatAprovacio">
-            <b i18n:translate=""> Status </b>
-            <span style="float:right;" i18n:translate=""
-                tal:content="context/estatAprovacio"
-                tal:attributes="class context/estatAprovacio" />
-          </li>
-        </tal:omit-tag>
-      <ul>        
-    </div>
+  <div class="">
+    <div class="span12">
+      <div class="span8">
+        <tal:block tal:condition="context/ordreSessio">
+          <tal:block tal:condition="not:context/choicedContent">
+            <div tal:replace="structure context/defaultContent/output|nothing" />
+          </tal:block>
+          <tal:block tal:condition="context/choicedContent">
+            <div tal:replace="structure context/alternateContent/output|nothing" />
+          </tal:block>          
+        </tal:block>
+      </div>
 
-    <div style="width: 70%;" >
-      <tal:block tal:condition="not:context/choicedContent">
-        <div tal:replace="structure context/defaultContent/output|nothing" />
-      </tal:block>
-      <tal:block tal:condition="context/choicedContent">
-        <div tal:replace="structure context/alternateContent/output|nothing" />
-      </tal:block>
+      <div class="span4 resultsBox" >
+        <h3 style="text-align:center;"
+            i18n:translate=""> Document info </h3>
+        <ul>        
+          <li tal:condition="context/proposalPoint">
+            <b i18n:translate=""> Point </b>:
+            <span style="float:right;" tal:content="context/proposalPoint" />
+          </li>
+          <li tal:condition="context/agreement">
+            <b i18n:translate=""> Agreement </b>:
+            <span style="float:right;" tal:content="context/agreement" />
+          </li>
+          <tal:omit-tag condition="view/isAuthenticated">
+            <li tal:condition="context/estatAprovacio">
+              <b i18n:translate=""> Status </b>
+              <span style="float:right;" i18n:translate=""
+                  tal:content="context/estatAprovacio"
+                  tal:attributes="class context/estatAprovacio" />
+            </li>
+          </tal:omit-tag>
+        <ul> 
+      </div>
     </div>
   </div>
 

@@ -9,66 +9,81 @@
 
 <metal:content-core fill-slot="content-core">
 
+<script type="text/javascript">
+  function printPage(newWindow){
+    newWindow.focus();
+    newWindow.print();
+  }
+</script>
+
+<iframe name="iframe" id="iframe" width="1" height="1" src="printActa"></iframe>
+
   <tal:omit-tag condition="view/isAuthenticated">
     <a class="btn btn-info" style="float:right"
-          tal:attributes="href string:printActa">
+        href="javascript:printPage(iframe);">
         <i class="icon-print icon-white"></i> <span i18n:translate=""> Print Acta </span>
     </a>
   </tal:omit-tag>
   
-  <div class="resultsBox">
 
-    <h3 style="text-align: center;"
-        i18n:translate=""> Session info </h3>
-    <ul>
-      <li tal:condition="context/dataSessio">
-        <b i18n:translate="">Data:</b>
-        <span style="float:right" 
-              tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
-      </li>
-      <li tal:condition="context/horaInici">
-        <b i18n:translate="">Session start time</b>:
-        <span style="float:right" 
-              tal:content="python:context.horaInici.strftime('%H:%M')"></span>
-      </li> 
-      <li tal:condition="context/horaFi">
-        <b i18n:translate="">Session end time</b>:
-        <span style="float:right" 
-              tal:content="python:context.horaFi.strftime('%H:%M')"></span>
-      </li>                 
-      <li tal:condition="context/llocConvocatoria">
-        <b i18n:translate="">Lloc:</b>
-        <span style="float:right" 
-              tal:content="context/llocConvocatoria"></span>
-      </li>    
-    </ul>
+  <div class="">
+    <div class="span12">
+      <div class="span8">
+
+        <tal:block tal:condition="context/membresConvocats">
+          <h3 i18n:translate=""> Attending members </h3>
+          <div tal:replace="structure context/membresConvocats/output|nothing" />
+          <hr/>
+        </tal:block>
+
+        <tal:block tal:condition="context/membresConvidats">
+          <h3 i18n:translate=""> Invited members </h3>
+          <div tal:replace="structure context/membresConvidats/output|nothing" />
+          <hr/>
+        </tal:block>
+
+        <tal:block tal:condition="context/llistaExcusats">
+          <h3 i18n:translate=""> Excused members </h3>
+          <div tal:replace="structure context/llistaExcusats/output|nothing" />
+          <hr/>
+        </tal:block>
+
+        <tal:block tal:condition="context/llistaNoAssistens">
+          <h3 i18n:translate=""> Missing members </h3>
+          <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
+          <hr/>
+        </tal:block>
+
+      </div>
+
+      <div class="span4 resultsBox" >
+        <h3 style="text-align: center;"
+            i18n:translate=""> Session info </h3>
+        <ul>
+          <li tal:condition="context/dataSessio">
+            <b i18n:translate="">Data:</b>
+            <span style="float:right" 
+                  tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
+          </li>
+          <li tal:condition="context/horaInici">
+            <b i18n:translate="">Session start time</b>:
+            <span style="float:right" 
+                  tal:content="python:context.horaInici.strftime('%H:%M')"></span>
+          </li> 
+          <li tal:condition="context/horaFi">
+            <b i18n:translate="">Session end time</b>:
+            <span style="float:right" 
+                  tal:content="python:context.horaFi.strftime('%H:%M')"></span>
+          </li>                 
+          <li tal:condition="context/llocConvocatoria">
+            <b i18n:translate="">Lloc:</b>
+            <span style="float:right" 
+                  tal:content="context/llocConvocatoria"></span>
+          </li>    
+        </ul>
+      </div>
+    </div>
   </div>
-  <div style="width:70%;">
-
-  <tal:block tal:condition="context/membresConvocats">
-    <h3 i18n:translate=""> Attending members </h3>
-    <div tal:replace="structure context/membresConvocats/output|nothing" />
-    <hr/>
-  </tal:block>
-
-  <tal:block tal:condition="context/membresConvidats">
-    <h3 i18n:translate=""> Invited members </h3>
-    <div tal:replace="structure context/membresConvidats/output|nothing" />
-    <hr/>
-  </tal:block>
-
-  <tal:block tal:condition="context/llistaExcusats">
-    <h3 i18n:translate=""> Excused members </h3>
-    <div tal:replace="structure context/llistaExcusats/output|nothing" />
-    <hr/>
-  </tal:block>
-
-  <tal:block tal:condition="context/llistaNoAssistens">
-    <h3 i18n:translate=""> Missing members </h3>
-    <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
-    <hr/>
-  </tal:block>
-</div>
 
   <tal:block tal:condition="context/ordreSessio">
     <h3 i18n:translate=""> Session order </h3>

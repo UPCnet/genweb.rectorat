@@ -84,8 +84,6 @@ i.icon-genweb-rectorat-acta,
 
 .resultsBox { 
    background-color: #eeeeee;
-    clear: both;
-    float: right;
     padding: 15px 15px 0;
     text-shadow: 1px 1px 0 white;
     width: 24%;
@@ -112,8 +110,6 @@ i.icon-genweb-rectorat-acta,
 
 #form-widgets-title {min-width: 450px;}
 
-
-
 .portaltype-genweb-rectorat-sessio a#plone-contentmenu-workflow.dropdown-toggle 
 {}
 
@@ -126,3 +122,17 @@ a#plone-contentmenu-workflow.dropdown-toggle:hover {
 
 input.standalone.loginbutton {display:none;}
 
+.portaltype-genweb-rectorat-organgovern td { white-space: normal !important;}
+.portaltype-genweb-rectorat-sessio td { white-space: normal !important;}
+.portaltype-genweb-rectorat-document td { white-space: normal !important;}
+.portaltype-genweb-rectorat-acta td { white-space: normal !important;}
+
+
+.portaltype-genweb-rectorat-organgovern td > p{ white-space: normal !important;}
+.portaltype-genweb-rectorat-sessio td > p { white-space: normal !important;}
+.portaltype-genweb-rectorat-document td > p  { white-space: normal !important;}
+.portaltype-genweb-rectorat-acta td > p{ white-space: normal !important;}
+
+
+
+.multi-file-files {list-style:none;}

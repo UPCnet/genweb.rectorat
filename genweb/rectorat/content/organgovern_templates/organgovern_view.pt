@@ -10,13 +10,12 @@
 
   <metal:content-core fill-slot="content-core">
   
-    <div>
+    <div class="span12">
       <tal:block tal:condition="context/descripcioOrgan">
         <h3 i18n:translate=""> Organ Govern description </h3>
         <div tal:replace="structure context/descripcioOrgan/output|nothing" />
         <hr/>
       </tal:block>
-
       <tal:mail tal:condition="view/isAuthenticated">
         <tal:block tal:condition="context/adrecaLlista">
           <h3 i18n:translate=""> mail address </h3>
@@ -24,7 +23,6 @@
           <hr/>
         </tal:block>  
       </tal:mail>
-
       <tal:block tal:condition="context/membresOrgan">
         <h3 i18n:translate=""> Organ Govern members </h3>
         <div tal:replace="structure context/membresOrgan/output|nothing" />
@@ -32,81 +30,83 @@
       </tal:block>
     </div>
 
-  <tal:RelatedDocs tal:define="item view/SessionsInside" tal:condition="item">
-    <h3 i18n:translate="">Sessions list</h3>
-    <table class="listing">
-      <thead>
-        <tr>
-          <th style="width:34%">&nbsp;
-            <tal:title i18n:translate="">Title</tal:title>
-          </th>
-          <th style="width:16%">&nbsp;
-            <tal:head i18n:translate="">Session date</tal:head>
-          </th>
-          <th style="width:20%">&nbsp;
-            <tal:head i18n:translate="">Session place</tal:head>
-          </th>                  
-          <th style="width:13%">&nbsp;
-            <tal:head i18n:translate="">Session start time</tal:head>
-          </th>
-          <th style="width:17%">&nbsp;
-            <tal:head i18n:translate="">State</tal:head>
-          </th>
-        </tr>
-      </thead>
-      <tal:documents repeat="item view/SessionsInside">
-        <tal:block tal:define="obj item/getObject;">      
+    <tal:RelatedDocs tal:define="item view/SessionsInside" tal:condition="item">
+      <h3 i18n:translate="">Sessions list</h3>
+      <table class="listing">
+        <thead>
           <tr>
-            <td>&nbsp;
-              <a href="#"
-                     tal:attributes="href obj/absolute_url;"
-                     tal:content="obj/title">
-                      Item Title
-              </a>
-            </td>
-            <td>&nbsp;
-              <tal:data tal:condition="obj/dataSessio" 
-                        tal:content="python:obj.dataSessio.strftime('%d/%m/%Y')" >
-                Data de la Sessió
-              </tal:data>
-            </td>                     
-            <td>&nbsp;
-              <tal:data tal:condition="obj/llocConvocatoria"
-                        tal:content="obj/llocConvocatoria">
-                Lloc Convocatoria
-              </tal:data>
-            </td>                                 
-            <td>&nbsp;
-              <tal:data tal:condition="obj/horaInici"
-                        tal:content="python:obj.horaInici.strftime('%H:%M')">
-                Hora inici
-              </tal:data>
-            </td>                 
-            <td>&nbsp;
-              <span tal:content="item/review_state"
-                    i18n:translate=""
-                    tal:attributes="class item/review_state">
-                Status
-              </span>
-            </td>
+            <th style="width:34%">&nbsp;
+              <tal:title i18n:translate="">Title</tal:title>
+            </th>
+            <th style="width:16%">&nbsp;
+              <tal:head i18n:translate="">Session date</tal:head>
+            </th>
+            <th style="width:20%">&nbsp;
+              <tal:head i18n:translate="">Session place</tal:head>
+            </th>                  
+            <th style="width:13%">&nbsp;
+              <tal:head i18n:translate="">Session start time</tal:head>
+            </th>
+            <th style="width:17%">&nbsp;
+              <tal:head i18n:translate="">State</tal:head>
+            </th>
           </tr>
-        </tal:block>
-      </tal:documents>          
-    </table>
-  </tal:RelatedDocs>      
+        </thead>
+        <tal:documents repeat="item view/SessionsInside">
+          <tal:block tal:define="obj item/getObject;">      
+            <tr>
+              <td>&nbsp;
+                <a href="#"
+                       tal:attributes="href obj/absolute_url;"
+                       tal:content="obj/title">
+                        Item Title
+                </a>
+              </td>
+              <td>&nbsp;
+                <tal:data tal:condition="obj/dataSessio" 
+                          tal:content="python:obj.dataSessio.strftime('%d/%m/%Y')" >
+                  Data de la Sessió
+                </tal:data>
+              </td>                     
+              <td>&nbsp;
+                <tal:data tal:condition="obj/llocConvocatoria"
+                          tal:content="obj/llocConvocatoria">
+                  Lloc Convocatoria
+                </tal:data>
+              </td>                                 
+              <td>&nbsp;
+                <tal:data tal:condition="obj/horaInici"
+                          tal:content="python:obj.horaInici.strftime('%H:%M')">
+                  Hora inici
+                </tal:data>
+              </td>                 
+              <td>&nbsp;
+                <span tal:content="item/review_state"
+                      i18n:translate=""
+                      tal:attributes="class item/review_state">
+                  Status
+                </span>
+              </td>
+            </tr>
+          </tal:block>
+        </tal:documents>          
+      </table>
+    </tal:RelatedDocs>      
 
-  <div tal:define="item view/FoldersInside" tal:condition="item" style="padding-bottom:22px;">
-    <h3 i18n:translate="">Historic</h3>
-    <tal:documents repeat="item view/FoldersInside">
-      <li tal:define="obj item/getObject">
-        <a tal:attributes="href obj/absolute_url"
-           tal:content="obj/title">
-            Link a Acta
-         </a>
-      </li>
-    </tal:documents>
-  </div>
-
+    <tal:historic tal:define="item view/FoldersInside" tal:condition="item">
+      <h3 i18n:translate="">Historic</h3>
+      <tal:folders repeat="item view/FoldersInside">
+        <ul style="list-style:none;">
+          <li tal:define="obj item/getObject">
+            <i class="icon-folder-open"></i>
+            <a tal:attributes="href obj/absolute_url"
+               tal:content="obj/title">
+                Link a Acta
+            </a>
+          </li>
+        </ul>
+      </tal:folders>
+    </tal:historic>
 
   </metal:content-core>
 
