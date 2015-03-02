@@ -8,106 +8,97 @@
     <style type="text/css">
         a:hover {text-decoration:none;}
         a {text-decoration:none;}
-        .plain a {color:#555555;font-family: 'Source Sans Pro', sans-serif;font-size: 13px;}
+        .plain a {color:#555555;font-family: 'Source Sans Pro', sans-serif;font-size: 12px;}
         body {font-family: 'Source Sans Pro', 
-              sans-serif;font-size: 11px;
+              sans-serif;font-size: 10px;
               color: #333333;
               width:733px;}
-        h2 {margin-bottom:25px !important;}
+        h2 {margin-bottom:20px !important;}
         h3 {font-family: 'Source Sans Pro', 
-              sans-serif;font-size: 13px;
+              sans-serif;font-size: 12px;
               }
     </style>
 
      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,733,600' rel='stylesheet' type='text/css'>
      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-
      <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="++genweb++stylesheets/genwebupc.css">
-
     <title>Acta</title>
 </head>
 
 <body>
+    <img src="++resource++genweb.rectorat.static/logo_UPC_full.jpg" style="width:300px;">
+    <h1 style="text-align: left" i18n:translate="">CONSELL DE GOVERN</h1>
+    <hr/>
 
-    <div style="padding: 10px 20px 40px 20px; background-color:white;">
-
-<img src="++genweb++static/images/logoUPC.png" style="width:350px">
-
-<h1 style="text-align: center">CONSELL DE GOVERN</h1>
-        <hr/>
-
-        <div class="container-fluid" style="border-bottom: 1px solid #b2b2b2;">
-          <div class="row-fluid">
+    <div class="container-fluid" style="border-bottom: 1px solid #b2b2b2;">
+        <div class="row-fluid">
             <div class="span12" style="margin-bottom: 0px">
-              <div class="row-fluid">
-                <div class="span7">
-                    <th style="display: inline-block;"><strong>Acta:</strong></th>
-                    <tal:omit-tag tal:condition="context/Title">
-                        <span tal:content="context/Title"></span>
-                    </tal:omit-tag>
-                    <br/>
-                    <th style="display: inline-block;"><strong>Lloc de realització:</strong></th>
-                    <tal:omit-tag tal:condition="context/llocConvocatoria">
-                        <span tal:content="context/llocConvocatoria"></span>
-                    </tal:omit-tag>
+                <div class="row-fluid">
+                    <div class="span7">
+                        <th style="display: inline-block;"><strong>Acta:</strong></th>
+                        <tal:omit-tag tal:condition="context/Title">
+                            <span tal:content="context/Title"></span>
+                        </tal:omit-tag>
+                        <br/>
+                        <th style="display: inline-block;"><strong>Lloc de realització:</strong></th>
+                        <tal:omit-tag tal:condition="context/llocConvocatoria">
+                            <span tal:content="context/llocConvocatoria"></span>
+                        </tal:omit-tag>
+                    </div>
+                    <div class="span5">
+                        <th style="display: inline-block;"><strong>Sessió del dia:</strong></th>
+                        <tal:omit-tag tal:condition="context/dataSessio">
+                            <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
+                        </tal:omit-tag>
+                        <br/>
+                        <th style="display: inline-block;"><strong>Hora d'inici:</strong></th> 
+                        <tal:omit-tag tal:condition="context/horaInici">
+                            <span tal:content="python:context.horaInici.strftime('%H:%M')"></span>
+                        </tal:omit-tag>
+                    </div>
                 </div>
-                <div class="span5">
-                    <th style="display: inline-block;"><strong>Sessió del dia:</strong></th>
-                    <tal:omit-tag tal:condition="context/dataSessio">
-                        <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
-                    </tal:omit-tag>
-                    <br/>
-                    <th style="display: inline-block;"><strong>Hora d'inici:</strong></th> 
-                    <tal:omit-tag tal:condition="context/horaInici">
-                        <span tal:content="python:context.horaInici.strftime('%H:%M')"></span>
-                    </tal:omit-tag>
-                </div>
-              </div>
-              
             </div>
-          </div>
         </div>
+    </div>
         
-        <tal:block tal:condition="context/membresConvocats">
-            <h3 i18n:translate=""> Attending members </h3>
-            <div tal:replace="structure context/membresConvocats/output|nothing" />
-        </tal:block>
+    <tal:block tal:condition="context/membresConvocats">
+        <h3 i18n:translate=""> Attending members </h3>
+        <div tal:replace="structure context/membresConvocats/output|nothing" />
+    </tal:block>
 
-        <tal:block tal:condition="context/llistaExcusats">
-            <h3 i18n:translate=""> Excused members </h3>
-            <div tal:replace="structure context/llistaExcusats/output|nothing" />
-        </tal:block>
+    <tal:block tal:condition="context/llistaExcusats">
+        <h3 i18n:translate=""> Excused members </h3>
+        <div tal:replace="structure context/llistaExcusats/output|nothing" />
+    </tal:block>
 
-        <tal:block tal:condition="context/llistaNoAssistens">
-            <h3 i18n:translate=""> Missing members </h3>
-            <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
-        </tal:block>
+    <tal:block tal:condition="context/llistaNoAssistens">
+        <h3 i18n:translate=""> Missing members </h3>
+        <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
+    </tal:block>
 
-        <tal:block tal:condition="context/membresConvidats">
-            <h3 i18n:translate=""> Invited members </h3>
-            <div tal:replace="structure context/membresConvidats/output|nothing" />
-        </tal:block>
+    <tal:block tal:condition="context/membresConvidats">
+        <h3 i18n:translate=""> Invited members </h3>
+        <div tal:replace="structure context/membresConvidats/output|nothing" />
+    </tal:block>
 
-        <tal:block tal:condition="context/ordreSessio">
-            <h3 i18n:translate=""> Session order </h3>
-            <div tal:replace="structure context/ordreSessio/output|nothing" />
-        </tal:block>
+    <tal:block tal:condition="context/ordreSessio">
+        <h3 i18n:translate=""> Session order </h3>
+        <div tal:replace="structure context/ordreSessio/output|nothing" />
+    </tal:block>
 
-        <tal:block tal:condition="context/actaBody">
-            <h3 i18n:translate=""> Acta Body </h3>
-            <div tal:replace="structure context/actaBody/output|nothing" />
-        </tal:block>
+    <tal:block tal:condition="context/actaBody">
+        <h3 i18n:translate=""> Acta Body </h3>
+        <div tal:replace="structure context/actaBody/output|nothing" />
+    </tal:block>
 
-        <tal:block tal:condition="context/footer">
-          <br/>
-            <div tal:replace="structure context/footer/output|nothing" />
-        </tal:block>        
-
-<br/>
+    <tal:block tal:condition="context/footer">
+      <br/>
+        <div tal:replace="structure context/footer/output|nothing" />
+    </tal:block>        
 
 </body>
 </html>
