@@ -92,8 +92,6 @@
                    style="font-weight: initial;">
                     Link a Acta
                 </a>
-                <span tal:content="python:obj.dataSessio.strftime('%d/%m/%Y') or nothing" 
-                      style="font-weight: initial; font-size:14px;"></span>
               </li>
             </h4>
           </ul>
