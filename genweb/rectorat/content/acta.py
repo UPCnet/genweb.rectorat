@@ -28,7 +28,7 @@ class IActa(form.Schema):
 
     dataSessio = schema.Date(
         title=_(u"Session date"),
-        required=False,
+        required=True,
     )
 
     llocConvocatoria = schema.TextLine(

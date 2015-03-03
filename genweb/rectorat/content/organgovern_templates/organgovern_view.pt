@@ -97,13 +97,18 @@
       <h3 i18n:translate="">Historic</h3>
       <tal:folders repeat="item view/FoldersInside">
         <ul style="list-style:none;">
-          <li tal:define="obj item/getObject">
-            <i class="icon-folder-open"></i>
-            <a tal:attributes="href obj/absolute_url"
-               tal:content="obj/title">
-                Link a Acta
-            </a>
-          </li>
+    		<h4>
+	          	<li tal:define="obj item/getObject">
+		            <i class="icon-folder-open"></i>
+		            <a tal:attributes="href obj/absolute_url"
+		               tal:content="obj/title"
+		               style="font-weight: initial;">
+		                Sessions històriques
+		            </a>
+                	<span tal:content="obj/description" 
+                    	  style="font-weight: initial; font-size:14px;"></span>		            
+	          	</li>
+      		</h4>
         </ul>
       </tal:folders>
     </tal:historic>

@@ -84,13 +84,18 @@
         <h3 i18n:translate="">Llistat d'actes</h3>
         <tal:documents repeat="item view/ActasInside">
           <ul style="list-style:none;">
+            <h4>
             <li tal:define="obj item/getObject">
-              <i class="icon-file"></i>
-              <a tal:attributes="href obj/absolute_url"
-                 tal:content="obj/title">
-                  Link a Acta
-               </a>
-            </li>
+              <i class="icon-page"></i>
+                <a tal:attributes="href obj/absolute_url"
+                   tal:content="obj/title"
+                   style="font-weight: initial;">
+                    Link a Acta
+                </a>
+                <span tal:content="python:obj.dataSessio.strftime('%d/%m/%Y') or nothing" 
+                      style="font-weight: initial; font-size:14px;"></span>
+              </li>
+            </h4>
           </ul>
         </tal:documents>
       </tal:actes>
