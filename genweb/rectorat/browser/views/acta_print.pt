@@ -31,7 +31,7 @@
 
 <body>
     <img src="++resource++genweb.rectorat.static/logo_UPC_full.jpg" style="width:300px;">
-    <h1 style="text-align: left" i18n:translate="">CONSELL DE GOVERN</h1>
+    <h1 style="text-align: left" tal:content="view/organGovernTitle">CONSELL DE GOVERN</h1>
     <hr/>
 
     <div class="container-fluid" style="border-bottom: 1px solid #b2b2b2;">
