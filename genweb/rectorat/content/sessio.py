@@ -142,6 +142,7 @@ class View(grok.View):
         folder_path = '/'.join(self.context.getPhysicalPath())
 
         data = portal_catalog.searchResults(portal_type='genweb.rectorat.document',
+                                            sort_on='getObjPositionInParent',
                                             path={'query': folder_path,
                                                   'depth': 1})
 
@@ -153,6 +154,7 @@ class View(grok.View):
         folder_path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self, 'portal_catalog')
         data = portal_catalog.searchResults(portal_type='genweb.rectorat.acta',
+                                            sort_on='getObjPositionInParent',
                                             path={'query': folder_path,
                                                   'depth': 1})
         return data
