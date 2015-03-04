@@ -1,9 +1,7 @@
-# Gettext Message File for genweb.rectorat
-# Roberto Diaz (UPCnet)
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-03-02 16:18+0000\n"
+"POT-Creation-Date: 2015-03-04 15:09+0000\n"
 "PO-Revision-Date: 2010-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -31,7 +29,7 @@ msgid "Acta Description"
 msgstr "Crea un Acta"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
 msgid "Agreement"
 msgstr "Acuerdo"
 
@@ -44,7 +42,7 @@ msgid "Alternate description"
 msgstr "Descripción alternativa"
 
 #: ./genweb/rectorat/content/document.py:71
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
 msgid "Approval status"
 msgstr "Estado de aprobación"
 
@@ -75,10 +73,6 @@ msgstr "Adjuntar el contenido del mensaje que se utilizará para el envío de co
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr "Por defecto, sólo será visible el contenido por defecto, no el contenido alternativo"
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:34
-msgid "CONSELL DE GOVERN"
-msgstr "CONSEJO DE GOBIERNO"
-
 #: ./genweb/rectorat/content/document.py:66
 msgid "Content used to hide protected content"
 msgstr "Contenido alternativo para ocultar el contenido por defecto"
@@ -104,7 +98,7 @@ msgstr "Crea un documento"
 msgid "Document info"
 msgstr "Datos del documento"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:159
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:162
 msgid "Download"
 msgstr "Descargar fichero"
 
@@ -205,7 +199,7 @@ msgstr "Miembros del órgano de gobierno"
 
 #: ./genweb/rectorat/content/document.py:90
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
 msgid "Original files"
 msgstr "Ficheros internos"
 
@@ -214,7 +208,7 @@ msgid "Pending"
 msgstr "Derogado"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:30
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:107
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
 msgid "Point"
 msgstr "Punto:"
 
@@ -232,7 +226,7 @@ msgstr "Punto del documento"
 
 #: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/document_templates/document_view.pt:64
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:125
 msgid "Published files"
 msgstr "Ficheros públicos"
 
@@ -240,7 +234,7 @@ msgstr "Ficheros públicos"
 msgid "Rejected"
 msgstr "Rechazado"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:102
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:105
 msgid "Related documents"
 msgstr "Documentos relacionados"
 
@@ -300,7 +294,7 @@ msgid "Status"
 msgstr "Estado:"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:39
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
 msgid "Title"
 msgstr "Título"
 

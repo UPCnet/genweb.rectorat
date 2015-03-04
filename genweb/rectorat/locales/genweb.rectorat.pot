@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-02 16:18+0000\n"
+"POT-Creation-Date: 2015-03-04 15:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgid "Acta Description"
 msgstr ""
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
 msgid "Agreement"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgid "Alternate description"
 msgstr ""
 
 #: ./genweb/rectorat/content/document.py:71
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
 msgid "Approval status"
 msgstr ""
 
@@ -76,10 +76,6 @@ msgstr ""
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr ""
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:34
-msgid "CONSELL DE GOVERN"
-msgstr ""
-
 #: ./genweb/rectorat/content/document.py:66
 msgid "Content used to hide protected content"
 msgstr ""
@@ -105,7 +101,7 @@ msgstr ""
 msgid "Document info"
 msgstr ""
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:159
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:162
 msgid "Download"
 msgstr ""
 
@@ -206,7 +202,7 @@ msgstr ""
 
 #: ./genweb/rectorat/content/document.py:90
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
 msgid "Original files"
 msgstr ""
 
@@ -215,7 +211,7 @@ msgid "Pending"
 msgstr ""
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:30
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:107
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
 msgid "Point"
 msgstr ""
 
@@ -233,7 +229,7 @@ msgstr ""
 
 #: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/document_templates/document_view.pt:64
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:125
 msgid "Published files"
 msgstr ""
 
@@ -241,7 +237,7 @@ msgstr ""
 msgid "Rejected"
 msgstr ""
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:102
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:105
 msgid "Related documents"
 msgstr ""
 
@@ -301,7 +297,7 @@ msgid "Status"
 msgstr ""
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:39
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
 msgid "Title"
 msgstr ""
 

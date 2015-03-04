@@ -1,9 +1,7 @@
-# Gettext Message File for genweb.rectorat
-# Roberto Diaz (UPCnet)
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-03-02 16:18+0000\n"
+"POT-Creation-Date: 2015-03-04 15:09+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -31,7 +29,7 @@ msgid "Acta Description"
 msgstr ""
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
 msgid "Agreement"
 msgstr "Agreement"
 
@@ -44,7 +42,7 @@ msgid "Alternate description"
 msgstr ""
 
 #: ./genweb/rectorat/content/document.py:71
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
 msgid "Approval status"
 msgstr "Approval status"
 
@@ -75,10 +73,6 @@ msgstr ""
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr ""
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:34
-msgid "CONSELL DE GOVERN"
-msgstr ""
-
 #: ./genweb/rectorat/content/document.py:66
 msgid "Content used to hide protected content"
 msgstr ""
@@ -104,7 +98,7 @@ msgstr "Document description"
 msgid "Document info"
 msgstr "Document info"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:159
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:162
 msgid "Download"
 msgstr "Download file"
 
@@ -205,7 +199,7 @@ msgstr "Members"
 
 #: ./genweb/rectorat/content/document.py:90
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
 msgid "Original files"
 msgstr "Internal files"
 
@@ -214,7 +208,7 @@ msgid "Pending"
 msgstr "Repeal"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:30
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:107
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
 msgid "Point"
 msgstr "Point:"
 
@@ -232,7 +226,7 @@ msgstr "Point number"
 
 #: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/document_templates/document_view.pt:64
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:125
 msgid "Published files"
 msgstr "Public files"
 
@@ -240,7 +234,7 @@ msgstr "Public files"
 msgid "Rejected"
 msgstr "Rejected"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:102
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:105
 msgid "Related documents"
 msgstr "Related documents"
 
@@ -300,7 +294,7 @@ msgid "Status"
 msgstr "Status:"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:39
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
 msgid "Title"
 msgstr "Title"
 

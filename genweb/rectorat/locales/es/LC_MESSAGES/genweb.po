@@ -1,0 +1,59 @@
+# Gettext Message File for GenWeb.
+# Victor Fernandez de Alba (UPCnet)
+msgid ""
+msgstr ""
+"Project-Id-Version: GenWebUPC\n"
+"POT-Creation-Date: 2014-12-16 10:30+0000\n"
+"PO-Revision-Date: 2014-12-16 12:23+0100\n"
+"Last-Translator: Francisco Gregori <francisco.gregori@upcnet.es>\n"
+"Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: es\n"
+"Language-Name: Spanish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: genweb\n"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "Convocada"
+msgstr "Convocada"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "Convocar"
+msgstr "Convocar"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "En preparació"
+msgstr "En preparación"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "Preparar"
+msgstr "Preparar"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "Preparing"
+msgstr "En preparación"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "preparing"
+msgstr "En preparación"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "Tancada"
+msgstr "Cerrada"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "Tancar"
+msgstr "Cerrar"
+
+#: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
+msgid "To convone"
+msgstr "A convocar"
+
+msgid "convocat"
+msgstr "Convocada"
+
+msgid "closed"
+msgstr "Cerrada"

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-             i18n:domain="plone"
              workflow_id="rectorat_sessio_workflow"
+             i18n:domain="genweb"
              title="rectorat_sessio_workflow"
              description="Session: En preparació / Convocada (MAIL) / Tancada"
              state_variable="review_state"
@@ -14,8 +14,7 @@
  <permission>View</permission>
  
  <state state_id="closed"
-        title="Tancada"
-        i18n:attributes="title">
+        title="Tancada">
   <exit-transition transition_id="preparing" />
   <permission-map name="Access contents information" acquired="True">
   </permission-map>
@@ -28,8 +27,7 @@
  </state>
 
  <state state_id="convocat"
-        title="Convocada"
-        i18n:attributes="title">
+        title="Convocada">
   <exit-transition transition_id="closed" />
   <permission-map name="Access contents information" acquired="True">
   </permission-map>
@@ -42,8 +40,7 @@
  </state>
 
  <state state_id="preparing"
-        title="En preparació"
-        i18n:attributes="title">
+        title="En preparació">
   <exit-transition transition_id="convoquing" />
   <permission-map name="Access contents information" acquired="True">
   </permission-map>
@@ -60,11 +57,9 @@
              new_state="closed"
              trigger="USER"
              before_script=""
-             after_script=""
-             i18n:attributes="title">
+             after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=closed" 
-          category="workflow" icon=""
-          i18n:translate="">Tancar</action>
+          category="workflow" icon="">Tancar</action>
   <guard >
   </guard>
  </transition>
@@ -74,12 +69,10 @@
              new_state="convocat"
              trigger="USER"
              before_script=""
-             after_script=""
-             i18n:attributes="title">
+             after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=convoquing"
           category="workflow" 
-          icon=""
-          i18n:translate="">Convocar</action>
+          icon="">Convocar</action>
   <guard >
   </guard>
  </transition>
@@ -89,12 +82,10 @@
              new_state="preparing"
              trigger="USER"
              before_script=""
-             after_script=""
-             i18n:attributes="title">
+             after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=preparing"
           category="workflow"
-          icon=""
-          i18n:translate="">Preparar</action>
+          icon="">Preparar</action>
   <guard >
   </guard>
  </transition>

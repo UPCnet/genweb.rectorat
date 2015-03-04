@@ -2,6 +2,7 @@
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from time import strftime
+from Acquisition import aq_parent, aq_inner
 
 
 def sessio_changed(session, event):
@@ -83,11 +84,16 @@ def sessio_changed(session, event):
                 bodyMail = moreData + str(introData)
 
             # Sending Mail!
-            session.MailHost.send(bodyMail,
-                                  mto=recipientPerson,
-                                  mfrom=senderPerson,
-                                  subject=subjectMail,
-                                  encode=None,
-                                  immediate=False,
-                                  charset='utf8',
-                                  msg_type='text/html')
+            try:
+                session.MailHost.send(bodyMail,
+                                      mto=recipientPerson,
+                                      mfrom=senderPerson,
+                                      subject=subjectMail,
+                                      encode=None,
+                                      immediate=False,
+                                      charset='utf8',
+                                      msg_type='text/html')
+            except:
+                # parent = aq_inner(session).absolute_url()
+                session.plone_utils.addPortalMessage("No s'ha pogut enviar el mail, comprobi el from i el to del missatge", 'error')
+                # session.request.response.redirect(parent)

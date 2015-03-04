@@ -1,9 +1,7 @@
-# Gettext Message File for genweb.rectorat
-# Roberto Diaz (UPCnet)
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-03-02 16:18+0000\n"
+"POT-Creation-Date: 2015-03-04 15:09+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -31,7 +29,7 @@ msgid "Acta Description"
 msgstr "Descripció de l'Acta"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
 msgid "Agreement"
 msgstr "Acord"
 
@@ -44,7 +42,7 @@ msgid "Alternate description"
 msgstr "Contingut alternatiu"
 
 #: ./genweb/rectorat/content/document.py:71
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
 msgid "Approval status"
 msgstr "Estat d'aprovació"
 
@@ -75,10 +73,6 @@ msgstr "Contingut del mail que s'envia al passar a estat Convocat"
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr "Per defecte, es veurà el contingut per defecte, no el contingut alternatiu"
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:34
-msgid "CONSELL DE GOVERN"
-msgstr "CONSELL DE GOVERN"
-
 #: ./genweb/rectorat/content/document.py:66
 msgid "Content used to hide protected content"
 msgstr "Es pot fer servir per ocultar contingut. Un camp intern de contingut, i un públic amb tota la informació permesa."
@@ -104,7 +98,7 @@ msgstr "Per cada sessió es podran crear tants documents com siguin necessaris p
 msgid "Document info"
 msgstr "Dades del document"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:159
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:162
 msgid "Download"
 msgstr "Descarregar el fitxer"
 
@@ -205,7 +199,7 @@ msgstr "Membres de l'òrgan de govern"
 
 #: ./genweb/rectorat/content/document.py:90
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:119
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
 msgid "Original files"
 msgstr "Fitxers interns"
 
@@ -214,7 +208,7 @@ msgid "Pending"
 msgstr "Derogat"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:30
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:107
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:110
 msgid "Point"
 msgstr "Punt"
 
@@ -232,7 +226,7 @@ msgstr "Punt del document"
 
 #: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/document_templates/document_view.pt:64
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:122
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:125
 msgid "Published files"
 msgstr "Fitxers públics"
 
@@ -240,7 +234,7 @@ msgstr "Fitxers públics"
 msgid "Rejected"
 msgstr "Rebutjat"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:102
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:105
 msgid "Related documents"
 msgstr "Documents relacionats"
 
@@ -300,7 +294,7 @@ msgid "Status"
 msgstr "Aprovació:"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:39
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
 msgid "Title"
 msgstr "Títol"
 

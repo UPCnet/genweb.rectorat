@@ -83,6 +83,7 @@
               <td>&nbsp;
                 <span tal:content="item/review_state"
                       i18n:translate=""
+                      i18n:domain="genweb"
                       tal:attributes="class item/review_state">
                   Status
                 </span>
