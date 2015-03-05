@@ -95,5 +95,5 @@ def sessio_changed(session, event):
                                       msg_type='text/html')
             except:
                 # parent = aq_inner(session).absolute_url()
-                session.plone_utils.addPortalMessage("No s'ha pogut enviar el mail, comprobi el from i el to del missatge", 'error')
+                session.plone_utils.addPortalMessage("Mail no enviat. Comprovi el from i el to del missatge", 'error')
                 # session.request.response.redirect(parent)
