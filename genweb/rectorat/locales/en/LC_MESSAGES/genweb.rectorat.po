@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-03-04 15:09+0000\n"
+"POT-Creation-Date: 2015-03-05 17:56+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -135,7 +135,7 @@ msgstr ""
 msgid "From mail"
 msgstr "From address"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:97
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:98
 msgid "Historic"
 msgstr ""
 
@@ -224,8 +224,11 @@ msgstr "Content"
 msgid "Proposal point number"
 msgstr "Point number"
 
-#: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/document_templates/document_view.pt:64
+msgid "Public files"
+msgstr ""
+
+#: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:125
 msgid "Published files"
 msgstr "Public files"

@@ -61,7 +61,7 @@
   <div tal:condition="python: 'PublishedFiles' in view.w">
     <tal:files tal:condition="python:getattr(context, 'PublishedFiles', None)">
       <hr/>
-      <h3  i18n:translate="">Published files</h3>
+      <h3  i18n:translate="">Public files</h3>
       <div tal:content="structure view/w/PublishedFiles/render" />
 
     </tal:files>

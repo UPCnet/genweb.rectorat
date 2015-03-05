@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-04 15:09+0000\n"
+"POT-Creation-Date: 2015-03-05 17:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "From mail"
 msgstr ""
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:97
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:98
 msgid "Historic"
 msgstr ""
 
@@ -227,8 +227,11 @@ msgstr ""
 msgid "Proposal point number"
 msgstr ""
 
-#: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/document_templates/document_view.pt:64
+msgid "Public files"
+msgstr ""
+
+#: ./genweb/rectorat/content/document.py:84
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:125
 msgid "Published files"
 msgstr ""
