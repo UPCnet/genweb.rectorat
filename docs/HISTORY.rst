@@ -1,11 +1,58 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2015-03-09)
 ----------------
 
-- Nothing changed yet.
-
+* renamed to public files [Roberto Diaz]
+* changed string [Roberto Diaz]
+* updated i18n workflow [Roberto Diaz]
+* added br to mail message [Roberto Diaz]
+* Merge branch 'master' of github.com:UPCnet/genweb.rectorat [Roberto Diaz]
+* return obj ordered by positionInParent [Roberto Diaz]
+* removed date from template [Roberto Diaz]
+* changes in acta and session template [Roberto Diaz]
+* added session to Folder [Roberto Diaz]
+* added session to Folder [Roberto Diaz]
+* added title to acta [Roberto Diaz]
+* update print [Roberto Diaz]
+* multiple templates changes [Roberto Diaz]
+* modified date in acta print [Roberto Diaz]
+* Merge branch 'master' of github.com:UPCnet/genweb.rectorat [Roberto Diaz]
+* added acta footer [Roberto Diaz]
+* passed empty fields [Roberto Diaz]
+* added print view [Roberto Diaz]
+* updated Organ to historic and templating... [Roberto Diaz]
+* solved bug in mail + textindexer in acta + templates updated [Roberto Diaz]
+* added jbot to override template for print.css in good order [Roberto Diaz]
+* removed footer from print [Roberto Diaz]
+* Organ: corrections on pt [Roberto Diaz]
+* corrections on pt [Roberto Diaz]
+* modified template [Roberto Diaz]
+* first show public files in doc [Roberto Diaz]
+* fixed path and i18n [Roberto Diaz]
+* changing orde [Roberto Diaz]
+* added state class [Roberto Diaz]
+* changed listing table [Roberto Diaz]
+* added acta [Roberto Diaz]
+* renamod content and added CSS [Roberto Diaz]
+* changes0 [Roberto Diaz]
+* added referenceable and i18n in pt [Roberto Diaz]
+* added richtext to some fields [Roberto Diaz]
+* include package dexteritytextindexer dependency [Roberto Diaz]
+* added dexterity translation custom fields not working in multifile... only text) [Roberto Diaz]
+* modified css [Roberto Diaz]
+* modified locale [Roberto Diaz]
+* changed isAnon to isAuthent [Roberto Diaz]
+* solved permissions on edit docs [Roberto Diaz]
+* added checks to send mail [Roberto Diaz]
+* print css: removed expanded links [Roberto Diaz]
+* added addres to session & i18n & po [Roberto Diaz]
+* modified visual content [Roberto Diaz]
+* view state in edit mode [Roberto Diaz]
+* changes to view PRINT.CSS [Roberto Diaz]
+* check authenticated correctly [Roberto Diaz]
+* added permissions to download multifile [Roberto Diaz]
 
 1.0 (2015-01-08)
 ----------------
