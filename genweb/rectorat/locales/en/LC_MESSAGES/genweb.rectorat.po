@@ -119,7 +119,7 @@ msgstr "Enter the addess mail used in form, from send mails"
 #: ./genweb/rectorat/content/acta.py:63
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:46
 msgid "Excused members"
-msgstr "Excused members list"
+msgstr "Excused members"
 
 #: ./genweb/rectorat/content/acta.py:93
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:108
@@ -142,7 +142,7 @@ msgstr ""
 #: ./genweb/rectorat/content/sessio.py:62
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:68
 msgid "Incoming members list"
-msgstr "Incoming members list"
+msgstr "Incoming members"
 
 #: ./genweb/rectorat/content/organgovern.py:19
 msgid "Invalid email address"
@@ -270,7 +270,7 @@ msgstr "Session info"
 #: ./genweb/rectorat/content/acta.py:75
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:89
 msgid "Session order"
-msgstr "Order"
+msgstr "Agenda"
 
 #: ./genweb/rectorat/content/acta.py:35
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:45

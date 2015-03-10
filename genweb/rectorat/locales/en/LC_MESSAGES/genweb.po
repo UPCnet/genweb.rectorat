@@ -16,33 +16,47 @@ msgstr ""
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "Convocada"
-msgstr ""
+msgstr "Convoned"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "Convocar"
-msgstr ""
+msgstr "To convone"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "En preparació"
-msgstr ""
+msgstr "Preparing"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "Preparar"
-msgstr ""
+msgstr "To prepare"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "Preparing"
-msgstr ""
+msgstr "Preparing"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "Tancada"
-msgstr "2"
+msgstr "Closed"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "Tancar"
-msgstr ""
+msgstr "Close"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
 msgid "To convone"
-msgstr ""
+msgstr "To convone"
+
+msgid "Tancar"
+msgstr "Close"
+
+msgid "closed"
+msgstr "Closed"
+
+msgid "preparing"
+msgstr "Preparing"
+
+msgid "convocat"
+msgstr "Convoned"
+
+
 

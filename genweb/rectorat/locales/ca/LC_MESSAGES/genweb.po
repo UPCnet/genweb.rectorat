@@ -31,7 +31,7 @@ msgid "Preparar"
 msgstr "Preparar"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
-msgid "Preparing"
+msgid "preparing"
 msgstr "En preparació"
 
 #: ./genweb/rectorat/profiles/default/workflows/rectorat_sessio_workflow/definition.xml
@@ -46,3 +46,8 @@ msgstr "Tancar"
 msgid "To convone"
 msgstr "A convocar"
 
+msgid "convocat"
+msgstr "Convocada"
+
+msgid "closed"
+msgstr "Tancada"
