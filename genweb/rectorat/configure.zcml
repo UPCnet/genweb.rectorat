@@ -42,6 +42,7 @@
        layer=".interfaces.IGenwebRectoratLayer"
     />
 
+    <adapter factory=".indexer.SearchableText" />
 
 
 </configure>

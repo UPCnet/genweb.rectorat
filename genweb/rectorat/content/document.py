@@ -6,14 +6,18 @@ from plone.autoform import directives
 from plone.namedfile.field import NamedFile
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.formwidget.multifile import MultiFileFieldWidget
+from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import dexterity
-from plone.autoform import directives as form
+from plone.directives import form
+from zope.interface import alsoProvides
+
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from plone.supermodel import model
 from z3c.form.interfaces import INPUT_MODE, DISPLAY_MODE, HIDDEN_MODE
 from plone import api
 from collective import dexteritytextindexer
+from plone.indexer.decorator import indexer
 
 
 estats = SimpleVocabulary(
@@ -25,7 +29,7 @@ estats = SimpleVocabulary(
     )
 
 
-class IDocument(model.Schema):
+class IDocument(form.Schema):
     """ Tipus Sessio: Per a cada Òrgan de Govern es podran crear
         totes les sessions que es considerin oportunes
     """
@@ -90,6 +94,8 @@ class IDocument(model.Schema):
     OriginalFiles = schema.List(title=_(u"Original files"),
                                 value_type=NamedFile(),
                                 required=False,)
+
+alsoProvides(IDocument, IFormFieldProvider)
 
 
 class View(dexterity.DisplayForm):
