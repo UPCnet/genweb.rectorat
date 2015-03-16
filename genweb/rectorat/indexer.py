@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from ZODB.POSException import ConflictError
 from genweb.rectorat.content.document import IDocument
 from collective.dexteritytextindexer.converters import DefaultDexterityTextIndexFieldConverter
 from collective.dexteritytextindexer.interfaces import IDexterityTextIndexFieldConverter
@@ -11,6 +12,11 @@ from Products.CMFCore.utils import getToolByName
 
 from plone.formwidget.multifile.widget import MultiFileWidget, MultiFileFieldWidget
 from plone.formwidget.multifile.interfaces import IMultiFileWidget
+from Products.CMFPlone.utils import safe_unicode
+from unicodedata import normalize
+
+from logging import getLogger
+logger = getLogger(__name__)
 
 
 class SearchableText(DefaultDexterityTextIndexFieldConverter):
@@ -24,27 +30,61 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
         self.widget = widget
 
     def convert(self):
-        # implement your custom converter
-        # which returns a string at the end
         searchableText =[]
         if self.widget.id == 'PublishedFiles':
             for obj in self.widget.value:
-            	# import ipdb;ipdb.set_trace()
-
-                name = obj.filename.encode('utf-8')
-                transforms = getToolByName(self.context, 'portal_transforms')
-                # if isinstance(html, unicode):
-                #     html = html.encode('utf-8')
-                stream = transforms.convertTo('text/plain', obj.data, mimetype='text/html')
-                searchableText.append(name)
-                searchableText.append(stream.getData().strip())
-        else:
-            html = self.widget.render().strip()
-            # self.widget.value[0].filename
-
-            transforms = getToolByName(self.context, 'portal_transforms')
-            if isinstance(html, unicode):
-                html = html.encode('utf-8')
-            stream = transforms.convertTo('text/plain', html, mimetype='text/html')
-            searchableText = stream.getData().strip()
+                fileData = self.convertFileByFile(obj)
+                searchableText.append(fileData)
         return str(searchableText)
+
+    def unicode_save_string_concat(self, *args):
+        """
+        concats args with spaces between and returns utf-8 string, it does not
+        matter if input was unicode or str
+        """
+        result = ''
+        for value in args:
+            if isinstance(value, unicode):
+                value = value.encode('utf-8', 'replace')
+            result = ' '.join((result, value))
+        return result
+
+    def convertFileByFile(self, obj):
+        """Transforms file data to text for indexing safely.
+        """
+        storage = self.field.interface(self.context)
+        data = self.field.get(storage)
+
+        # if there is no data, do nothing
+        if not obj or obj.getSize() == 0:
+            return ''
+
+        # if data is already in text/plain, just return it
+        if obj.contentType == 'text/plain':
+            return obj.data
+
+        # if there is no path to text/plain, do nothing
+        transforms = getToolByName(self.context, 'portal_transforms')
+
+        if not transforms._findPath(obj.contentType, 'text/plain'):
+            return ''
+        
+        try:
+            datastream = transforms.convertTo('text/plain', 
+                                              str(obj.data),
+                                              mimetype=obj.contentType,
+                                              filename=obj.filename)
+
+            contentData = safe_unicode(datastream.getData().decode('utf-8'))
+            contentData = normalize('NFKD', contentData).encode('ascii', errors='ignore')
+            contentData = contentData.replace('\n',' ').replace(u'\xa0',u' ').replace(u'\x0c',u'')
+
+            return self.unicode_save_string_concat(obj.filename, contentData)
+
+        except (ConflictError, KeyboardInterrupt):
+            raise
+
+        except Exception, e:
+            logger.error('Error while trying to convert file contents '
+                         'to "text/plain": %s' % str(e))
+
