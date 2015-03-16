@@ -31,7 +31,9 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
 
     def convert(self):
         searchableText =[]
-        if self.widget.id == 'PublishedFiles':
+        # TODO:  Need to fix this. Now only works with this widgetds
+        #        Must solve to every multifile type...
+        if self.widget.id == 'PublishedFiles' or self.widget.id == 'OriginalFiles':
             for obj in self.widget.value:
                 fileData = self.convertFileByFile(obj)
                 searchableText.append(fileData)
