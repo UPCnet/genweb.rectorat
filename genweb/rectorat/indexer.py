@@ -21,7 +21,7 @@ logger = getLogger(__name__)
 
 class SearchableText(DefaultDexterityTextIndexFieldConverter):
     implements(IDexterityTextIndexFieldConverter)
-    adapts(IDexterityContent, IField, IWidget )
+    adapts(IDocument, IField, IWidget )
 
     def __init__(self, context, field, widget):
         """Initialize field converter"""
@@ -30,14 +30,26 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
         self.widget = widget
 
     def convert(self):
-        searchableText =[]
-        # TODO:  Need to fix this. Now only works with this widgetds
-        #        Must solve to every multifile type...
+        """ This code only is executed when the field implements dexteritytextindexer
+             By default the system indexes to plain text but when you upload multifile
+             it doesn't work.
+             This portion of code solves just this problem.
+             When the widget is multifile (only this two ids) it makes the content 
+             of the files searchable :)
+        """
         if self.widget.id == 'PublishedFiles' or self.widget.id == 'OriginalFiles':
+            searchableText =[]
             for obj in self.widget.value:
                 fileData = self.convertFileByFile(obj)
                 searchableText.append(fileData)
-        return str(searchableText)
+            return str(searchableText)                
+        else:
+            html = self.widget.render().strip()
+            transforms = getToolByName(self.context, 'portal_transforms')
+            if isinstance(html, unicode):
+                html = html.encode('utf-8')
+            stream = transforms.convertTo('text/plain', html, mimetype='text/html')
+            return stream.getData().strip()
 
     def unicode_save_string_concat(self, *args):
         """
