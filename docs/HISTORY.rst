@@ -1,11 +1,14 @@
 Changelog
 =========
 
-1.2 (unreleased)
+1.2 (2015-03-19)
 ----------------
 
-- Nothing changed yet.
-
+* aded widget to index [Roberto Diaz]
+* Index multifile now is fully functional [Roberto Diaz]
+* A medias: Tema custom indexer [Roberto Diaz]
+* remove tal condition [Roberto Diaz]
+* updated translations [Roberto Diaz]
 
 1.1 (2015-03-09)
 ----------------
