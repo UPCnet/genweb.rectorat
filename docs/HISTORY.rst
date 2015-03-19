@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.3 (unreleased)
+1.3 (2015-03-19)
 ----------------
 
-- Nothing changed yet.
-
+* fixed searchableText to all DXT fields [Roberto Diaz]
 
 1.2 (2015-03-19)
 ----------------
