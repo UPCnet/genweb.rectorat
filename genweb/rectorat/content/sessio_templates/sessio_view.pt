@@ -106,24 +106,24 @@
     <table class="listing">
         <thead>
           <tr>
-            <th style="width: 8%">&nbsp;
-              <tal:head i18n:translate="">Point</tal:head>&nbsp;
+            <th style="width: 8%">
+              <tal:head i18n:translate="">Point</tal:head>
             </th>
-            <th style="width: 10%">&nbsp;
-              <tal:head i18n:translate="">Agreement</tal:head>&nbsp;
+            <th style="width: 9%">
+              <tal:head i18n:translate="">Agreement</tal:head>
             </th>     
-            <th style="width: 34%">&nbsp;
+            <th style="width: 30%">
               <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
-            <th style="width: 18%" tal:condition="view/isAuthenticated">&nbsp;
-              <tal:head i18n:translate="">Approval status</tal:head>&nbsp;
+            <th style="width: 19%" tal:condition="view/isAuthenticated">
+              <tal:head i18n:translate="">Approval status</tal:head>
             </th> 
-            <th style="width: 15%" tal:condition="view/isAuthenticated">&nbsp;
-              <tal:head i18n:translate="">Original files</tal:head>&nbsp;
-            </th>                 
-            <th style="width: 15%">&nbsp;
-              <tal:head i18n:translate="">Published files</tal:head>&nbsp;
+            <th style="width: 17%">
+              <tal:head i18n:translate="">Published files</tal:head>
             </th>                                 
+            <th style="width: 17%" tal:condition="view/isAuthenticated">
+              <tal:head i18n:translate="">Original files</tal:head>
+            </th>                 
           </tr>
         </thead>
           <tal:documents repeat="item view/DocumentsInside">
@@ -155,19 +155,6 @@
                       Approval status
                     </span>
                 </td>
-                <td tal:condition="view/isAuthenticated">
-                  <ul tal:condition="obj/OriginalFiles">
-                    <tal:files repeat="item obj/OriginalFiles">
-                      <li>
-                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.OriginalFiles/@@download/${repeat/item/index};"
-                           i18n:attributes="alt Download; title Download"
-                           tal:content="item/filename">
-                          Original files
-                         </a>
-                      </li>
-                    </tal:files>
-                  </ul>
-                </td>     
                 <td>
                   <ul tal:condition="obj/PublishedFiles">
                     <tal:files repeat="item obj/PublishedFiles">
@@ -180,7 +167,20 @@
                       </li>
                     </tal:files>
                   </ul>
-                </td>                                    
+                </td>
+                <td tal:condition="view/isAuthenticated">
+                  <ul tal:condition="obj/OriginalFiles">
+                    <tal:files repeat="item obj/OriginalFiles">
+                      <li>
+                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.OriginalFiles/@@download/${repeat/item/index};"
+                           i18n:attributes="alt Download; title Download"
+                           tal:content="item/filename">
+                          Original files
+                         </a>
+                      </li>
+                    </tal:files>
+                  </ul>
+                </td>
               </tr>
             </tal:block>
           </tal:documents>
