@@ -4,7 +4,7 @@ from five import grok
 from zope import schema
 from plone import api
 
-
+from plone.indexer import indexer
 from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
@@ -168,3 +168,13 @@ class Edit(dexterity.EditForm):
     def updateWidgets(self):
         super(Edit, self).updateWidgets()
         self.widgets['notificationDate'].mode = HIDDEN_MODE
+
+
+
+@indexer(ISessio)
+def dataSessio(context):
+    """Create a catalogue indexer, registered as an adapter, which can
+    populate the ``dataSessio`` value count it and index.
+    """
+    return context.dataSessio
+grok.global_adapter(dataSessio, name='start')

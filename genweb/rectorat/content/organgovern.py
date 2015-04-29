@@ -81,12 +81,10 @@ class View(grok.View):
         folder_path = '/'.join(self.context.getPhysicalPath())
         # Retorna sessions: The last modified is the first shown.
         data = portal_catalog.searchResults(portal_type='genweb.rectorat.sessio',
-                                            sort_on='modified',
-                                            sort_order='reverse',
                                             path={'query': folder_path,
                                                   'depth': 1})
 
-        return data
+        return sorted(data, key=lambda item: item.start, reverse=True)
 
     def FoldersInside(self):
         """ Retorna les carpetes que hi ha dintre que són les que marquem com Historic
