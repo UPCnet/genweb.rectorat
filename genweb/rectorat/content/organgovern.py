@@ -78,18 +78,18 @@ class View(grok.View):
         """ Retorna les sessions d'aquí dintre (sense tenir compte estat)
         """
         portal_catalog = getToolByName(self, 'portal_catalog')
-        # Cerca contingut per mostar al carousel en diversos idiomes
         folder_path = '/'.join(self.context.getPhysicalPath())
-
+        # Retorna sessions: The last modified is the first shown.
         data = portal_catalog.searchResults(portal_type='genweb.rectorat.sessio',
-                                            sort_on='getObjPositionInParent',
+                                            sort_on='modified',
+                                            sort_order='reverse',
                                             path={'query': folder_path,
                                                   'depth': 1})
 
         return data
 
     def FoldersInside(self):
-        """ Retorna les carpetes que hi ha dintre que són les que marquen com Historic
+        """ Retorna les carpetes que hi ha dintre que són les que marquem com Historic
         """
         folder_path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self, 'portal_catalog')
