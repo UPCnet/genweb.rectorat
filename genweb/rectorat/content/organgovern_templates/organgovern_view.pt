@@ -24,9 +24,22 @@
         </tal:block>  
       </tal:mail>
       <tal:block tal:condition="context/membresOrgan">
-        <h3 i18n:translate=""> Organ Govern members </h3>
-        <div tal:replace="structure context/membresOrgan/output|nothing" />
-        <hr/>
+        <div class="accordion" id="accordionmembresOrgan">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <h4 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+                 data-parent="#accordionmembresOrgan" href="#collapsemembresOrgan">
+                 <i class="icon-chevron-down"></i>
+                <tal:omit-tag i18n:translate="">Organ Govern members</tal:omit-tag>
+              </h4>
+            </div>
+            <div id="collapsemembresOrgan" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <div tal:replace="structure context/membresOrgan/output|nothing" />
+              </div>
+            </div>
+          </div>
+        </div>
       </tal:block>
     </div>
 
