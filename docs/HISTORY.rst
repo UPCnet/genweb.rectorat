@@ -1,11 +1,15 @@
 Changelog
 =========
 
-1.4 (unreleased)
+1.4 (2015-04-30)
 ----------------
 
-- Nothing changed yet.
-
+* addapted templates to new accordion style (Marc) [Roberto Diaz]
+* added indexer sort by sessionDate [Roberto Diaz]
+* added accordion to members list [Roberto Diaz]
+* last modified, first shown in sessions list [Roberto Diaz]
+* solved error accents in mail fields [Roberto Diaz]
+* swap docs public vs privats in session table [Roberto Diaz]
 
 1.3 (2015-03-19)
 ----------------
