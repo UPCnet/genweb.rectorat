@@ -61,84 +61,74 @@
     </div>
   </div>
 
-  <div class="">
-    <div class="span12">
-      <tal:block tal:condition="context/membresConvocats">
-        <div class="accordion" id="accordionConvocats">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <h4 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
-                 data-parent="#accordionConvocats" href="#collapseConvocats">
-                 <i class="icon-chevron-down"></i>
-                <tal:omit-tag i18n:translate="">Incoming members list</tal:omit-tag>
-              </h4>
-            </div>
-            <div id="collapseConvocats" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <div tal:replace="structure context/membresConvocats/output|nothing" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </tal:block>
+  <div style="clear:both;"></div>
 
-      <tal:block tal:condition="context/membresConvidats">
-        <div class="accordion" id="accordionConvidats">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <h4 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
-                 data-parent="#accordionConvidats" href="#collapseConvidats">
-                 <i class="icon-chevron-down"></i>
-                <tal:omit-tag i18n:translate="">Invited members</tal:omit-tag>
-              </h4>
-            </div>
-            <div id="collapseConvidats" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <div tal:replace="structure context/membresConvidats/output|nothing" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </tal:block>
-
-      <tal:block tal:condition="context/llistaExcusats">
-        <div class="accordion" id="accordionExcusats">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <h4 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
-                 data-parent="#accordionExcusats" href="#collapseExcusats">
-                 <i class="icon-chevron-down"></i>
-                <tal:omit-tag i18n:translate="">Excused members</tal:omit-tag>
-              </h4>
-            </div>
-            <div id="collapseExcusats" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <div tal:replace="structure context/llistaExcusats/output|nothing" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </tal:block>
-
-      <tal:actes tal:define="item view/ActasInside" tal:condition="item">
-        <h3 i18n:translate="">Llistat d'actes</h3>
-        <tal:documents repeat="item view/ActasInside">
-          <ul style="list-style:none;">
-            <h4>
-            <li tal:define="obj item/getObject">
-              <i class="icon-page"></i>
-                <a tal:attributes="href obj/absolute_url"
-                   tal:content="obj/title"
-                   style="font-weight: initial;">
-                    Link a Acta
-                </a>
-              </li>
-            </h4>
-          </ul>
-        </tal:documents>
-      </tal:actes>
+  <tal:block tal:condition="context/membresConvocats">
+    <hr/>
+    <div class="accordion" id="accordionConvocats">
+      <div class="accordion-heading">
+        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+           data-parent="#accordionConvocats" href="#collapseConvocats">
+          <tal:omit-tag i18n:translate="">Incoming members list</tal:omit-tag>
+           <i class="icon-chevron-down"></i>
+        </h3>
+      </div>
+      <div id="collapseConvocats" class="collapse">
+        <div tal:replace="structure context/membresConvocats/output|nothing" />
+      </div>
     </div>
-  </div>
+  </tal:block>
+
+  <tal:block tal:condition="context/membresConvidats">
+    <hr/>
+    <div class="accordion" id="accordionConvidats">
+      <div class="accordion-heading">
+        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+           data-parent="#accordionConvidats" href="#collapseConvidats">
+          <tal:omit-tag i18n:translate="">Invited members</tal:omit-tag>
+           <i class="icon-chevron-down"></i>
+        </h3>
+      </div>
+      <div id="collapseConvidats" class="collapse">
+        <div tal:replace="structure context/membresConvidats/output|nothing" />
+      </div>
+    </div>
+  </tal:block>
+
+  <tal:block tal:condition="context/llistaExcusats">
+    <hr/>
+    <div class="accordion" id="accordionExcusats">
+      <div class="accordion-heading">
+        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+           data-parent="#accordionExcusats" href="#collapseExcusats">
+          <tal:omit-tag i18n:translate="">Excused members</tal:omit-tag>
+           <i class="icon-chevron-down"></i>
+        </h3>
+      </div>
+      <div id="collapseExcusats" class="collapse">
+        <div tal:replace="structure context/llistaExcusats/output|nothing" />
+      </div>
+    </div>
+  </tal:block>
+
+  <tal:actes tal:define="item view/ActasInside" tal:condition="item">
+    <hr/>
+    <h3 i18n:translate="">Llistat d'actes</h3>
+    <tal:documents repeat="item view/ActasInside">
+      <ul style="list-style:none;">
+        <h4>
+        <li tal:define="obj item/getObject">
+          <i class="icon-page"></i>
+            <a tal:attributes="href obj/absolute_url"
+               tal:content="obj/title"
+               style="font-weight: initial;">
+                Link a Acta
+            </a>
+          </li>
+        </h4>
+      </ul>
+    </tal:documents>
+  </tal:actes>
 
   <tal:RelatedDocs tal:define="item view/DocumentsInside" tal:condition="item">
     <hr/>
