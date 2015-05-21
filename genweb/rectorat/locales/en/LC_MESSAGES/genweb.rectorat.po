@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-05-21 10:10+0000\n"
+"POT-Creation-Date: 2015-05-21 10:22+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -113,7 +113,7 @@ msgstr "Enter email lists adresses, separated by commas."
 
 #: ./genweb/rectorat/content/organgovern.py:58
 msgid "Enter the from used in the mail form"
-msgstr "Enter the addess mail used in form, from send mails"
+msgstr "That e-mail must be valid since it's to be used for sending and responding to messages"
 
 #: ./genweb/rectorat/browser/views/acta_print.pt:74
 #: ./genweb/rectorat/content/acta.py:63
@@ -133,7 +133,7 @@ msgstr ""
 
 #: ./genweb/rectorat/content/organgovern.py:57
 msgid "From mail"
-msgstr "From address"
+msgstr "E-mail messages to be sent"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:107
 msgid "Historic"

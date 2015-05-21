@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-05-21 10:10+0000\n"
+"POT-Creation-Date: 2015-05-21 10:22+0000\n"
 "PO-Revision-Date: 2010-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -113,7 +113,7 @@ msgstr "Indicar la lista/direcciones separadas por comas."
 
 #: ./genweb/rectorat/content/organgovern.py:58
 msgid "Enter the from used in the mail form"
-msgstr "Indicar la dirección de correo utilizada en el campo 'from' cuando se envíe un mensaje de este Órgano de Gobierno"
+msgstr "Hace falta que esta dirección de correo sea válida ya que es la que se utilizará para el envío y respuesta a los mensajes."
 
 #: ./genweb/rectorat/browser/views/acta_print.pt:74
 #: ./genweb/rectorat/content/acta.py:63
@@ -133,7 +133,7 @@ msgstr "Pie del Acta"
 
 #: ./genweb/rectorat/content/organgovern.py:57
 msgid "From mail"
-msgstr "Dirección de correo utilizada en el campo from:"
+msgstr "Dirección de correo con la que se enviarán los mensajes"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:107
 msgid "Historic"
