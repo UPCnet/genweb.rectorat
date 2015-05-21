@@ -22,9 +22,10 @@ from plone.indexer.decorator import indexer
 
 estats = SimpleVocabulary(
     [SimpleTerm(value='Draft', title=_(u'Draft')),
-     SimpleTerm(value='Pending', title=_(u'Pending')),
+     SimpleTerm(value='Informed', title=_(u'Informed')),
      SimpleTerm(value='Approved', title=_(u'Approved')),
      SimpleTerm(value='Rejected', title=_(u'Rejected')),
+     SimpleTerm(value='Pending', title=_(u'Pending')),     
      ]
     )
 
