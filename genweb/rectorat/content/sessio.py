@@ -88,8 +88,8 @@ class ISessio(form.Schema):
         required=False,
     )
 
-    form.mode(notificationDate='hidden')
-    notificationDate = schema.TextLine(
+    # form.mode(notificationDate='hidden')
+    notificationDate = schema.Text(
         title=_(u"Notification date"),
         required=False,
     )
@@ -178,7 +178,7 @@ class Edit(dexterity.EditForm):
 
     def updateWidgets(self):
         super(Edit, self).updateWidgets()
-        self.widgets['notificationDate'].mode = HIDDEN_MODE
+        # self.widgets['notificationDate'].mode = HIDDEN_MODE
 
 
 @indexer(ISessio)

@@ -7,20 +7,10 @@
       i18n:domain="genweb.rectorat">
 <body>
 
-<metal:content-core fill-slot="content-core">
+<metal:content-core fill-slot="content-core" 
+   tal:define="portal_url context/@@plone_portal_state/portal_url;">
 
-  <tal:omit-tag tal:condition="view/isAuthenticated">
-    <div tal:condition="context/notificationDate"
-         class="alert alert-info" 
-         role="alert" 
-         style="background-color: #f2dede; color: #216f86; text-align: right; font-size: 12px; font-weight: bold; border: 1px solid #8fd1e3; margin:10px;" >
-        <span i18n:translate="">Notification date</span>:
-        <span tal:content="context/notificationDate"></span>
-        <br/>
-        <span i18n:translate="">Notified persons</span>:
-        <span tal:content="context/adrecaLlista"></span>
-    </div>
-  </tal:omit-tag>
+
 
   <tal:omit-tag condition="view/isAuthenticated">
     <button type="button" class="btn btn-primary" style="float:right"
@@ -100,7 +90,12 @@
             <b i18n:translate="">Lloc:</b>
             <span style="float:right" 
                   tal:content="context/llocConvocatoria"></span>
-          </li>    
+          </li>  
+          <li style="float:right" tal:condition="view/isAuthenticated">
+            <a tal:attributes="href string:#notificationsList">
+              <b i18n:translate="">Historial de notificacions</b>  <i class="icon-chevron-down"></i>
+            </a>
+          </li>   
         </ul>
       </div>
     </div>
@@ -261,6 +256,57 @@
           </tal:documents>
       </table>
   </tal:RelatedDocs>
+
+
+  <tal:omit-tag tal:condition="view/isAuthenticated">
+    <hr/>
+    <div class="accordion" id="notificationsList">
+      <div class="accordion-heading">
+        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+           data-parent="#notificationsList" href="#collapseHistoryNotif">
+          <tal:omit-tag i18n:translate="">Historial de notificacions</tal:omit-tag>
+           <i class="icon-chevron-down"></i>
+        </h3>
+      </div>
+      <div id="collapseHistoryNotif" class="collapse">
+        <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Data</th>
+                  <th>Qui ha notificat</th>
+                  <th>Destinataris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="active">
+                  <td>1</td>
+                  <td>
+                    <span tal:content="context/notificationDate"></span>
+                  </td>
+                  <td>admin</td>
+                  <td>
+                    <span tal:content="context/adrecaLlista"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <span tal:content="context/notificationDate"></span>
+                  </td>
+                  <td>admin</td>
+                  <td>
+                    <span tal:content="context/adrecaLlista"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </tal:omit-tag>
+
 
 </metal:content-core>
 
