@@ -159,6 +159,17 @@ class View(grok.View):
                                                   'depth': 1})
         return data
 
+    def ConvocatsToMail(self):
+        """ Retorna mails de convocats adaptats per enviar
+        """
+        value = self.context.membresConvidats.output
+
+        import re
+        regex = re.compile(r'([\w.]+@[\w.]+)', re.I)
+        listMails = regex.findall(value)
+
+        return ', '.join(set(listMails))
+
 
 class Edit(dexterity.EditForm):
     """A standard edit form.
@@ -168,7 +179,6 @@ class Edit(dexterity.EditForm):
     def updateWidgets(self):
         super(Edit, self).updateWidgets()
         self.widgets['notificationDate'].mode = HIDDEN_MODE
-
 
 
 @indexer(ISessio)
