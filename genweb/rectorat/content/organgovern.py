@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
 from five import grok
 from zope import schema
 from plone.directives import form
@@ -10,19 +9,7 @@ from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from collective import dexteritytextindexer
 from Products.CMFCore.utils import getToolByName
-
-
-EMAIL_RE = u"([0-9a-zA-Z_&.'+-]+!)*[0-9a-zA-Z_&.'+-]+@(([0-9a-zA-Z]([0-9a-zA-Z-]*[0-9a-z-A-Z])?\.)+[a-zA-Z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$"
-
-
-class InvalidEmailError(schema.ValidationError):
-    __doc__ = _(u"Invalid email address")
-
-
-def isEmail(value):
-    if re.match('^'+EMAIL_RE, value):
-        return True
-    raise InvalidEmailError
+from plone.app.users.userdataschema import checkEmailAddress
 
 
 class IOrgangovern(form.Schema):
@@ -56,7 +43,8 @@ class IOrgangovern(form.Schema):
     fromMail = schema.TextLine(
         title=_(u'From mail'),
         description=_(u'Enter the from used in the mail form'),
-        required=True
+        required=True,
+        constraint=checkEmailAddress
     )
 
 

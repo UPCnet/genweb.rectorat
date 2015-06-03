@@ -8,7 +8,7 @@ from plone.indexer import indexer
 from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
-from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE
+
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
@@ -88,12 +88,6 @@ class ISessio(form.Schema):
         required=False,
     )
 
-    # form.mode(notificationDate='hidden')
-    notificationDate = schema.Text(
-        title=_(u"Notification date"),
-        required=False,
-    )
-
 
 @form.default_value(field=ISessio['dataSessio'])
 def dataSessioDefaultValue(data):
@@ -162,8 +156,7 @@ class View(grok.View):
     def ConvocatsToMail(self):
         """ Retorna mails de convocats adaptats per enviar
         """
-        value = self.context.membresConvidats.output
-
+        value = self.context.membresConvocats.output
         import re
         regex = re.compile(r'([\w.]+@[\w.]+)', re.I)
         listMails = regex.findall(value)
@@ -175,10 +168,6 @@ class Edit(dexterity.EditForm):
     """A standard edit form.
     """
     grok.context(ISessio)
-
-    def updateWidgets(self):
-        super(Edit, self).updateWidgets()
-        # self.widgets['notificationDate'].mode = HIDDEN_MODE
 
 
 @indexer(ISessio)

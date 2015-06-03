@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-05-21 10:22+0000\n"
+"POT-Creation-Date: 2015-06-03 14:47+0000\n"
 "PO-Revision-Date: 2010-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -29,7 +29,7 @@ msgid "Acta Description"
 msgstr "Crea un Acta"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:143
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:182
 msgid "Agreement"
 msgstr "Acuerdo"
 
@@ -42,7 +42,7 @@ msgid "Alternate description"
 msgstr "Descripción alternativa"
 
 #: ./genweb/rectorat/content/document.py:76
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:149
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:188
 msgid "Approval status"
 msgstr "Estado de aprobación"
 
@@ -73,12 +73,16 @@ msgstr "Adjuntar el contenido del mensaje que se utilizará para el envío de co
 msgid "By default, only default content will be visible, not the alternate content"
 msgstr "Por defecto, sólo será visible el contenido por defecto, no el contenido alternativo"
 
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:38
+msgid "Close"
+msgstr "Cerrar"
+
 #: ./genweb/rectorat/content/document.py:71
 msgid "Content used to hide protected content"
 msgstr "Contenido alternativo para ocultar el contenido por defecto"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:104
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:40
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:74
 msgid "Data:"
 msgstr "Fecha:"
 
@@ -98,20 +102,20 @@ msgstr "Crea un documento"
 msgid "Document info"
 msgstr "Datos del documento"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:192
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:231
 msgid "Download"
-msgstr "Descargar fichero"
+msgstr "Descargar"
 
 #: ./genweb/rectorat/content/document.py:24
 msgid "Draft"
 msgstr "En desarrollo"
 
-#: ./genweb/rectorat/content/organgovern.py:47
+#: ./genweb/rectorat/content/organgovern.py:34
 #: ./genweb/rectorat/content/sessio.py:56
 msgid "Enter email lists adresses, separated by commas."
 msgstr "Indicar la lista/direcciones separadas por comas."
 
-#: ./genweb/rectorat/content/organgovern.py:58
+#: ./genweb/rectorat/content/organgovern.py:45
 msgid "Enter the from used in the mail form"
 msgstr "Hace falta que esta dirección de correo sea válida ya que es la que se utilizará para el envío y respuesta a los mensajes."
 
@@ -131,7 +135,7 @@ msgstr "Ficheros"
 msgid "Footer"
 msgstr "Pie del Acta"
 
-#: ./genweb/rectorat/content/organgovern.py:57
+#: ./genweb/rectorat/content/organgovern.py:44
 msgid "From mail"
 msgstr "Dirección de correo con la que se enviarán los mensajes"
 
@@ -140,7 +144,7 @@ msgid "Historic"
 msgstr "Histórico de sesiones"
 
 #: ./genweb/rectorat/content/sessio.py:62
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:72
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:111
 msgid "Incoming members list"
 msgstr "Listado de miembros convocados"
 
@@ -148,22 +152,18 @@ msgstr "Listado de miembros convocados"
 msgid "Informed"
 msgstr "Informado"
 
-#: ./genweb/rectorat/content/organgovern.py:19
-msgid "Invalid email address"
-msgstr "Dirección de correo incorrecta"
-
 #: ./genweb/rectorat/browser/views/acta_print.pt:84
 #: ./genweb/rectorat/content/acta.py:57
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:55
 msgid "Invited members"
 msgstr "Listado de asistentes"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:155
 msgid "Llistat d'actes"
 msgstr "Listado de actas"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:119
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:55
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:89
 msgid "Lloc:"
 msgstr "Lugar:"
 
@@ -171,39 +171,42 @@ msgstr "Lugar:"
 msgid "Mark this option to make alternate content visible"
 msgstr "Marcar esta opción para mostrar el contenido alternativo en lugar del contenido por defecto."
 
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:34
+msgid "Message"
+msgstr "Mensaje"
+
 #: ./genweb/rectorat/browser/views/acta_print.pt:79
 #: ./genweb/rectorat/content/acta.py:69
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:87
 msgid "Missing members"
 msgstr "Listado de miembros no asistentes"
 
-#: ./genweb/rectorat/content/sessio.py:93
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:18
-msgid "Notification date"
-msgstr "Fecha de notificación"
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:24
+msgid "New message"
+msgstr "Nuevo mensaje"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:21
-msgid "Notified persons"
-msgstr "Notificaciones"
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:95
+msgid "Notifications history"
+msgstr "Historial de notificaciones"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern"
 msgstr "Órgano de gobierno"
 
-#: ./genweb/rectorat/content/organgovern.py:41
+#: ./genweb/rectorat/content/organgovern.py:28
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:14
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern description"
 msgstr "Crea un Órgano de Gobierno"
 
-#: ./genweb/rectorat/content/organgovern.py:52
+#: ./genweb/rectorat/content/organgovern.py:39
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:31
 msgid "Organ Govern members"
 msgstr "Miembros del órgano de gobierno"
 
 #: ./genweb/rectorat/content/document.py:95
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:155
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:194
 msgid "Original files"
 msgstr "Ficheros internos"
 
@@ -212,7 +215,7 @@ msgid "Pending"
 msgstr "Derogado"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:30
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:140
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:179
 msgid "Point"
 msgstr "Punto:"
 
@@ -233,17 +236,25 @@ msgid "Public files"
 msgstr "Ficheros anexos"
 
 #: ./genweb/rectorat/content/document.py:89
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:152
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:191
 msgid "Published files"
 msgstr "Ficheros públicos"
+
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:29
+msgid "Recipients"
+msgstr "Destinatarios"
 
 #: ./genweb/rectorat/content/document.py:27
 msgid "Rejected"
 msgstr "Rechazado"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:135
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:174
 msgid "Related documents"
 msgstr "Documentos relacionados"
+
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
+msgid "Send message"
+msgstr "Enviar correo"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session"
@@ -266,7 +277,7 @@ msgid "Session end time"
 msgstr "Hora de finalización"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:100
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:36
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:70
 msgid "Session info"
 msgstr "Datos de la sesión"
 
@@ -301,11 +312,11 @@ msgid "Status"
 msgstr "Estado:"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:48
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:146
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:185
 msgid "Title"
 msgstr "Título"
 
-#: ./genweb/rectorat/content/organgovern.py:46
+#: ./genweb/rectorat/content/organgovern.py:33
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:20
 #: ./genweb/rectorat/content/sessio.py:55
 msgid "mail address"

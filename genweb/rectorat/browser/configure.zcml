@@ -38,5 +38,14 @@
       permission="zope2.View"
     />        
 
+    <!-- Used to add mail information to session log annotation -->
+    <browser:page
+      for="*"
+      name="addLogMail"
+      class=".views.AddLogMail"
+      layer="..interfaces.IGenwebRectoratLayer"          
+      permission="zope2.View"
+    />        
+
 
 </configure>
