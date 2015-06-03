@@ -154,7 +154,7 @@ class View(grok.View):
         return data
 
     def ConvocatsToMail(self):
-        """ Retorna mails de convocats adaptats per enviar
+        """ Retorna mails de convocats adaptats per enviar mail
         """
         value = self.context.membresConvocats.output
         import re

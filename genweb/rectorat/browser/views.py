@@ -3,8 +3,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from upc.genweb.newsletter.browser.newsletter import NewsletterBase
 from Products.Five.browser import BrowserView
 from zope.annotation.interfaces import IAnnotations
-
-from Acquisition import aq_parent,aq_inner
+from datetime import datetime
 
 
 class ActaPrintView(NewsletterBase):
@@ -19,20 +18,18 @@ class ActaPrintView(NewsletterBase):
 class AddLogMail(NewsletterBase):
 
     def __init__(self, context, request):
+        """ Adding send mail information to context in annotation format
+        """
         super(BrowserView, self).__init__(context, request)
 
         valueSenders = self.request.form['recipients-name']
 
-        print "--------------" + valueSenders
+        KEY = 'genweb.rectorat.maillog'
+
+        annotations = IAnnotations(self.context)
+        if annotations is not None:
+
+            logData = annotations.get(KEY, '')
+            annotations[KEY] = str(valueSenders) + str(logData)
 
         self.request.response.redirect(self.context.absolute_url())
-        # key = 'genweb.rectorat.maillog'
-
-        # annotation = IAnnotations(self.context)
-        # subscribed = cache.get(key, None)
-
-        # if not subscribed:
-        #     subscribed = self._get_max_subscribed_to_context()
-        #     cache[key] = subscribed
-
-        # return "HOLA"
