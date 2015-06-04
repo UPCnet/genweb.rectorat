@@ -8,7 +8,7 @@ from plone.indexer import indexer
 from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
-
+from zope.annotation.interfaces import IAnnotations
 
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
@@ -162,6 +162,13 @@ class View(grok.View):
         listMails = regex.findall(value)
 
         return ', '.join(set(listMails))
+
+    def MailLogInformation(self):
+        """ Obtain annotations send mail :)
+        """
+        annotations = IAnnotations(self.context)
+
+        return annotations['genweb.rectorat.logMail']
 
 
 class Edit(dexterity.EditForm):
