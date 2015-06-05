@@ -20,7 +20,7 @@ def sessio_changed(session, event):
             lang = getToolByName(session, 'portal_languages').getPreferredLanguage()
             now = strftime("%d/%m/%Y %H:%M:%S")
             sessiontitle = session.Title()
-            place = session.llocConvocatoria
+
             sessiondate = session.dataSessio.strftime("%d/%m/%Y")
             starthour = session.horaInici.strftime("%H:%M")
             endHour = session.horaFi.strftime("%H:%M")
@@ -28,6 +28,11 @@ def sessio_changed(session, event):
             organ = api.content.get(path=organ_path)
             sessionLink = session.absolute_url()
             senderPerson = organ.fromMail
+
+            if session.llocConvocatoria is None:
+                place = ''
+            else:
+                place = session.llocConvocatoria.encode('utf-8')
 
             if session.ordreSessio is None:
                 ordenField = ''
@@ -51,7 +56,7 @@ def sessio_changed(session, event):
                 introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                           '</strong><br/><br/>Lloc: ' + str(place.encode('utf-8')) + "<br/>Data: " + str(sessiondate) + \
+                           '</strong><br/><br/>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
                            '<br/><br/><strong> Ordre del dia </strong>' + str(ordenField)
@@ -63,7 +68,7 @@ def sessio_changed(session, event):
                 introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                           '</strong><br/><br/>Lugar: ' + str(place.encode('utf-8')) + "<br/>Fecha: " + str(sessiondate) + \
+                           '</strong><br/><br/>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
                            "<br/>Hora de inicio: " + str(starthour) + \
                            "<br/>Hora de finalización: " + str(endHour) + \
                            '<br/><br/><strong> Orden del día </strong>' + str(ordenField)
@@ -77,7 +82,7 @@ def sessio_changed(session, event):
                 introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                           '</strong><br/><br/>Place: ' + str(place.encode('utf-8')) + "<br/>Date: " + str(sessiondate) + \
+                           '</strong><br/><br/>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
                            "<br/>Start time: " + str(starthour) + \
                            "<br/>End time: " + str(endHour) + \
                            '<br/><br/><strong> Contents </strong>' + str(ordenField)
