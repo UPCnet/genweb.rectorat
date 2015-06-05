@@ -168,7 +168,7 @@ class View(grok.View):
         """
         annotations = IAnnotations(self.context)
 
-        return annotations['genweb.rectorat.logMail']
+        return sorted(annotations['genweb.rectorat.logMail'],reverse=True)
 
 
 class Edit(dexterity.EditForm):

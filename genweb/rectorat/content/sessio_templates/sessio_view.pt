@@ -257,7 +257,6 @@
       </table>
   </tal:RelatedDocs>
 
-
   <tal:omit-tag tal:condition="view/isAuthenticated">
     <hr/>
     <div class="accordion" id="notificationsList">
@@ -269,47 +268,32 @@
         </h3>
       </div>
 
-      <span tal:content="view/MailLogInformation"></span>
-
       <div id="collapseHistoryNotif" class="collapse">
         <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Data</th>
-                  <th>Qui ha notificat</th>
+                  <th>Data i hora</th>
+                  <th>Notificador</th>
                   <th>Destinataris</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="active">
-                  <td>1</td>
-                  <td>
-                    <!-- <span tal:content="context/notificationDate"></span> -->
-                  </td>
-                  <td>admin</td>
-                  <td>
-                    <span tal:content="context/adrecaLlista"></span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    <!-- <span tal:content="context/notificationDate"></span> -->
-                  </td>
-                  <td>admin</td>
-                  <td>
-                    <span tal:content="context/adrecaLlista"></span>
-                  </td>
-                </tr>
+                <tal:documents repeat="data view/MailLogInformation">
+                  <tr>
+                    <td tal:define="value data/dateMail"
+                        tal:content="python:value.strftime('%d/%m/%Y %H:%M:%S')">
+                    </td>
+                    <td tal:content="data/fromMail"></td>
+                    <td tal:content="data/toMail"></td>
+                  </tr>
+                </tal:documents>
               </tbody>
             </table>
           </div>
       </div>
     </div>
   </tal:omit-tag>
-
 
 </metal:content-core>
 

@@ -25,37 +25,30 @@ class AddLogMail(BrowserView):
         KEY = 'genweb.rectorat.logMail'
 
         annotations = IAnnotations(self.context)
-        # import ipdb;ipdb.set_trace()
+
         if annotations is not None:
 
             logData = annotations.get(KEY, None)
 
             if logData is (None or ''):
+                # If it's emppty, initialize data
                 data = []
-                dateMail = datetime.now()
-                fromMail = 'TEST_USER'
-                try:
-                    toMail = self.request.form['recipients-name']
-                except:
-                    return
-
-                values = dict(dateMail=dateMail,
-                              fromMail=fromMail,
-                              toMail=toMail)
-                data.append(values)
-                annotations[KEY] = data
             else:
-                dateMail = datetime.now()
-                fromMail = 'TEST_USER'
+                # Else, get data and append values
                 data = annotations.get(KEY)
-                try:
-                    toMail = self.request.form['recipients-name']
-                except:
-                    return
-                values = dict(dateMail=dateMail,
-                              fromMail=fromMail,
-                              toMail=toMail)
-                data.append(values)
-                annotations[KEY] = data
+
+            dateMail = datetime.now()
+            fromMail = 'TEST_USER'  # TODO: Obtain username
+            try:
+                # If someone access directly to this view... do nothing
+                toMail = self.request.form['recipients-name']
+            except:
+                return
+
+            values = dict(dateMail=dateMail,
+                          fromMail=fromMail,
+                          toMail=toMail)
+            data.append(values)
+            annotations[KEY] = data
 
         self.request.response.redirect(self.context.absolute_url())
