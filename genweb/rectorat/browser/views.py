@@ -13,8 +13,6 @@ def sessio_sendMail(session, sender, recipients, body):
     """ Si enviem mail des de la sessio.
         Mateix codi que  /browser/events/change.py
     """
-    # TODO: El fromMail ha de ser el del organ?
-
     lang = getToolByName(session, 'portal_languages').getPreferredLanguage()
     now = strftime("%d/%m/%Y %H:%M:%S")
     sessiontitle = session.Title()
@@ -89,8 +87,9 @@ def sessio_sendMail(session, sender, recipients, body):
                               immediate=False,
                               charset='utf8',
                               msg_type='text/html')
+        session.plone_utils.addPortalMessage("Missatge enviat correctament", 'info')
     except:
-        session.plone_utils.addPortalMessage("Mail no enviat. Comprovi el from i el to del missatge", 'error')
+        session.plone_utils.addPortalMessage("Missatge no enviat. Comprovi el from i el to del missatge", 'error')
 
 
 class ActaPrintView(NewsletterBase):
@@ -118,14 +117,14 @@ class AddLogMail(BrowserView):
             logData = annotations.get(KEY, None)
 
             if logData is (None or ''):
-                # If it's emppty, initialize data
+                # If it's empty, initialize data
                 data = []
             else:
                 # Else, get data and append values
                 data = annotations.get(KEY)
 
             dateMail = datetime.now()
-            fromMail = 'TEST_USER'  # TODO: Obtain username
+            fromMail = self.userName()
             body = ''  # Fiquem el body buit per si de cas...
 
             try:
@@ -136,12 +135,24 @@ class AddLogMail(BrowserView):
                 return
 
             values = dict(dateMail=dateMail,
-                          fromMail=fromMail,
+                          fromMail='Missatge enviat per: ' + fromMail,
                           toMail=toMail)
+
             data.append(values)
             annotations[KEY] = data
 
         sessio_sendMail(self.context, fromMail, toMail, body)  # Enviem mail
-                           # session, sender, recipients, body
+        # session, sender, recipients, body
 
         self.request.response.redirect(self.context.absolute_url())
+
+    def userName(self):
+        """ Returns validated user name
+        """
+        from plone import api
+        anon = api.user.is_anonymous()
+
+        if not anon:
+            return api.user.get_current().id
+        else:
+            return None

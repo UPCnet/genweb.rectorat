@@ -2,7 +2,8 @@
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from time import strftime
-from Acquisition import aq_parent, aq_inner
+from zope.annotation.interfaces import IAnnotations
+from datetime import datetime
 
 
 def sessio_changed(session, event):
@@ -27,7 +28,7 @@ def sessio_changed(session, event):
             organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
             organ = api.content.get(path=organ_path)
             sessionLink = session.absolute_url()
-            senderPerson = organ.fromMail
+            senderPerson = str(organ.fromMail)
 
             if session.llocConvocatoria is None:
                 place = ''
@@ -90,6 +91,7 @@ def sessio_changed(session, event):
 
             # Sending Mail!
             try:
+                addAnnotation(session, senderPerson, recipientPerson)
                 session.MailHost.send(bodyMail,
                                       mto=recipientPerson,
                                       mfrom=senderPerson,
@@ -98,7 +100,34 @@ def sessio_changed(session, event):
                                       immediate=False,
                                       charset='utf8',
                                       msg_type='text/html')
+                session.plone_utils.addPortalMessage("Missatge enviat correctament.", 'info')
             except:
-                # parent = aq_inner(session).absolute_url()
-                session.plone_utils.addPortalMessage("Mail no enviat. Comprovi el from i el to del missatge", 'error')
-                # session.request.response.redirect(parent)
+                session.plone_utils.addPortalMessage("Missatge no enviat. Comprovi el from i el to del missatge", 'error')
+
+
+def addAnnotation(object, sender, recipients):
+    """ Add annotation after change state and send mail
+    """
+    KEY = 'genweb.rectorat.logMail'
+
+    annotations = IAnnotations(object)
+
+    if annotations is not None:
+
+        logData = annotations.get(KEY, None)
+
+        if logData is (None or ''):
+            # If it's empty, initialize data
+            data = []
+        else:
+            # Else, get data and append values
+            data = annotations.get(KEY)
+
+        dateMail = datetime.now()
+
+        values = dict(dateMail=dateMail,
+                      fromMail='Acció convocar: ' + sender,
+                      toMail=', '.join(map(str, recipients)))
+
+        data.append(values)
+        annotations[KEY] = data
