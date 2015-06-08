@@ -116,17 +116,18 @@ def addAnnotation(object, sender, recipients):
 
         logData = annotations.get(KEY, None)
 
-        if logData is (None or ''):
+        try:
+            len(logData)
+            # Get data and append values
+            data = annotations.get(KEY)
+        except:
             # If it's empty, initialize data
             data = []
-        else:
-            # Else, get data and append values
-            data = annotations.get(KEY)
 
         dateMail = datetime.now()
 
         values = dict(dateMail=dateMail,
-                      fromMail='Acció convocar: ' + sender,
+                      fromMail='Sessió convocada per: ' + sender,
                       toMail=', '.join(map(str, recipients)))
 
         data.append(values)

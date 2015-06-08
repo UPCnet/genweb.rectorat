@@ -107,26 +107,20 @@ class AddLogMail(BrowserView):
     def __call__(self):
         """ Adding send mail information to context in annotation format
         """
-
         KEY = 'genweb.rectorat.logMail'
-
         annotations = IAnnotations(self.context)
-
         if annotations is not None:
-
             logData = annotations.get(KEY, None)
-
-            if logData is (None or ''):
+            try:
+                len(logData)
+                # Get data and append values
+                data = annotations.get(KEY)
+            except:
                 # If it's empty, initialize data
                 data = []
-            else:
-                # Else, get data and append values
-                data = annotations.get(KEY)
-
             dateMail = datetime.now()
             fromMail = self.userName()
             body = ''  # Fiquem el body buit per si de cas...
-
             try:
                 # If someone access directly to this view... do nothing
                 toMail = self.request.form['recipients-name']

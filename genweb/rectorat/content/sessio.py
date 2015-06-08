@@ -167,8 +167,10 @@ class View(grok.View):
         """ Obtain annotations send mail :)
         """
         annotations = IAnnotations(self.context)
-
-        return sorted(annotations['genweb.rectorat.logMail'],reverse=True)
+        try:
+            return sorted(annotations['genweb.rectorat.logMail'], reverse=True)
+        except:
+            return None
 
 
 class Edit(dexterity.EditForm):

@@ -94,7 +94,7 @@
                   tal:content="context/llocConvocatoria"></span>
           </li>  
           <li style="float:right" tal:condition="view/isAuthenticated">
-            <a tal:attributes="href string:#notificationsList">
+            <a tal:attributes="href string:${context/absolute_url}#notificationsList">
               <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
             </a>
           </li>   
@@ -266,7 +266,7 @@
         <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
            data-parent="#notificationsList" href="#collapseHistoryNotif">
           <tal:omit-tag i18n:translate="">Notifications history</tal:omit-tag>
-           <i class="icon-chevron-down"></i>
+           <i class="icon-chevron-down"></i><a name="notificationsList"></a>
         </h3>
       </div>
 
