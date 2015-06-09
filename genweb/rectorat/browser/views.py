@@ -147,6 +147,9 @@ class AddLogMail(BrowserView):
         anon = api.user.is_anonymous()
 
         if not anon:
-            return api.user.get_current().id
+            try:
+                return api.user.get_current().email
+            except:
+                return 'no-reply@upcnet.es'
         else:
             return None

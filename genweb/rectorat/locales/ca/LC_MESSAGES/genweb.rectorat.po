@@ -278,7 +278,7 @@ msgstr "Rebutjat"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:182
 msgid "Related documents"
-msgstr "Doucments relacionats"
+msgstr "Documents relacionats"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
 msgid "Send message"
