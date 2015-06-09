@@ -43,7 +43,7 @@ def sessio_sendMail(session, sender, recipients, body):
         subjectMail = "Canvis a la sessió: " + str(sessiontitle)
         introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-        moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+        moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                    '</strong><br/><br/>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                    "<br/>Hora d'inici: " + str(starthour) + \
                    "<br/>Hora de fi: " + str(endHour) + \
@@ -55,7 +55,7 @@ def sessio_sendMail(session, sender, recipients, body):
         subjectMail = "Cambios en la sesión: " + str(sessiontitle)
         introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-        moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+        moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                    '</strong><br/><br/>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
                    "<br/>Hora de inicio: " + str(starthour) + \
                    "<br/>Hora de finalización: " + str(endHour) + \
@@ -69,7 +69,7 @@ def sessio_sendMail(session, sender, recipients, body):
         subjectMail = "Session has changes: " + str(sessiontitle)
         introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-        moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+        moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                    '</strong><br/><br/>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
                    "<br/>Start time: " + str(starthour) + \
                    "<br/>End time: " + str(endHour) + \

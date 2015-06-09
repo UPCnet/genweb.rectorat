@@ -57,7 +57,7 @@ def sessio_changed(session, event):
                 subjectMail = "Convocada ordre del dia: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                            '</strong><br/><br/>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
@@ -69,7 +69,7 @@ def sessio_changed(session, event):
                 subjectMail = "Convocada orden del día: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                            '</strong><br/><br/>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
                            "<br/>Hora de inicio: " + str(starthour) + \
                            "<br/>Hora de finalización: " + str(endHour) + \
@@ -83,7 +83,7 @@ def sessio_changed(session, event):
                 subjectMail = "Convened agenda: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                            '</strong><br/><br/>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
                            "<br/>Start time: " + str(starthour) + \
                            "<br/>End time: " + str(endHour) + \
@@ -128,7 +128,7 @@ def addAnnotation(object, sender, recipients):
         dateMail = datetime.now()
 
         values = dict(dateMail=dateMail,
-                      fromMail=_("Sessio convocada per: ") + sender,
+                      fromMail=_("Sessio convocada per: ") + str(sender),
                       toMail=', '.join(map(str, recipients)))
 
         data.append(values)

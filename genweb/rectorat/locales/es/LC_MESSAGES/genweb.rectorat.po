@@ -355,7 +355,7 @@ msgid "mail address"
 msgstr "Direcciones de notificación de este órgano"
 
 msgid "Sessio convocada per: "
-msgstr "Sesion convocada por: "
+msgstr "Sesión convocada por: "
 
 msgid "Missatge no enviat. Comprovi el from i el to del missatge"
 msgstr "Mensaje no enviado. Compruebe el from/to del mensaje"
