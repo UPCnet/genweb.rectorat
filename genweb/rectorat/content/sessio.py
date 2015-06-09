@@ -170,7 +170,7 @@ class View(grok.View):
         try:
             return sorted(annotations['genweb.rectorat.logMail'], reverse=True)
         except:
-            return None
+            return False
 
 
 class Edit(dexterity.EditForm):

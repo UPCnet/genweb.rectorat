@@ -7,11 +7,12 @@ from datetime import datetime
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from time import strftime
+from genweb.rectorat import _
 
 
 def sessio_sendMail(session, sender, recipients, body):
     """ Si enviem mail des de la sessio.
-        Mateix codi que  /browser/events/change.py
+        Mateix codi que /browser/events/change.py
     """
     lang = getToolByName(session, 'portal_languages').getPreferredLanguage()
     now = strftime("%d/%m/%Y %H:%M:%S")
@@ -20,8 +21,6 @@ def sessio_sendMail(session, sender, recipients, body):
     sessiondate = session.dataSessio.strftime("%d/%m/%Y")
     starthour = session.horaInici.strftime("%H:%M")
     endHour = session.horaFi.strftime("%H:%M")
-    organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
-    organ = api.content.get(path=organ_path)
     sessionLink = session.absolute_url()
 
     if session.llocConvocatoria is None:
@@ -41,7 +40,7 @@ def sessio_sendMail(session, sender, recipients, body):
 
     if lang == 'ca':
         session.notificationDate = now
-        subjectMail = "Convocada ordre del dia: " + organ.title.encode('utf-8')
+        subjectMail = "Canvis a la sessió: " + str(sessiontitle)
         introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -53,7 +52,7 @@ def sessio_sendMail(session, sender, recipients, body):
 
     if lang == 'es':
         session.notificationDate = now
-        subjectMail = "Convocada orden del día: " + organ.title.encode('utf-8')
+        subjectMail = "Cambios en la sesión: " + str(sessiontitle)
         introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -67,7 +66,7 @@ def sessio_sendMail(session, sender, recipients, body):
         now = strftime("%Y-%m-%d %H:%M")
         session.notificationDate = now
         sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-        subjectMail = "Convened agenda: " + organ.title.encode('utf-8')
+        subjectMail = "Session has changes: " + str(sessiontitle)
         introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '</br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -87,9 +86,11 @@ def sessio_sendMail(session, sender, recipients, body):
                               immediate=False,
                               charset='utf8',
                               msg_type='text/html')
-        session.plone_utils.addPortalMessage("Missatge enviat correctament", 'info')
+        session.plone_utils.addPortalMessage(
+            _("Missatge enviat correctament"), 'info')
     except:
-        session.plone_utils.addPortalMessage("Missatge no enviat. Comprovi el from i el to del missatge", 'error')
+        session.plone_utils.addPortalMessage(
+            _("Missatge no enviat. Comprovi els destinataris del missatge"), 'error')
 
 
 class ActaPrintView(NewsletterBase):
@@ -129,7 +130,7 @@ class AddLogMail(BrowserView):
                 return
 
             values = dict(dateMail=dateMail,
-                          fromMail='Missatge enviat per: ' + fromMail,
+                          fromMail=_("Missatge enviat per: ") + fromMail,
                           toMail=toMail)
 
             data.append(values)
@@ -143,7 +144,6 @@ class AddLogMail(BrowserView):
     def userName(self):
         """ Returns validated user name
         """
-        from plone import api
         anon = api.user.is_anonymous()
 
         if not anon:

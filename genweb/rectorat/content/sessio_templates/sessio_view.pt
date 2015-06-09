@@ -27,12 +27,16 @@
             <form action="addLogMail" method="POST">
               <div class="form-group">
                 <label for="recipient-name" class="control-label" i18n:translate="">Recipients</label>
+                <br/>
+                <description i18n:translate="">Mail address separated by commas.</description>
                 <input type="text" class="form-control span12" 
                        id="recipients-name" name="recipients-name" 
-                       style="width: 97%"/>
+                       style="width: 97%" />
               </div>
               <div class="form-group">
                 <label for="message-text" class="control-label" i18n:translate="">Message</label>
+                <br/>
+                <description i18n:translate="">This content will be used as message content</description>
                 <textarea class="form-control" 
                           id="message-text" name="message-text"
                           style="height:200px"></textarea>
@@ -93,7 +97,8 @@
             <span style="float:right" 
                   tal:content="context/llocConvocatoria"></span>
           </li>  
-          <li style="float:right" tal:condition="view/isAuthenticated">
+          <li style="float:right" tal:condition="view/isAuthenticated"
+              tal:condition="view/MailLogInformation">
             <a tal:attributes="href string:${context/absolute_url}#notificationsList">
               <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
             </a>
@@ -259,7 +264,7 @@
       </table>
   </tal:RelatedDocs>
 
-  <tal:omit-tag tal:condition="view/isAuthenticated">
+  <tal:omit-tag tal:condition="view/isAuthenticated" tal:condition="view/MailLogInformation">
     <hr/>
     <div class="accordion" id="notificationsList">
       <div class="accordion-heading">
@@ -275,9 +280,15 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>Data i hora</th>
-                  <th>Notificador</th>
-                  <th>Destinataris</th>
+                  <th>
+                     <tal:data i18n:translate="">Data i hora</tal:data>
+                   </th>
+                  <th>
+                    <tal:data i18n:translate="">Notificador</tal:data>
+                  </th>
+                  <th>
+                    <tal:data i18n:translate="">Destinataris</tal:data>
+                  </th>
                 </tr>
               </thead>
               <tbody>
