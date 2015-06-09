@@ -26,7 +26,8 @@
       <tal:block tal:condition="context/membresOrgan">
         <div class="accordion" id="accordionmembresOrgan">
           <div class="accordion-heading">
-            <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95; padding-left: 0px;"
+            <h3 class="accordion-toggle" data-toggle="collapse" 
+                style="color: #557c95; padding-left: 0px;"
                data-parent="#accordionmembresOrgan" href="#collapsemembresOrgan">
               <tal:omit-tag i18n:translate="">Organ Govern members</tal:omit-tag>
                <i class="icon-chevron-down"></i>

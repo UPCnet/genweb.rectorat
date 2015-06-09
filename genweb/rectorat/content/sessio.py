@@ -3,6 +3,7 @@ import datetime
 from five import grok
 from zope import schema
 from plone import api
+import re
 
 from plone.indexer import indexer
 from plone.directives import dexterity
@@ -156,12 +157,13 @@ class View(grok.View):
     def ConvocatsToMail(self):
         """ Retorna mails de convocats adaptats per enviar mail
         """
-        value = self.context.membresConvocats.output
-        import re
-        regex = re.compile(r'([\w.]+@[\w.]+)', re.I)
-        listMails = regex.findall(value)
-
-        return ', '.join(set(listMails))
+        try:
+            value = self.context.membresConvocats.output
+            regex = re.compile(r'([\w.]+@[\w.]+)', re.I)
+            listMails = regex.findall(value)
+            return ', '.join(set(listMails))
+        except:
+            return None
 
     def MailLogInformation(self):
         """ Obtain annotations send mail :)

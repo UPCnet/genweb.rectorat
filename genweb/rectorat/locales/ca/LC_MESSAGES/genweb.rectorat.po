@@ -282,7 +282,7 @@ msgstr "Doucments relacionats"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
 msgid "Send message"
-msgstr "Enviar missatge"
+msgstr "Notificar canvi"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session"
@@ -354,3 +354,8 @@ msgstr "Títol"
 msgid "mail address"
 msgstr "Adreces de notificació de l'òrgan"
 
+msgid "Sessio convocada per: "
+msgstr "Sessió convocada per: "
+
+msgid "Missatge no enviat. Comprovi el from i el to del missatge"
+msgstr "Missatge no enviat. Comprovi el from i el to del missatge"

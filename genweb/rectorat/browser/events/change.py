@@ -4,6 +4,7 @@ from plone import api
 from time import strftime
 from zope.annotation.interfaces import IAnnotations
 from datetime import datetime
+from genweb.rectorat import _
 
 
 def sessio_changed(session, event):
@@ -100,9 +101,9 @@ def sessio_changed(session, event):
                                       immediate=False,
                                       charset='utf8',
                                       msg_type='text/html')
-                session.plone_utils.addPortalMessage("Missatge enviat correctament.", 'info')
+                session.plone_utils.addPortalMessage(_("Missatge enviat correctament"), 'info')
             except:
-                session.plone_utils.addPortalMessage("Missatge no enviat. Comprovi el from i el to del missatge", 'error')
+                session.plone_utils.addPortalMessage(_("Missatge no enviat. Comprovi el from i el to del missatge"), 'error')
 
 
 def addAnnotation(object, sender, recipients):
@@ -127,7 +128,7 @@ def addAnnotation(object, sender, recipients):
         dateMail = datetime.now()
 
         values = dict(dateMail=dateMail,
-                      fromMail='Sessió convocada per: ' + sender,
+                      fromMail=_("Sessio convocada per: ") + sender,
                       toMail=', '.join(map(str, recipients)))
 
         data.append(values)

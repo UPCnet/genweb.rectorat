@@ -197,7 +197,7 @@ msgstr "Mensaje enviado por: "
 
 #: ./genweb/rectorat/browser/views.py:93
 msgid "Missatge no enviat. Comprovi els destinataris del missatge"
-msgstr "Mensaje no enviado. Escriba correctamente los destinatarios del mensaje"
+msgstr "Mensaje no enviado. Comprueba los destinatarios del mensaje"
 
 #: ./genweb/rectorat/browser/views/acta_print.pt:79
 #: ./genweb/rectorat/content/acta.py:69
@@ -282,7 +282,7 @@ msgstr "Documentos relacionados"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
 msgid "Send message"
-msgstr "Enviar mensaje"
+msgstr "Notificar cambio"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session"
@@ -341,7 +341,7 @@ msgstr "Estado:"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:39
 msgid "This content will be used as message content"
-msgstr "Este comtenido se utilizará como mensaje del correo."
+msgstr "Este contenido será utilizado como mensaje del correo"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:48
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:193
@@ -354,3 +354,8 @@ msgstr "Título"
 msgid "mail address"
 msgstr "Direcciones de notificación de este órgano"
 
+msgid "Sessio convocada per: "
+msgstr "Sesion convocada por: "
+
+msgid "Missatge no enviat. Comprovi el from i el to del missatge"
+msgstr "Mensaje no enviado. Compruebe el from/to del mensaje"

@@ -114,7 +114,8 @@
     <hr/>
     <div class="accordion" id="accordionConvocats">
       <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+        <h3 class="accordion-toggle" data-toggle="collapse" 
+            style="color: #557c95; padding-left: 0px;"
            data-parent="#accordionConvocats" href="#collapseConvocats">
           <tal:omit-tag i18n:translate="">Incoming members list</tal:omit-tag>
            <i class="icon-chevron-down"></i>
@@ -130,7 +131,8 @@
     <hr/>
     <div class="accordion" id="accordionConvidats">
       <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+        <h3 class="accordion-toggle" data-toggle="collapse" 
+            style="color: #557c95; padding-left: 0px;"
            data-parent="#accordionConvidats" href="#collapseConvidats">
           <tal:omit-tag i18n:translate="">Invited members</tal:omit-tag>
            <i class="icon-chevron-down"></i>
@@ -146,7 +148,8 @@
     <hr/>
     <div class="accordion" id="accordionExcusats">
       <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+        <h3 class="accordion-toggle" data-toggle="collapse" 
+            style="color: #557c95; padding-left: 0px;"
            data-parent="#accordionExcusats" href="#collapseExcusats">
           <tal:omit-tag i18n:translate="">Excused members</tal:omit-tag>
            <i class="icon-chevron-down"></i>
@@ -268,7 +271,8 @@
     <hr/>
     <div class="accordion" id="notificationsList">
       <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" style="color: #557c95;"
+        <h3 class="accordion-toggle" data-toggle="collapse" 
+            style="color: #557c95; padding-left: 0px;"
            data-parent="#notificationsList" href="#collapseHistoryNotif">
           <tal:omit-tag i18n:translate="">Notifications history</tal:omit-tag>
            <i class="icon-chevron-down"></i><a name="notificationsList"></a>
