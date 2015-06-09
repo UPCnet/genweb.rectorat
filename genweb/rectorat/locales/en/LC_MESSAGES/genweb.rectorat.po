@@ -333,7 +333,7 @@ msgstr "Sessions list"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:60
 msgid "State"
-msgstr "State
+msgstr "State"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:39
 msgid "Status"
