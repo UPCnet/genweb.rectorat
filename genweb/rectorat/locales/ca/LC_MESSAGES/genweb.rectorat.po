@@ -83,7 +83,7 @@ msgstr "Es pot fer servir per ocultar contingut. Un camp intern de contingut, i 
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:284
 msgid "Data i hora"
-msgstr "Datai hora"
+msgstr "Data i hora"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:104
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:81
@@ -282,7 +282,7 @@ msgstr "Documents relacionats"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
 msgid "Send message"
-msgstr "Notificar canvi"
+msgstr "Enviar missatge"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session"
@@ -353,9 +353,6 @@ msgstr "Títol"
 #: ./genweb/rectorat/content/sessio.py:55
 msgid "mail address"
 msgstr "Adreces de notificació de l'òrgan"
-
-msgid "Sessio convocada per: "
-msgstr "Sessió convocada per: "
 
 msgid "Missatge no enviat. Comprovi el from i el to del missatge"
 msgstr "Missatge no enviat. Comprovi el from i el to del missatge"

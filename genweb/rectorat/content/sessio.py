@@ -154,14 +154,12 @@ class View(grok.View):
                                                   'depth': 1})
         return data
 
-    def ConvocatsToMail(self):
-        """ Retorna mails de convocats adaptats per enviar mail
+    def OrganMail(self):
+        """ Retorna mails de l'organ
         """
+        # coger gente campo from del organ
         try:
-            value = self.context.membresConvocats.output
-            regex = re.compile(r'([\w.]+@[\w.]+)', re.I)
-            listMails = regex.findall(value)
-            return ', '.join(set(listMails))
+            return self.context.aq_parent.adrecaLlista
         except:
             return None
 

@@ -16,7 +16,7 @@
       <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
     </button>
     <div class="modal fade" id="sendmailModal" tabindex="-1" role="dialog" aria-labelledby="sendmailModalLabel" aria-hidden="true"
-      tal:attributes="data-mails view/ConvocatsToMail">
+      tal:attributes="data-mails view/OrganMail">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">

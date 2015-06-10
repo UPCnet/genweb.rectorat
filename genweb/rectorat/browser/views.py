@@ -10,7 +10,7 @@ from time import strftime
 from genweb.rectorat import _
 
 
-def sessio_sendMail(session, sender, recipients, body):
+def sessio_sendMail(session, recipients, body):
     """ Si enviem mail des de la sessio.
         Mateix codi que /browser/events/change.py
     """
@@ -22,6 +22,8 @@ def sessio_sendMail(session, sender, recipients, body):
     starthour = session.horaInici.strftime("%H:%M")
     endHour = session.horaFi.strftime("%H:%M")
     sessionLink = session.absolute_url()
+    organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
+    organ = api.content.get(path=organ_path)
 
     if session.llocConvocatoria is None:
         place = ''
@@ -34,13 +36,13 @@ def sessio_sendMail(session, sender, recipients, body):
         ordenField = session.ordreSessio.output.encode('utf-8')
 
     # Fixed from modal values
-    senderPerson = sender
+    senderPerson = str(organ.fromMail)
     customBody = body + '<br/><br/>'
     recipientPerson = recipients
 
     if lang == 'ca':
         session.notificationDate = now
-        subjectMail = "Canvis a la sessió: " + str(sessiontitle)
+        subjectMail = "Missatge de la sessió: " + str(sessiontitle) + ' / ' + organ.title.encode('utf-8')
         introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -52,7 +54,7 @@ def sessio_sendMail(session, sender, recipients, body):
 
     if lang == 'es':
         session.notificationDate = now
-        subjectMail = "Cambios en la sesión: " + str(sessiontitle)
+        subjectMail = "Mensaje de la sesión: " + str(sessiontitle) + ' / ' + organ.title.encode('utf-8')
         introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -66,7 +68,7 @@ def sessio_sendMail(session, sender, recipients, body):
         now = strftime("%Y-%m-%d %H:%M")
         session.notificationDate = now
         sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-        subjectMail = "Session has changes: " + str(sessiontitle)
+        subjectMail = "Session message: " + str(sessiontitle) + ' / ' + organ.title.encode('utf-8')
         introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -110,6 +112,7 @@ class AddLogMail(BrowserView):
         """
         KEY = 'genweb.rectorat.logMail'
         annotations = IAnnotations(self.context)
+        send = True
         if annotations is not None:
             logData = annotations.get(KEY, None)
             try:
@@ -120,7 +123,13 @@ class AddLogMail(BrowserView):
                 # If it's empty, initialize data
                 data = []
             dateMail = datetime.now()
-            fromMail = self.userName()
+
+            anon = api.user.is_anonymous()
+            if not anon:
+                username = api.user.get_current().id
+            else:
+                username = ''
+
             body = ''  # Fiquem el body buit per si de cas...
             try:
                 # If someone access directly to this view... do nothing
@@ -129,27 +138,18 @@ class AddLogMail(BrowserView):
             except:
                 return
 
-            values = dict(dateMail=dateMail,
-                          fromMail=_("Missatge enviat per: ") + fromMail,
-                          toMail=toMail)
+            if send is True:
+                values = dict(dateMail=dateMail,
+                              fromMail=_("Missatge enviat per: ") + username,
+                              toMail=toMail)
 
-            data.append(values)
-            annotations[KEY] = data
+                data.append(values)
+                annotations[KEY] = data
 
-        sessio_sendMail(self.context, fromMail, toMail, body)  # Enviem mail
+                sessio_sendMail(self.context, toMail, body)  # Enviem mail
         # session, sender, recipients, body
 
         self.request.response.redirect(self.context.absolute_url())
 
-    def userName(self):
-        """ Returns validated user name
-        """
-        anon = api.user.is_anonymous()
 
-        if not anon:
-            try:
-                return api.user.get_current().email
-            except:
-                return 'no-reply@upcnet.es'
-        else:
-            return None
+# Noitificar cnavi -> Enviar missatge

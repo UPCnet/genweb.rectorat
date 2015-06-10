@@ -92,7 +92,7 @@ def sessio_changed(session, event):
 
             # Sending Mail!
             try:
-                addAnnotation(session, senderPerson, recipientPerson)
+                addAnnotation(session, recipientPerson)
                 session.MailHost.send(bodyMail,
                                       mto=recipientPerson,
                                       mfrom=senderPerson,
@@ -106,7 +106,7 @@ def sessio_changed(session, event):
                 session.plone_utils.addPortalMessage(_("Missatge no enviat. Comprovi el from i el to del missatge"), 'error')
 
 
-def addAnnotation(object, sender, recipients):
+def addAnnotation(object, recipients):
     """ Add annotation after change state and send mail
     """
     KEY = 'genweb.rectorat.logMail'
@@ -126,9 +126,10 @@ def addAnnotation(object, sender, recipients):
             data = []
 
         dateMail = datetime.now()
+        username = api.user.get_current().id
 
         values = dict(dateMail=dateMail,
-                      fromMail=_("Sessio convocada per: ") + str(sender),
+                      fromMail="Sessió convocada per: " + str(username),
                       toMail=', '.join(map(str, recipients)))
 
         data.append(values)
