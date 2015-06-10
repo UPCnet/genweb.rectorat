@@ -98,7 +98,7 @@
                   tal:content="context/llocConvocatoria"></span>
           </li>  
           <li style="float:right" tal:condition="view/isAuthenticated"
-              tal:condition="view/MailLogInformation">
+              >
             <a tal:attributes="href string:${context/absolute_url}#notificationsList">
               <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
             </a>
@@ -267,7 +267,7 @@
       </table>
   </tal:RelatedDocs>
 
-  <tal:omit-tag tal:condition="view/isAuthenticated" tal:condition="view/MailLogInformation">
+  <tal:omit-tag tal:condition="view/LogInformation">
     <hr/>
     <div class="accordion" id="notificationsList">
       <div class="accordion-heading">
@@ -296,7 +296,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tal:documents repeat="data view/MailLogInformation">
+                <tal:documents repeat="data view/LogInformation">
                   <tr>
                     <td tal:define="value data/dateMail"
                         tal:content="python:value.strftime('%d/%m/%Y %H:%M:%S')">

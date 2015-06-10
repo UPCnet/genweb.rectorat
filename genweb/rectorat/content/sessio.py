@@ -163,14 +163,17 @@ class View(grok.View):
         except:
             return None
 
-    def MailLogInformation(self):
+    def LogInformation(self):
         """ Obtain annotations send mail :)
         """
-        annotations = IAnnotations(self.context)
-        try:
-            return sorted(annotations['genweb.rectorat.logMail'], reverse=True)
-        except:
+        if api.user.is_anonymous():
             return False
+        else:
+            annotations = IAnnotations(self.context)
+            try:
+                return sorted(annotations['genweb.rectorat.logMail'], reverse=True)
+            except:
+                return False
 
 
 class Edit(dexterity.EditForm):
