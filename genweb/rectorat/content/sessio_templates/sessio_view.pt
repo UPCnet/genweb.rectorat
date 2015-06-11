@@ -96,8 +96,8 @@
             <b i18n:translate="">Lloc:</b>
             <span style="float:right" 
                   tal:content="context/llocConvocatoria"></span>
-          </li>  
-          <li style="float:right" class="linkNotificacions" tal:condition="view/isAuthenticated"
+          </li> 
+          <li style="float:right" class="linkNotificacions" tal:condition="view/LogInformation"
               >
             <a tal:attributes="href string:${context/absolute_url}#notificationsList">
               <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
