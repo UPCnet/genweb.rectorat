@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.6 (unreleased)
-----------------
+1.5.1 (2015-06-11)
+------------------
 
-- Nothing changed yet.
-
+* added permission to link [hanirok]
 
 1.5 (2015-06-11)
 ----------------
