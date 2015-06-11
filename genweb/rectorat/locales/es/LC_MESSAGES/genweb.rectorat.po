@@ -59,7 +59,7 @@ msgstr "Aprobado"
 #: ./genweb/rectorat/content/acta.py:51
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:40
 msgid "Attending members"
-msgstr "Listado de asistentes"
+msgstr "Listado de mimebros asistentes"
 
 #: ./genweb/rectorat/content/sessio.py:87
 msgid "Body Mail"
@@ -164,7 +164,7 @@ msgstr "Informado"
 #: ./genweb/rectorat/content/acta.py:57
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:57
 msgid "Invited members"
-msgstr "Listado de asistentes"
+msgstr "Listado de miembros invitados"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:166
 msgid "Llistat d'actes"
