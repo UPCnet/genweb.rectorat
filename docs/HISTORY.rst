@@ -1,11 +1,30 @@
 Changelog
 =========
 
-1.5 (unreleased)
+1.5 (2015-06-11)
 ----------------
 
-- Nothing changed yet.
-
+* added missing translations print_view [Roberto Diaz]
+* hide btn in print view, and order string in print [Roberto Diaz]
+* new translation [Roberto Diaz]
+* correct permission to link [Roberto Diaz]
+* changed sender in mails [Roberto Diaz]
+* mispelled strings [Roberto Diaz]
+* error en po [Roberto Diaz]
+* errors [Roberto Diaz]
+* added correct translations & bugs [Roberto Diaz]
+* added translations [Roberto Diaz]
+* added try to send mail and fix anchor link [Roberto Diaz]
+* added log to convocar sessio [Roberto Diaz]
+* Added mail function to annotations [Roberto Diaz]
+* added log table. TODO: username [Roberto Diaz]
+* added annotations, next -> showing correctly! :) [Roberto Diaz]
+* testing log [Roberto Diaz]
+* added button send mail [Roberto Diaz]
+* adding notifications history [Roberto Diaz]
+* adding sendmail popup [Roberto Diaz]
+* replaced from mail string in organ [Roberto Diaz]
+* added informed state to documents [Roberto Diaz]
 
 1.4 (2015-04-30)
 ----------------
