@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-10 15:19+0000\n"
+"POT-Creation-Date: 2015-06-11 09:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,10 @@ msgstr ""
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.acta.xml
 msgid "Acta Description"
+msgstr ""
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:42
+msgid "Acta:"
 msgstr ""
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
@@ -130,7 +134,7 @@ msgstr ""
 msgid "Enter the from used in the mail form"
 msgstr ""
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:74
+#: ./genweb/rectorat/browser/views/acta_print.pt:79
 #: ./genweb/rectorat/content/acta.py:63
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:74
 msgid "Excused members"
@@ -154,6 +158,10 @@ msgstr ""
 msgid "Historic"
 msgstr ""
 
+#: ./genweb/rectorat/browser/views/acta_print.pt:58
+msgid "Hora d'inici:"
+msgstr ""
+
 #: ./genweb/rectorat/content/sessio.py:63
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:120
 msgid "Incoming members list"
@@ -163,7 +171,7 @@ msgstr ""
 msgid "Informed"
 msgstr ""
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:84
+#: ./genweb/rectorat/browser/views/acta_print.pt:74
 #: ./genweb/rectorat/content/acta.py:57
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:57
 msgid "Invited members"
@@ -171,6 +179,10 @@ msgstr ""
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:166
 msgid "Llistat d'actes"
+msgstr ""
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:47
+msgid "Lloc de realitzacio:"
 msgstr ""
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:123
@@ -207,7 +219,7 @@ msgstr ""
 msgid "Missatge no enviat. Comprovi els destinataris del missatge"
 msgstr ""
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:79
+#: ./genweb/rectorat/browser/views/acta_print.pt:84
 #: ./genweb/rectorat/content/acta.py:69
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:91
 msgid "Missing members"
@@ -290,6 +302,10 @@ msgstr ""
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
 msgid "Send message"
+msgstr ""
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:53
+msgid "Sessio del dia:"
 msgstr ""
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml

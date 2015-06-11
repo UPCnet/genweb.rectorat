@@ -44,13 +44,13 @@
                             <span tal:content="context/Title"></span>
                         </tal:omit-tag>
                         <br/>
-                        <th style="display: inline-block;"><strong i18n:translate="">Lloc de realització:</strong></th>
+                        <th style="display: inline-block;"><strong i18n:translate="">Lloc de realitzacio:</strong></th>
                         <tal:omit-tag tal:condition="context/llocConvocatoria">
                             <span tal:content="context/llocConvocatoria"></span>
                         </tal:omit-tag>
                     </div>
                     <div class="span5">
-                        <th style="display: inline-block;"><strong i18n:translate="">Sessió del dia:</strong></th>
+                        <th style="display: inline-block;"><strong i18n:translate="">Sessio del dia:</strong></th>
                         <tal:omit-tag tal:condition="context/dataSessio">
                             <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
                         </tal:omit-tag>

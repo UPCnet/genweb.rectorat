@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-06-10 15:19+0000\n"
+"POT-Creation-Date: 2015-06-11 09:15+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -27,6 +27,10 @@ msgstr "Acta"
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.acta.xml
 msgid "Acta Description"
 msgstr "Descripció de l'Acta"
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:42
+msgid "Acta:"
+msgstr "Acta:"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:193
@@ -127,7 +131,7 @@ msgstr "Indicar la llista/adreces separades per comes."
 msgid "Enter the from used in the mail form"
 msgstr "Cal que aquesta adreça de correu sigui vàlida ja que és la que s'utilitzarà per l'enviament i resposta als missatges."
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:74
+#: ./genweb/rectorat/browser/views/acta_print.pt:79
 #: ./genweb/rectorat/content/acta.py:63
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:74
 msgid "Excused members"
@@ -151,6 +155,10 @@ msgstr "Adreça de correu amb la que s'enviaran els missatges"
 msgid "Historic"
 msgstr "Històric de sessions"
 
+#: ./genweb/rectorat/browser/views/acta_print.pt:58
+msgid "Hora d'inici:"
+msgstr "Hora d'inici:"
+
 #: ./genweb/rectorat/content/sessio.py:63
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:120
 msgid "Incoming members list"
@@ -160,7 +168,7 @@ msgstr "Llista de membres convocats"
 msgid "Informed"
 msgstr "Informat"
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:84
+#: ./genweb/rectorat/browser/views/acta_print.pt:74
 #: ./genweb/rectorat/content/acta.py:57
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:57
 msgid "Invited members"
@@ -169,6 +177,10 @@ msgstr "Llista de membres convidats"
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:166
 msgid "Llistat d'actes"
 msgstr "Llistat d'actes"
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:47
+msgid "Lloc de realitzacio:"
+msgstr "Lloc de realització:"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:123
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:96
@@ -204,7 +216,7 @@ msgstr "Missatge no enviat. Comprovi el from i el to del missatge"
 msgid "Missatge no enviat. Comprovi els destinataris del missatge"
 msgstr "Missatge no enviat. Comprovi els destinataris del missatge"
 
-#: ./genweb/rectorat/browser/views/acta_print.pt:79
+#: ./genweb/rectorat/browser/views/acta_print.pt:84
 #: ./genweb/rectorat/content/acta.py:69
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:91
 msgid "Missing members"
@@ -288,6 +300,10 @@ msgstr "Documents relacionats"
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
 msgid "Send message"
 msgstr "Enviar missatge"
+
+#: ./genweb/rectorat/browser/views/acta_print.pt:53
+msgid "Sessio del dia:"
+msgstr "Sessió del dia:"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.sessio.xml
 msgid "Session"
