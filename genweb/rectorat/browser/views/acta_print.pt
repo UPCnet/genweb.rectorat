@@ -39,23 +39,23 @@
             <div class="span12" style="margin-bottom: 0px">
                 <div class="row-fluid">
                     <div class="span7">
-                        <th style="display: inline-block;"><strong>Acta:</strong></th>
+                        <th style="display: inline-block;"><strong i18n:translate="">Acta:</strong></th>
                         <tal:omit-tag tal:condition="context/Title">
                             <span tal:content="context/Title"></span>
                         </tal:omit-tag>
                         <br/>
-                        <th style="display: inline-block;"><strong>Lloc de realització:</strong></th>
+                        <th style="display: inline-block;"><strong i18n:translate="">Lloc de realització:</strong></th>
                         <tal:omit-tag tal:condition="context/llocConvocatoria">
                             <span tal:content="context/llocConvocatoria"></span>
                         </tal:omit-tag>
                     </div>
                     <div class="span5">
-                        <th style="display: inline-block;"><strong>Sessió del dia:</strong></th>
+                        <th style="display: inline-block;"><strong i18n:translate="">Sessió del dia:</strong></th>
                         <tal:omit-tag tal:condition="context/dataSessio">
                             <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
                         </tal:omit-tag>
                         <br/>
-                        <th style="display: inline-block;"><strong>Hora d'inici:</strong></th> 
+                        <th style="display: inline-block;"><strong i18n:translate="">Hora d'inici:</strong></th> 
                         <tal:omit-tag tal:condition="context/horaInici">
                             <span tal:content="python:context.horaInici.strftime('%H:%M')"></span>
                         </tal:omit-tag>
@@ -70,6 +70,11 @@
         <div tal:replace="structure context/membresConvocats/output|nothing" />
     </tal:block>
 
+    <tal:block tal:condition="context/membresConvidats">
+        <h3 i18n:translate=""> Invited members </h3>
+        <div tal:replace="structure context/membresConvidats/output|nothing" />
+    </tal:block>
+
     <tal:block tal:condition="context/llistaExcusats">
         <h3 i18n:translate=""> Excused members </h3>
         <div tal:replace="structure context/llistaExcusats/output|nothing" />
@@ -78,11 +83,6 @@
     <tal:block tal:condition="context/llistaNoAssistens">
         <h3 i18n:translate=""> Missing members </h3>
         <div tal:replace="structure context/llistaNoAssistens/output|nothing" />
-    </tal:block>
-
-    <tal:block tal:condition="context/membresConvidats">
-        <h3 i18n:translate=""> Invited members </h3>
-        <div tal:replace="structure context/membresConvidats/output|nothing" />
     </tal:block>
 
     <tal:block tal:condition="context/ordreSessio">

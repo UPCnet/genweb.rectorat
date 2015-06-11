@@ -59,7 +59,7 @@ msgstr "Aprobado"
 #: ./genweb/rectorat/content/acta.py:51
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:40
 msgid "Attending members"
-msgstr "Listado de mimebros asistentes"
+msgstr "Listado de miembros asistentes"
 
 #: ./genweb/rectorat/content/sessio.py:87
 msgid "Body Mail"
@@ -131,7 +131,7 @@ msgstr "Hace falta que esta dirección de correo sea válida ya que es la que se
 #: ./genweb/rectorat/content/acta.py:63
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:74
 msgid "Excused members"
-msgstr "Listado de excusados"
+msgstr "Listado de miembros excusados"
 
 #: ./genweb/rectorat/content/acta.py:93
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:155

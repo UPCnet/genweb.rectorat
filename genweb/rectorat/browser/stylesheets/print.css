@@ -42,6 +42,12 @@
     	display:none !important;
     }
 
+    #content-core > button {display:none !important;}
+    
+    .linkNotificacions { display:none !important; }
+
+    .btnActa {display:none !important; }
+
 	#peu > div > div.row-fluid {
 		display:none !important;
 	}
