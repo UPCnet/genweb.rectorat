@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-11 09:15+0000\n"
+"POT-Creation-Date: 2015-11-04 08:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -243,8 +243,11 @@ msgstr ""
 
 #: ./genweb/rectorat/content/organgovern.py:28
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:14
-#: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern description"
+msgstr ""
+
+#: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
+msgid "Organ Govern description xml"
 msgstr ""
 
 #: ./genweb/rectorat/content/organgovern.py:39

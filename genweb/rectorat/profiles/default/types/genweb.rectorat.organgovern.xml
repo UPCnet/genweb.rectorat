@@ -3,7 +3,7 @@
    i18n:domain="genweb.rectorat"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Organ Govern</property>
- <property name="description" i18n:translate="">Organ Govern description</property>
+ <property name="description" i18n:translate="">Organ Govern description xml</property>
  <property name="icon_expr"></property>
  <property name="factory">genweb.rectorat.organgovern</property>
  <property
