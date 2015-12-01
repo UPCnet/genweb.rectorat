@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-11-04 08:21+0000\n"
+"POT-Creation-Date: 2015-11-30 16:41+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -41,16 +41,16 @@ msgstr "Agreement"
 msgid "Agreement number"
 msgstr "Agreement number"
 
-#: ./genweb/rectorat/content/document.py:70
+#: ./genweb/rectorat/content/document.py:63
 msgid "Alternate description"
-msgstr "Alternate description"
+msgstr "Internal content"
 
-#: ./genweb/rectorat/content/document.py:76
+#: ./genweb/rectorat/content/document.py:69
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:199
 msgid "Approval status"
 msgstr "Approval status"
 
-#: ./genweb/rectorat/content/document.py:83
+#: ./genweb/rectorat/content/document.py:76
 #: ./genweb/rectorat/content/document_templates/document_view.pt:55
 msgid "Approval status comment"
 msgstr "Approval status comment"
@@ -73,15 +73,11 @@ msgstr "Body Mail"
 msgid "Body Mail description"
 msgstr "Body Mail description"
 
-#: ./genweb/rectorat/content/document.py:63
-msgid "By default, only default content will be visible, not the alternate content"
-msgstr "By default, only default content will be visible, not the alternate content"
-
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:45
 msgid "Close"
 msgstr "Close"
 
-#: ./genweb/rectorat/content/document.py:71
+#: ./genweb/rectorat/content/document.py:64
 msgid "Content used to hide protected content"
 msgstr "Content used to hide protected content"
 
@@ -191,10 +187,6 @@ msgstr "Place:"
 msgid "Mail address separated by commas."
 msgstr "Mail address separated by commas."
 
-#: ./genweb/rectorat/content/document.py:62
-msgid "Mark this option to make alternate content visible"
-msgstr "Mark this option to make alternate content visible"
-
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:37
 msgid "Message"
 msgstr "Message"
@@ -252,7 +244,7 @@ msgstr "Creates a Government Body"
 msgid "Organ Govern members"
 msgstr "Members"
 
-#: ./genweb/rectorat/content/document.py:95
+#: ./genweb/rectorat/content/document.py:88
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:205
 msgid "Original files"
@@ -283,7 +275,7 @@ msgstr "Point number"
 msgid "Public files"
 msgstr "Public files"
 
-#: ./genweb/rectorat/content/document.py:89
+#: ./genweb/rectorat/content/document.py:82
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:202
 msgid "Published files"
 msgstr "Public files"

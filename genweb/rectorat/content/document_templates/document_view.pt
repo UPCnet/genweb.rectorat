@@ -13,12 +13,12 @@
     <div class="span12">
       <div class="span8">
         <tal:block>
-          <tal:block tal:condition="not:context/choicedContent">
+          <tal:block tal:condition="context/defaultContent">
             <div tal:replace="structure context/defaultContent/output|nothing" />
           </tal:block>
-          <tal:block tal:condition="context/choicedContent">
+          <tal:block tal:condition="view/isAuthenticated">
             <div tal:replace="structure context/alternateContent/output|nothing" />
-          </tal:block>          
+          </tal:block> 
         </tal:block>
       </div>
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-11-04 08:21+0000\n"
+"POT-Creation-Date: 2015-11-30 16:41+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -41,16 +41,16 @@ msgstr "Acord"
 msgid "Agreement number"
 msgstr "Número d'acord"
 
-#: ./genweb/rectorat/content/document.py:70
+#: ./genweb/rectorat/content/document.py:63
 msgid "Alternate description"
-msgstr "Contingut alternatiu"
+msgstr "Contingut intern"
 
-#: ./genweb/rectorat/content/document.py:76
+#: ./genweb/rectorat/content/document.py:69
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:199
 msgid "Approval status"
 msgstr "Estat d'aprovació"
 
-#: ./genweb/rectorat/content/document.py:83
+#: ./genweb/rectorat/content/document.py:76
 #: ./genweb/rectorat/content/document_templates/document_view.pt:55
 msgid "Approval status comment"
 msgstr "Comentari a l'estat d'aprovació"
@@ -73,15 +73,11 @@ msgstr "Camp de text del mail"
 msgid "Body Mail description"
 msgstr "Contingut del mail que s'envia al passar a estat Convocat"
 
-#: ./genweb/rectorat/content/document.py:63
-msgid "By default, only default content will be visible, not the alternate content"
-msgstr "Per defecte, es veurà el contingut per defecte, no el contingut alternatiu"
-
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:45
 msgid "Close"
 msgstr "Tancar"
 
-#: ./genweb/rectorat/content/document.py:71
+#: ./genweb/rectorat/content/document.py:64
 msgid "Content used to hide protected content"
 msgstr "Es pot fer servir per ocultar contingut. Un camp intern de contingut, i un públic amb tota la informació permesa."
 
@@ -191,10 +187,6 @@ msgstr "Lloc:"
 msgid "Mail address separated by commas."
 msgstr "Adreces de correu separades per comes."
 
-#: ./genweb/rectorat/content/document.py:62
-msgid "Mark this option to make alternate content visible"
-msgstr "Marqueu aquesta opció per mostrar el contingut alternatiu en comptes del per defecte"
-
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:37
 msgid "Message"
 msgstr "Missatge"
@@ -252,7 +244,7 @@ msgstr "Crea un Òrgan de Govern"
 msgid "Organ Govern members"
 msgstr "Membres de l'òrgan de govern"
 
-#: ./genweb/rectorat/content/document.py:95
+#: ./genweb/rectorat/content/document.py:88
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:205
 msgid "Original files"
@@ -273,7 +265,7 @@ msgstr "Imprimir format Acta"
 
 #: ./genweb/rectorat/content/document.py:56
 msgid "Proposal description"
-msgstr "Contingut"
+msgstr "Contingut públic"
 
 #: ./genweb/rectorat/content/document.py:45
 msgid "Proposal point number"
@@ -283,7 +275,7 @@ msgstr "Punt del document"
 msgid "Public files"
 msgstr "Fitxers annexes"
 
-#: ./genweb/rectorat/content/document.py:89
+#: ./genweb/rectorat/content/document.py:82
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:202
 msgid "Published files"
 msgstr "Fitxers públics"

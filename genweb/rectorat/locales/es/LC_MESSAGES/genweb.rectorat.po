@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-11-04 08:21+0000\n"
+"POT-Creation-Date: 2015-11-30 16:41+0000\n"
 "PO-Revision-Date: 2010-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -41,16 +41,16 @@ msgstr "Acuerdo"
 msgid "Agreement number"
 msgstr "Número de acuerdo"
 
-#: ./genweb/rectorat/content/document.py:70
+#: ./genweb/rectorat/content/document.py:63
 msgid "Alternate description"
 msgstr "Descripción alternativa"
 
-#: ./genweb/rectorat/content/document.py:76
+#: ./genweb/rectorat/content/document.py:69
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:199
 msgid "Approval status"
 msgstr "Estado de aprobación"
 
-#: ./genweb/rectorat/content/document.py:83
+#: ./genweb/rectorat/content/document.py:76
 #: ./genweb/rectorat/content/document_templates/document_view.pt:55
 msgid "Approval status comment"
 msgstr "Comentario al estado de aprobación"
@@ -73,15 +73,11 @@ msgstr "Cuerpo del correo"
 msgid "Body Mail description"
 msgstr "Adjuntar el contenido del mensaje que se utilizará para el envío de correos relacionados con este Órgano de Gobierno."
 
-#: ./genweb/rectorat/content/document.py:63
-msgid "By default, only default content will be visible, not the alternate content"
-msgstr "Por defecto, sólo será visible el contenido por defecto, no el contenido alternativo"
-
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:45
 msgid "Close"
 msgstr "Cerrar"
 
-#: ./genweb/rectorat/content/document.py:71
+#: ./genweb/rectorat/content/document.py:64
 msgid "Content used to hide protected content"
 msgstr "Contenido alternativo para ocultar el contenido por defecto"
 
@@ -191,10 +187,6 @@ msgstr "Lugar:"
 msgid "Mail address separated by commas."
 msgstr "Direcciones de correo separadas por comas"
 
-#: ./genweb/rectorat/content/document.py:62
-msgid "Mark this option to make alternate content visible"
-msgstr "Marcar esta opción para mostrar el contenido alternativo en lugar del contenido por defecto."
-
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:37
 msgid "Message"
 msgstr "Mensaje"
@@ -252,7 +244,7 @@ msgstr "Crea un Órgano de gobierno"
 msgid "Organ Govern members"
 msgstr "Miembros del órgano de gobierno"
 
-#: ./genweb/rectorat/content/document.py:95
+#: ./genweb/rectorat/content/document.py:88
 #: ./genweb/rectorat/content/document_templates/document_view.pt:74
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:205
 msgid "Original files"
@@ -283,7 +275,7 @@ msgstr "Punto del documento"
 msgid "Public files"
 msgstr "Ficheros anexos"
 
-#: ./genweb/rectorat/content/document.py:89
+#: ./genweb/rectorat/content/document.py:82
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:202
 msgid "Published files"
 msgstr "Ficheros públicos"
