@@ -21,7 +21,7 @@
 
     <genericsetup:registerProfile
         name="default"
-        title="genweb.rectorat"
+        title="UPC Organs de Govern (genweb.rectorat)"
         directory="profiles/default"
         description="Extension profile for genweb.rectorat."
         provides="Products.GenericSetup.interfaces.EXTENSION"

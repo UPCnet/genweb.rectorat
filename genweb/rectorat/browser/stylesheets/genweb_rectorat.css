@@ -1,3 +1,17 @@
+li.multi-file-file img {	}
+
+.portaltype-genweb-rectorat-acta li.multi-file-file {
+	padding:5px 0px 5px 0px;
+}
+
+dt.contenttype-newsletters:before, 
+i.icon-newsletters,
+#listing-table a.contenttype-newsletters:before, 
+.template-folder_tabular_view .listing a.contenttype-newsletters:before
+{
+	background-position: -242px -168px !important;
+}
+
 dt.contenttype-genweb-rectorat-organgovern:before, 
 i.icon-genweb-rectorat-organgovern,
 #listing-table a.contenttype-genweb-rectorat-organgovern:before, 

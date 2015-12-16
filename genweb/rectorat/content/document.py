@@ -25,7 +25,7 @@ estats = SimpleVocabulary(
      SimpleTerm(value='Informed', title=_(u'Informed')),
      SimpleTerm(value='Approved', title=_(u'Approved')),
      SimpleTerm(value='Rejected', title=_(u'Rejected')),
-     SimpleTerm(value='Pending', title=_(u'Pending')),     
+     SimpleTerm(value='Pending', title=_(u'Pending')),
      ]
     )
 
@@ -80,12 +80,14 @@ class IDocument(form.Schema):
     dexteritytextindexer.searchable('PublishedFiles')
     form.widget(PublishedFiles=MultiFileFieldWidget)
     PublishedFiles = schema.List(title=_(u"Published files"),
+                                 description=_(u"Published files description"),
                                  value_type=NamedFile(),
                                  required=False,)
 
     dexteritytextindexer.searchable('OriginalFiles')
     form.widget(OriginalFiles=MultiFileFieldWidget)
     OriginalFiles = schema.List(title=_(u"Original files"),
+                                description=_(u"Original files description"),
                                 value_type=NamedFile(),
                                 required=False,)
 

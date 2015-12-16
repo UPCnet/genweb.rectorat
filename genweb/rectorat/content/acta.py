@@ -91,6 +91,7 @@ class IActa(form.Schema):
     dexteritytextindexer.searchable('OriginalFiles')
     form.widget(OriginalFiles=MultiFileFieldWidget)
     OriginalFiles = schema.List(title=_(u"Files"),
+                                description=_(u"Attached files description"),
                                 value_type=NamedFile(),
                                 required=False,)
 

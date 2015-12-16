@@ -4,4 +4,5 @@
   <object meta_type="Dexterity FTI" name="genweb.rectorat.organgovern" />
   <object meta_type="Dexterity FTI" name="genweb.rectorat.document" />
   <object meta_type="Dexterity FTI" name="genweb.rectorat.acta" />
+  <object meta_type="Dexterity FTI" name="genweb.rectorat.historicfolder" />
 </object>

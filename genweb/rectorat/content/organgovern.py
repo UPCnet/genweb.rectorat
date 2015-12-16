@@ -67,11 +67,12 @@ class View(grok.View):
         """
         portal_catalog = getToolByName(self, 'portal_catalog')
         folder_path = '/'.join(self.context.getPhysicalPath())
-        # Retorna sessions: The last modified is the first shown.
-        data = portal_catalog.searchResults(portal_type='genweb.rectorat.sessio',
-                                            path={'query': folder_path,
-                                                  'depth': 1})
+        data = portal_catalog.searchResults(
+            portal_type='genweb.rectorat.sessio',
+            path={'query': folder_path,
+                  'depth': 1})
 
+        # The last modified is the first shown.
         return sorted(data, key=lambda item: item.start, reverse=True)
 
     def FoldersInside(self):
@@ -79,7 +80,19 @@ class View(grok.View):
         """
         folder_path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self, 'portal_catalog')
-        data = portal_catalog.searchResults(portal_type='Folder',
+        data = portal_catalog.searchResults(
+            portal_type='genweb.rectorat.historicfolder',
+            sort_on='getObjPositionInParent',
+            path={'query': folder_path,
+                  'depth': 1})
+        return data
+
+    def NewslettersInside(self):
+        """ Retorna els Butlletins que hi ha dintre
+        """
+        folder_path = '/'.join(self.context.getPhysicalPath())
+        portal_catalog = getToolByName(self, 'portal_catalog')
+        data = portal_catalog.searchResults(portal_type='Newsletters',
                                             sort_on='getObjPositionInParent',
                                             path={'query': folder_path,
                                                   'depth': 1})
