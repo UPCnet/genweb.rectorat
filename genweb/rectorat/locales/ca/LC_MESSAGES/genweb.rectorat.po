@@ -97,7 +97,7 @@ msgstr "Data:"
 
 #: ./genweb/rectorat/content/document.py:57
 msgid "Default content shown in the document view"
-msgstr "Continguts per publicar en el Butlletí."
+msgstr "Continguts preparats per publicar en el Butlletí."
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:294
 msgid "Destinataris"
@@ -273,7 +273,7 @@ msgstr "Fitxers interns"
 
 #: ./genweb/rectorat/content/document.py:90
 msgid "Original files description"
-msgstr "Fitxers d'ús intern. No es publiquen en el Butlletí<br/> NOTA: Es poden afegir múltiples fitxers amb la tecla CONTROL o ALT.<br/><br/>"
+msgstr "Fitxers d'ús intern. No es publiquen en el Butlletí.<br/> NOTA: Es poden afegir múltiples fitxers amb la tecla CONTROL o ALT.<br/><br/>"
 
 #: ./genweb/rectorat/content/document.py:28
 msgid "Pending"
@@ -313,7 +313,7 @@ msgstr "Fitxers a publicar"
 
 #: ./genweb/rectorat/content/document.py:83
 msgid "Published files description"
-msgstr "Fitxers per publicar en el Butlletí<br/> NOTA: Es poden afegir múltiples fitxers amb la tecla CONTROL o ALT.<br/><br/>"
+msgstr "Fitxers preparats per publicar en el Butlletí.<br/> NOTA: Es poden afegir múltiples fitxers amb la tecla CONTROL o ALT.<br/><br/>"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:29
 msgid "Recipients"
