@@ -3,15 +3,12 @@ from ZODB.POSException import ConflictError
 from genweb.rectorat.content.document import IDocument
 from collective.dexteritytextindexer.converters import DefaultDexterityTextIndexFieldConverter
 from collective.dexteritytextindexer.interfaces import IDexterityTextIndexFieldConverter
-from plone.dexterity.interfaces import IDexterityContent
 from z3c.form.interfaces import IWidget
 from zope.component import adapts
 from zope.interface import implements
 from zope.schema.interfaces import IField
 from Products.CMFCore.utils import getToolByName
 
-from plone.formwidget.multifile.widget import MultiFileWidget, MultiFileFieldWidget
-from plone.formwidget.multifile.interfaces import IMultiFileWidget
 from Products.CMFPlone.utils import safe_unicode
 from unicodedata import normalize
 
@@ -21,7 +18,7 @@ logger = getLogger(__name__)
 
 class SearchableText(DefaultDexterityTextIndexFieldConverter):
     implements(IDexterityTextIndexFieldConverter)
-    adapts(IDocument, IField, IWidget )
+    adapts(IDocument, IField, IWidget)
 
     def __init__(self, context, field, widget):
         """Initialize field converter"""
@@ -38,11 +35,11 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
              of the files searchable :)
         """
         if self.widget.id == 'PublishedFiles' or self.widget.id == 'OriginalFiles':
-            searchableText =[]
+            searchableText = []
             for obj in self.widget.value:
                 fileData = self.convertFileByFile(obj)
                 searchableText.append(fileData)
-            return str(searchableText)                
+            return str(searchableText)
         else:
             html = self.widget.render().strip()
             transforms = getToolByName(self.context, 'portal_transforms')
@@ -70,28 +67,31 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
         data = self.field.get(storage)
 
         # if there is no data, do nothing
-        if not obj or obj.getSize() == 0:
+        if not obj:
             return ''
+        # If size is 0 return only filename
+        if obj.getSize() == 0:
+            return obj.filename
 
-        # if data is already in text/plain, just return it
+        # if data is already in text/plain, just return it and the filename
         if obj.contentType == 'text/plain':
-            return obj.data
+            return obj.filename + ' ' + obj.data
 
         # if there is no path to text/plain, do nothing
         transforms = getToolByName(self.context, 'portal_transforms')
 
         if not transforms._findPath(obj.contentType, 'text/plain'):
             return ''
-        
+
         try:
-            datastream = transforms.convertTo('text/plain', 
+            datastream = transforms.convertTo('text/plain',
                                               str(obj.data),
                                               mimetype=obj.contentType,
                                               filename=obj.filename)
 
             contentData = safe_unicode(datastream.getData().decode('utf-8'))
             contentData = normalize('NFKD', contentData).encode('ascii', errors='ignore')
-            contentData = contentData.replace('\n',' ').replace(u'\xa0',u' ').replace(u'\x0c',u'')
+            contentData = contentData.replace('\n', ' ').replace(u'\xa0', u' ').replace(u'\x0c',u'')
 
             return self.unicode_save_string_concat(obj.filename, contentData)
 
@@ -101,4 +101,3 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
         except Exception, e:
             logger.error('Error while trying to convert file contents '
                          'to "text/plain": %s' % str(e))
-
