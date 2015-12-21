@@ -12,6 +12,14 @@ i.icon-newsletters,
 	background-position: -242px -168px !important;
 }
 
+dt.ontenttype-genweb-rectorat-historicfolder:before, 
+i.icon-genweb-rectorat-historicfolder,
+#listing-table a.ontenttype-genweb-rectorat-historicfolder:before, 
+.template-folder_tabular_view .listing a.ontenttype-genweb-rectorat-historicfolder:before
+{
+	background-position: -242px -168px !important;
+}
+
 dt.contenttype-genweb-rectorat-organgovern:before, 
 i.icon-genweb-rectorat-organgovern,
 #listing-table a.contenttype-genweb-rectorat-organgovern:before, 

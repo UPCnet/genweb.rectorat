@@ -3,7 +3,8 @@
    i18n:domain="genweb.rectorat"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Historic folder</property>
- <property name="description" i18n:translate="">Historic folder description xml</property>
+ <property name="description"
+    i18n:translate="">Historic folder description xml</property>
  <property name="icon_expr"></property>
  <property name="factory">genweb.rectorat.historicfolder</property>
  <property
@@ -13,32 +14,42 @@
  <property name="global_allow">False</property>
  <property name="filter_content_types">False</property>
  <property name="allowed_content_types">
+  <element value="genweb.rectorat.acta"/>
+  <element value="genweb.rectorat.document"/>
+  <element value="genweb.rectorat.historicfolder"/>
+  <element value="genweb.rectorat.organgovern"/>
+  <element value="genweb.rectorat.sessio"/>
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">view</property>
+ <property name="default_view">folder_tabular_view</property>
  <property name="view_methods">
-  <element value="view"/>
+  <element value="folder_listing" />
+  <element value="folder_extended" />
+  <element value="folder_summary_view" />
+  <element value="folder_tabular_view" />
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="klass">plone.dexterity.content.Container</property>
-
  <property name="behaviors">
-  <element value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes" />
-  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
-  <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle" />
-  <element value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable" />
-  <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
-  <element value="plone.app.content.interfaces.INameFromTitle" />
-  <element value="plone.app.relationfield.behavior.IRelatedItems" />
-  <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
+  <element
+     value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"/>
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element
+     value="plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle"/>
+  <element
+     value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
+  <element
+     value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+  <element value="plone.app.relationfield.behavior.IRelatedItems"/>
+  <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
  </property>
- 
  <property
     name="schema">genweb.rectorat.content.organgovern.IHistoricfolder</property>
  <property
     name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-      &lt;schema /&gt;
+  &lt;schema /&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>

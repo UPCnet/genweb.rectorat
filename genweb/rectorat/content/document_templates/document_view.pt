@@ -14,8 +14,10 @@
       <div class="span8" style="margin-top:25px;">
         <tal:block>
           <tal:block tal:condition="context/defaultContent">
-            <div tal:replace="structure context/defaultContent/output|nothing" />
-          </tal:block>
+            <h3 i18n:translate="" tal:condition="view/isAuthenticated"> Proposal description </h3>
+              <div tal:replace="structure context/defaultContent/output|nothing" />
+           </tal:block>
+
           <tal:block tal:condition="view/isAuthenticated">
             <h3 i18n:translate="" tal:condition="context/alternateContent"> Alternate description </h3>
             <div tal:condition="context/alternateContent"
@@ -63,7 +65,9 @@
   <div tal:condition="python: 'PublishedFiles' in view.w">
     <tal:files tal:condition="python:getattr(context, 'PublishedFiles', None)">
       <hr/>
-      <h3 i18n:translate="">Public files</h3>
+      <h3 i18n:translate="" tal:condition="view/isAuthenticated">Published files</h3>
+      
+      <h3 i18n:translate="" tal:condition="not:view/isAuthenticated">Public files</h3>
       <div tal:content="structure view/w/PublishedFiles/render" />
 
     </tal:files>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-12-02 11:51+0000\n"
+"POT-Creation-Date: 2015-12-21 10:48+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -32,7 +32,7 @@ msgstr "Acta Description"
 msgid "Acta:"
 msgstr "Acta:"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:36
+#: ./genweb/rectorat/content/document_templates/document_view.pt:38
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:193
 msgid "Agreement"
 msgstr "Agreement"
@@ -42,7 +42,7 @@ msgid "Agreement number"
 msgstr "Agreement number"
 
 #: ./genweb/rectorat/content/document.py:63
-#: ./genweb/rectorat/content/document_templates/document_view.pt:20
+#: ./genweb/rectorat/content/document_templates/document_view.pt:22
 msgid "Alternate description"
 msgstr "Internal content"
 
@@ -52,7 +52,7 @@ msgid "Approval status"
 msgstr "Approval status"
 
 #: ./genweb/rectorat/content/document.py:76
-#: ./genweb/rectorat/content/document_templates/document_view.pt:57
+#: ./genweb/rectorat/content/document_templates/document_view.pt:59
 msgid "Approval status comment"
 msgstr "Approval status comment"
 
@@ -111,7 +111,7 @@ msgstr "Document"
 msgid "Document Description"
 msgstr "Document description"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:28
+#: ./genweb/rectorat/content/document_templates/document_view.pt:30
 msgid "Document info"
 msgstr "Document info"
 
@@ -138,6 +138,10 @@ msgstr "That e-mail must be valid since it's to be used for sending and respondi
 msgid "Excused members"
 msgstr "Excused members"
 
+#: ./genweb/rectorat/configure.zcml:28
+msgid "Extension profile for genweb.rectorat."
+msgstr ""
+
 #: ./genweb/rectorat/content/acta.py:93
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:155
 msgid "Files"
@@ -152,7 +156,6 @@ msgstr "Footer"
 msgid "From mail"
 msgstr "E-mail address used to send the messages"
 
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:108
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:108
 msgid "Historic"
 msgstr "Historic"
@@ -248,7 +251,6 @@ msgstr "Notifications history"
 msgid "Organ Govern"
 msgstr "Government Body"
 
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:14
 #: ./genweb/rectorat/content/organgovern.py:28
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:14
 msgid "Organ Govern description"
@@ -258,14 +260,13 @@ msgstr "Description"
 msgid "Organ Govern description xml"
 msgstr "Creates a Government Body"
 
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:32
 #: ./genweb/rectorat/content/organgovern.py:39
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:32
 msgid "Organ Govern members"
 msgstr "Members"
 
 #: ./genweb/rectorat/content/document.py:89
-#: ./genweb/rectorat/content/document_templates/document_view.pt:76
+#: ./genweb/rectorat/content/document_templates/document_view.pt:80
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:205
 msgid "Original files"
 msgstr "Internal files"
@@ -278,7 +279,7 @@ msgstr ""
 msgid "Pending"
 msgstr "Repeal"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:32
+#: ./genweb/rectorat/content/document_templates/document_view.pt:34
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:190
 msgid "Point"
 msgstr "Point:"
@@ -287,11 +288,12 @@ msgstr "Point:"
 msgid "Print Acta"
 msgstr "Print Acta"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:77
+#: ./genweb/rectorat/content/document_templates/document_view.pt:81
 msgid "Private files description"
 msgstr ""
 
 #: ./genweb/rectorat/content/document.py:56
+#: ./genweb/rectorat/content/document_templates/document_view.pt:17
 msgid "Proposal description"
 msgstr "Content"
 
@@ -299,11 +301,12 @@ msgstr "Content"
 msgid "Proposal point number"
 msgstr "Point number"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:66
+#: ./genweb/rectorat/content/document_templates/document_view.pt:70
 msgid "Public files"
 msgstr "Public files"
 
 #: ./genweb/rectorat/content/document.py:82
+#: ./genweb/rectorat/content/document_templates/document_view.pt:68
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:202
 msgid "Published files"
 msgstr "Public files"
@@ -341,8 +344,8 @@ msgid "Session Description"
 msgstr "Description"
 
 #: ./genweb/rectorat/content/acta.py:30
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:52
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:52
+#: ./genweb/rectorat/content/sessio.py:36
 msgid "Session date"
 msgstr "Session date"
 
@@ -364,28 +367,26 @@ msgid "Session order"
 msgstr "Agenda"
 
 #: ./genweb/rectorat/content/acta.py:35
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:55
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:55
+#: ./genweb/rectorat/content/sessio.py:41
 msgid "Session place"
 msgstr "Session place"
 
 #: ./genweb/rectorat/content/acta.py:40
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:113
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:58
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:58
 msgid "Session start time"
 msgstr "Session start time"
 
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:44
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 msgid "Sessions list"
 msgstr "Sessions list"
 
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:61
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:61
 msgid "State"
 msgstr "State"
 
-#: ./genweb/rectorat/content/document_templates/document_view.pt:41
+#: ./genweb/rectorat/content/document_templates/document_view.pt:43
 msgid "Status"
 msgstr "Status:"
 
@@ -393,15 +394,17 @@ msgstr "Status:"
 msgid "This content will be used as message content"
 msgstr "This content will be used as message content"
 
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:49
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:196
 msgid "Title"
 msgstr "Title"
 
-#: ./genweb/rectorat/content/historicfolder_templates/historicfolder_view.pt:20
+#: ./genweb/rectorat/configure.zcml:28
+msgid "UPC Organs de Govern (genweb.rectorat)"
+msgstr ""
+
 #: ./genweb/rectorat/content/organgovern.py:33
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:20
+#: ./genweb/rectorat/content/sessio.py:56
 msgid "mail address"
 msgstr "Notification address used by this Government"
-
