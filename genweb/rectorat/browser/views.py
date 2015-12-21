@@ -152,4 +152,4 @@ class AddLogMail(BrowserView):
         self.request.response.redirect(self.context.absolute_url())
 
 
-# Noitificar cnavi -> Enviar missatge
+# Notificar canvi -> Enviar missatge
