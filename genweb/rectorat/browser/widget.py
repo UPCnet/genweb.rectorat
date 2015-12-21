@@ -69,7 +69,7 @@ class Download(BrowserView):
 
                 roles = api.user.get_roles(username=username, obj=self.context)
                 # And check roles
-                if 'Reader' in roles:
+                if 'Reader' or 'Manager' in roles:
                     return stream_data(file_)
                 else:
                     raise Unauthorized("You have no permissions to download this file")
