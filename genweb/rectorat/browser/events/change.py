@@ -52,16 +52,25 @@ def sessio_changed(session, event):
             else:
                 recipientPerson = session.adrecaLlista.replace(' ', '').encode('utf-8').split(',')
 
+            html_content = """
+             <head>
+              <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+              <title>Mail content</title>
+                 <link rel="stylesheet" href="http://rectorat.beta.upcnet.es/++genwebupc++stylesheets/genwebupc.css"></link>
+            </head><body>
+            """
+
             if lang == 'ca':
                 session.notificationDate = now
                 subjectMail = "Convocada ordre del dia: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                moreData = html_content + \
+                           '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                            '</strong><br/><br/>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
                            "<br/>Hora d'inici: " + str(starthour) + \
                            "<br/>Hora de fi: " + str(endHour) + \
-                           '<br/><br/><strong> Ordre del dia </strong>' + str(ordenField)
+                           '<br/><br/><strong> Ordre del dia </strong>' + str(ordenField) + '</body>'
                 bodyMail = moreData + str(introData)
 
             if lang == 'es':
@@ -69,7 +78,8 @@ def sessio_changed(session, event):
                 subjectMail = "Convocada orden del día: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                moreData = html_content + \
+                           '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                            '</strong><br/><br/>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
                            "<br/>Hora de inicio: " + str(starthour) + \
                            "<br/>Hora de finalización: " + str(endHour) + \
@@ -83,7 +93,8 @@ def sessio_changed(session, event):
                 subjectMail = "Convened agenda: " + organ.title.encode('utf-8')
                 introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-                moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
+                moreData = html_content + \
+                           '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
                            '</strong><br/><br/>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
                            "<br/>Start time: " + str(starthour) + \
                            "<br/>End time: " + str(endHour) + \
@@ -134,3 +145,5 @@ def addAnnotation(object, recipients):
 
         data.append(values)
         annotations[KEY] = data
+
+
