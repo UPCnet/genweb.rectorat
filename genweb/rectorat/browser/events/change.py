@@ -52,11 +52,13 @@ def sessio_changed(session, event):
             else:
                 recipientPerson = session.adrecaLlista.replace(' ', '').encode('utf-8').split(',')
 
+            CSS = '"' + session.portal_url()+'/++genwebupc++stylesheets/genwebupc.css' + '"'
+
             html_content = """
              <head>
               <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
               <title>Mail content</title>
-                 <link rel="stylesheet" href="http://rectorat.beta.upcnet.es/++genwebupc++stylesheets/genwebupc.css"></link>
+                 <link rel="stylesheet" href=""" + CSS + """></link>
             </head><body>
             """
 
@@ -145,5 +147,3 @@ def addAnnotation(object, recipients):
 
         data.append(values)
         annotations[KEY] = data
-
-
