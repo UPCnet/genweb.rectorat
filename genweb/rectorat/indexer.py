@@ -71,17 +71,17 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
             return ''
         # If size is 0 return only filename
         if obj.getSize() == 0:
-            return obj.filename
+            return str(obj.filename)
 
         # if data is already in text/plain, just return it and the filename
         if obj.contentType == 'text/plain':
-            return obj.filename + ' ' + obj.data
+            return str(obj.filename) + ' ' + obj.data
 
         # if there is no path to text/plain, do nothing
         transforms = getToolByName(self.context, 'portal_transforms')
 
         if not transforms._findPath(obj.contentType, 'text/plain'):
-            return ''
+            return str(obj.filename)
 
         try:
             datastream = transforms.convertTo('text/plain',
