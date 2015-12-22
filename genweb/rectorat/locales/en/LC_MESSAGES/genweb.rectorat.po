@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-12-21 10:48+0000\n"
+"POT-Creation-Date: 2015-12-22 07:33+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -208,7 +208,7 @@ msgstr "Mail address separated by commas."
 msgid "Message"
 msgstr "Message"
 
-#: ./genweb/rectorat/browser/events/change.py:104
+#: ./genweb/rectorat/browser/events/change.py:117
 #: ./genweb/rectorat/browser/views.py:92
 msgid "Missatge enviat correctament"
 msgstr "Message send"
@@ -217,7 +217,7 @@ msgstr "Message send"
 msgid "Missatge enviat per: "
 msgstr "Message send by: "
 
-#: ./genweb/rectorat/browser/events/change.py:106
+#: ./genweb/rectorat/browser/events/change.py:119
 msgid "Missatge no enviat. Comprovi el from i el to del missatge"
 msgstr "Message not send. Check the from/to fields"
 

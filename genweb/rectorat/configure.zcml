@@ -37,6 +37,11 @@
 
     <include package="z3c.jbot" file="meta.zcml" />
 
+    <browser:jbot
+        directory="templates"
+        layer=".interfaces.IGenwebRectoratLayer"
+    />
+
     <adapter factory=".indexer.SearchableText" />
 
 

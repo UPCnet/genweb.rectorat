@@ -33,8 +33,8 @@ setup(name='genweb.rectorat',
           'setuptools',
           'five.grok',
           'plone.app.dexterity [grok]',
-          'plone.formwidget.multifile == 1.1',
-          'collective.dexteritytextindexer == 2.0.1',
+          'plone.formwidget.multifile',
+          'collective.dexteritytextindexer',
       ],
       entry_points="""
       # -*- Entry points: -*-
