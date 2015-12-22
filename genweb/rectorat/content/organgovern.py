@@ -92,8 +92,8 @@ class View(grok.View):
         """
         folder_path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self, 'portal_catalog')
-        data = portal_catalog.searchResults(portal_type='Newsletters',
+        data = portal_catalog.searchResults(portal_type='Newsletter',
                                             sort_on='getObjPositionInParent',
                                             path={'query': folder_path,
-                                                  'depth': 1})
+                                                  'depth': 2})
         return data

@@ -33,6 +33,12 @@
       handler=".browser.events.change.sessio_changed"
     />
 
+    <subscriber
+      for="upc.genweb.newsletter.content.interfaces.INewsletter
+              Products.Archetypes.interfaces.IObjectInitializedEvent"
+      handler=".browser.events.createdNewsletter.createdNewsletter"
+    />
+
     <i18n:registerTranslations directory="locales" />
 
     <include package="z3c.jbot" file="meta.zcml" />

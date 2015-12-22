@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-12-22 07:33+0000\n"
+"POT-Creation-Date: 2015-12-22 13:49+0000\n"
 "PO-Revision-Date: 2010-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -156,7 +156,7 @@ msgstr "Pie del Acta"
 msgid "From mail"
 msgstr "Dirección de correo con la que se enviarán los mensajes"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:108
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:130
 msgid "Historic"
 msgstr "Histórico de sesiones"
 
@@ -235,9 +235,13 @@ msgstr "Listado de miembros no asistentes"
 msgid "New message"
 msgstr "Nuevo mensaje"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:128
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 msgid "Newsletters"
 msgstr "Boletines"
+
+#: ./genweb/rectorat/browser/events/createdNewsletter.py:17
+msgid "No s'ha pogut copiar la plantilla per defecte. El fitxer amb les dades, no existeix: /ca/plantilles-butlletins/plantilla/template-base"
+msgstr "No se ha podido copiar la plantilla por defecto. El fichero con los datos no existe: /ca/plantilles-butlletins/plantilla/template-base"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:291
 msgid "Notificador"
@@ -344,7 +348,7 @@ msgid "Session Description"
 msgstr "Crea una Sesión"
 
 #: ./genweb/rectorat/content/acta.py:30
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:52
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:74
 #: ./genweb/rectorat/content/sessio.py:36
 msgid "Session date"
 msgstr "Fecha de la sesión"
@@ -367,22 +371,22 @@ msgid "Session order"
 msgstr "Orden del día"
 
 #: ./genweb/rectorat/content/acta.py:35
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:55
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:77
 #: ./genweb/rectorat/content/sessio.py:41
 msgid "Session place"
 msgstr "Lugar de la convocatoria"
 
 #: ./genweb/rectorat/content/acta.py:40
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:113
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:58
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:80
 msgid "Session start time"
 msgstr "Hora de inicio"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:66
 msgid "Sessions list"
 msgstr "Listado de sesiones"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:61
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:83
 msgid "State"
 msgstr "Estado"
 
@@ -394,7 +398,7 @@ msgstr "Estado:"
 msgid "This content will be used as message content"
 msgstr "Este contenido será utilizado como mensaje del correo"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:71
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:196
 msgid "Title"
 msgstr "Título"

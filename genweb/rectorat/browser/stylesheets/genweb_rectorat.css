@@ -4,12 +4,12 @@ li.multi-file-file img {	}
 	padding:5px 0px 5px 0px;
 }
 
-dt.contenttype-newsletters:before, 
-i.icon-newsletters,
-#listing-table a.contenttype-newsletters:before, 
-.template-folder_tabular_view .listing a.contenttype-newsletters:before
+dt.contenttype-newsletter:before, 
+i.icon-newsletter,
+#listing-table a.contenttype-newsletter:before, 
+.template-folder_tabular_view .listing a.contenttype-newsletter:before
 {
-	background-position: -242px -168px !important;
+	background-position: -264px -24px !important;
 }
 
 dt.ontenttype-genweb-rectorat-historicfolder:before, 

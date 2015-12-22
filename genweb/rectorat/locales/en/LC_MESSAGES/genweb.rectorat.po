@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-12-22 07:33+0000\n"
+"POT-Creation-Date: 2015-12-22 13:49+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -62,7 +62,7 @@ msgstr "Approved"
 
 #: ./genweb/rectorat/content/acta.py:94
 msgid "Attached files description"
-msgstr ""
+msgstr "Attached files description"
 
 #: ./genweb/rectorat/browser/views/acta_print.pt:69
 #: ./genweb/rectorat/content/acta.py:51
@@ -140,7 +140,7 @@ msgstr "Excused members"
 
 #: ./genweb/rectorat/configure.zcml:28
 msgid "Extension profile for genweb.rectorat."
-msgstr ""
+msgstr "Extension profile for genweb.rectorat."
 
 #: ./genweb/rectorat/content/acta.py:93
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:155
@@ -156,17 +156,17 @@ msgstr "Footer"
 msgid "From mail"
 msgstr "E-mail address used to send the messages"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:108
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:130
 msgid "Historic"
 msgstr "Historic"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.historicfolder.xml
 msgid "Historic folder"
-msgstr ""
+msgstr "Historic folder"
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.historicfolder.xml
 msgid "Historic folder description xml"
-msgstr ""
+msgstr "Historic folder description"
 
 #: ./genweb/rectorat/browser/views/acta_print.pt:58
 msgid "Hora d'inici:"
@@ -235,9 +235,13 @@ msgstr "Missing members"
 msgid "New message"
 msgstr "New message"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:128
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 msgid "Newsletters"
-msgstr ""
+msgstr "Newsletters"
+
+#: ./genweb/rectorat/browser/events/createdNewsletter.py:17
+msgid "No s'ha pogut copiar la plantilla per defecte. El fitxer amb les dades, no existeix: /ca/plantilles-butlletins/plantilla/template-base"
+msgstr "Problems copying the template. File doesn't exist: /ca/plantilles-butlletins/plantilla/template-base "
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:291
 msgid "Notificador"
@@ -273,7 +277,7 @@ msgstr "Internal files"
 
 #: ./genweb/rectorat/content/document.py:90
 msgid "Original files description"
-msgstr ""
+msgstr "Original files description"
 
 #: ./genweb/rectorat/content/document.py:28
 msgid "Pending"
@@ -290,7 +294,7 @@ msgstr "Print Acta"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:81
 msgid "Private files description"
-msgstr ""
+msgstr "Private files description"
 
 #: ./genweb/rectorat/content/document.py:56
 #: ./genweb/rectorat/content/document_templates/document_view.pt:17
@@ -313,7 +317,7 @@ msgstr "Public files"
 
 #: ./genweb/rectorat/content/document.py:83
 msgid "Published files description"
-msgstr ""
+msgstr "Published files description"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:29
 msgid "Recipients"
@@ -344,7 +348,7 @@ msgid "Session Description"
 msgstr "Description"
 
 #: ./genweb/rectorat/content/acta.py:30
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:52
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:74
 #: ./genweb/rectorat/content/sessio.py:36
 msgid "Session date"
 msgstr "Session date"
@@ -367,22 +371,22 @@ msgid "Session order"
 msgstr "Agenda"
 
 #: ./genweb/rectorat/content/acta.py:35
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:55
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:77
 #: ./genweb/rectorat/content/sessio.py:41
 msgid "Session place"
 msgstr "Session place"
 
 #: ./genweb/rectorat/content/acta.py:40
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:113
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:58
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:80
 msgid "Session start time"
 msgstr "Session start time"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:66
 msgid "Sessions list"
 msgstr "Sessions list"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:61
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:83
 msgid "State"
 msgstr "State"
 
@@ -394,14 +398,14 @@ msgstr "Status:"
 msgid "This content will be used as message content"
 msgstr "This content will be used as message content"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:71
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:196
 msgid "Title"
 msgstr "Title"
 
 #: ./genweb/rectorat/configure.zcml:28
 msgid "UPC Organs de Govern (genweb.rectorat)"
-msgstr ""
+msgstr "UPC Organs de Govern (genweb.rectorat)"
 
 #: ./genweb/rectorat/content/organgovern.py:33
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:20

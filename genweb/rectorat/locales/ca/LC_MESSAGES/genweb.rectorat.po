@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2015-12-22 07:33+0000\n"
+"POT-Creation-Date: 2015-12-22 13:49+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -156,7 +156,7 @@ msgstr "Peu del Acta"
 msgid "From mail"
 msgstr "Adreça de correu amb la que s'enviaran els missatges"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:108
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:130
 msgid "Historic"
 msgstr "Històric de sessions"
 
@@ -235,9 +235,13 @@ msgstr "Llista de membres no assistents"
 msgid "New message"
 msgstr "Nou missatge"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:128
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 msgid "Newsletters"
 msgstr "Butlletins de l'Òrgan de Govern"
+
+#: ./genweb/rectorat/browser/events/createdNewsletter.py:17
+msgid "No s'ha pogut copiar la plantilla per defecte. El fitxer amb les dades, no existeix: /ca/plantilles-butlletins/plantilla/template-base"
+msgstr "No s'ha pogut copiar la plantilla per defecte. El fitxer amb les dades, no existeix: /ca/plantilles-butlletins/plantilla/template-base"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:291
 msgid "Notificador"
@@ -344,7 +348,7 @@ msgid "Session Description"
 msgstr "Per a cada òrgan de govern es poden crear les sessions relacionades que siguin necessàries."
 
 #: ./genweb/rectorat/content/acta.py:30
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:52
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:74
 #: ./genweb/rectorat/content/sessio.py:36
 msgid "Session date"
 msgstr "Data de la sessió"
@@ -367,22 +371,22 @@ msgid "Session order"
 msgstr "Ordre del dia"
 
 #: ./genweb/rectorat/content/acta.py:35
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:55
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:77
 #: ./genweb/rectorat/content/sessio.py:41
 msgid "Session place"
 msgstr "Lloc de la convocatòria"
 
 #: ./genweb/rectorat/content/acta.py:40
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:113
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:58
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:80
 msgid "Session start time"
 msgstr "Hora d'inici"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:66
 msgid "Sessions list"
 msgstr "Llistat de sessions"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:61
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:83
 msgid "State"
 msgstr "Estat"
 
@@ -394,7 +398,7 @@ msgstr "Aprovació:"
 msgid "This content will be used as message content"
 msgstr "El següent contingut s'adjuntarà al missatge de correu"
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:71
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:196
 msgid "Title"
 msgstr "Títol"

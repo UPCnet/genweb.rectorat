@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-12-22 07:33+0000\n"
+"POT-Creation-Date: 2015-12-22 13:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,7 +159,7 @@ msgstr ""
 msgid "From mail"
 msgstr ""
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:108
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:130
 msgid "Historic"
 msgstr ""
 
@@ -238,8 +238,12 @@ msgstr ""
 msgid "New message"
 msgstr ""
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:128
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 msgid "Newsletters"
+msgstr ""
+
+#: ./genweb/rectorat/browser/events/createdNewsletter.py:17
+msgid "No s'ha pogut copiar la plantilla per defecte. El fitxer amb les dades, no existeix: /ca/plantilles-butlletins/plantilla/template-base"
 msgstr ""
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:291
@@ -347,7 +351,7 @@ msgid "Session Description"
 msgstr ""
 
 #: ./genweb/rectorat/content/acta.py:30
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:52
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:74
 #: ./genweb/rectorat/content/sessio.py:36
 msgid "Session date"
 msgstr ""
@@ -370,22 +374,22 @@ msgid "Session order"
 msgstr ""
 
 #: ./genweb/rectorat/content/acta.py:35
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:55
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:77
 #: ./genweb/rectorat/content/sessio.py:41
 msgid "Session place"
 msgstr ""
 
 #: ./genweb/rectorat/content/acta.py:40
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:113
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:58
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:80
 msgid "Session start time"
 msgstr ""
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:66
 msgid "Sessions list"
 msgstr ""
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:61
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:83
 msgid "State"
 msgstr ""
 
@@ -397,7 +401,7 @@ msgstr ""
 msgid "This content will be used as message content"
 msgstr ""
 
-#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:49
+#: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:71
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:196
 msgid "Title"
 msgstr ""
