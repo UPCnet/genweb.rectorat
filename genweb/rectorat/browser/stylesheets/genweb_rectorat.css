@@ -1,5 +1,7 @@
 li.multi-file-file img {	}
 
+#archetypes-fieldname-URLA, #archetypes-fieldname-URLB { display:none; }
+
 .portaltype-genweb-rectorat-acta li.multi-file-file {
 	padding:5px 0px 5px 0px;
 }
