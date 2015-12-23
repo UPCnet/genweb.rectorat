@@ -1,11 +1,27 @@
 Changelog
 =========
 
-1.5.2 (unreleased)
+1.5.2 (2015-12-23)
 ------------------
 
-- Nothing changed yet.
-
+* Merge branch 'master' of github.com:UPCnet/genweb.rectorat [roberto.diaz]
+* hide urls in newsletters and remove 2 from url [roberto.diaz]
+* removed bug in path [root muntanyeta]
+* updated code [roberto.diaz]
+* po changes [roberto.diaz]
+* removed fixed path [roberto.diaz]
+* added CSS [root muntanyeta]
+* updated translations [roberto.diaz]
+* added filename to indexer [roberto.diaz]
+* added manager permission to view private files [roberto.diaz]
+* added manager permission to view private files [roberto.diaz]
+* added title to indexer [roberto.diaz]
+* removed empty folder [roberto.diaz]
+* changes December 2015 [roberto.diaz]
+* superb changes [Roberto Diaz]
+* remove check in doc view [roberto.diaz]
+* changed ++genweb++ to ++gw++ [Roberto Diaz]
+* i18n change [Roberto Diaz]
 
 1.5.1 (2015-06-11)
 ------------------
