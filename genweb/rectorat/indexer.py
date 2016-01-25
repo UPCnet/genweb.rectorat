@@ -81,7 +81,7 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
         transforms = getToolByName(self.context, 'portal_transforms')
 
         if not transforms._findPath(obj.contentType, 'text/plain'):
-            return str(obj.filename)
+            return str(obj.filename.encode("utf-8"))
 
         try:
             datastream = transforms.convertTo('text/plain',
