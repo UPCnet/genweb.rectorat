@@ -68,7 +68,7 @@ msgstr "NOTA: Se pueden añadir múltiples fichreos con la tecla CONTROL o ALT.<
 #: ./genweb/rectorat/content/acta.py:51
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:40
 msgid "Attending members"
-msgstr "Listado de miembros asistentes"
+msgstr "Listado de personas asistentes"
 
 #: ./genweb/rectorat/content/sessio.py:87
 msgid "Body Mail"
@@ -136,7 +136,7 @@ msgstr "Hace falta que esta dirección de correo sea válida ya que es la que se
 #: ./genweb/rectorat/content/acta.py:63
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:74
 msgid "Excused members"
-msgstr "Listado de miembros excusados"
+msgstr "Listado de personas excusadas"
 
 #: ./genweb/rectorat/configure.zcml:28
 msgid "Extension profile for genweb.rectorat."
@@ -175,7 +175,7 @@ msgstr "Hora de inicio:"
 #: ./genweb/rectorat/content/sessio.py:63
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:120
 msgid "Incoming members list"
-msgstr "Listado de miembros convocados"
+msgstr "Listado de personas convocadas"
 
 #: ./genweb/rectorat/content/document.py:25
 msgid "Informed"
@@ -185,7 +185,7 @@ msgstr "Informado"
 #: ./genweb/rectorat/content/acta.py:57
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:57
 msgid "Invited members"
-msgstr "Listado de miembros invitados"
+msgstr "Listado de personas invitadas"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:166
 msgid "Llistat d'actes"
@@ -229,7 +229,7 @@ msgstr "Mensaje no enviado. Comprueba los destinatarios del mensaje"
 #: ./genweb/rectorat/content/acta.py:69
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:91
 msgid "Missing members"
-msgstr "Listado de miembros no asistentes"
+msgstr "Listado de personas no asistentes"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:24
 msgid "New message"
@@ -267,7 +267,7 @@ msgstr "Crea un Órgano de gobierno"
 #: ./genweb/rectorat/content/organgovern.py:39
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:32
 msgid "Organ Govern members"
-msgstr "Miembros del órgano de gobierno"
+msgstr "Composición del órgano de gobierno"
 
 #: ./genweb/rectorat/content/document.py:89
 #: ./genweb/rectorat/content/document_templates/document_view.pt:80

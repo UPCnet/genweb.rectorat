@@ -68,7 +68,7 @@ msgstr "NOTA: Es poden afegir múltiples fitxers amb la tecla CONTROL o ALT.<br/
 #: ./genweb/rectorat/content/acta.py:51
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:40
 msgid "Attending members"
-msgstr "Llista de membres assistents"
+msgstr "Llista de persones assistents"
 
 #: ./genweb/rectorat/content/sessio.py:87
 msgid "Body Mail"
@@ -136,7 +136,7 @@ msgstr "Ha de ser una adreça de correu vàlida. És la que es farà servir per 
 #: ./genweb/rectorat/content/acta.py:63
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:74
 msgid "Excused members"
-msgstr "Llista de membres excusats"
+msgstr "Llista de persones excusades"
 
 #: ./genweb/rectorat/configure.zcml:28
 msgid "Extension profile for genweb.rectorat."
@@ -175,7 +175,7 @@ msgstr "Hora d'inici:"
 #: ./genweb/rectorat/content/sessio.py:63
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:120
 msgid "Incoming members list"
-msgstr "Llista de membres convocats"
+msgstr "Llista de persones convocades"
 
 #: ./genweb/rectorat/content/document.py:25
 msgid "Informed"
@@ -185,7 +185,7 @@ msgstr "Informat"
 #: ./genweb/rectorat/content/acta.py:57
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:57
 msgid "Invited members"
-msgstr "Llista de membres convidats"
+msgstr "Llista de persones convidades"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:166
 msgid "Llistat d'actes"
@@ -229,7 +229,7 @@ msgstr "Missatge no enviat. Comprovi els destinataris del missatge"
 #: ./genweb/rectorat/content/acta.py:69
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:91
 msgid "Missing members"
-msgstr "Llista de membres no assistents"
+msgstr "Llista de persones no assistents"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:24
 msgid "New message"
@@ -267,7 +267,7 @@ msgstr "Crea un Òrgan de Govern"
 #: ./genweb/rectorat/content/organgovern.py:39
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:32
 msgid "Organ Govern members"
-msgstr "Membres de l'òrgan de govern"
+msgstr "Composició de l'òrgan de govern"
 
 #: ./genweb/rectorat/content/document.py:89
 #: ./genweb/rectorat/content/document_templates/document_view.pt:80
