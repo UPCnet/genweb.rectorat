@@ -63,37 +63,40 @@ class SearchableText(DefaultDexterityTextIndexFieldConverter):
     def convertFileByFile(self, obj):
         """Transforms file data to text for indexing safely.
         """
-        storage = self.field.interface(self.context)
-        data = self.field.get(storage)
+        # storage = self.field.interface(self.context)
+        # data = self.field.get(storage)
 
         # if there is no data, do nothing
         if not obj:
             return ''
+
+        # Normalize name
+        filename = normalize('NFKD', obj.filename).encode('ascii', errors='ignore')
+
         # If size is 0 return only filename
         if obj.getSize() == 0:
-            return str(obj.filename)
+            return str(filename)
 
         # if data is already in text/plain, just return it and the filename
         if obj.contentType == 'text/plain':
-            return str(obj.filename) + ' ' + obj.data
+            return str(filename) + ' ' + obj.data
 
         # if there is no path to text/plain, do nothing
         transforms = getToolByName(self.context, 'portal_transforms')
 
         if not transforms._findPath(obj.contentType, 'text/plain'):
-            return str(obj.filename.encode("utf-8"))
-
+            return str(filename)
         try:
             datastream = transforms.convertTo('text/plain',
                                               str(obj.data),
                                               mimetype=obj.contentType,
-                                              filename=obj.filename)
+                                              filename=filename)
 
             contentData = safe_unicode(datastream.getData().decode('utf-8'))
             contentData = normalize('NFKD', contentData).encode('ascii', errors='ignore')
             contentData = contentData.replace('\n', ' ').replace(u'\xa0', u' ').replace(u'\x0c',u'')
 
-            return self.unicode_save_string_concat(obj.filename, contentData)
+            return self.unicode_save_string_concat(filename, contentData)
 
         except (ConflictError, KeyboardInterrupt):
             raise
