@@ -64,8 +64,8 @@ def sessio_changed(session, event):
 
             if lang == 'ca':
                 session.notificationDate = now
-                subjectMail = "Convocada ordre del dia: " + organ.title.encode('utf-8')
-                introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
+                subjectMail = "Convocatòria " + session.Title() + ' ' + session.dataSessio.strftime('%d/%m/%Y') + ' ' + session.horaInici.strftime('%H:%M')
+                introData = "<br/>En cas que no pugueu assistir us prego que ens ho indiqueu el més aviat possible.<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = html_content + \
                            '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -77,8 +77,8 @@ def sessio_changed(session, event):
 
             if lang == 'es':
                 session.notificationDate = now
-                subjectMail = "Convocada orden del día: " + organ.title.encode('utf-8')
-                introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
+                subjectMail = "Convocatoria " + session.Title() + ' ' + session.dataSessio.strftime('%d/%m/%Y') + ' ' + session.horaInici.strftime('%H:%M')
+                introData = "<br/>En caso de que no pueda asistir os ruego que nos lo indique lo antes posible.<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = html_content + \
                            '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -92,8 +92,8 @@ def sessio_changed(session, event):
                 now = strftime("%Y-%m-%d %H:%M")
                 session.notificationDate = now
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-                subjectMail = "Convened agenda: " + organ.title.encode('utf-8')
-                introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
+                subjectMail = "Session " + session.Title() + ' ' + session.dataSessio.strftime('%d/%m/%Y') + ' ' + session.horaInici.strftime('%H:%M')
+                introData = "<br/>Should you be unable to attend please let us know as soon as possible.<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = html_content + \
                            '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
