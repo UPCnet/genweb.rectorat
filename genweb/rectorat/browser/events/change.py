@@ -58,13 +58,17 @@ def sessio_changed(session, event):
              <head>
               <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
               <title>Mail content</title>
-                 <link rel="stylesheet" href=""" + CSS + """></link>
-            </head><body>
+                  <link rel="stylesheet" href=""" + CSS + """></link>
+                  <style type="text/css">
+                    body {padding:25px;}
+                  </style>
+            </head>
+            <body>
             """
 
             if lang == 'ca':
                 session.notificationDate = now
-                subjectMail = "Convocatòria " + session.Title() + ' ' + session.dataSessio.strftime('%d/%m/%Y') + ' ' + session.horaInici.strftime('%H:%M')
+                subjectMail = "Convocatòria " + session.Title() + ' - ' + sessiondate + ' - ' + starthour
                 introData = "<br/>En cas que no pugueu assistir us prego que ens ho indiqueu el més aviat possible.<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = html_content + \
@@ -77,7 +81,7 @@ def sessio_changed(session, event):
 
             if lang == 'es':
                 session.notificationDate = now
-                subjectMail = "Convocatoria " + session.Title() + ' ' + session.dataSessio.strftime('%d/%m/%Y') + ' ' + session.horaInici.strftime('%H:%M')
+                subjectMail = "Convocatoria " + session.Title() + ' - ' + sessiondate + ' - ' + starthour
                 introData = "<br/>En caso de que no pueda asistir os ruego que nos lo indique lo antes posible.<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = html_content + \
@@ -92,7 +96,7 @@ def sessio_changed(session, event):
                 now = strftime("%Y-%m-%d %H:%M")
                 session.notificationDate = now
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-                subjectMail = "Session " + session.Title() + ' ' + session.dataSessio.strftime('%d/%m/%Y') + ' ' + session.horaInici.strftime('%H:%M')
+                subjectMail = "Session " + session.Title() + ' - ' + sessiondate + ' - ' + starthour
                 introData = "<br/>Should you be unable to attend please let us know as soon as possible.<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                             str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
                 moreData = html_content + \

@@ -42,7 +42,7 @@ def sessio_sendMail(session, recipients, body):
 
     if lang == 'ca':
         session.notificationDate = now
-        subjectMail = "Missatge de la sessió: " + str(sessiontitle) + ' / ' + organ.title.encode('utf-8')
+        subjectMail = "Missatge de la sessió: " + str(sessiontitle) + ' - ' + sessiondate
         introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -54,7 +54,7 @@ def sessio_sendMail(session, recipients, body):
 
     if lang == 'es':
         session.notificationDate = now
-        subjectMail = "Mensaje de la sesión: " + str(sessiontitle) + ' / ' + organ.title.encode('utf-8')
+        subjectMail = "Mensaje de la sesión: " + str(sessiontitle) + ' - ' + sessiondate
         introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
@@ -68,7 +68,7 @@ def sessio_sendMail(session, recipients, body):
         now = strftime("%Y-%m-%d %H:%M")
         session.notificationDate = now
         sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-        subjectMail = "Session message: " + str(sessiontitle) + ' / ' + organ.title.encode('utf-8')
+        subjectMail = "Session message: " + str(sessiontitle) + ' - ' + sessiondate
         introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
                     str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
         moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
