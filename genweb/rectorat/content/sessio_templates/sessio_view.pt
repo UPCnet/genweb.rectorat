@@ -77,7 +77,6 @@
     <script type="text/javascript">
     $(document).ready(function() {
         $.rta('bold italic, ul ol, align-left align-center align-right');
-        
     });
 
     $('#sendmailModal').on('show.bs.modal', function (event) {
@@ -96,16 +95,12 @@
     <div class="span12">
       <div class="span8">
         <tal:block tal:condition="context/ordreSessio">
-          <div class="accordion" id="accordionSessionOrder">
-            <div class="accordion-heading">
-              <h3 class="accordion-toggle" data-toggle="collapse" 
-                  style="color: #557c95; padding-left: 0px;"
-                 data-parent="#accordionSessionOrder" href="#collapseSessionOrder">
-                <tal:omit-tag i18n:translate="">Session order</tal:omit-tag>
+          <div id="accordion1">
+              <h3 class="accordion-toggle">
+                <a style="color:#557C95" i18n:translate="">Session order</a>
                  <i class="icon-chevron-down"></i>
               </h3>
-            </div>
-            <div id="collapseSessionOrder" class="collapse in">
+            <div class="accordion-content">
               <div tal:replace="structure context/ordreSessio/output|nothing" />
             </div>
           </div>
@@ -135,8 +130,7 @@
             <span style="float:right" 
                   tal:content="context/llocConvocatoria"></span>
           </li> 
-          <li style="float:right" class="linkNotificacions" tal:condition="view/LogInformation"
-              >
+          <li style="float:right" class="linkNotificacions" tal:condition="view/LogInformation">
             <a tal:attributes="href string:${context/absolute_url}#notificationsList">
               <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
             </a>
@@ -150,16 +144,13 @@
 
   <tal:block tal:condition="context/membresConvocats">
     <hr/>
-    <div class="accordion" id="accordionConvocats">
-      <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" 
-            style="color: #557c95; padding-left: 0px;"
-           data-parent="#accordionConvocats" href="#collapseConvocats">
-          <tal:omit-tag i18n:translate="">Incoming members list</tal:omit-tag>
+    <div id="accordion2">
+        <h3 class="accordion-toggle">
+          <a style="color: #557c95;" i18n:translate="">Incoming members list</a>
            <i class="icon-chevron-down"></i>
         </h3>
-      </div>
-      <div id="collapseConvocats" class="collapse">
+
+      <div class="accordion-content" style="display:none;">
         <div tal:replace="structure context/membresConvocats/output|nothing" />
       </div>
     </div>
@@ -167,16 +158,13 @@
 
   <tal:block tal:condition="context/membresConvidats">
     <hr/>
-    <div class="accordion" id="accordionConvidats">
-      <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" 
-            style="color: #557c95; padding-left: 0px;"
-           data-parent="#accordionConvidats" href="#collapseConvidats">
-          <tal:omit-tag i18n:translate="">Invited members</tal:omit-tag>
+    <div id="accordion3">
+        <h3 class="accordion-toggle">
+          <a style="color: #557c95;" i18n:translate="">Invited members</a>
            <i class="icon-chevron-down"></i>
         </h3>
-      </div>
-      <div id="collapseConvidats" class="collapse">
+
+      <div class="accordion-content" style="display:none;">
         <div tal:replace="structure context/membresConvidats/output|nothing" />
       </div>
     </div>
@@ -184,16 +172,13 @@
 
   <tal:block tal:condition="context/llistaExcusats">
     <hr/>
-    <div class="accordion" id="accordionExcusats">
-      <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" 
-            style="color: #557c95; padding-left: 0px;"
-           data-parent="#accordionExcusats" href="#collapseExcusats">
-          <tal:omit-tag i18n:translate="">Excused members</tal:omit-tag>
+    <div id="accordion4">
+        <h3 class="accordion-toggle" >
+          <a style="color: #557c95;" i18n:translate="">Excused members</a>
            <i class="icon-chevron-down"></i>
         </h3>
-      </div>
-      <div id="collapseExcusats" class="collapse">
+
+      <div class="accordion-content" style="display:none;">
         <div tal:replace="structure context/llistaExcusats/output|nothing" />
       </div>
     </div>
@@ -307,17 +292,13 @@
 
   <tal:omit-tag tal:condition="view/LogInformation">
     <hr/>
-    <div class="accordion" id="notificationsList">
-      <div class="accordion-heading">
-        <h3 class="accordion-toggle" data-toggle="collapse" 
-            style="color: #557c95; padding-left: 0px;"
-           data-parent="#notificationsList" href="#collapseHistoryNotif">
-          <tal:omit-tag i18n:translate="">Notifications history</tal:omit-tag>
-           <i class="icon-chevron-down"></i><a name="notificationsList"></a>
+    <div id="accordion5">
+        <h3 class="accordion-toggle">
+          <a style="color: #557c95;" name="notificationsList" i18n:translate="">Notifications history</a>
+           <i class="icon-chevron-down"></i>
         </h3>
-      </div>
 
-      <div id="collapseHistoryNotif" class="collapse">
+      <div class="accordion-content" style="display:none;">
         <div class="table-responsive">
             <table class="table">
               <thead>
@@ -349,6 +330,34 @@
       </div>
     </div>
   </tal:omit-tag>
+
+<script type="text/javascript">
+  $(document).ready(function($) {
+
+      $('#accordion1').find('.accordion-toggle').click(function(){
+        //Expand or collapse this panel
+        $(this).next().slideToggle('fast');
+      });
+      $('#accordion2').find('.accordion-toggle').click(function(){
+        //Expand or collapse this panel
+        $(this).next().slideToggle('fast');
+      });
+      $('#accordion3').find('.accordion-toggle').click(function(){
+        //Expand or collapse this panel
+        $(this).next().slideToggle('fast');
+      });
+      $('#accordion4').find('.accordion-toggle').click(function(){
+        //Expand or collapse this panel
+        $(this).next().slideToggle('fast');
+      });
+      $('#accordion5').find('.accordion-toggle').click(function(){
+        //Expand or collapse this panel
+        $(this).next().slideToggle('fast');
+      });      
+
+
+  });
+</script>
 
 </metal:content-core>
 
