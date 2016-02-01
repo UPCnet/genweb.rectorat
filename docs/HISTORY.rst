@@ -1,11 +1,21 @@
 Changelog
 =========
 
-1.5.3 (unreleased)
+1.5.4 (unreleased)
 ------------------
 
 - Nothing changed yet.
 
+
+1.5.3 (2016-01-26)
+------------------
+
+* changed string mails [roberto.diaz]
+* added messages to mail [roberto.diaz]
+* added accordion to ordre del dia [roberto.diaz]
+* change membres to persones [roberto.diaz]
+* normalize filename [roberto.diaz]
+* add encode to filenames to avoid errors [Alberto Duran]
 
 1.5.2 (2015-12-23)
 ------------------
