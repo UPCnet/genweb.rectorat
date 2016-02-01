@@ -21,31 +21,35 @@ def sessio_changed(session, event):
         if event.transition.id == 'convoquing':
             lang = getToolByName(session, 'portal_languages').getPreferredLanguage()
             now = strftime("%d/%m/%Y %H:%M:%S")
-            sessiontitle = session.Title()
+            sessiontitle = str(session.Title())
 
-            sessiondate = session.dataSessio.strftime("%d/%m/%Y")
-            starthour = session.horaInici.strftime("%H:%M")
-            endHour = session.horaFi.strftime("%H:%M")
+            sessiondate = str(session.dataSessio.strftime("%d/%m/%Y"))
+            starthour = str(session.horaInici.strftime("%H:%M"))
+            endHour = str(session.horaFi.strftime("%H:%M"))
             organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
             organ = api.content.get(path=organ_path)
-            sessionLink = session.absolute_url()
+            sessionLink = str(session.absolute_url())
             senderPerson = str(organ.fromMail)
+
+            if session.signatura is None:
+                signatura = ''
+            else:
+                signatura = str(session.signatura.output.encode('utf-8'))
 
             if session.llocConvocatoria is None:
                 place = ''
             else:
-                place = session.llocConvocatoria.encode('utf-8')
+                place = str(session.llocConvocatoria.encode('utf-8'))
 
             if session.ordreSessio is None:
                 ordenField = ''
             else:
-                ordenField = session.ordreSessio.output.encode('utf-8')
+                ordenField = str(session.ordreSessio.output.encode('utf-8'))
 
-            # If no Body ? Continue? Bypass? ...
             if session.bodyMail is None:
                 customBody = ''
             else:
-                customBody = session.bodyMail.output.encode('utf-8')
+                customBody = str(session.bodyMail.output.encode('utf-8'))
 
             if session.adrecaLlista is None:
                 recipientPerson = organ.adrecaLlista.replace(' ', '').encode('utf-8').split(',')
@@ -68,43 +72,43 @@ def sessio_changed(session, event):
 
             if lang == 'ca':
                 session.notificationDate = now
-                subjectMail = "Convocatòria " + session.Title() + ' - ' + sessiondate + ' - ' + starthour
-                introData = "<br/>En cas que no pugueu assistir us prego que ens ho indiqueu el més aviat possible.<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
-                            str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
+                subjectMail = "Convocatòria " + sessiontitle + ' - ' + sessiondate + ' - ' + starthour
+                introData = "<br/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
+                            sessionLink + ">" + sessiontitle + "</a></p><br/>" + signatura
                 moreData = html_content + \
-                           '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                           '</strong><br/><br/>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
-                           "<br/>Hora d'inici: " + str(starthour) + \
-                           "<br/>Hora de fi: " + str(endHour) + \
-                           '<br/><br/><strong> Ordre del dia </strong>' + str(ordenField) + '</body>'
+                    '<br/>' + customBody + '<strong>' + sessiontitle + \
+                    '</strong><br/><br/>Lloc: ' + place + "<br/>Data: " + sessiondate + \
+                    "<br/>Hora d'inici: " + starthour + \
+                    "<br/>Hora de fi: " + endHour + \
+                    '<br/><br/><strong> Ordre del dia </strong>' + ordenField + '</body>'
                 bodyMail = moreData + str(introData)
 
             if lang == 'es':
                 session.notificationDate = now
-                subjectMail = "Convocatoria " + session.Title() + ' - ' + sessiondate + ' - ' + starthour
-                introData = "<br/>En caso de que no pueda asistir os ruego que nos lo indique lo antes posible.<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
-                            str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
+                subjectMail = "Convocatoria " + sessiontitle + ' - ' + sessiondate + ' - ' + starthour
+                introData = "<br/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
+                            sessionLink + ">" + sessiontitle + "</a></p><br/>" + signatura
                 moreData = html_content + \
-                           '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                           '</strong><br/><br/>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
-                           "<br/>Hora de inicio: " + str(starthour) + \
-                           "<br/>Hora de finalización: " + str(endHour) + \
-                           '<br/><br/><strong> Orden del día </strong>' + str(ordenField)
+                    '<br/>' + customBody + '<strong>' + sessiontitle + \
+                    '</strong><br/><br/>Lugar: ' + place + "<br/>Fecha: " + sessiondate + \
+                    "<br/>Hora de inicio: " + starthour + \
+                    "<br/>Hora de finalización: " + endHour + \
+                    '<br/><br/><strong> Orden del día </strong>' + ordenField
                 bodyMail = moreData + str(introData)
 
             if lang == 'en':
                 now = strftime("%Y-%m-%d %H:%M")
                 session.notificationDate = now
                 sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-                subjectMail = "Session " + session.Title() + ' - ' + sessiondate + ' - ' + starthour
-                introData = "<br/>Should you be unable to attend please let us know as soon as possible.<br/><hr/><p>You can view the complete session information here:: <a href=" + \
-                            str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
+                subjectMail = "Session " + sessiontitle + ' - ' + sessiondate + ' - ' + starthour
+                introData = "<br/><p>You can view the complete session information here:: <a href=" + \
+                            sessionLink + ">" + sessiontitle + "</a></p><br/>" + signatura
                 moreData = html_content + \
-                           '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                           '</strong><br/><br/>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
-                           "<br/>Start time: " + str(starthour) + \
-                           "<br/>End time: " + str(endHour) + \
-                           '<br/><br/><strong> Contents </strong>' + str(ordenField)
+                    '<br/>' + customBody + '<strong>' + sessiontitle + \
+                    '</strong><br/><br/>Place: ' + place + "<br/>Date: " + sessiondate + \
+                    "<br/>Start time: " + starthour + \
+                    "<br/>End time: " + endHour + \
+                    '<br/><br/><strong> Contents </strong>' + ordenField
                 bodyMail = moreData + str(introData)
 
             # Sending Mail!
@@ -118,9 +122,11 @@ def sessio_changed(session, event):
                                       immediate=False,
                                       charset='utf8',
                                       msg_type='text/html')
-                session.plone_utils.addPortalMessage(_("Missatge enviat correctament"), 'info')
+                session.plone_utils.addPortalMessage(
+                    _("Missatge enviat correctament"), 'info')
             except:
-                session.plone_utils.addPortalMessage(_("Missatge no enviat. Comprovi el from i el to del missatge"), 'error')
+                session.plone_utils.addPortalMessage(
+                    _("Missatge no enviat. Comprovi el from i el to del missatge"), 'error')
 
 
 def addAnnotation(object, recipients):

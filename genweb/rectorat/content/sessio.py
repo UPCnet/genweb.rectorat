@@ -89,6 +89,13 @@ class ISessio(form.Schema):
         required=False,
     )
 
+    dexteritytextindexer.searchable('signatura')
+    signatura = RichText(
+        title=_(u"Signatura"),
+        description=_(u"Signatura description"),
+        required=False,
+    )
+
 
 @form.default_value(field=ISessio['dataSessio'])
 def dataSessioDefaultValue(data):

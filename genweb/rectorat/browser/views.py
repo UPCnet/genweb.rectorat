@@ -16,14 +16,19 @@ def sessio_sendMail(session, recipients, body):
     """
     lang = getToolByName(session, 'portal_languages').getPreferredLanguage()
     now = strftime("%d/%m/%Y %H:%M:%S")
-    sessiontitle = session.Title()
+    sessiontitle = str(session.Title())
 
     sessiondate = session.dataSessio.strftime("%d/%m/%Y")
     starthour = session.horaInici.strftime("%H:%M")
     endHour = session.horaFi.strftime("%H:%M")
-    sessionLink = session.absolute_url()
+    sessionLink = str(session.absolute_url())
     organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
     organ = api.content.get(path=organ_path)
+
+    if session.signatura is None:
+        signatura = ''
+    else:
+        signatura = session.signatura.output.encode('utf-8')
 
     if session.llocConvocatoria is None:
         place = ''
@@ -40,42 +45,59 @@ def sessio_sendMail(session, recipients, body):
     customBody = body + '<br/><br/>'
     recipientPerson = recipients
 
+    CSS = '"' + session.portal_url()+'/++genwebupc++stylesheets/genwebupc.css' + '"'
+
+    html_content = """
+     <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>Mail content</title>
+          <link rel="stylesheet" href=""" + CSS + """></link>
+          <style type="text/css">
+            body {padding:25px;}
+          </style>
+    </head>
+    <body>
+    """
+
     if lang == 'ca':
         session.notificationDate = now
-        subjectMail = "Missatge de la sessió: " + str(sessiontitle) + ' - ' + sessiondate
-        introData = "<br/><hr/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
-                    str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-        moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                   '</strong><br/><br/>Lloc: ' + str(place) + "<br/>Data: " + str(sessiondate) + \
-                   "<br/>Hora d'inici: " + str(starthour) + \
-                   "<br/>Hora de fi: " + str(endHour) + \
-                   '<br/><br/><strong>Ordre del dia </strong>' + str(ordenField)
+        subjectMail = "Missatge de la sessió: " + sessiontitle + ' - ' + sessiondate
+        introData = "<br/><p>Podeu consultar tota la documentació de la sessió aquí: <a href=" + \
+                    sessionLink + ">" + sessiontitle + "</a></p><br/>" + signatura
+        moreData = html_content + \
+            '<br/>' + customBody + '<strong>' + sessiontitle + \
+            '</strong><br/><br/>Lloc: ' + place + "<br/>Data: " + sessiondate + \
+            "<br/>Hora d'inici: " + starthour + \
+            "<br/>Hora de fi: " + endHour + \
+            '<br/><br/><strong> Ordre del dia </strong>' + ordenField + '</body>'
         bodyMail = moreData + str(introData)
 
     if lang == 'es':
         session.notificationDate = now
-        subjectMail = "Mensaje de la sesión: " + str(sessiontitle) + ' - ' + sessiondate
-        introData = "<br/><hr/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
-                    str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-        moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                   '</strong><br/><br/>Lugar: ' + str(place) + "<br/>Fecha: " + str(sessiondate) + \
-                   "<br/>Hora de inicio: " + str(starthour) + \
-                   "<br/>Hora de finalización: " + str(endHour) + \
-                   '<br/><br/><strong>Orden del día </strong>' + str(ordenField)
+        subjectMail = "Mensaje de la sesión: " + sessiontitle + ' - ' + sessiondate
+        introData = "<br/><p>Puede consultar toda la documentación de la sesión aquí: <a href=" + \
+                    sessionLink + ">" + sessiontitle + "</a></p><br/>" + signatura
+        moreData = html_content + \
+            '<br/>' + customBody + '<strong>' + sessiontitle + \
+            '</strong><br/><br/>Lugar: ' + place + "<br/>Fecha: " + sessiondate + \
+            "<br/>Hora de inicio: " + starthour + \
+            "<br/>Hora de finalización: " + endHour + \
+            '<br/><br/><strong> Orden del día </strong>' + ordenField
         bodyMail = moreData + str(introData)
 
     if lang == 'en':
         now = strftime("%Y-%m-%d %H:%M")
         session.notificationDate = now
         sessiondate = session.dataSessio.strftime("%Y-%m-%d")
-        subjectMail = "Session message: " + str(sessiontitle) + ' - ' + sessiondate
-        introData = "<br/><hr/><p>You can view the complete session information here:: <a href=" + \
-                    str(sessionLink) + ">" + str(sessiontitle) + "</a></p>"
-        moreData = '<br/>' + str(customBody) + '<strong>' + str(sessiontitle) + \
-                   '</strong><br/><br/>Place: ' + str(place) + "<br/>Date: " + str(sessiondate) + \
-                   "<br/>Start time: " + str(starthour) + \
-                   "<br/>End time: " + str(endHour) + \
-                   '<br/><br/><strong>Contents </strong>' + str(ordenField)
+        subjectMail = "Session message: " + sessiontitle + ' - ' + sessiondate
+        introData = "<br/><p>You can view the complete session information here:: <a href=" + \
+                    sessionLink + ">" + sessiontitle + "</a></p><br/>" + signatura
+        moreData = html_content + \
+            '<br/>' + customBody + '<strong>' + sessiontitle + \
+            '</strong><br/><br/>Place: ' + place + "<br/>Date: " + sessiondate + \
+            "<br/>Start time: " + starthour + \
+            "<br/>End time: " + endHour + \
+            '<br/><br/><strong> Contents </strong>' + ordenField
         bodyMail = moreData + str(introData)
 
     # Sending Mail!
@@ -112,7 +134,7 @@ class AddLogMail(BrowserView):
         """
         KEY = 'genweb.rectorat.logMail'
         annotations = IAnnotations(self.context)
-        send = True
+
         if annotations is not None:
             logData = annotations.get(KEY, None)
             try:
@@ -122,13 +144,14 @@ class AddLogMail(BrowserView):
             except:
                 # If it's empty, initialize data
                 data = []
+
             dateMail = datetime.now()
 
             anon = api.user.is_anonymous()
             if not anon:
                 username = api.user.get_current().id
             else:
-                username = ''
+                username = 'Anonymous user'
 
             body = ''  # Fiquem el body buit per si de cas...
             try:
@@ -138,15 +161,14 @@ class AddLogMail(BrowserView):
             except:
                 return
 
-            if send is True:
-                values = dict(dateMail=dateMail,
-                              fromMail=_("Missatge enviat per: ") + username,
-                              toMail=toMail)
+            values = dict(dateMail=dateMail,
+                          fromMail=_("Missatge enviat per: ") + username,
+                          toMail=toMail)
 
-                data.append(values)
-                annotations[KEY] = data
+            data.append(values)
+            annotations[KEY] = data
 
-                sessio_sendMail(self.context, toMail, body)  # Enviem mail
+            sessio_sendMail(self.context, toMail, body)  # Enviem mail
         # session, sender, recipients, body
 
         self.request.response.redirect(self.context.absolute_url())
