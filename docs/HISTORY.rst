@@ -81,16 +81,6 @@ Changelog
 1.4 (2015-04-30)
 ----------------
 
-
-
-1.4 (2015-04-30)
-----------------
-
-
-
-1.4 (2015-04-30)
-----------------
-
 * addapted templates to new accordion style (Marc) [Roberto Diaz]
 * added indexer sort by sessionDate [Roberto Diaz]
 * added accordion to members list [Roberto Diaz]
