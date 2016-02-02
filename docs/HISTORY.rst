@@ -1,11 +1,14 @@
 Changelog
 =========
 
-1.5.4 (unreleased)
-------------------
+1.6 (2016-02-02)
+----------------
 
-- Nothing changed yet.
-
+* Added local resources from richtext editor [roberto.diaz]
+* customize js richtext icons [root muntanyeta]
+* added collapse manually code [roberto.diaz]
+* Merge branch 'master' of github.com:UPCnet/genweb.rectorat [roberto.diaz]
+* testing js on mail [roberto.diaz]
 
 1.5.3 (2016-01-26)
 ------------------
