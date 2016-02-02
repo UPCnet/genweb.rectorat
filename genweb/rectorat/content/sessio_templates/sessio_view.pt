@@ -55,6 +55,7 @@
                             class="rta form-control"
                             id="message-text"
                             name="message-text"
+                            data-rta-btnsize="small"
                             placeholder="Contingut a annexar al missatge de correu"
                             style="width:97%;">
                   </textarea>
@@ -76,7 +77,7 @@
 
     <script type="text/javascript">
     $(document).ready(function() {
-        $.rta('bold italic, ul ol, align-left align-center align-right');
+        $.rta('bold italic underline, ul ol, align-left align-center align-right align-full, indent-left indent-right, remove-formatting html');
     });
 
     $('#sendmailModal').on('show.bs.modal', function (event) {
