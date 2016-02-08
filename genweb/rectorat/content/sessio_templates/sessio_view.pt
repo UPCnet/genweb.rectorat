@@ -16,10 +16,10 @@
       <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
     </button>
 
-    <link rel="stylesheet" href="++resource++genweb.rectorat.static/bootstrap-rta-1.0.1.min.css">
-    <script src="++resource++genweb.rectorat.static/jquery.min.js"></script>
-    <script src="++resource++genweb.rectorat.static/bootstrap-2.3.1.min.js"></script>
-    <script src="++resource++genweb.rectorat.static/bootstrap-rta-1.0.0.min.js"></script>
+    <link rel="stylesheet" href="++resource++genweb.rectorat.static/rta-1.0.1.css">
+    <!-- <script src="++resource++genweb.rectorat.static/jquery.min.js"></script> -->
+    <!-- <script src="++resource++genweb.rectorat.static/bootstrap-2.3.1.min.js"></script> -->
+    <script src="++resource++genweb.rectorat.static/rta-1.0.0.js"></script>
 
     <style type="text/css" media="screen">
      .btn-group {
