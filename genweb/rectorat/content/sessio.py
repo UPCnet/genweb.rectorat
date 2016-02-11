@@ -136,6 +136,18 @@ class View(grok.View):
         else:
             return True
 
+    def isEditor(self):
+        """ Show btn if user is editor """
+        try:
+            username = api.user.get_current().getProperty('id')
+            roles = api.user.get_roles(username=username, obj=self.context)
+            if 'Editor' in roles or 'Manager' in roles:
+                return True
+            else:
+                return False
+        except:
+            return False
+
     def DocumentsInside(self):
         """ Retorna els documents creats aquí dintre (sense tenir compte estat)
         """

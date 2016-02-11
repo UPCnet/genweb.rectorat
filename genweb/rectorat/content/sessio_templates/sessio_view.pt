@@ -10,15 +10,13 @@
 <metal:content-core fill-slot="content-core" 
    tal:define="portal_url context/@@plone_portal_state/portal_url;">
 
-  <tal:omit-tag condition="view/isAuthenticated">
+  <tal:omit-tag condition="view/isEditor">
     <button type="button" class="btn btn-primary" style="float:right"
             data-toggle="modal" data-target="#sendmailModal">
       <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
     </button>
 
     <link rel="stylesheet" href="++resource++genweb.rectorat.static/rta-1.0.1.css">
-    <!-- <script src="++resource++genweb.rectorat.static/jquery.min.js"></script> -->
-    <!-- <script src="++resource++genweb.rectorat.static/bootstrap-2.3.1.min.js"></script> -->
     <script src="++resource++genweb.rectorat.static/rta-1.0.0.js"></script>
 
     <style type="text/css" media="screen">
@@ -31,8 +29,8 @@
       tal:attributes="data-mails view/OrganMail">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-header" tal:condition="view/isEditor">
+            <button  type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="sendmailModalLabel" i18n:translate="">New message</h4>
           </div>
           <div class="modal-body">
