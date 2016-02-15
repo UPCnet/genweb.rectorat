@@ -1,11 +1,18 @@
 Changelog
 =========
 
-1.7 (unreleased)
+1.8 (unreleased)
 ----------------
 
 - Nothing changed yet.
 
+
+1.7 (2016-02-11)
+----------------
+
+* editor can view button [roberto.diaz]
+* removed Jquery dependencies [roberto.diaz]
+* removed duplicated string [roberto.diaz]
 
 1.6 (2016-02-02)
 ----------------
