@@ -29,10 +29,10 @@
     </style>
 
     <div class="modal fade" id="sendmailModal" tabindex="-1" role="dialog" aria-labelledby="sendmailModalLabel" aria-hidden="true"
-      tal:attributes="data-mails view/OrganMail">
+      tal:attributes="data-mails view/OrganMail" tal:condition="view/isEditor">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header" tal:condition="view/isEditor">
+          <div class="modal-header">
             <button  type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="sendmailModalLabel" i18n:translate="">New message</h4>
           </div>
