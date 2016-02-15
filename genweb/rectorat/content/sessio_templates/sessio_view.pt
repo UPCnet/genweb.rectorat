@@ -16,8 +16,11 @@
       <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
     </button>
 
+    <!-- Tiny Editor in Send Message -->
     <link rel="stylesheet" href="++resource++genweb.rectorat.static/rta-1.0.1.css">
     <script src="++resource++genweb.rectorat.static/rta-1.0.0.js"></script>
+
+
 
     <style type="text/css" media="screen">
      .btn-group {
@@ -205,25 +208,22 @@
   <tal:RelatedDocs tal:define="item view/DocumentsInside" tal:condition="item">
     <hr/>
     <h3 i18n:translate="">Related documents</h3>
-    <table class="listing">
+    <table class="tablesorter" id="documentsTable">
         <thead>
           <tr>
-            <th style="width: 8%">
+            <th class="tablesorter" style="width: 8%">
               <tal:head i18n:translate="">Point</tal:head>
             </th>
             <th style="width: 9%">
               <tal:head i18n:translate="">Agreement</tal:head>
             </th>     
-            <th style="width: 30%">
+            <th>
               <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
-            <th style="width: 19%" tal:condition="view/isAuthenticated">
-              <tal:head i18n:translate="">Approval status</tal:head>
-            </th> 
-            <th style="width: 17%">
+            <th>
               <tal:head i18n:translate="">Published files</tal:head>
             </th>                                 
-            <th style="width: 17%" tal:condition="view/isAuthenticated">
+            <th tal:condition="view/isAuthenticated">
               <tal:head i18n:translate="">Original files</tal:head>
             </th>                 
           </tr>
@@ -231,7 +231,7 @@
           <tal:documents repeat="item view/DocumentsInside">
             <tal:block tal:define="obj item/getObject;
                                    wf_state item/portal_workflow">
-              <tr >
+              <tr>
                 <td style="text-align: center;">
                     <span tal:content="obj/proposalPoint">
                       Point number
@@ -249,13 +249,12 @@
                      tal:content="obj/title">
                       Item Title
                   </a>
-                </td>
-                <td style="text-align: center;" tal:condition="view/isAuthenticated">
-                    <span i18n:translate=""
-                          tal:content="obj/estatAprovacio"
-                          tal:attributes="class obj/estatAprovacio">
-                      Approval status
-                    </span>
+                  <span i18n:translate=""
+                        tal:content="obj/estatAprovacio"
+                        tal:condition="view/isAuthenticated"
+                        tal:attributes="class obj/estatAprovacio">
+                    Approval status
+                  </span>
                 </td>
                 <td>
                   <ul tal:condition="obj/PublishedFiles">
@@ -330,8 +329,19 @@
     </div>
   </tal:omit-tag>
 
+    <!-- Table sorter -->
+    <link rel="stylesheet" href="++resource++genweb.rectorat.static/table_sorted.css" type="text/css" media="print, projection, screen" />
+    <script type="text/javascript" src="++resource++genweb.rectorat.static/__jquery.tablesorter.min.js"></script> 
+
+
 <script type="text/javascript">
   $(document).ready(function($) {
+      $("#documentsTable").tablesorter( 
+        {
+          sortList: [[0,0]],
+          widgets: ['zebra']
+        }
+        ); 
 
       $('#accordion1').find('.accordion-toggle').click(function(){
         //Expand or collapse this panel
