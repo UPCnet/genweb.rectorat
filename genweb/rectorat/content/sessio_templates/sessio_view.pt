@@ -28,8 +28,11 @@
       }
     </style>
 
-    <div class="modal fade" id="sendmailModal" tabindex="-1" role="dialog" aria-labelledby="sendmailModalLabel" aria-hidden="true"
-      tal:attributes="data-mails view/OrganMail" tal:condition="view/isEditor">
+    <div class="modal fade" id="sendmailModal"
+         tabindex="-1" role="dialog"
+         style="z-index:100000;"
+         aria-labelledby="sendmailModalLabel" aria-hidden="true"
+         tal:attributes="data-mails view/OrganMail">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -220,6 +223,9 @@
             <th>
               <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
+            <th style="width: 19%" tal:condition="view/isAuthenticated">
+              <tal:head i18n:translate="">Approval status</tal:head>
+            </th> 
             <th>
               <tal:head i18n:translate="">Published files</tal:head>
             </th>                                 
@@ -249,12 +255,13 @@
                      tal:content="obj/title">
                       Item Title
                   </a>
-                  <span i18n:translate=""
-                        tal:content="obj/estatAprovacio"
-                        tal:condition="view/isAuthenticated"
-                        tal:attributes="class obj/estatAprovacio">
-                    Approval status
-                  </span>
+                </td>
+                <td style="text-align: center;" tal:condition="view/isAuthenticated">
+                    <span i18n:translate=""
+                          tal:content="obj/estatAprovacio"
+                          tal:attributes="class obj/estatAprovacio">
+                      Approval status
+                    </span>
                 </td>
                 <td>
                   <ul tal:condition="obj/PublishedFiles">
@@ -288,7 +295,8 @@
       </table>
   </tal:RelatedDocs>
 
-  <tal:omit-tag tal:condition="view/LogInformation">
+  <tal:omit-tag tal:define="loginfo view/LogInformation"
+                tal:condition="loginfo">
     <hr/>
     <div id="accordion5">
         <h3 class="accordion-toggle">
@@ -313,7 +321,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tal:documents repeat="data view/LogInformation">
+                <tal:documents repeat="data loginfo">
                   <tr>
                     <td tal:define="value data/dateMail"
                         tal:content="python:value.strftime('%d/%m/%Y %H:%M:%S')">

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2016-02-01 11:14+0000\n"
+"POT-Creation-Date: 2016-02-11 11:40+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -33,7 +33,7 @@ msgid "Acta:"
 msgstr "Acta:"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:38
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:262
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:215
 msgid "Agreement"
 msgstr "Agreement"
 
@@ -47,7 +47,7 @@ msgid "Alternate description"
 msgstr "Internal content"
 
 #: ./genweb/rectorat/content/document.py:69
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:268
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:221
 msgid "Approval status"
 msgstr "Approval status"
 
@@ -78,7 +78,7 @@ msgstr "Body Mail"
 msgid "Body Mail description"
 msgstr "Body Mail description"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:103
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:65
 msgid "Close"
 msgstr "Close"
 
@@ -86,12 +86,12 @@ msgstr "Close"
 msgid "Content used to hide protected content"
 msgstr "Content used to hide protected content"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:357
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:306
 msgid "Data i hora"
 msgstr "Date and hour"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:108
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:150
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:113
 msgid "Data:"
 msgstr "Date:"
 
@@ -99,7 +99,7 @@ msgstr "Date:"
 msgid "Default content shown in the document view"
 msgstr "Default content shown in the document view"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:363
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:312
 msgid "Destinataris"
 msgstr "Recipients"
 
@@ -115,7 +115,7 @@ msgstr "Document description"
 msgid "Document info"
 msgstr "Document info"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:311
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:264
 msgid "Download"
 msgstr "Download"
 
@@ -173,7 +173,7 @@ msgid "Hora d'inici:"
 msgstr "Start time:"
 
 #: ./genweb/rectorat/content/sessio.py:63
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:189
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:148
 msgid "Incoming members list"
 msgstr "Incoming members"
 
@@ -187,7 +187,7 @@ msgstr "Informed"
 msgid "Invited members"
 msgstr "Invited members"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:235
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:188
 msgid "Llistat d'actes"
 msgstr "List of Acta elements"
 
@@ -196,15 +196,15 @@ msgid "Lloc de realitzacio:"
 msgstr "Place:"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:123
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:165
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:128
 msgid "Lloc:"
 msgstr "Place:"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:87
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:41
 msgid "Mail address separated by commas."
 msgstr "Mail address separated by commas."
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:93
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:47
 msgid "Message"
 msgstr "Message"
 
@@ -231,7 +231,7 @@ msgstr "Message not send. Check the recipients field."
 msgid "Missing members"
 msgstr "Missing members"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:80
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:34
 msgid "New message"
 msgstr "New message"
 
@@ -243,11 +243,11 @@ msgstr "Newsletters"
 msgid "No s'ha pogut copiar la plantilla per defecte. El fitxer amb les dades, no existeix: /ca/plantilles-butlletins/plantilla/template-base"
 msgstr "Problems copying the template. File doesn't exist: /ca/plantilles-butlletins/plantilla/template-base "
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:360
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:309
 msgid "Notificador"
 msgstr "Notificator"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:172
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:134
 msgid "Notifications history"
 msgstr "Notifications history"
 
@@ -271,7 +271,7 @@ msgstr "Members"
 
 #: ./genweb/rectorat/content/document.py:89
 #: ./genweb/rectorat/content/document_templates/document_view.pt:80
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:274
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:227
 msgid "Original files"
 msgstr "Internal files"
 
@@ -284,13 +284,13 @@ msgid "Pending"
 msgstr "Repeal"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:34
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:259
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:212
 msgid "Point"
 msgstr "Point:"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:24
-msgid "Print Acta"
-msgstr "Print Acta"
+msgid "Print Acta2"
+msgstr ""
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:81
 msgid "Private files description"
@@ -311,7 +311,7 @@ msgstr "Public files"
 
 #: ./genweb/rectorat/content/document.py:82
 #: ./genweb/rectorat/content/document_templates/document_view.pt:68
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:271
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:224
 msgid "Published files"
 msgstr "Public files"
 
@@ -319,7 +319,7 @@ msgstr "Public files"
 msgid "Published files description"
 msgstr "Published files description"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:85
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:39
 msgid "Recipients"
 msgstr "Recipients"
 
@@ -327,11 +327,11 @@ msgstr "Recipients"
 msgid "Rejected"
 msgstr "Rejected"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:254
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:207
 msgid "Related documents"
 msgstr "Related documents"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:72
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:16
 msgid "Send message"
 msgstr "Send message"
 
@@ -360,7 +360,7 @@ msgid "Session end time"
 msgstr "Session end time"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:104
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:146
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:109
 msgid "Session info"
 msgstr "Session info"
 
@@ -402,12 +402,12 @@ msgstr "State"
 msgid "Status"
 msgstr "Status:"
 
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:95
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:49
 msgid "This content will be used as message content"
 msgstr "This content will be used as message content"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:71
-#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:265
+#: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:218
 msgid "Title"
 msgstr "Title"
 

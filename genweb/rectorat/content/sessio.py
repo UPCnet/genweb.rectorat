@@ -185,10 +185,17 @@ class View(grok.View):
     def LogInformation(self):
         """ Obtain annotations send mail :)
         """
+
         if api.user.is_anonymous():
             return False
         else:
             annotations = IAnnotations(self.context)
+            # This is used to remove log entries manually
+            # import ipdb;ipdb.set_trace()
+            # aaa = annotations['genweb.rectorat.logMail']
+            # pp(aaa)       # Search the desired entry position
+            # aaa.pop(0)    # remove the entry
+            # annotations['genweb.rectorat.logMail'] = aaa
             try:
                 return sorted(annotations['genweb.rectorat.logMail'], reverse=True)
             except:
