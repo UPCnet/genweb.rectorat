@@ -3,13 +3,12 @@ from five import grok
 from zope import schema
 from plone.directives import form
 from plone.app.textfield import RichText
-from plone import api
-
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from collective import dexteritytextindexer
 from Products.CMFCore.utils import getToolByName
 from plone.app.users.userdataschema import checkEmailAddress
+from genweb.rectorat import utils
 
 
 class IOrgangovern(form.Schema):
@@ -52,15 +51,8 @@ class View(grok.View):
     grok.context(IOrgangovern)
     grok.template('organgovern_view')
 
-    def isAuthenticated(self):
-        # Check if user has admin role to show the bottom information box
-        # (only for managers)
-        if api.user.is_anonymous():
-            # is anon
-            canViewContent = False
-        else:
-            canViewContent = True
-        return canViewContent
+    def isReader(self):
+        return utils.isReader()
 
     def SessionsInside(self):
         """ Retorna les sessions d'aquí dintre (sense tenir compte estat)

@@ -14,11 +14,11 @@
       <div class="span8" style="margin-top:25px;">
         <tal:block>
           <tal:block tal:condition="context/defaultContent">
-            <h3 i18n:translate="" tal:condition="view/isAuthenticated"> Proposal description </h3>
+            <h3 i18n:translate=""> Proposal description </h3>
               <div tal:replace="structure context/defaultContent/output|nothing" />
            </tal:block>
 
-          <tal:block tal:condition="view/isAuthenticated">
+          <tal:block tal:condition="view/isReader">
             <h3 i18n:translate="" tal:condition="context/alternateContent"> Alternate description </h3>
             <div tal:condition="context/alternateContent"
                  tal:replace="structure context/alternateContent/output|nothing" />
@@ -38,7 +38,7 @@
             <b i18n:translate=""> Agreement </b>:
             <span style="float:right;" tal:content="context/agreement" />
           </li>
-          <tal:omit-tag condition="view/isAuthenticated">
+          <tal:omit-tag condition="view/isReader">
             <li tal:condition="context/estatAprovacio">
               <b i18n:translate=""> Status </b>
               <span style="float:right;" i18n:translate=""
@@ -52,7 +52,7 @@
   </div>
 
   <div style="clear:both;"></div>
-  <div tal:condition="view/isAuthenticated">
+  <div tal:condition="view/isReader">
     <div style="clear:both; padding-top: 20px;">
       <tal:block tal:condition="context/comentariEstatAprovacio">
         <hr/>      
@@ -65,15 +65,15 @@
   <div tal:condition="python: 'PublishedFiles' in view.w">
     <tal:files tal:condition="python:getattr(context, 'PublishedFiles', None)">
       <hr/>
-      <h3 i18n:translate="" tal:condition="view/isAuthenticated">Published files</h3>
+      <h3 i18n:translate="" tal:condition="view/isReader">Published files</h3>
       
-      <h3 i18n:translate="" tal:condition="not:view/isAuthenticated">Public files</h3>
+      <h3 i18n:translate="" tal:condition="not:view/isReader">Public files</h3>
       <div tal:content="structure view/w/PublishedFiles/render" />
 
     </tal:files>
   </div> 
 
-  <tal:originals tal:condition="view/isAuthenticated">
+  <tal:originals tal:condition="view/isReader">
     <div tal:condition="python: 'OriginalFiles' in view.w" style="padding-bottom:22px;">
       <tal:files tal:condition="python:getattr(context, 'OriginalFiles', None)">
         <hr/>        

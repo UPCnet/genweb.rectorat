@@ -2,7 +2,6 @@
 from five import grok
 from zope import schema
 from plone.app.textfield import RichText
-from plone.autoform import directives
 from plone.namedfile.field import NamedFile
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.formwidget.multifile import MultiFileFieldWidget
@@ -10,14 +9,11 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import dexterity
 from plone.directives import form
 from zope.interface import alsoProvides
-
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
-from plone.supermodel import model
 from z3c.form.interfaces import INPUT_MODE, DISPLAY_MODE, HIDDEN_MODE
-from plone import api
 from collective import dexteritytextindexer
-from plone.indexer.decorator import indexer
+from genweb.rectorat import utils
 
 
 estats = SimpleVocabulary(
@@ -98,11 +94,8 @@ class View(dexterity.DisplayForm):
     grok.context(IDocument)
     grok.template('document_view')
 
-    def isAuthenticated(self):
-        if api.user.is_anonymous():
-            return False
-        else:
-            return True
+    def isReader(self):
+        return utils.isReader()
 
 
 class Edit(dexterity.EditForm):

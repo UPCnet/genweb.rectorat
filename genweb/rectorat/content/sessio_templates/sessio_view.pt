@@ -11,91 +11,10 @@
    tal:define="portal_url context/@@plone_portal_state/portal_url;">
 
   <tal:omit-tag condition="view/isEditor">
-    <button type="button" class="btn btn-primary" style="float:right"
-            data-toggle="modal" data-target="#sendmailModal">
+    <a href="send_message" class="btn btn-primary" role="button" style="float:right">
       <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
-    </button>
-
-    <!-- Tiny Editor in Send Message -->
-    <link rel="stylesheet" href="++resource++genweb.rectorat.static/rta-1.0.1.css">
-    <script src="++resource++genweb.rectorat.static/rta-1.0.0.js"></script>
-
-
-
-    <style type="text/css" media="screen">
-     .btn-group {
-        display: inline-block;
-      }
-    </style>
-
-    <div class="modal fade" id="sendmailModal"
-         tabindex="-1" role="dialog"
-         style="z-index:100000;"
-         aria-labelledby="sendmailModalLabel" aria-hidden="true"
-         tal:attributes="data-mails view/OrganMail">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button  type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="sendmailModalLabel" i18n:translate="">New message</h4>
-          </div>
-          <div class="modal-body">
-            <form action="addLogMail" method="POST" name="rtaform" id="rtaform">
-              <div class="form-group">
-                <label for="recipient-name" class="control-label" i18n:translate="">Recipients</label>
-                <br/>
-                <description i18n:translate="">Mail address separated by commas.</description>
-                <input type="text" class="form-control span12" 
-                       id="recipients-name" name="recipients-name" 
-                       style="width: 97%" />
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="control-label" i18n:translate="">Message</label>
-                <br/>
-                <description i18n:translate="">This content will be used as message content</description>
-
-                <div class="controls">
-                  <textarea rows="7"
-                            class="rta form-control"
-                            id="message-text"
-                            name="message-text"
-                            data-rta-btnsize="small"
-                            placeholder="Contingut a annexar al missatge de correu"
-                            style="width:97%;">
-                  </textarea>
-                  <br/>
-                </div> 
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" 
-                        data-dismiss="modal" i18n:translate="">Close</button>
-                <button type="submit" id="submit" value="Send" 
-                        class="btn btn-primary" i18n:translate="">Send message</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $.rta('bold italic underline, ul ol, align-left align-center align-right align-full, indent-left indent-right, remove-formatting html');
-    });
-
-    $('#sendmailModal').on('show.bs.modal', function (event) {
-      var modal = $(this)
-      button = document.getElementById('sendmailModal')
-
-      var mails = button.getAttribute('data-mails')
-      modal.find('.modal-body input').val(mails)
-    })
-    </script>
-
+    </a>
   </tal:omit-tag>
-
-  <div>
 
     <div class="span12">
       <div class="span8">
@@ -135,15 +54,16 @@
             <span style="float:right" 
                   tal:content="context/llocConvocatoria"></span>
           </li> 
-          <li style="float:right" class="linkNotificacions" tal:condition="view/LogInformation">
+          <span tal:omit-tag condition="view/isEditor">
+          <li style="float:right" class="linkNotificacions"  tal:condition="view/LogInformation">
             <a tal:attributes="href string:${context/absolute_url}#notificationsList">
               <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
             </a>
           </li>   
+          </span>
         </ul>
       </div>
     </div>
-  </div>
 
   <div style="clear:both;"></div>
 
@@ -223,13 +143,13 @@
             <th>
               <tal:head i18n:translate="">Title</tal:head>&nbsp;
             </th>
-            <th style="width: 19%" tal:condition="view/isAuthenticated">
+            <th style="width: 19%" tal:condition="view/isReader">
               <tal:head i18n:translate="">Approval status</tal:head>
             </th> 
             <th>
               <tal:head i18n:translate="">Published files</tal:head>
             </th>                                 
-            <th tal:condition="view/isAuthenticated">
+            <th tal:condition="view/isReader">
               <tal:head i18n:translate="">Original files</tal:head>
             </th>                 
           </tr>
@@ -256,7 +176,7 @@
                       Item Title
                   </a>
                 </td>
-                <td style="text-align: center;" tal:condition="view/isAuthenticated">
+                <td style="text-align: center;" tal:condition="view/isReader">
                     <span i18n:translate=""
                           tal:content="obj/estatAprovacio"
                           tal:attributes="class obj/estatAprovacio">
@@ -276,7 +196,7 @@
                     </tal:files>
                   </ul>
                 </td>
-                <td tal:condition="view/isAuthenticated">
+                <td tal:condition="view/isReader">
                   <ul tal:condition="obj/OriginalFiles">
                     <tal:files repeat="item obj/OriginalFiles">
                       <li>
@@ -295,6 +215,7 @@
       </table>
   </tal:RelatedDocs>
 
+<tal:omit-tag tal:condition="view/isEditor">
   <tal:omit-tag tal:define="loginfo view/LogInformation"
                 tal:condition="loginfo">
     <hr/>
@@ -336,11 +257,11 @@
       </div>
     </div>
   </tal:omit-tag>
+</tal:omit-tag>
 
     <!-- Table sorter -->
     <link rel="stylesheet" href="++resource++genweb.rectorat.static/table_sorted.css" type="text/css" media="print, projection, screen" />
     <script type="text/javascript" src="++resource++genweb.rectorat.static/__jquery.tablesorter.min.js"></script> 
-
 
 <script type="text/javascript">
   $(document).ready(function($) {
@@ -373,8 +294,10 @@
       });      
 
 
+
   });
 </script>
+
 
 </metal:content-core>
 

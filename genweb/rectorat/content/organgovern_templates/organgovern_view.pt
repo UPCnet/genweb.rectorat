@@ -15,7 +15,7 @@
         <div tal:replace="structure context/descripcioOrgan/output|nothing" />
         <hr/>
       </tal:block>
-      <tal:mail tal:condition="view/isAuthenticated">
+      <tal:mail tal:condition="view/isReader">
         <tal:block tal:condition="context/adrecaLlista">
           <h3 i18n:translate=""> mail address </h3>
           <span tal:content="context/adrecaLlista" />

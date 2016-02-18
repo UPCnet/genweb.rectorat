@@ -15,6 +15,7 @@ from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from collective import dexteritytextindexer
 from Products.CMFCore.utils import getToolByName
+from genweb.rectorat import utils
 
 
 class InvalidEmailError(schema.ValidationError):
@@ -130,23 +131,9 @@ class View(grok.View):
     grok.context(ISessio)
     grok.template('sessio_view')
 
-    def isAuthenticated(self):
-        if api.user.is_anonymous():
-            return False
-        else:
-            return True
-
     def isEditor(self):
-        """ Show btn if user is editor """
-        try:
-            username = api.user.get_current().getProperty('id')
-            roles = api.user.get_roles(username=username, obj=self.context)
-            if 'Editor' in roles or 'Manager' in roles:
-                return True
-            else:
-                return False
-        except:
-            return False
+        """ Show send message button if user is editor """
+        return utils.isEditor()
 
     def DocumentsInside(self):
         """ Retorna els documents creats aquí dintre (sense tenir compte estat)
