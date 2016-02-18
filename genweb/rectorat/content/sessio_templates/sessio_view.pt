@@ -16,6 +16,8 @@
     </a>
   </tal:omit-tag>
 
+  <div style="clear:both;"></div>
+
     <div class="span12">
       <div class="span8">
         <tal:block tal:condition="context/ordreSessio">
@@ -147,7 +149,8 @@
               <tal:head i18n:translate="">Approval status</tal:head>
             </th> 
             <th>
-              <tal:head i18n:translate="">Published files</tal:head>
+              <tal:head tal:condition="not:view/isReader" i18n:translate="">Files</tal:head>
+              <tal:head tal:condition="view/isReader" i18n:translate="">Published files</tal:head>
             </th>                                 
             <th tal:condition="view/isReader">
               <tal:head i18n:translate="">Original files</tal:head>
@@ -186,7 +189,8 @@
                 <td>
                   <ul tal:condition="obj/PublishedFiles">
                     <tal:files repeat="item obj/PublishedFiles">
-                      <li>
+                      <li style="list-style: none;">
+                      <i class="icon-file"></i>
                         <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.PublishedFiles/@@download/${repeat/item/index};"
                            i18n:attributes="alt Download; title Download"
                            tal:content="item/filename">

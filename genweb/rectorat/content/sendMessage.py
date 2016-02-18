@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
+from plone import api
 import re
 import datetime
 from five import grok
 from cgi import escape
 from Acquisition import aq_inner
 import zope.component
-from zope.schema import TextLine, Text
+from datetime import datetime
+from zope.schema import TextLine
 from z3c.form import field, button
 from plone.directives import form
 from Products.CMFPlone.utils import safe_unicode
@@ -16,9 +18,9 @@ from plone.app.textfield import RichText
 from zope.interface import Interface
 from genweb.rectorat import _
 from genweb.rectorat.content.sessio import ISessio
+from zope.annotation.interfaces import IAnnotations
+from genweb.rectorat.browser.views import sessio_sendMail
 
-
-grok.context(Interface)
 grok.templatedir("send_templates")
 
 MESSAGE_TEMPLATE = u"""\
@@ -39,14 +41,6 @@ MENSAJE:
 Fecha consulta: %(date)s
 """
 
-check_email = re.compile(r"[a-zA-Z0-9._%-]+@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,4}").match
-
-
-def validate_email(value):
-    if not check_email(value):
-        raise zope.interface.Invalid(_(u"Invalid email address"))
-    return True
-
 
 class IMessage(form.Schema):
     """ Define the fields of this form
@@ -63,7 +57,7 @@ class IMessage(form.Schema):
         required=False)
 
 
-class Message(form.Form):
+class Message(form.SchemaForm):
     grok.name('send_message')
     grok.context(ISessio)
     grok.template("message_view")
@@ -72,18 +66,24 @@ class Message(form.Form):
 
     ignoreContext = True
 
-    fields = field.Fields(IMessage)
+    schema = IMessage
+
+    # fields = field.Fields(IMessage)
 
     # This trick hides the editable border and tabs in Plone
     def update(self):
         self.request.set('disable_border', True)
         super(Message, self).update()
 
+    def updateWidgets(self):
+        super(Message, self).updateWidgets()
+        self.widgets["recipients"].value = self.context.adrecaLlista
+
     @button.buttonAndHandler(u'Cancel')
     def handleCancel(self, action):
         message = _(u"Operation Cancelled.")
         IStatusMessage(self.request).addStatusMessage(message, type="warning")
-        return self.request.response.redirect(self.context.absolute_url()) 
+        return self.request.response.redirect(self.context.absolute_url())
 
     @button.buttonAndHandler(_(u"Send"))
     def action_send(self, action):
@@ -94,64 +94,69 @@ class Message(form.Form):
 
         emptyfields = []
 
-        data, errors = self.extractData()
+        formData, errors = self.extractData()
         lang = self.context.language
 
-        if 'recipients' not in data or 'message' not in data:
-            if 'recipients' not in data:
+        if formData['recipients'] is None or formData['message'] is None:
+
+            if formData['recipients'] is None:
                 if lang == 'ca':
                     emptyfields.append("Destinataris")
-                if lang == 'es':
+                elif lang == 'es':
                     emptyfields.append("Destinatarios")
                 else:
                     emptyfields.append("Recipients")
-            if 'message' not in data:
+
+            if formData['message'] is None:
                 if lang == 'ca':
                     emptyfields.append("Missatge")
-                if lang == 'es':
+                elif lang == 'es':
                     emptyfields.append("Mensaje")
                 else:
                     emptyfields.append("Message")
 
             empty = ', '.join(emptyfields) + '.'
             if lang == 'ca':
-                error_message = "Falten camps obligatorio: "
+                message = "Falten camps obligatorios: "
             if lang == 'es':
-                error_message = "Faltan campos obligatorios: "
+                message = "Faltan campos obligatorios: "
             if lang == 'en':
-                error_message = "Required fields missing: "
-            IStatusMessage(self.request).addStatusMessage(error_message + empty, type="")
+                message = "Required fields missing: "
+            IStatusMessage(self.request).addStatusMessage(message + empty, type="error")
             return
 
-        context = aq_inner(self.context)
-        mailhost = getToolByName(context, 'MailHost')
-        urltool = getToolByName(context, 'portal_url')
-        portal = urltool.getPortalObject()
-        email_charset = portal.getProperty('email_charset')
+        """ Adding send mail information to context in annotation format
+        """
+        KEY = 'genweb.rectorat.logMail'
+        annotations = IAnnotations(self.context)
 
-        to_address = portal.getProperty('email_from_address')
+        if annotations is not None:
+            logData = annotations.get(KEY, None)
+            try:
+                len(logData)
+                # Get data and append values
+                data = annotations.get(KEY)
+            except:
+                # If it's empty, initialize data
+                data = []
+            dateMail = datetime.now()
 
-        source = "%s <%s>" % (escape(safe_unicode(data['name'])),
-                              escape(safe_unicode(data['mail'])))
-        subject = escape(safe_unicode(_(u"[Formulario de Contacto] "))) + escape(safe_unicode(data['name']))
+            anon = api.user.is_anonymous()
+            if not anon:
+                username = api.user.get_current().id
+            else:
+                username = ''
 
-        message = MESSAGE_TEMPLATE % dict(name=data['name'],
-                                          mail=data['mail'],
-                                          path=self.context.absolute_url(),
-                                          observaciones=data['message'],
-                                          asunto=data['asunto'],
-                                          date=datetime.datetime.today().strftime('%d-%m-%Y %H:%M:%S'),
-                                          )
+            toMail = str(formData['recipients'])
+            body = str(formData['message'].output)
 
-        mailhost.secureSend(escape(safe_unicode(message)),
-                            to_address,
-                            source,
-                            subject=subject, subtype='plain',
-                            charset=email_charset, debug=False,
-                            )
+            values = dict(dateMail=dateMail,
+                          fromMail=_("Missatge enviat per: ") + username,
+                          toMail=toMail)
 
-        info_message = _(u"Mail sent.")
-        IStatusMessage(self.request).addStatusMessage(info_message, type="")
+            data.append(values)
+            annotations[KEY] = data
 
-        return self.request.response.redirect(portal.absolute_url())
+            sessio_sendMail(self.context, toMail, body)  # Enviem mail
 
+        return self.request.response.redirect(self.context.absolute_url())
