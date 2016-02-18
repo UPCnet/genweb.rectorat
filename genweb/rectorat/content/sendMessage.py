@@ -15,6 +15,7 @@ from genweb.rectorat.interfaces import IGenwebRectoratLayer
 from plone.app.textfield import RichText
 from zope.interface import Interface
 from genweb.rectorat import _
+from genweb.rectorat.content.sessio import ISessio
 
 
 grok.context(Interface)
@@ -47,7 +48,7 @@ def validate_email(value):
     return True
 
 
-class IContact(form.Schema):
+class IMessage(form.Schema):
     """ Define the fields of this form
     """
 
@@ -62,21 +63,27 @@ class IContact(form.Schema):
         required=False)
 
 
-class Contact(form.Form):
+class Message(form.Form):
     grok.name('send_message')
-    grok.context(Interface)
+    grok.context(ISessio)
     grok.template("message_view")
     grok.require('zope2.View')
     grok.layer(IGenwebRectoratLayer)
 
     ignoreContext = True
 
-    fields = field.Fields(IContact)
+    fields = field.Fields(IMessage)
 
     # This trick hides the editable border and tabs in Plone
     def update(self):
         self.request.set('disable_border', True)
-        super(Contact, self).update()
+        super(Message, self).update()
+
+    @button.buttonAndHandler(u'Cancel')
+    def handleCancel(self, action):
+        message = _(u"Operation Cancelled.")
+        IStatusMessage(self.request).addStatusMessage(message, type="warning")
+        return self.request.response.redirect(self.context.absolute_url()) 
 
     @button.buttonAndHandler(_(u"Send"))
     def action_send(self, action):
@@ -147,3 +154,4 @@ class Contact(form.Form):
         IStatusMessage(self.request).addStatusMessage(info_message, type="")
 
         return self.request.response.redirect(portal.absolute_url())
+

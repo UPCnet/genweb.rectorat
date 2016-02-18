@@ -14,7 +14,8 @@
       <div class="span8" style="margin-top:25px;">
         <tal:block>
           <tal:block tal:condition="context/defaultContent">
-            <h3 i18n:translate=""> Proposal description </h3>
+            <h3 i18n:translate="" tal:condition="view/isReader"> Proposal description </h3>
+            <h3 i18n:translate="" tal:condition="not:view/isReader"> Contingut </h3>
               <div tal:replace="structure context/defaultContent/output|nothing" />
            </tal:block>
 
@@ -88,4 +89,5 @@
 
 </body>
 </html>
+
 
