@@ -133,7 +133,10 @@ class View(grok.View):
 
     def isEditor(self):
         """ Show send message button if user is editor """
-        return utils.isEditor()
+        return utils.isEditor(self)
+
+    def isReader(self):
+        return utils.isReader(self)
 
     def DocumentsInside(self):
         """ Retorna els documents creats aquí dintre (sense tenir compte estat)

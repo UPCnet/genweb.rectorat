@@ -52,7 +52,7 @@ class View(grok.View):
     grok.template('organgovern_view')
 
     def isReader(self):
-        return utils.isReader()
+        return utils.isReader(self)
 
     def SessionsInside(self):
         """ Retorna les sessions d'aquí dintre (sense tenir compte estat)

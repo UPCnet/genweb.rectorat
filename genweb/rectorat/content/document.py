@@ -95,7 +95,7 @@ class View(dexterity.DisplayForm):
     grok.template('document_view')
 
     def isReader(self):
-        return utils.isReader()
+        return utils.isReader(self)
 
 
 class Edit(dexterity.EditForm):
