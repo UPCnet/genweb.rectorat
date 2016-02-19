@@ -187,7 +187,7 @@
                     </span>
                 </td>
                 <td>
-                  <ul tal:condition="obj/PublishedFiles">
+                  <ul tal:condition="obj/PublishedFiles" style="margin-left:0px;">
                     <tal:files repeat="item obj/PublishedFiles">
                       <li style="list-style: none;">
                       <i class="icon-file"></i>
@@ -201,7 +201,7 @@
                   </ul>
                 </td>
                 <td tal:condition="view/isReader">
-                  <ul tal:condition="obj/OriginalFiles">
+                  <ul tal:condition="obj/OriginalFiles" style="margin-left:0px;">
                     <tal:files repeat="item obj/OriginalFiles">
                       <li>
                         <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.OriginalFiles/@@download/${repeat/item/index};"
