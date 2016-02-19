@@ -11,62 +11,61 @@
    tal:define="portal_url context/@@plone_portal_state/portal_url;">
 
   <tal:omit-tag condition="view/isEditor">
-<div class="span12">
-    <a href="send_message" class="btn btn-primary" role="button" style="float:right">
-      <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
-    </a>
-</div>
+    <div class="span12">
+        <a href="send_message" class="btn btn-primary" role="button" style="float:right">
+          <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
+        </a>
+    </div>
   </tal:omit-tag>
 
-
-    <div class="span12" style="margin-left:0px;">
-      <div class="span8">
-        <tal:block tal:condition="context/ordreSessio">
-          <div id="accordion1">
-              <h3 class="accordion-toggle">
-                <a style="color:#557C95" i18n:translate="">Session order</a>
-                 <i class="icon-chevron-down"></i>
-              </h3>
-            <div class="accordion-content">
-              <div tal:replace="structure context/ordreSessio/output|nothing" />
-            </div>
+  <div class="span12" style="margin-left:0px;">
+    <div class="span8">
+      <tal:block tal:condition="context/ordreSessio">
+        <div id="accordion1">
+            <h3 class="accordion-toggle">
+              <a style="color:#557C95" i18n:translate="">Session order</a>
+               <i class="icon-chevron-down"></i>
+            </h3>
+          <div class="accordion-content">
+            <div tal:replace="structure context/ordreSessio/output|nothing" />
           </div>
-        </tal:block>
-      </div>
-      <div class="span4 resultsBox" >
-        <h3 style="text-align: center;"
-            i18n:translate=""> Session info </h3>
-        <ul>
-          <li tal:condition="context/dataSessio">
-            <b i18n:translate="">Data:</b>
-            <span style="float:right" 
-                  tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
-          </li>
-          <li tal:condition="context/horaInici">
-            <b i18n:translate="">Session start time</b>:
-            <span style="float:right" 
-                  tal:content="python:context.horaInici.strftime('%H:%M')"></span>
-          </li> 
-          <li tal:condition="context/horaFi">
-            <b i18n:translate="">Session end time</b>:
-            <span style="float:right" 
-                  tal:content="python:context.horaFi.strftime('%H:%M')"></span>
-          </li>                 
-          <li tal:condition="context/llocConvocatoria">
-            <b i18n:translate="">Lloc:</b>
-            <span style="float:right" 
-                  tal:content="context/llocConvocatoria"></span>
-          </li> 
-          <tal:omit tal:condition="view/isEditor">
-          <li style="float:right" class="linkNotificacions"  tal:condition="view/LogInformation">
-            <a tal:attributes="href string:${context/absolute_url}#notificationsList">
-              <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
-            </a>
-          </li>   
-          </tal:omit>
-        </ul>
-      </div>
+        </div>
+      </tal:block>
     </div>
+    <div class="span4 resultsBox" >
+      <h3 style="text-align: center;"
+          i18n:translate=""> Session info </h3>
+      <ul>
+        <li tal:condition="context/dataSessio">
+          <b i18n:translate="">Data:</b>
+          <span style="float:right" 
+                tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
+        </li>
+        <li tal:condition="context/horaInici">
+          <b i18n:translate="">Session start time</b>:
+          <span style="float:right" 
+                tal:content="python:context.horaInici.strftime('%H:%M')"></span>
+        </li> 
+        <li tal:condition="context/horaFi">
+          <b i18n:translate="">Session end time</b>:
+          <span style="float:right" 
+                tal:content="python:context.horaFi.strftime('%H:%M')"></span>
+        </li>                 
+        <li tal:condition="context/llocConvocatoria">
+          <b i18n:translate="">Lloc:</b>
+          <span style="float:right" 
+                tal:content="context/llocConvocatoria"></span>
+        </li> 
+        <tal:omit tal:condition="view/isEditor">
+        <li style="float:right" class="linkNotificacions"  tal:condition="view/LogInformation">
+          <a tal:attributes="href string:${context/absolute_url}#notificationsList">
+            <b i18n:translate="">Notifications history</b>  <i class="icon-chevron-down"></i>
+          </a>
+        </li>   
+        </tal:omit>
+      </ul>
+    </div>
+  </div>
 
   <div style="clear:both;"></div>
 
