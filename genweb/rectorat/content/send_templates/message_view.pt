@@ -17,7 +17,7 @@
     <div class="span12">
       <h1 class="documentFirstHeading"
         i18n:translate="">
-          Nou missatge de la sessió
+          New message
       </h1>
       <div i18n:translate="">Mensaje que se envia desde las sesiones</div>
       <br/>

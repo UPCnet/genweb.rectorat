@@ -1,45 +1,20 @@
 # -*- coding: utf-8 -*-
 from plone import api
-import re
-import datetime
 from five import grok
-from cgi import escape
-from Acquisition import aq_inner
-import zope.component
 from datetime import datetime
 from zope.schema import TextLine
-from z3c.form import field, button
+from z3c.form import button
 from plone.directives import form
-from Products.CMFPlone.utils import safe_unicode
 from Products.statusmessages.interfaces import IStatusMessage
-from Products.CMFCore.utils import getToolByName
 from genweb.rectorat.interfaces import IGenwebRectoratLayer
 from plone.app.textfield import RichText
-from zope.interface import Interface
 from genweb.rectorat import _
 from genweb.rectorat.content.sessio import ISessio
 from zope.annotation.interfaces import IAnnotations
 from genweb.rectorat.browser.views import sessio_sendMail
+from AccessControl import Unauthorized
 
 grok.templatedir("send_templates")
-
-MESSAGE_TEMPLATE = u"""\
-Ha recibido este correo porque %(name)s (%(mail)s) ha rellenado \
-el formulario de contacto en \
-
-  %(path)s
-
-ASUNTO:
-
-  %(asunto)s
-
-MENSAJE:
-
-  %(observaciones)s
-
---
-Fecha consulta: %(date)s
-"""
 
 
 class IMessage(form.Schema):
@@ -72,20 +47,23 @@ class Message(form.SchemaForm):
 
     # This trick hides the editable border and tabs in Plone
     def update(self):
-        self.request.set('disable_border', True)
-        super(Message, self).update()
+        """ Return true if user is Editor or Manager """
+        try:
+            username = api.user.get_current().getProperty('id')
+            roles = api.user.get_roles(username=username, obj=self.context)
+            if 'Editor' in roles or 'Manager' in roles:
+                self.request.set('disable_border', True)
+                super(Message, self).update()
+            else:
+                raise Unauthorized
+        except:
+            raise Unauthorized
 
     def updateWidgets(self):
         super(Message, self).updateWidgets()
         self.widgets["recipients"].value = self.context.adrecaLlista
 
-    @button.buttonAndHandler(u'Cancel')
-    def handleCancel(self, action):
-        message = _(u"Operation Cancelled.")
-        IStatusMessage(self.request).addStatusMessage(message, type="warning")
-        return self.request.response.redirect(self.context.absolute_url())
-
-    @button.buttonAndHandler(_(u"Send"))
+    @button.buttonAndHandler(_"Send")
     def action_send(self, action):
         """ Send the email to the configured mail address 
             in properties and redirect to the
@@ -159,4 +137,10 @@ class Message(form.SchemaForm):
 
             sessio_sendMail(self.context, toMail, body)  # Enviem mail
 
+        return self.request.response.redirect(self.context.absolute_url())
+
+    @button.buttonAndHandler(_'Cancel')
+    def handleCancel(self, action):
+        message = _(u"Operation Cancelled.")
+        IStatusMessage(self.request).addStatusMessage(message, type="warning")
         return self.request.response.redirect(self.context.absolute_url())
