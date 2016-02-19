@@ -63,7 +63,7 @@ class Message(form.SchemaForm):
         super(Message, self).updateWidgets()
         self.widgets["recipients"].value = self.context.adrecaLlista
 
-    @button.buttonAndHandler(_"Send")
+    @button.buttonAndHandler(_("Send"))
     def action_send(self, action):
         """ Send the email to the configured mail address 
             in properties and redirect to the
@@ -139,7 +139,7 @@ class Message(form.SchemaForm):
 
         return self.request.response.redirect(self.context.absolute_url())
 
-    @button.buttonAndHandler(_'Cancel')
+    @button.buttonAndHandler(_('Cancel'))
     def handleCancel(self, action):
         message = _(u"Operation Cancelled.")
         IStatusMessage(self.request).addStatusMessage(message, type="warning")
