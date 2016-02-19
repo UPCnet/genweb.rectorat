@@ -190,11 +190,11 @@
                   <ul tal:condition="obj/PublishedFiles" style="margin-left:0px;">
                     <tal:files repeat="item obj/PublishedFiles">
                       <li style="list-style: none;">
-                      <i class="icon-file"></i>
-                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.PublishedFiles/@@download/${repeat/item/index};"
-                           i18n:attributes="alt Download; title Download"
-                           tal:content="item/filename">
-                          Published files
+                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.PublishedFiles/@@download/${repeat/item/index};
+                                           title item/filename;
+                                           alt item/filename">
+                          <i class="icon-file"></i>
+                          <span tal:content="item/filename">Published files</span>
                         </a>
                       </li>
                     </tal:files>
@@ -203,11 +203,12 @@
                 <td tal:condition="view/isReader">
                   <ul tal:condition="obj/OriginalFiles" style="margin-left:0px;">
                     <tal:files repeat="item obj/OriginalFiles">
-                      <li>
-                        <a tal:attributes="href string:${obj/absolute_url}/@@edit/++widget++form.widgets.OriginalFiles/@@download/${repeat/item/index};"
-                           i18n:attributes="alt Download; title Download"
-                           tal:content="item/filename">
-                          Original files
+                      <li style="list-style: none;">
+                        
+                        <a tal:attributes="title item/filename; alt item/filename;
+                                            href string:${obj/absolute_url}/@@edit/++widget++form.widgets.OriginalFiles/@@download/${repeat/item/index};">
+                          <i class="icon-file"></i>
+                          <span tal:content="item/filename">Original files</span>
                          </a>
                       </li>
                     </tal:files>
