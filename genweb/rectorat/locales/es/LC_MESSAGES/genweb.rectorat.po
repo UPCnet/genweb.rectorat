@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2016-02-19 11:07+0000\n"
+"POT-Creation-Date: 2016-02-19 11:13+0000\n"
 "PO-Revision-Date: 2010-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -77,6 +77,10 @@ msgstr "Cuerpo del correo"
 #: ./genweb/rectorat/content/sessio.py:89
 msgid "Body Mail description"
 msgstr "Adjuntar el contenido del mensaje que se utilizará para el envío de correos relacionados con este Órgano de Gobierno."
+
+#: ./genweb/rectorat/content/sendMessage.py:142
+msgid "Cancel"
+msgstr "Cancelar"
 
 #: ./genweb/rectorat/content/document.py:60
 msgid "Content used to hide protected content"
@@ -235,7 +239,7 @@ msgstr "Listado de personas no asistentes"
 
 #: ./genweb/rectorat/content/send_templates/message_view.pt:18
 msgid "New message"
-msgstr ""
+msgstr "Nuevo mensaje"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 msgid "Newsletters"
@@ -255,7 +259,7 @@ msgstr "Historial de notificaciones"
 
 #: ./genweb/rectorat/content/sendMessage.py:144
 msgid "Operation Cancelled."
-msgstr ""
+msgstr "Se ha cancelado la operación."
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern"
@@ -296,7 +300,7 @@ msgstr "Punto:"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:24
 msgid "Print Acta"
-msgstr ""
+msgstr "Imprimir Acta"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:82
 msgid "Private files description"
@@ -336,6 +340,10 @@ msgstr "Rechazado"
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:135
 msgid "Related documents"
 msgstr "Documentos relacionados"
+
+#: ./genweb/rectorat/content/sendMessage.py:66
+msgid "Send"
+msgstr "Enviar"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:15
 msgid "Send message"
@@ -394,11 +402,11 @@ msgstr "Listado de sesiones"
 
 #: ./genweb/rectorat/content/sessio.py:95
 msgid "Signatura"
-msgstr ""
+msgstr "Firma"
 
 #: ./genweb/rectorat/content/sessio.py:96
 msgid "Signatura description"
-msgstr ""
+msgstr "Firma utilizada en el mensaje"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:83
 msgid "State"

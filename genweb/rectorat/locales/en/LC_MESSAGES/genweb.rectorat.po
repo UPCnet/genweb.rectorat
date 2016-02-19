@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: genweb.rectorat\n"
-"POT-Creation-Date: 2016-02-19 11:07+0000\n"
+"POT-Creation-Date: 2016-02-19 11:13+0000\n"
 "PO-Revision-Date: 2014-06-04 11:20+0100\n"
 "Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
 "Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
@@ -77,6 +77,10 @@ msgstr "Body Mail"
 #: ./genweb/rectorat/content/sessio.py:89
 msgid "Body Mail description"
 msgstr "Body Mail description"
+
+#: ./genweb/rectorat/content/sendMessage.py:142
+msgid "Cancel"
+msgstr "Cancel"
 
 #: ./genweb/rectorat/content/document.py:60
 msgid "Content used to hide protected content"
@@ -235,7 +239,7 @@ msgstr "Missing members"
 
 #: ./genweb/rectorat/content/send_templates/message_view.pt:18
 msgid "New message"
-msgstr ""
+msgstr "New message"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:44
 msgid "Newsletters"
@@ -255,7 +259,7 @@ msgstr "Notifications history"
 
 #: ./genweb/rectorat/content/sendMessage.py:144
 msgid "Operation Cancelled."
-msgstr ""
+msgstr "Operation Cancelled."
 
 #: ./genweb/rectorat/profiles/default/types/genweb.rectorat.organgovern.xml
 msgid "Organ Govern"
@@ -296,7 +300,7 @@ msgstr "Point:"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:24
 msgid "Print Acta"
-msgstr ""
+msgstr "Print Acta"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:82
 msgid "Private files description"
@@ -336,6 +340,10 @@ msgstr "Rejected"
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:135
 msgid "Related documents"
 msgstr "Related documents"
+
+#: ./genweb/rectorat/content/sendMessage.py:66
+msgid "Send"
+msgstr "Send"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:15
 msgid "Send message"
@@ -394,11 +402,11 @@ msgstr "Sessions list"
 
 #: ./genweb/rectorat/content/sessio.py:95
 msgid "Signatura"
-msgstr ""
+msgstr "Signature"
 
 #: ./genweb/rectorat/content/sessio.py:96
 msgid "Signatura description"
-msgstr ""
+msgstr "Used in the message"
 
 #: ./genweb/rectorat/content/organgovern_templates/organgovern_view.pt:83
 msgid "State"

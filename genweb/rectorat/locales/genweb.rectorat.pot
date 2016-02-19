@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-02-19 11:07+0000\n"
+"POT-Creation-Date: 2016-02-19 11:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,6 +79,10 @@ msgstr ""
 
 #: ./genweb/rectorat/content/sessio.py:89
 msgid "Body Mail description"
+msgstr ""
+
+#: ./genweb/rectorat/content/sendMessage.py:142
+msgid "Cancel"
 msgstr ""
 
 #: ./genweb/rectorat/content/document.py:60
@@ -338,6 +342,10 @@ msgstr ""
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:135
 msgid "Related documents"
+msgstr ""
+
+#: ./genweb/rectorat/content/sendMessage.py:66
+msgid "Send"
 msgstr ""
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:15

@@ -95,7 +95,7 @@ class Message(form.SchemaForm):
 
             empty = ', '.join(emptyfields) + '.'
             if lang == 'ca':
-                message = "Falten camps obligatorios: "
+                message = "Falten camps obligatoris: "
             if lang == 'es':
                 message = "Faltan campos obligatorios: "
             if lang == 'en':
