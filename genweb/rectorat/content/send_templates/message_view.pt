@@ -19,7 +19,6 @@
         i18n:translate="">
           New message
       </h1>
-      <div i18n:translate="">Mensaje que se envia desde las sesiones</div>
       <br/>
       <metal:block use-macro="context/@@ploneform-macros/titlelessform"></metal:block>
     </div>

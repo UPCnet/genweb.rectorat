@@ -11,7 +11,7 @@
    tal:define="portal_url context/@@plone_portal_state/portal_url;">
 
   <tal:omit-tag condition="view/isEditor">
-    <div class="span12">
+    <div class="span12" style="margin:10px 0px 10px 0px;">
         <a href="send_message" class="btn btn-primary" role="button" style="float:right">
           <i class="icon-envelope icon-white"></i> <span i18n:translate=""> Send message </span>
         </a>
