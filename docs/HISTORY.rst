@@ -1,11 +1,29 @@
 Changelog
 =========
 
-1.8 (unreleased)
+1.8 (2016-02-23)
 ----------------
 
-- Nothing changed yet.
-
+* removed string [roberto.diaz]
+* PEP8 [roberto.diaz]
+* added div [root muntanyeta]
+* i18n [roberto.diaz]
+* mispelled error [root muntanyeta]
+* last changes [roberto.diaz]
+* added li i icon [roberto.diaz]
+* removed li space [root muntanyeta]
+* updated sendMessage [roberto.diaz]
+* added cancel btn and interface to message view [root muntanyeta]
+* added self to utils calls [roberto.diaz]
+* changed isauthenticated to isEditor [roberto.diaz]
+* remove rich_editor files [roberto.diaz]
+* group utils functions [roberto.diaz]
+* added senmessage view [roberto.diaz]
+* changes [roberto.diaz]
+* change tal:condition line [root muntanyeta]
+* added UPC colors to table [root muntanyeta]
+* Merge branch 'master' of github.com:UPCnet/genweb.rectorat [roberto.diaz]
+* added new sorted table format [roberto.diaz]
 
 1.7 (2016-02-11)
 ----------------
