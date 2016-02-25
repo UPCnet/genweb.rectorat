@@ -146,12 +146,12 @@ msgstr "Extension profile for genweb.rectorat."
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:155
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:152
 msgid "Files"
-msgstr "Fitxers annexats"
+msgstr "Documentació"
 
 #: ./genweb/rectorat/content/acta.py:84
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:148
 msgid "Footer"
-msgstr "Peu del Acta"
+msgstr "Peu de l'acta"
 
 #: ./genweb/rectorat/content/organgovern.py:43
 msgid "From mail"
@@ -190,7 +190,7 @@ msgstr "Llista de persones convidades"
 
 #: ./genweb/rectorat/content/sessio_templates/sessio_view.pt:116
 msgid "Llistat d'actes"
-msgstr "Llistat d'actes"
+msgstr "Acta"
 
 #: ./genweb/rectorat/browser/views/acta_print.pt:47
 msgid "Lloc de realitzacio:"
@@ -296,7 +296,7 @@ msgstr "Punt"
 
 #: ./genweb/rectorat/content/acta_templates/acta_view.pt:24
 msgid "Print Acta"
-msgstr "Imprimar Acta"
+msgstr "Imprimir acta"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:82
 msgid "Private files description"
