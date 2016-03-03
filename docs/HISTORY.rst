@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.9 (unreleased)
+1.9 (2016-03-03)
 ----------------
 
-- Nothing changed yet.
-
+* i18n: changing literals [roberto.diaz]
 
 1.8 (2016-02-23)
 ----------------
