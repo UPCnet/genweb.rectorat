@@ -313,7 +313,7 @@ msgstr "Punt del document"
 
 #: ./genweb/rectorat/content/document_templates/document_view.pt:71
 msgid "Public files"
-msgstr "Fitxers annexes"
+msgstr "Documentació"
 
 #: ./genweb/rectorat/content/document.py:78
 #: ./genweb/rectorat/content/document_templates/document_view.pt:69
