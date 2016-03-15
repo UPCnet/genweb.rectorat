@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.12 (unreleased)
+1.12 (2016-03-15)
 -----------------
 
-- Nothing changed yet.
-
+* Merge branch 'master' of github.com:UPCnet/genweb.rectorat [roberto.diaz]
+* TODO: added _unrestrictedGetObject() [roberto.diaz]
 
 1.11 (2016-03-15)
 -----------------
