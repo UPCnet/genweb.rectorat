@@ -65,11 +65,10 @@ class Message(form.SchemaForm):
 
     @button.buttonAndHandler(_("Send"))
     def action_send(self, action):
-        """ Send the email to the configured mail address 
+        """ Send the email to the configured mail address
             in properties and redirect to the
             front page, showing a status message to say
             the message was received. """
-
         emptyfields = []
 
         formData, errors = self.extractData()

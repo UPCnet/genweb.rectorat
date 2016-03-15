@@ -27,7 +27,11 @@ def sessio_changed(session, event):
             starthour = str(session.horaInici.strftime("%H:%M"))
             endHour = str(session.horaFi.strftime("%H:%M"))
             organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
-            organ = api.content.get(path=organ_path)
+
+            pc = api.portal.get_tool('portal_catalog')
+            organ = pc.unrestrictedSearchResults(path={'query': organ_path,
+                                                           'depth': 0})[0].getObject()
+
             sessionLink = str(session.absolute_url())
             senderPerson = str(organ.fromMail)
 
