@@ -1,10 +1,9 @@
 Changelog
 =========
 
-1.11 (unreleased)
+1.11 (2016-03-15)
 -----------------
 
-- Nothing changed yet.
 
 
 1.10 (2016-03-04)
