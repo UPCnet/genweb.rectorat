@@ -29,8 +29,14 @@ def sessio_changed(session, event):
             organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
 
             pc = api.portal.get_tool('portal_catalog')
-            organ = pc.unrestrictedSearchResults(path={'query': organ_path,
+
+            # TODO: Quien lo vea que lo cambie!  _unrestrictedGetObject() ¿?
+            try:
+                organ = pc.unrestrictedSearchResults(path={'query': organ_path,
                                                            'depth': 0})[0].getObject()
+            except:
+                organ = pc.unrestrictedSearchResults(path={'query': organ_path,
+                                                           'depth': 0})[0]._unrestrictedGetObject()
 
             sessionLink = str(session.absolute_url())
             senderPerson = str(organ.fromMail)

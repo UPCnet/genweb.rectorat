@@ -25,8 +25,13 @@ def sessio_sendMail(session, recipients, body):
     organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
 
     pc = api.portal.get_tool('portal_catalog')
-    organ = pc.unrestrictedSearchResults(path={'query': organ_path,
-                                               'depth': 0})[0].getObject()
+    # TODO: Quien lo vea que lo cambie!  _unrestrictedGetObject() ¿?
+    try:
+        organ = pc.unrestrictedSearchResults(path={'query': organ_path,
+                                                   'depth': 0})[0].getObject()
+    except:
+        organ = pc.unrestrictedSearchResults(path={'query': organ_path,
+                                                   'depth': 0})[0]._unrestrictedGetObject()
 
     if session.signatura is None:
         signatura = ''
