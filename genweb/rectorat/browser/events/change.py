@@ -26,17 +26,7 @@ def sessio_changed(session, event):
             sessiondate = str(session.dataSessio.strftime("%d/%m/%Y"))
             starthour = str(session.horaInici.strftime("%H:%M"))
             endHour = str(session.horaFi.strftime("%H:%M"))
-            organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
-
-            pc = api.portal.get_tool('portal_catalog')
-
-            # TODO: Quien lo vea que lo cambie!  _unrestrictedGetObject() ¿?
-            try:
-                organ = pc.unrestrictedSearchResults(path={'query': organ_path,
-                                                           'depth': 0})[0].getObject()
-            except:
-                organ = pc.unrestrictedSearchResults(path={'query': organ_path,
-                                                           'depth': 0})[0]._unrestrictedGetObject()
+            organ = session.aq_parent
 
             sessionLink = str(session.absolute_url())
             senderPerson = str(organ.fromMail)

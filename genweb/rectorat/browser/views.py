@@ -22,16 +22,7 @@ def sessio_sendMail(session, recipients, body):
     starthour = session.horaInici.strftime("%H:%M")
     endHour = session.horaFi.strftime("%H:%M")
     sessionLink = str(session.absolute_url())
-    organ_path = '/'.join(session.absolute_url_path().split('/')[:-1])
-
-    pc = api.portal.get_tool('portal_catalog')
-    # TODO: Quien lo vea que lo cambie!  _unrestrictedGetObject() ¿?
-    try:
-        organ = pc.unrestrictedSearchResults(path={'query': organ_path,
-                                                   'depth': 0})[0].getObject()
-    except:
-        organ = pc.unrestrictedSearchResults(path={'query': organ_path,
-                                                   'depth': 0})[0]._unrestrictedGetObject()
+    organ = session.aq_parent
 
     if session.signatura is None:
         signatura = ''
