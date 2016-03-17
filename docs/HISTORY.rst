@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.13 (unreleased)
+1.13 (2016-03-17)
 -----------------
 
-- Nothing changed yet.
-
+* solved bug sending mail aq_parent [roberto.diaz]
 
 1.12 (2016-03-15)
 -----------------
