@@ -166,7 +166,8 @@ class Edit(dexterity.EditForm):
 
     def updateWidgets(self):
         super(Edit, self).updateWidgets()
-        self.widgets['dataSessio'].mode = HIDDEN_MODE
-        self.widgets['llocConvocatoria'].mode = HIDDEN_MODE
-        self.widgets['horaInici'].mode = HIDDEN_MODE
-        self.widgets['horaFi'].mode = HIDDEN_MODE
+        # Desactivem el hidden dels camps, sembla que no sigui necessari
+        # self.widgets['dataSessio'].mode = HIDDEN_MODE
+        # self.widgets['llocConvocatoria'].mode = HIDDEN_MODE
+        # self.widgets['horaInici'].mode = HIDDEN_MODE
+        # self.widgets['horaFi'].mode = HIDDEN_MODE
