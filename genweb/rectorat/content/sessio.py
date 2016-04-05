@@ -4,13 +4,11 @@ from five import grok
 from zope import schema
 from plone import api
 import re
-
 from plone.indexer import indexer
 from plone.directives import dexterity
 from plone.directives import form
 from plone.app.textfield import RichText
 from zope.annotation.interfaces import IAnnotations
-
 from genweb.rectorat import _
 from plone.app.dexterity import PloneMessageFactory as _PMF
 from collective import dexteritytextindexer

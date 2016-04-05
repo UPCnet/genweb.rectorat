@@ -80,12 +80,13 @@ class View(grok.View):
         return data
 
     def NewslettersInside(self):
-        """ Retorna els Butlletins que hi ha dintre
+        """ Retorna els Butlletins que hi ha dintre (només a primer nivell)
         """
         folder_path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self, 'portal_catalog')
-        data = portal_catalog.searchResults(portal_type='Newsletter',
-                                            sort_on='getObjPositionInParent',
-                                            path={'query': folder_path,
-                                                  'depth': 2})
+        data = portal_catalog.searchResults(
+            portal_type='Newsletter',
+            sort_on='getObjPositionInParent',
+            path={'query': folder_path,
+                  'depth': 1})
         return data

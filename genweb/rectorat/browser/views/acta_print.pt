@@ -9,12 +9,12 @@
         a:hover {text-decoration:none;}
         a {text-decoration:none;}
         .plain a {color:#555555;font-family: 'Source Sans Pro', sans-serif;font-size: 12px;}
-        body {font-family: 'Source Sans Pro', 
+        body {font-family: 'Source Sans Pro',
               sans-serif;font-size: 10px;
               color: #333333;
               width:733px;}
         h2 {margin-bottom:20px !important;}
-        h3 {font-family: 'Source Sans Pro', 
+        h3 {font-family: 'Source Sans Pro',
               sans-serif;font-size: 12px;
               }
     </style>
@@ -39,32 +39,37 @@
             <div class="span12" style="margin-bottom: 0px">
                 <div class="row-fluid">
                     <div class="span7">
-                        <th style="display: inline-block;"><strong i18n:translate="">Acta:</strong></th>
                         <tal:omit-tag tal:condition="context/Title">
+                            <th style="display: inline-block;"><strong i18n:translate="">Acta:</strong></th>
                             <span tal:content="context/Title"></span>
                         </tal:omit-tag>
                         <br/>
-                        <th style="display: inline-block;"><strong i18n:translate="">Lloc de realitzacio:</strong></th>
                         <tal:omit-tag tal:condition="context/llocConvocatoria">
+                            <th style="display: inline-block;"><strong i18n:translate="">Lloc de realitzacio:</strong></th>
                             <span tal:content="context/llocConvocatoria"></span>
                         </tal:omit-tag>
                     </div>
                     <div class="span5">
-                        <th style="display: inline-block;"><strong i18n:translate="">Sessio del dia:</strong></th>
                         <tal:omit-tag tal:condition="context/dataSessio">
+                            <th style="display: inline-block;"><strong i18n:translate="">Sessio del dia:</strong></th>
                             <span tal:content="python:context.dataSessio.strftime('%d/%m/%Y')"></span>
                         </tal:omit-tag>
                         <br/>
-                        <th style="display: inline-block;"><strong i18n:translate="">Hora d'inici:</strong></th> 
                         <tal:omit-tag tal:condition="context/horaInici">
+                            <th style="display: inline-block;"><strong i18n:translate="">Hora d'inici:</strong></th>
                             <span tal:content="python:context.horaInici.strftime('%H:%M')"></span>
+                        </tal:omit-tag>
+                        <br/>
+                        <tal:omit-tag tal:condition="context/horaFi">
+                            <th style="display: inline-block;"><strong i18n:translate="">Hora de fi:</strong></th>
+                            <span tal:content="python:context.horaFi.strftime('%H:%M')"></span>
                         </tal:omit-tag>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        
+
     <tal:block tal:condition="context/membresConvocats">
         <h3 i18n:translate=""> Attending members </h3>
         <div tal:replace="structure context/membresConvocats/output|nothing" />
@@ -98,7 +103,7 @@
     <tal:block tal:condition="context/footer">
       <br/>
         <div tal:replace="structure context/footer/output|nothing" />
-    </tal:block>        
+    </tal:block>
 
 </body>
 </html>
