@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.14 (unreleased)
+1.14 (2016-04-07)
 -----------------
 
-- Nothing changed yet.
-
+* added finalhour to acta view [roberto.diaz]
+* added horaFi to acta print [roberto.diaz]
 
 1.13 (2016-03-17)
 -----------------
