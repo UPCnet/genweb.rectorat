@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.15 (unreleased)
+1.15 (2016-05-26)
 -----------------
 
-- Nothing changed yet.
-
+* added checks on send_message fields [roberto.diaz]
+* added types to tiny for make relative links to rectorat objects [roberto.diaz]
 
 1.14 (2016-04-07)
 -----------------
