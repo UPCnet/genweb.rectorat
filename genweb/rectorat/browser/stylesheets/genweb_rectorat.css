@@ -6,49 +6,49 @@ li.multi-file-file img {	}
 	padding:5px 0px 5px 0px;
 }
 
-dt.contenttype-newsletter:before, 
+dt.contenttype-newsletter:before,
 i.icon-newsletter,
-#listing-table a.contenttype-newsletter:before, 
+#listing-table a.contenttype-newsletter:before,
 .template-folder_tabular_view .listing a.contenttype-newsletter:before
 {
 	background-position: -264px -24px !important;
 }
 
-dt.ontenttype-genweb-rectorat-historicfolder:before, 
+dt.ontenttype-genweb-rectorat-historicfolder:before,
 i.icon-genweb-rectorat-historicfolder,
-#listing-table a.ontenttype-genweb-rectorat-historicfolder:before, 
+#listing-table a.ontenttype-genweb-rectorat-historicfolder:before,
 .template-folder_tabular_view .listing a.ontenttype-genweb-rectorat-historicfolder:before
 {
 	background-position: -242px -168px !important;
 }
 
-dt.contenttype-genweb-rectorat-organgovern:before, 
+dt.contenttype-genweb-rectorat-organgovern:before,
 i.icon-genweb-rectorat-organgovern,
-#listing-table a.contenttype-genweb-rectorat-organgovern:before, 
+#listing-table a.contenttype-genweb-rectorat-organgovern:before,
 .template-folder_tabular_view .listing a.contenttype-genweb-rectorat-organgovern:before
 {
 	background-position: -48px -48px !important;
 }
 
-dt.contenttype-genweb-rectorat-sessio:before, 
+dt.contenttype-genweb-rectorat-sessio:before,
 i.icon-genweb-rectorat-sessio,
-#listing-table a.contenttype-genweb-rectorat-sessio:before, 
+#listing-table a.contenttype-genweb-rectorat-sessio:before,
 .template-folder_tabular_view .listing a.contenttype-genweb-rectorat-sessio:before
 {
 	background-position: -312px -168px !important;
 }
 
-dt.contenttype-genweb-rectorat-document:before, 
+dt.contenttype-genweb-rectorat-document:before,
 i.icon-genweb-rectorat-document,
-#listing-table a.contenttype-genweb-rectorat-document:before, 
+#listing-table a.contenttype-genweb-rectorat-document:before,
 .template-folder_tabular_view .listing a.contenttype-genweb-rectorat-document:before
 {
 	background-position: -24px -24px !important;
 }
 
-dt.contenttype-genweb-rectorat-acta:before, 
+dt.contenttype-genweb-rectorat-acta:before,
 i.icon-genweb-rectorat-acta,
-#listing-table a.contenttype-genweb-rectorat-acta:before, 
+#listing-table a.contenttype-genweb-rectorat-acta:before,
 .template-folder_tabular_view .listing a.contenttype-genweb-rectorat-acta:before
 {
 	background-position: -24px -24px !important;
@@ -106,7 +106,7 @@ i.icon-genweb-rectorat-acta,
 	text-align: center;
 }
 
-.resultsBox { 
+.resultsBox {
    background-color: #eeeeee;
     padding: 15px 15px 0;
     text-shadow: 1px 1px 0 white;
@@ -134,12 +134,12 @@ i.icon-genweb-rectorat-acta,
 
 #form-widgets-title {min-width: 450px;}
 
-.portaltype-genweb-rectorat-sessio a#plone-contentmenu-workflow.dropdown-toggle 
+.portaltype-genweb-rectorat-sessio a#plone-contentmenu-workflow.dropdown-toggle
 {}
 
 a#plone-contentmenu-workflow.dropdown-toggle:hover {
 	text-decoration: none;
- 	background-color: #f2f2f2; 
+ 	background-color: #f2f2f2;
  };
 
  #plone-contentmenu-workflow {display:none;}
@@ -164,3 +164,4 @@ input.standalone.loginbutton {display:none;}
 .portaltype-newsletter  img.link_blank {display:none;}
 
 
+input#form-widgets-recipients { width: 100% !important; }

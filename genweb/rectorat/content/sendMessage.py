@@ -49,7 +49,7 @@ class Message(form.SchemaForm):
     def update(self):
         """ Return true if user is Editor or Manager """
         try:
-            username = api.user.get_current().getProperty('id')
+            username = api.user.get_current().getId()
             roles = api.user.get_roles(username=username, obj=self.context)
             if 'Editor' in roles or 'Manager' in roles:
                 self.request.set('disable_border', True)
@@ -70,7 +70,6 @@ class Message(form.SchemaForm):
             front page, showing a status message to say
             the message was received. """
         emptyfields = []
-
         formData, errors = self.extractData()
         lang = self.context.language
 
@@ -124,8 +123,11 @@ class Message(form.SchemaForm):
             else:
                 username = ''
 
-            toMail = str(formData['recipients'])
-            body = str(formData['message'].output)
+            toMessage = formData['recipients'].encode('utf-8').decode('ascii', 'ignore')
+            noBlanks = ' '.join(toMessage.split())
+            toMail = noBlanks.replace(' ', ',')
+
+            body = str(formData['message'].output.encode('utf-8'))
 
             values = dict(dateMail=dateMail,
                           fromMail=_("Missatge enviat per: ") + username,
@@ -134,7 +136,7 @@ class Message(form.SchemaForm):
             data.append(values)
             annotations[KEY] = data
 
-            sessio_sendMail(self.context, toMail, body)  # Enviem mail
+            sessio_sendMail(self.context, toMail, body)  # Send mail
 
         return self.request.response.redirect(self.context.absolute_url())
 
