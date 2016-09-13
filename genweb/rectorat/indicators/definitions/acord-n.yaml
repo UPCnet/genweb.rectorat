@@ -1,0 +1,10 @@
+id: acord-n
+description: Nombre d'acords
+service: organsdegovern
+categories:
+  - id: estat_aprovat
+    description: Aprovats
+    calculator: genweb.rectorat.indicators.calculators.AcordNumberEstatAprovat
+  - id: estat_aprovat-data_mes
+    description: Aprovats l'últim mes
+    calculator: genweb.rectorat.indicators.calculators.AcordNumberEstatAprovatDeltaMonth

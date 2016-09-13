@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="setupVarious"
+               version="20160823-01"
+               handler="genweb.rectorat.setuphandlers.setupVarious"
+               title="Setup Security Settings">
+    <dependency step="genweb.rectorat" />
+    Create portal catalog indexes and metadata
+  </import-step>
+</import-steps>

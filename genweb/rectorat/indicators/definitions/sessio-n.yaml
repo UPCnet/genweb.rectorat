@@ -1,0 +1,10 @@
+id: sessio-n
+description: Nombre de sessions
+service: organsdegovern
+categories:
+  - id: estat_convocat
+    description: Convocades
+    calculator: genweb.rectorat.indicators.calculators.SessioNumberEstatConvocat
+  - id: estat_convocat-data_mes
+    description: Convocades l'últim mes
+    calculator: genweb.rectorat.indicators.calculators.SessioNumberDeltaMonth

@@ -44,5 +44,10 @@
 
     <adapter factory=".indexer.SearchableText" />
 
+    <browser:page
+        name="rectorat-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.RectoratSettingsControlPanel"
+        permission="cmf.ManagePortal"/>
 
 </configure>

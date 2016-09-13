@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
+
+from zope.component import getUtility
 from plone import api
+from plone.registry.interfaces import IRegistry
+
+from genweb.rectorat.controlpanel import IRectoratSettings
 
 
 def isReader(self):
@@ -29,3 +34,8 @@ def isEditor(self):
             return False
     except:
         return False
+
+
+def get_settings_property(property_id):
+    settings = getUtility(IRegistry).forInterface(IRectoratSettings)
+    return getattr(settings, property_id, None)

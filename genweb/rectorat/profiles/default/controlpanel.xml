@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<object name="portal_controlpanel" meta_type="Plone Control Panel Tool">
+    <configlet
+        title="Rectorat"
+        action_id="genweb.rectorat"
+        appId="genweb.rectorat"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/rectorat-settings"
+        icon_expr="string:${portal_url}/++resource++cpgenweb.png"
+        visible="True">
+        <permission>Manage Portal</permission>
+    </configlet>
+</object>

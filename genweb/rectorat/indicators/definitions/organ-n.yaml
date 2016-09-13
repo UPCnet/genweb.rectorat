@@ -1,0 +1,7 @@
+id: organ-n
+description: Nombre d'òrgans
+service: organsdegovern
+categories:
+  - id: total
+    description: Total
+    calculator: genweb.rectorat.indicators.calculators.OrganNumber
