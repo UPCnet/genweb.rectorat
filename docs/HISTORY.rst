@@ -1,11 +1,16 @@
 Changelog
 =========
 
-1.16 (unreleased)
+1.16 (2016-09-15)
 -----------------
 
-- Nothing changed yet.
-
+* Add indicators updating mechanism [Santiago Cortes]
+*  [Santiago Cortes]
+* - Define organ-n, arcord-n and sessio-n indicators. [Santiago Cortes]
+* - Add IOrgangovern, IDocument and ISession 'removed event' and [Santiago Cortes]
+* 'action succeded' updating subscribers. [Santiago Cortes]
+* - Add control panel view with the indicators WS config params. [Santiago Cortes]
+* - Add 'estatAprovacio' and 'dataSessio' indexes to catalog. [Santiago Cortes]
 
 1.15 (2016-05-26)
 -----------------
