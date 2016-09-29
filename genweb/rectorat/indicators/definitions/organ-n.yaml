@@ -4,4 +4,6 @@ service: organsdegovern
 categories:
   - id: total
     description: Total
+    type: online
+    frequency: ""
     calculator: genweb.rectorat.indicators.calculators.OrganNumber

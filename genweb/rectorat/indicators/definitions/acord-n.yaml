@@ -4,7 +4,11 @@ service: organsdegovern
 categories:
   - id: estat_aprovat
     description: Aprovats
+    type: online
+    frequency: ""
     calculator: genweb.rectorat.indicators.calculators.AcordNumberEstatAprovat
   - id: estat_aprovat-data_mes
     description: Aprovats l'últim mes
+    type: online
+    frequency: ""
     calculator: genweb.rectorat.indicators.calculators.AcordNumberEstatAprovatDeltaMonth

@@ -12,15 +12,24 @@ logger = logging.getLogger(name='genweb.rectorat')
 
 
 def update_indicators_if_state(content, state, service=None, indicator=None):
-    workflow_tool = getToolByName(content, 'portal_workflow')
-    if workflow_tool.getInfoFor(content, 'review_state') in state:
-        update_indicators(content, service, indicator)
+    if is_updating_enabled():
+        workflow_tool = getToolByName(content, 'portal_workflow')
+        if workflow_tool.getInfoFor(content, 'review_state') in state:
+            update_indicators(content, service, indicator)
 
 
 def update_indicators(context, service=None, indicator=None):
-    transaction.get().addAfterCommitHook(
-        update_after_commit_hook,
-        kws=dict(context=context, service=service, indicator=indicator))
+    if is_updating_enabled():
+        transaction.get().addAfterCommitHook(
+            update_after_commit_hook,
+            kws=dict(context=context, service=service, indicator=indicator))
+
+
+def is_updating_enabled():
+    return (
+        get_settings_property('service_id')
+        and get_settings_property('ws_endpoint')
+        and get_settings_property('ws_key'))
 
 
 def update_after_commit_hook(
