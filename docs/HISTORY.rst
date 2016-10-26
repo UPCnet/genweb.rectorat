@@ -1,11 +1,14 @@
 Changelog
 =========
 
-1.17 (unreleased)
+1.17 (2016-10-26)
 -----------------
 
-- Nothing changed yet.
-
+* Add type & frequency to indicators [Santi]
+*  [Santi]
+* - Add type and frequency to indicator definitions. [Santi]
+* - Update indicators only when indicator updating is enabled, [Santi]
+* i.e. when both service_id, ws_endpoint and ws_key are set. [Santi]
 
 1.16 (2016-09-15)
 -----------------
