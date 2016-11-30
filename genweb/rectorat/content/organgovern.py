@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
+
 from five import grok
 from zope import schema
 from plone.directives import form
@@ -65,7 +67,10 @@ class View(grok.View):
                   'depth': 1})
 
         # The last modified is the first shown.
-        return sorted(data, key=lambda item: item.start, reverse=True)
+        return sorted(
+            data,
+            key=lambda item: datetime.combine(item.start, item.horaInici),
+            reverse=True)
 
     def FoldersInside(self):
         """ Retorna les carpetes que hi ha dintre que són les que marquem com Historic
