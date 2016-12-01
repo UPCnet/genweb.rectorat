@@ -72,7 +72,7 @@ class View(grok.View):
     @staticmethod
     def get_session_datetime(session_brain):
         session_time = getattr(session_brain, 'horaInici', time())
-        if session_time is None:
+        if session_time is None or not isinstance(session_time, time):
             session_time = time()
         return datetime.combine(session_brain.start, session_time)
 
