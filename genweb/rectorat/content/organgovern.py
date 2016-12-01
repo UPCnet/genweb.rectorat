@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime import time, datetime
 
 from five import grok
 from zope import schema
@@ -67,10 +67,14 @@ class View(grok.View):
                   'depth': 1})
 
         # The last modified is the first shown.
-        return sorted(
-            data,
-            key=lambda item: datetime.combine(item.start, item.horaInici),
-            reverse=True)
+        return sorted(data, key=View.get_session_datetime, reverse=True)
+
+    @staticmethod
+    def get_session_datetime(session_brain):
+        session_time = getattr(session_brain, 'horaInici', time())
+        if session_time is None:
+            session_time = time()
+        return datetime.combine(session_brain.start, session_time)
 
     def FoldersInside(self):
         """ Retorna les carpetes que hi ha dintre que són les que marquem com Historic
