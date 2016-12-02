@@ -201,5 +201,12 @@ def dataSessio(context):
     """Create a catalogue indexer, registered as an adapter, which can
     populate the ``dataSessio`` value count it and index.
     """
-    return context.dataSessio
+    return get_session_datetime(context)
 grok.global_adapter(dataSessio, name='start')
+
+
+def get_session_datetime(session):
+    session_time = session.horaInici
+    if type(session_time) is not datetime.time:
+        session_time = datetime.time()
+    return datetime.datetime.combine(session.dataSessio, session_time)

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import time, datetime
 
 from five import grok
 from zope import schema
@@ -61,20 +60,11 @@ class View(grok.View):
         """
         portal_catalog = getToolByName(self, 'portal_catalog')
         folder_path = '/'.join(self.context.getPhysicalPath())
-        data = portal_catalog.searchResults(
+        return portal_catalog.searchResults(
             portal_type='genweb.rectorat.sessio',
-            path={'query': folder_path,
-                  'depth': 1})
-
-        # The last modified is the first shown.
-        return sorted(data, key=View.get_session_datetime, reverse=True)
-
-    @staticmethod
-    def get_session_datetime(session_brain):
-        session_time = getattr(session_brain, 'horaInici', time())
-        if session_time is None or not isinstance(session_time, time):
-            session_time = time()
-        return datetime.combine(session_brain.start, session_time)
+            path={'query': folder_path, 'depth': 1},
+            sort_on='start',
+            sort_order='descending')
 
     def FoldersInside(self):
         """ Retorna les carpetes que hi ha dintre que són les que marquem com Historic
