@@ -1,11 +1,13 @@
 Changelog
 =========
 
-1.18 (unreleased)
+1.18 (2016-12-15)
 -----------------
 
-- Nothing changed yet.
-
+* Refactor session ordering [Santi]
+* Make time-less sessions sortable when Missing.Value [Santi]
+* Make time-less sessions sortable [Santi]
+* Sort sessions by datetime desc [Santi]
 
 1.17 (2016-10-26)
 -----------------
