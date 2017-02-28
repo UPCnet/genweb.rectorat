@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.19 (unreleased)
+1.19 (2017-02-28)
 -----------------
 
-- Nothing changed yet.
-
+* added empty values if blank fields (strftime) [roberto.diaz]
 
 1.18 (2016-12-15)
 -----------------
