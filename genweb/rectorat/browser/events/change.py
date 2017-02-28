@@ -23,9 +23,19 @@ def sessio_changed(session, event):
             now = strftime("%d/%m/%Y %H:%M:%S")
             sessiontitle = str(session.Title())
 
-            sessiondate = str(session.dataSessio.strftime("%d/%m/%Y"))
-            starthour = str(session.horaInici.strftime("%H:%M"))
-            endHour = str(session.horaFi.strftime("%H:%M"))
+            if session.dataSessio:
+                sessiondate = str(session.dataSessio.strftime("%d/%m/%Y"))
+            else:
+                sessiondate = ''
+            if session.horaInici:
+                starthour = str(session.horaInici.strftime("%H:%M"))
+            else:
+                starthour = ''
+            if session.horaFi:
+                endHour = str(session.horaFi.strftime("%H:%M"))
+            else:
+                endHour = ''
+
             organ = session.aq_parent
 
             sessionLink = str(session.absolute_url())
@@ -99,7 +109,10 @@ def sessio_changed(session, event):
             if lang == 'en':
                 now = strftime("%Y-%m-%d %H:%M")
                 session.notificationDate = now
-                sessiondate = session.dataSessio.strftime("%Y-%m-%d")
+                if session.dataSessio:
+                    sessiondate = session.dataSessio.strftime("%Y-%m-%d")
+                else:
+                    sessiondate = ''
                 subjectMail = "Session " + sessiontitle + ' - ' + sessiondate + ' - ' + starthour
                 introData = "<br/><p>You can view the complete session information here:: <a href=" + \
                             sessionLink + ">" + sessiontitle + "</a></p><br/>" + signatura
