@@ -86,14 +86,40 @@ class migrateOrgans(BrowserView):
                         old_session.dataSessio, old_session.horaFi)
                     acc.timezone = 'Europe/Vienna'
 
-                # if value[1].portal_type == 'genweb.rectorat.historicfolder':
-                #     # import ipdb;ipdb.set_trace()
-                #     old_historic_session = value[1].items()
-                #     new_session = api.content.create(
-                #         id=old_session.id,
-                #         title=old_session.title,
-                #         type='genweb.organs.sessio',
-                #         container=obj)
-                #     # Agafem les session de l'historic
-                #     pass
+                if value[1].portal_type == 'genweb.rectorat.historicfolder':
+                    old_historic_sessions = value[1].items()
+                    for value in old_historic_sessions:
+                        if value[1].portal_type == 'genweb.rectorat.sessio':
+                            cont = cont + 1
+                            old_session = value[1]
+                            new_session = api.content.create(
+                                id=old_session.id,
+                                title=old_session.title,
+                                type='genweb.organs.sessio',
+                                container=obj)
+                            new_session.numSessioShowOnly = str(cont).zfill(2)
+                            new_session.numSessio = str(cont).zfill(2)
+                            new_session.llocConvocatoria = old_session.llocConvocatoria
+
+                            new_session.adrecaLlista = old_session.adrecaLlista
+                            if old_session.membresConvocats:
+                                new_session.membresConvocats = old_session.membresConvocats.output
+                            if old_session.membresConvidats:
+                                new_session.membresConvidats = old_session.membresConvidats.output
+                            if old_session.llistaExcusats:
+                                new_session.llistaExcusats = old_session.llistaExcusats.output
+                            # ordredeldia
+                            if old_session.bodyMail:
+                                new_session.bodyMail = old_session.bodyMail.output
+                            if old_session.signatura:
+                                new_session.signatura = old_session.signatura.output
+                            transaction.commit()
+
+                            # Change start and end date
+                            acc = IEventAccessor(new_session)
+                            acc.start = datetime.combine(
+                                old_session.dataSessio, old_session.horaInici)
+                            acc.end = datetime.combine(
+                                old_session.dataSessio, old_session.horaFi)
+                            acc.timezone = 'Europe/Vienna'
         return 'OK'
