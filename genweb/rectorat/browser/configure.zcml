@@ -18,9 +18,9 @@
     <browser:resourceDirectory
       name="genweb.rectorat.stylesheets"
       directory="stylesheets"
-      />     
+      />
 
-    <!-- Overrides multifile download to assign permissions --> 
+    <!-- Overrides multifile download to assign permissions -->
     <browser:page
       name="download"
       for="plone.formwidget.multifile.interfaces.IMultiFileWidget"
@@ -34,18 +34,26 @@
       for="*"
       name="printActa"
       class=".views.ActaPrintView"
-      layer="..interfaces.IGenwebRectoratLayer"          
+      layer="..interfaces.IGenwebRectoratLayer"
       permission="zope2.View"
-    />        
+    />
 
     <!-- Used to add mail information to session log annotation -->
     <browser:page
       for="*"
       name="addLogMail"
       class=".views.AddLogMail"
-      layer="..interfaces.IGenwebRectoratLayer"          
+      layer="..interfaces.IGenwebRectoratLayer"
       permission="zope2.View"
-    />        
+    />
 
+    <!-- Used to migrate fields from v1.0 to v2.0 -->
+    <browser:page
+      for="*"
+      name="migrateOrgans"
+      class=".migrate.migrateOrgans"
+      layer="..interfaces.IGenwebRectoratLayer"
+      permission="zope2.View"
+    />
 
 </configure>
