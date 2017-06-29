@@ -86,12 +86,50 @@ class migrateOrgans(BrowserView):
                         old_session.dataSessio, old_session.horaFi)
                     acc.timezone = 'Europe/Vienna'
 
+                    transaction.commit()
+                    # Acta inside session
+                    old_actas = value[1].items()
+                    for valueoldsactas in old_actas:
+                        if valueoldsactas[1].portal_type == 'genweb.rectorat.acta':
+                            # import ipdb;ipdb.set_trace()
+                            old_session = valueoldsactas[1]
+                            new_session = api.content.create(
+                                id=old_session.id,
+                                title=old_session.title,
+                                type='genweb.organs.acta',
+                                container=new_session)
+                            # new_session.numSessioShowOnly = str(cont).zfill(2)
+                            # new_session.numSessio = str(cont).zfill(2)
+                            # new_session.llocConvocatoria = old_session.llocConvocatoria
+
+                            # new_session.adrecaLlista = old_session.adrecaLlista
+                            # if old_session.membresConvocats:
+                            #     new_session.membresConvocats = old_session.membresConvocats.output
+                            # if old_session.membresConvidats:
+                            #     new_session.membresConvidats = old_session.membresConvidats.output
+                            # if old_session.llistaExcusats:
+                            #     new_session.llistaExcusats = old_session.llistaExcusats.output
+                            # # ordredeldia
+                            # if old_session.bodyMail:
+                            #     new_session.bodyMail = old_session.bodyMail.output
+                            # if old_session.signatura:
+                            #     new_session.signatura = old_session.signatura.output
+                            # transaction.commit()
+
+                            # # Change start and end date
+                            # acc = IEventAccessor(new_session)
+                            # acc.start = datetime.combine(
+                            #     old_session.dataSessio, old_session.horaInici)
+                            # acc.end = datetime.combine(
+                            #     old_session.dataSessio, old_session.horaFi)
+                            # acc.timezone = 'Europe/Vienna'
+
                 if value[1].portal_type == 'genweb.rectorat.historicfolder':
                     old_historic_sessions = value[1].items()
-                    for value in old_historic_sessions:
-                        if value[1].portal_type == 'genweb.rectorat.sessio':
+                    for valueolds in old_historic_sessions:
+                        if valueolds[1].portal_type == 'genweb.rectorat.sessio':
                             cont = cont + 1
-                            old_session = value[1]
+                            old_session = valueolds[1]
                             new_session = api.content.create(
                                 id=old_session.id,
                                 title=old_session.title,
@@ -99,6 +137,7 @@ class migrateOrgans(BrowserView):
                                 container=obj)
                             new_session.numSessioShowOnly = str(cont).zfill(2)
                             new_session.numSessio = str(cont).zfill(2)
+                            # import ipdb;ipdb.set_trace()
                             new_session.llocConvocatoria = old_session.llocConvocatoria
 
                             new_session.adrecaLlista = old_session.adrecaLlista
