@@ -114,17 +114,18 @@ class migrateOrgans(BrowserView):
                             if old_acta.actaBody:
                                 newActaBody = old_acta.actaBody.output
 
-                            new_acta.ordenDelDia = newOrdenDelDia + '</br/><hr/><br/>' + newActaBody
+                            new_acta.ordenDelDia = '<hr/><h4>Ordre del dia</h4></br/><hr/><br/>' +newOrdenDelDia + '<hr/><h4>Acta</h4></br/><hr/><br/>' + newActaBody
                             # enllacVideo
-                            transaction.commit()
 
+                            # import ipdb; ipdb.set_trace()
                             # Change start and end date
-                            # acc = IEventAccessor(new_acta)
-                            # acc.start = datetime.combine(
-                            #     old_acta.dataSessio, old_acta.horaInici)
-                            # acc.end = datetime.combine(
-                            #     old_acta.dataSessio, old_acta.horaFi)
+                            new_acta.horaInici = datetime.combine(
+                                old_acta.dataSessio, old_acta.horaInici)
+                            new_acta.horaFi = datetime.combine(
+                                old_acta.dataSessio, old_acta.horaFi)
                             # acc.timezone = 'Europe/Vienna'
+
+                            transaction.commit()
 
                 if value[1].portal_type == 'genweb.rectorat.historicfolder':
                     old_historic_sessions = value[1].items()
