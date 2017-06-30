@@ -31,9 +31,8 @@ class migrateOrgans(BrowserView):
             portal_type=['genweb.rectorat.organgovern'],
         )
         # creating Organs de Govern inside Carpeta Unitat
-        for item in items[:3]: #!TODO: Temporally!!!
+        for item in items: #!TODO: Temporally!!!
             obj = api.content.create(
-                id=item.id,
                 title=item.Title,
                 type='genweb.organs.organgovern',
                 container=destination_folder)
@@ -91,7 +90,6 @@ class migrateOrgans(BrowserView):
                     old_actas = value[1].items()
                     for valueoldsactas in old_actas:
                         if valueoldsactas[1].portal_type == 'genweb.rectorat.acta':
-                            # import ipdb;ipdb.set_trace()
                             old_acta = valueoldsactas[1]
                             new_acta = api.content.create(
                                 id=old_acta.id,
@@ -113,17 +111,12 @@ class migrateOrgans(BrowserView):
                                 newOrdenDelDia = old_acta.ordreSessio.output
                             if old_acta.actaBody:
                                 newActaBody = old_acta.actaBody.output
-
-                            new_acta.ordenDelDia = '<hr/><h4>Ordre del dia</h4></br/><hr/><br/>' +newOrdenDelDia + '<hr/><h4>Acta</h4></br/><hr/><br/>' + newActaBody
+                            new_acta.ordenDelDia = '<hr/><h4>Ordre del dia</h4><hr/>' +newOrdenDelDia + '<hr/><h4>Acta</h4><hr/>' + newActaBody
                             # enllacVideo
-
-                            # import ipdb; ipdb.set_trace()
-                            # Change start and end date
                             new_acta.horaInici = datetime.combine(
                                 old_acta.dataSessio, old_acta.horaInici)
                             new_acta.horaFi = datetime.combine(
                                 old_acta.dataSessio, old_acta.horaFi)
-                            # acc.timezone = 'Europe/Vienna'
 
                             transaction.commit()
 
@@ -132,36 +125,81 @@ class migrateOrgans(BrowserView):
                     for valueolds in old_historic_sessions:
                         if valueolds[1].portal_type == 'genweb.rectorat.sessio':
                             cont = cont + 1
-                            old_session = valueolds[1]
-                            new_session = api.content.create(
-                                id=old_session.id,
-                                title=old_session.title,
+                            old_hist_session = valueolds[1]
+                            new_hist_session = api.content.create(
+                                id=old_hist_session.id,
+                                title=old_hist_session.title,
                                 type='genweb.organs.sessio',
                                 container=obj)
-                            new_session.numSessioShowOnly = str(cont).zfill(2)
-                            new_session.numSessio = str(cont).zfill(2)
+                            new_hist_session.numSessioShowOnly = str(cont).zfill(2)
+                            new_hist_session.numSessio = str(cont).zfill(2)
                             # import ipdb;ipdb.set_trace()
-                            new_session.llocConvocatoria = old_session.llocConvocatoria
+                            new_hist_session.llocConvocatoria = old_hist_session.llocConvocatoria
 
-                            new_session.adrecaLlista = old_session.adrecaLlista
-                            if old_session.membresConvocats:
-                                new_session.membresConvocats = old_session.membresConvocats.output
-                            if old_session.membresConvidats:
-                                new_session.membresConvidats = old_session.membresConvidats.output
-                            if old_session.llistaExcusats:
-                                new_session.llistaExcusats = old_session.llistaExcusats.output
+                            new_hist_session.adrecaLlista = old_hist_session.adrecaLlista
+                            if old_hist_session.membresConvocats:
+                                new_hist_session.membresConvocats = old_hist_session.membresConvocats.output
+                            if old_hist_session.membresConvidats:
+                                new_hist_session.membresConvidats = old_hist_session.membresConvidats.output
+                            if old_hist_session.llistaExcusats:
+                                new_hist_session.llistaExcusats = old_hist_session.llistaExcusats.output
                             # ordredeldia
-                            if old_session.bodyMail:
-                                new_session.bodyMail = old_session.bodyMail.output
-                            if old_session.signatura:
-                                new_session.signatura = old_session.signatura.output
+                            if old_hist_session.bodyMail:
+                                new_hist_session.bodyMail = old_hist_session.bodyMail.output
+                            if old_hist_session.signatura:
+                                new_hist_session.signatura = old_hist_session.signatura.output
+
+                            acc = IEventAccessor(new_hist_session)
+                            acc.start = datetime.combine(
+                                old_hist_session.dataSessio, old_hist_session.horaInici)
+                            acc.end = datetime.combine(
+                                old_hist_session.dataSessio, old_hist_session.horaFi)
+
                             transaction.commit()
 
-                            # Change start and end date
-                            acc = IEventAccessor(new_session)
-                            acc.start = datetime.combine(
-                                old_session.dataSessio, old_session.horaInici)
-                            acc.end = datetime.combine(
-                                old_session.dataSessio, old_session.horaFi)
+                            old_actas = valueolds[1].items()
+                            for valueoldsHistActas in old_actas:
+                                # import ipdb; ipdb.set_trace()
+                                if valueoldsHistActas[1].portal_type == 'genweb.rectorat.acta':
+                                    # import ipdb;ipdb.set_trace()
+                                    old_hist_acta = valueoldsHistActas[1]
+                                    try:
+                                        new_hist_acta = api.content.create(
+                                            id=old_hist_acta.id,
+                                            title=old_hist_acta.title,
+                                            type='genweb.organs.acta',
+                                            container=new_hist_session)
+                                    except:
+                                        # import ipdb; ipdb.set_trace()
+                                        # new_hist_acta = api.content.create(
+                                        #     id=old_hist_acta.id + datetime.now().strftime('%Y%m%d%H%M'),
+                                        #     title=old_hist_acta.title,
+                                        #     type='genweb.organs.acta',
+                                        #     container=new_hist_session)
+                                        continue
+
+                                    new_hist_acta.llocConvocatoria = old_hist_acta.llocConvocatoria
+
+                                    if old_hist_acta.membresConvocats:
+                                        new_hist_acta.membresConvocats = old_hist_acta.membresConvocats.output
+                                    if old_hist_acta.membresConvidats:
+                                        new_hist_acta.membresConvidats = old_hist_acta.membresConvidats.output
+                                    if old_hist_acta.llistaExcusats:
+                                        new_hist_acta.llistaExcusats = old_hist_acta.llistaExcusats.output
+                                    if old_hist_acta.llistaNoAssistens:
+                                        new_hist_acta.llistaNoAssistens = old_hist_acta.llistaNoAssistens.output
+                                    # ordredeldia
+                                    if old_hist_acta.ordreSessio:
+                                        newOrdenDelDia = old_hist_acta.ordreSessio.output
+                                    if old_hist_acta.actaBody:
+                                        newActaBody = old_hist_acta.actaBody.output
+                                    new_hist_acta.ordenDelDia = '<hr/><h4>Ordre del dia</h4><hr/>' +newOrdenDelDia + '<hr/><h4>Acta</h4><hr/>' + newActaBody
+                                    # enllacVideo
+                                    new_hist_acta.horaInici = datetime.combine(
+                                        old_hist_acta.dataSessio, old_hist_acta.horaInici)
+                                    new_hist_acta.horaFi = datetime.combine(
+                                        old_hist_acta.dataSessio, old_hist_acta.horaFi)
+
+                                    transaction.commit()
 
         return 'OK'
