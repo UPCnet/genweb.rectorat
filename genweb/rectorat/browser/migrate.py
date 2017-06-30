@@ -4,7 +4,6 @@ from datetime import datetime
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from plone.event.interfaces import IEventAccessor
-
 import transaction
 
 
@@ -21,7 +20,6 @@ class migrateOrgans(BrowserView):
             api.content.delete(portal['ca']['migrations'])
         except:
             None
-
         obj = api.content.create(
             id='migrations',
             title=name,
@@ -32,38 +30,40 @@ class migrateOrgans(BrowserView):
         items = portal_catalog.searchResults(
             portal_type=['genweb.rectorat.organgovern'],
         )
-
         # creating Organs de Govern inside Carpeta Unitat
-        for item in items:
+        for item in items[:3]: #!TODO: Temporally!!!
             obj = api.content.create(
                 id=item.id,
                 title=item.Title,
                 type='genweb.organs.organgovern',
                 container=destination_folder)
+
             old_item = item.getObject()
-            obj.descripcioOrgan = old_item.descripcioOrgan.output
+            if old_item.descripcioOrgan:
+                obj.descripcioOrgan = old_item.descripcioOrgan.output
             obj.adrecaLlista = old_item.adrecaLlista
-            obj.membresOrgan = old_item.membresOrgan.output
+            if old_item.membresOrgan:
+                obj.membresOrgan = old_item.membresOrgan.output
             obj.fromMail = old_item.fromMail
             obj.creators = old_item.creators
             obj.creation_date = old_item.creation_date
             transaction.commit()
 
             contained_items = old_item.items()
-            cont = 0
+            contSession = cont = 0
             for value in contained_items:
                 if value[1].portal_type == 'genweb.rectorat.sessio':
-                    cont = cont + 1
+                    contSession = contSession + 1
                     old_session = value[1]
                     new_session = api.content.create(
                         id=old_session.id,
                         title=old_session.title,
                         type='genweb.organs.sessio',
                         container=obj)
-                    new_session.numSessioShowOnly = str(cont).zfill(2)
-                    new_session.numSessio = str(cont).zfill(2)
+                    new_session.numSessioShowOnly = str(contSession).zfill(2)
+                    new_session.numSessio = str(contSession).zfill(2)
                     new_session.llocConvocatoria = old_session.llocConvocatoria
-
+                    #old_session.ordreSessio
                     new_session.adrecaLlista = old_session.adrecaLlista
                     if old_session.membresConvocats:
                         new_session.membresConvocats = old_session.membresConvocats.output
@@ -162,5 +162,5 @@ class migrateOrgans(BrowserView):
                                 old_session.dataSessio, old_session.horaInici)
                             acc.end = datetime.combine(
                                 old_session.dataSessio, old_session.horaFi)
-                            acc.timezone = 'Europe/Vienna'
+
         return 'OK'
