@@ -53,7 +53,7 @@
       name="migrateOrgans"
       class=".migrate.migrateOrgans"
       layer="..interfaces.IGenwebRectoratLayer"
-      permission="zope2.View"
+      permission="cmf.ModifyPortalContent"
     />
 
 </configure>
