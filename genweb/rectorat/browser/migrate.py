@@ -96,11 +96,9 @@ class migrateOrgans(BrowserView):
                     acc.timezone = 'Europe/Madrid'
                     new_session.reindexObject()
                     transaction.commit()
-
                     api.content.transition(obj=new_session, transition='convocar')
                     api.content.transition(obj=new_session, transition='realitzar')
                     api.content.transition(obj=new_session, transition='tancar')
-                    # api.content.transition(obj=new_session, transition='tancada')
                     print " ## Created Session. Origin-> " + str(old_session.absolute_url()) + " New-> " + str(new_session.absolute_url())
 
                     # Acta inside session
@@ -201,10 +199,9 @@ class migrateOrgans(BrowserView):
                             acc.timezone = 'Europe/Madrid'
                             new_hist_session.reindexObject()
                             transaction.commit()
-
-                            # api.content.transition(obj=new_hist_session, transition='convocar')
-                            # api.content.transition(obj=new_hist_session, transition='realitzar')
-                            # api.content.transition(obj=new_hist_session, transition='tancar')
+                            api.content.transition(obj=new_hist_session, transition='convocar')
+                            api.content.transition(obj=new_hist_session, transition='realitzar')
+                            api.content.transition(obj=new_hist_session, transition='tancar')
                             print " ## Created HIST Session. Origin-> " + str(old_hist_session.absolute_url()) + " New-> " + str(new_hist_session.absolute_url())
 
                             old_hist_actas = valueolds[1].items()
