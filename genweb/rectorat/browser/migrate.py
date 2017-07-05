@@ -8,24 +8,27 @@ from plone.namedfile.file import NamedBlobFile
 import transaction
 import re
 
+
 class migrateOrgans(BrowserView):
 
     def __call__(self):
-        """ Adding send mail information to context in annotation format
-        """
-        print " -------------------------------------------------------------------- "
-        print " --------------------- STARTING PROCES ------------------------------ "
-        print " -------------------------------------------------------------------- "
+        """ Adding send mail information to context in annotation format """
+
+        print "--------------------------------------------------------------"
+        print "--------------- STARTING PROCES ------------------------------"
+        print "--------------------------------------------------------------"
         portal_catalog = getToolByName(self, 'portal_catalog')
         # Default Carpeta Unitat
         name = 'Migrations'
         portal = api.portal.get()
+
         try:
             api.content.delete(portal['ca']['migrations'])
             print " ## Deleted existing folder: Migrations"
         except:
             None
-        organ_folder = api.content.create(
+
+        api.content.create(
             id='migrations',
             title=name,
             type='genweb.organs.organsfolder',
@@ -40,7 +43,7 @@ class migrateOrgans(BrowserView):
 
         print " ## Found " + str(len(items)) + " Organs de Govern to migrate"
         # creating Organs de Govern inside Carpeta Unitat
-        for item in items: #!TODO: Temporally!!!
+        for item in items:
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
@@ -62,9 +65,9 @@ class migrateOrgans(BrowserView):
             contained_items = old_organ.items()
             contSession = cont = 0
             for value in contained_items:
+                old_session = value[1]
                 if value[1].portal_type == 'genweb.rectorat.sessio':
                     contSession = contSession + 1
-                    old_session = value[1]
                     new_session = api.content.create(
                         id=old_session.id,
                         title=old_session.title,
@@ -74,7 +77,7 @@ class migrateOrgans(BrowserView):
                     new_session.numSessioShowOnly = str(contSession).zfill(2)
                     new_session.numSessio = str(contSession).zfill(2)
                     new_session.llocConvocatoria = old_session.llocConvocatoria
-                    #old_session.ordreSessio
+                    # old_session.ordreSessio
                     new_session.adrecaLlista = old_session.adrecaLlista
                     if old_session.membresConvocats:
                         new_session.membresConvocats = old_session.membresConvocats.output
@@ -101,8 +104,172 @@ class migrateOrgans(BrowserView):
                     api.content.transition(obj=new_session, transition='tancar')
                     print " ## Created Session. Origin-> " + str(old_session.absolute_url()) + " New-> " + str(new_session.absolute_url())
 
+                    old_documents = old_session.items()
+                    for valueoldsdocs in old_documents:
+                        # Iniciem creacio dels documents en punts/subpunts/acords
+                        puntsessio = valueoldsdocs[1]
+                        if puntsessio.portal_type != 'genweb.rectorat.acta':
+                            if '.' in puntsessio.proposalPoint:
+                                puntId = puntsessio.proposalPoint.split('.')[0]
+                                existeix = False
+                                for ids in new_session.items():
+                                    if ids[1].proposalPoint == puntId:
+                                        existeix = True
+
+                                if not existeix:
+                                    createdSubPunt = api.content.create(
+                                        id=puntId,
+                                        title=puntId,
+                                        type='genweb.organs.punt',
+                                        container=new_session,
+                                        safe_id=True)
+                                    createdSubPunt.proposalPoint = puntId
+                                    createdSubPunt.estatsLlista = 'Esborrany'
+
+                                    if puntsessio.agreement:
+                                        # En un acord
+                                        new_acord = api.content.create(
+                                            id=puntsessio.id,
+                                            title=puntsessio.title,
+                                            type='genweb.organs.acord',
+                                            container=createdSubPunt,
+                                            safe_id=True)
+                                        new_acord.proposalPoint = puntsessio.proposalPoint
+                                        new_acord.agreement = puntsessio.agreement
+                                        estat = puntsessio.estatAprovacio
+
+                                        if estat == 'Draft':
+                                            new_acord.estatsLlista = 'Esborrany'
+                                        if estat == 'Informed':
+                                            new_acord.estatsLlista = 'Informat'
+                                        if estat == 'Approved':
+                                            new_acord.estatsLlista = 'Aprovat'
+                                        if estat == 'Rejected':
+                                            new_acord.estatsLlista = 'No aprovat'
+                                        if estat == 'Pending':
+                                            new_acord.estatsLlista = 'Derogat'
+
+                                    else:
+                                        # es un punt
+
+                                        new_punt = api.content.create(
+                                            id=puntsessio.id,
+                                            title=puntsessio.title,
+                                            type='genweb.organs.subpunt',
+                                            container=createdSubPunt,
+                                            safe_id=True)
+                                        new_punt.proposalPoint = puntsessio.proposalPoint
+                                        estat = puntsessio.estatAprovacio
+
+                                        if estat == 'Draft':
+                                            new_punt.estatsLlista = 'Esborrany'
+                                        if estat == 'Informed':
+                                            new_punt.estatsLlista = 'Informat'
+                                        if estat == 'Approved':
+                                            new_punt.estatsLlista = 'Aprovat'
+                                        if estat == 'Rejected':
+                                            new_punt.estatsLlista = 'No aprovat'
+                                        if estat == 'Pending':
+                                            new_punt.estatsLlista = 'Derogat'
+                                else:
+                                    #print " ### El punt existeix"
+
+                                    for objecte in new_session.items():
+                                        if objecte[0] == puntId:
+                                            folderObject = objecte[1]
+                                    if puntsessio.agreement:
+                                        # En un acord
+                                        new_acord = api.content.create(
+                                            id=puntsessio.id,
+                                            title=puntsessio.title,
+                                            type='genweb.organs.acord',
+                                            container=folderObject,
+                                            safe_id=True)
+                                        new_acord.proposalPoint = puntsessio.proposalPoint
+                                        new_acord.agreement = puntsessio.agreement
+                                        estat = puntsessio.estatAprovacio
+
+                                        if estat == 'Draft':
+                                            new_acord.estatsLlista = 'Esborrany'
+                                        if estat == 'Informed':
+                                            new_acord.estatsLlista = 'Informat'
+                                        if estat == 'Approved':
+                                            new_acord.estatsLlista = 'Aprovat'
+                                        if estat == 'Rejected':
+                                            new_acord.estatsLlista = 'No aprovat'
+                                        if estat == 'Pending':
+                                            new_acord.estatsLlista = 'Derogat'
+
+                                    else:
+                                        # es un punt
+                                        new_punt = api.content.create(
+                                            id=puntsessio.id,
+                                            title=puntsessio.title,
+                                            type='genweb.organs.subpunt',
+                                            container=folderObject,
+                                            safe_id=True)
+                                        new_punt.proposalPoint = puntsessio.proposalPoint
+                                        estat = puntsessio.estatAprovacio
+
+                                        if estat == 'Draft':
+                                            new_punt.estatsLlista = 'Esborrany'
+                                        if estat == 'Informed':
+                                            new_punt.estatsLlista = 'Informat'
+                                        if estat == 'Approved':
+                                            new_punt.estatsLlista = 'Aprovat'
+                                        if estat == 'Rejected':
+                                            new_punt.estatsLlista = 'No aprovat'
+                                        if estat == 'Pending':
+                                            new_punt.estatsLlista = 'Derogat'
+                            else:
+                                if puntsessio.portal_type == 'genweb.rectorat.document':
+                                    if puntsessio.agreement:
+                                        # En un acord
+                                        new_acord = api.content.create(
+                                            id=puntsessio.id,
+                                            title=puntsessio.title,
+                                            type='genweb.organs.acord',
+                                            container=new_session,
+                                            safe_id=True)
+                                        new_acord.proposalPoint = puntsessio.proposalPoint
+                                        new_acord.agreement = puntsessio.agreement
+                                        estat = puntsessio.estatAprovacio
+
+                                        if estat == 'Draft':
+                                            new_acord.estatsLlista = 'Esborrany'
+                                        if estat == 'Informed':
+                                            new_acord.estatsLlista = 'Informat'
+                                        if estat == 'Approved':
+                                            new_acord.estatsLlista = 'Aprovat'
+                                        if estat == 'Rejected':
+                                            new_acord.estatsLlista = 'No aprovat'
+                                        if estat == 'Pending':
+                                            new_acord.estatsLlista = 'Derogat'
+
+                                    else:
+                                        # es un punt
+                                        new_punt = api.content.create(
+                                            id=puntsessio.id,
+                                            title=puntsessio.title,
+                                            type='genweb.organs.punt',
+                                            container=new_session,
+                                            safe_id=True)
+                                        new_punt.proposalPoint = puntsessio.proposalPoint
+                                        estat = puntsessio.estatAprovacio
+
+                                        if estat == 'Draft':
+                                            new_punt.estatsLlista = 'Esborrany'
+                                        if estat == 'Informed':
+                                            new_punt.estatsLlista = 'Informat'
+                                        if estat == 'Approved':
+                                            new_punt.estatsLlista = 'Aprovat'
+                                        if estat == 'Rejected':
+                                            new_punt.estatsLlista = 'No aprovat'
+                                        if estat == 'Pending':
+                                            new_punt.estatsLlista = 'Derogat'
+
                     # Acta inside session
-                    old_actas = value[1].items()
+                    old_actas = old_session.items()
                     for valueoldsactas in old_actas:
                         if valueoldsactas[1].portal_type == 'genweb.rectorat.acta':
                             old_acta = valueoldsactas[1]
@@ -148,10 +315,10 @@ class migrateOrgans(BrowserView):
                                         old_file = api.content.find(path=filename_path)[0]
                                         blob_file = old_file.getObject()
                                         mp3_file = NamedBlobFile(
-                                            data = blob_file.file.data,
-                                            contentType = blob_file.file.contentType,
-                                            filename = blob_file.file.filename
-                                            )
+                                            data=blob_file.file.data,
+                                            contentType=blob_file.file.contentType,
+                                            filename=blob_file.file.filename
+                                        )
                                         new_file = api.content.create(
                                             id=old_file.id,
                                             title=old_file.Title,
@@ -229,7 +396,7 @@ class migrateOrgans(BrowserView):
                                     if old_hist_acta.ordreSessio:
                                         newOrdenDelDia = '<hr/><h4>Ordre del dia</h4><hr/>' + old_hist_acta.ordreSessio.output
                                     if old_hist_acta.actaBody:
-                                        newActaBody = '<hr/><h4>Acta</h4><hr/>' +  old_hist_acta.actaBody.output
+                                        newActaBody = '<hr/><h4>Acta</h4><hr/>' + old_hist_acta.actaBody.output
                                     new_hist_acta.ordenDelDia = newOrdenDelDia + newActaBody
                                     # enllacVideo
                                     new_hist_acta.horaInici = datetime.combine(
@@ -247,10 +414,10 @@ class migrateOrgans(BrowserView):
                                                 old_file = api.content.find(path=filename_path)[0]
                                                 blob_file = old_file.getObject()
                                                 mp3_file = NamedBlobFile(
-                                                    data = blob_file.file.data,
-                                                    contentType = blob_file.file.contentType,
-                                                    filename = blob_file.file.filename
-                                                    )
+                                                    data=blob_file.file.data,
+                                                    contentType=blob_file.file.contentType,
+                                                    filename=blob_file.file.filename
+                                                )
                                                 new_file = api.content.create(
                                                     id=old_file.id,
                                                     title=old_file.Title,
@@ -261,8 +428,8 @@ class migrateOrgans(BrowserView):
                                                 transaction.commit()
                                                 print " ## Created Audio in HIST Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
 
-        print " -------------------------------------------------------------------- "
-        print " --------------------- END PROCES ----------------------------------- "
-        print " -------------------------------------------------------------------- "
+        print " ------------------------------------------------------------- "
+        print " -------------- END PROCES ----------------------------------- "
+        print " ------------------------------------------------------------- "
 
         return 'OK'
