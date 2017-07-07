@@ -6,13 +6,15 @@ from plone import api
 from plone.event.interfaces import IEventAccessor
 from plone.namedfile.file import NamedBlobFile
 import transaction
+from zope.annotation.interfaces import IAnnotations
+
 import re
 
 
 class migrateOrgans(BrowserView):
 
     def __call__(self):
-        """ Adding send mail information to context in annotation format """
+        """ Migrate Organs from v1.0 to v2.0 """
 
         print "--------------------------------------------------------------"
         print "--------------- STARTING PROCES ------------------------------"
@@ -24,7 +26,7 @@ class migrateOrgans(BrowserView):
 
         try:
             api.content.delete(portal['ca']['migrations'])
-            print " ## Deleted existing folder: Migrations"
+            print " ## Deleted existing folder: " + name
         except:
             None
 
@@ -34,7 +36,7 @@ class migrateOrgans(BrowserView):
             type='genweb.organs.organsfolder',
             safe_id=True,
             container=self.context)
-        print " ## Created folder: Migrations"
+        print " ## Created folder: " + name
         destination_folder = portal['ca']['migrations']
 
         items = portal_catalog.searchResults(
@@ -103,6 +105,18 @@ class migrateOrgans(BrowserView):
                     api.content.transition(obj=new_session, transition='realitzar')
                     api.content.transition(obj=new_session, transition='tancar')
                     print " ## Created Session. Origin-> " + str(old_session.absolute_url()) + " New-> " + str(new_session.absolute_url())
+                    old_annotations = IAnnotations(old_session)['genweb.rectorat.logMail']
+                    data = []
+                    index = 0
+                    for item in old_annotations:
+                        values = dict(index=index + 1,
+                                      dateMail=item['dateMail'].strftime('%d/%m/%Y %H:%M:%S'),
+                                      message=item['fromMail'].split(':')[0],
+                                      fromMail=item['fromMail'].split(':')[1],
+                                      toMail=item['toMail'])
+                        data.append(values)
+                        index = index + 1
+                    IAnnotations(new_session)['genweb.organs.logMail'] = data
 
                     old_documents = old_session.items()
                     for valueoldsdocs in old_documents:
@@ -117,6 +131,7 @@ class migrateOrgans(BrowserView):
                                         existeix = True
 
                                 if not existeix:
+                                    # Si no existe lo creo como Esborrany
                                     createdSubPunt = api.content.create(
                                         id=puntId,
                                         title=puntId,
@@ -172,7 +187,7 @@ class migrateOrgans(BrowserView):
                                         if estat == 'Pending':
                                             new_punt.estatsLlista = 'Derogat'
                                 else:
-                                    #print " ### El punt existeix"
+                                    # print " ### El punt existeix"
 
                                     for objecte in new_session.items():
                                         if objecte[0] == puntId:
@@ -290,12 +305,14 @@ class migrateOrgans(BrowserView):
                             if old_acta.llistaNoAssistens:
                                 new_acta.llistaNoAssistens = old_acta.llistaNoAssistens.output
                             # ordredeldia
-                            newOrdenDelDia = newActaBody = ''
+                            newOrdenDelDia = newActaBody = footer = ''
                             if old_acta.ordreSessio:
                                 newOrdenDelDia = "<hr/><h4>Ordre del dia</h4><hr/>" + old_acta.ordreSessio.output
                             if old_acta.actaBody:
                                 newActaBody = "<hr/><h4>Acta</h4><hr/>" + old_acta.actaBody.output
-                            new_acta.ordenDelDia = newOrdenDelDia + newActaBody
+                            if old_acta.footer:
+                                footer = "<hr/><h4>Peu del Acta</h4><hr/>" + old_acta.footer.output
+                            new_acta.ordenDelDia = newOrdenDelDia + newActaBody + footer
                             # enllacVideo
                             new_acta.horaInici = datetime.combine(
                                 old_acta.dataSessio, old_acta.horaInici)
@@ -328,6 +345,7 @@ class migrateOrgans(BrowserView):
                                         new_file.file = mp3_file
                                         transaction.commit()
                                         print " ## Created Audio in Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
+
 
                 if value[1].portal_type == 'genweb.rectorat.historicfolder':
                     old_historic_sessions = value[1].items()
@@ -392,12 +410,14 @@ class migrateOrgans(BrowserView):
                                     if old_hist_acta.llistaNoAssistens:
                                         new_hist_acta.llistaNoAssistens = old_hist_acta.llistaNoAssistens.output
                                     # ordredeldia
-                                    newOrdenDelDia = newActaBody = ''
+                                    newOrdenDelDia = newActaBody = footer = ''
                                     if old_hist_acta.ordreSessio:
                                         newOrdenDelDia = '<hr/><h4>Ordre del dia</h4><hr/>' + old_hist_acta.ordreSessio.output
                                     if old_hist_acta.actaBody:
                                         newActaBody = '<hr/><h4>Acta</h4><hr/>' + old_hist_acta.actaBody.output
-                                    new_hist_acta.ordenDelDia = newOrdenDelDia + newActaBody
+                                    if old_hist_acta.footer:
+                                        footer = "<hr/><h4>Peu del Acta</h4><hr/>" + old_hist_acta.footer.output
+                                    new_hist_acta.ordenDelDia = newOrdenDelDia + newActaBody + footer
                                     # enllacVideo
                                     new_hist_acta.horaInici = datetime.combine(
                                         old_hist_acta.dataSessio, old_hist_acta.horaInici)
