@@ -7,7 +7,7 @@ from plone.event.interfaces import IEventAccessor
 from plone.namedfile.file import NamedBlobFile
 import transaction
 from zope.annotation.interfaces import IAnnotations
-
+from operator import itemgetter
 import re
 
 
@@ -119,9 +119,17 @@ class migrateOrgans(BrowserView):
                     IAnnotations(new_session)['genweb.organs.logMail'] = data
 
                     old_documents = old_session.items()
-                    for valueoldsdocs in old_documents:
+                    results = []
+                    for item in old_documents:
+                        try:
+                            results.append(dict(index=item[1].proposalPoint,
+                                                object=item[1]))
+                        except:
+                            continue
+                    docsByIndex = sorted(results, key=itemgetter('index'))
+                    for valueoldsdocs in docsByIndex:
                         # Iniciem creacio dels documents en punts/subpunts/acords
-                        puntsessio = valueoldsdocs[1]
+                        puntsessio = valueoldsdocs['object']
                         if puntsessio.portal_type != 'genweb.rectorat.acta':
                             if '.' in puntsessio.proposalPoint:
                                 puntId = puntsessio.proposalPoint.split('.')[0]
@@ -188,7 +196,6 @@ class migrateOrgans(BrowserView):
                                             new_punt.estatsLlista = 'Derogat'
                                 else:
                                     # print " ### El punt existeix"
-
                                     for objecte in new_session.items():
                                         if objecte[0] == puntId:
                                             folderObject = objecte[1]
