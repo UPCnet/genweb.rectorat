@@ -160,7 +160,6 @@ class migrateOrgans(BrowserView):
                                         new_acord.proposalPoint = puntsessio.proposalPoint
                                         new_acord.agreement = puntsessio.agreement
                                         estat = puntsessio.estatAprovacio
-
                                         if estat == 'Draft':
                                             new_acord.estatsLlista = 'Esborrany'
                                         if estat == 'Informed':
@@ -171,10 +170,38 @@ class migrateOrgans(BrowserView):
                                             new_acord.estatsLlista = 'No aprovat'
                                         if estat == 'Pending':
                                             new_acord.estatsLlista = 'Derogat'
+                                        if puntsessio.PublishedFiles:
+                                            for file in puntsessio.PublishedFiles:
+                                                public_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_acord,
+                                                    safe_id=True,)
+                                                new_file.visiblefile = public_file
+
+                                        if puntsessio.OriginalFiles:
+                                            for file in puntsessio.OriginalFiles:
+                                                reserved_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_acord,
+                                                    safe_id=True,)
+                                                new_file.hiddenfile = reserved_file
 
                                     else:
                                         # es un punt
-
                                         new_punt = api.content.create(
                                             id=puntsessio.id,
                                             title=puntsessio.title,
@@ -194,6 +221,36 @@ class migrateOrgans(BrowserView):
                                             new_punt.estatsLlista = 'No aprovat'
                                         if estat == 'Pending':
                                             new_punt.estatsLlista = 'Derogat'
+
+                                        if puntsessio.PublishedFiles:
+                                            for file in puntsessio.PublishedFiles:
+                                                public_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_punt,
+                                                    safe_id=True,)
+                                                new_file.visiblefile = public_file
+
+                                        if puntsessio.OriginalFiles:
+                                            for file in puntsessio.OriginalFiles:
+                                                reserved_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_punt,
+                                                    safe_id=True,)
+                                                new_file.hiddenfile = reserved_file
                                 else:
                                     # print " ### El punt existeix"
                                     for objecte in new_session.items():
@@ -222,6 +279,36 @@ class migrateOrgans(BrowserView):
                                         if estat == 'Pending':
                                             new_acord.estatsLlista = 'Derogat'
 
+                                        if puntsessio.PublishedFiles:
+                                            for file in puntsessio.PublishedFiles:
+                                                public_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_acord,
+                                                    safe_id=True,)
+                                                new_file.visiblefile = public_file
+
+                                        if puntsessio.OriginalFiles:
+                                            for file in puntsessio.OriginalFiles:
+                                                reserved_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_acord,
+                                                    safe_id=True,)
+                                                new_file.hiddenfile = reserved_file
+
                                     else:
                                         # es un punt
                                         new_punt = api.content.create(
@@ -243,6 +330,37 @@ class migrateOrgans(BrowserView):
                                             new_punt.estatsLlista = 'No aprovat'
                                         if estat == 'Pending':
                                             new_punt.estatsLlista = 'Derogat'
+
+                                        if puntsessio.PublishedFiles:
+                                            for file in puntsessio.PublishedFiles:
+                                                public_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_punt,
+                                                    safe_id=True,)
+                                                new_file.visiblefile = public_file
+
+                                        if puntsessio.OriginalFiles:
+                                            for file in puntsessio.OriginalFiles:
+                                                reserved_file = NamedBlobFile(
+                                                    data=file.data,
+                                                    contentType=file.contentType,
+                                                    filename=file.filename
+                                                )
+                                                new_file = api.content.create(
+                                                    id=file.filename,
+                                                    title=file.filename,
+                                                    type='genweb.organs.file',
+                                                    container=new_punt,
+                                                    safe_id=True,)
+                                                new_file.hiddenfile = reserved_file
+
                             else:
                                 if puntsessio.portal_type == 'genweb.rectorat.document':
                                     if puntsessio.agreement:
@@ -353,10 +471,19 @@ class migrateOrgans(BrowserView):
                                         transaction.commit()
                                         print " ## Created Audio in Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
 
-
                 if value[1].portal_type == 'genweb.rectorat.historicfolder':
                     old_historic_sessions = value[1].items()
-                    for valueolds in old_historic_sessions:
+                    results = []
+                    for item in old_historic_sessions:
+                        try:
+                            results.append(dict(index=item[1].proposalPoint,
+                                                object=item[1]))
+                        except:
+                            continue
+                    docsByIndex = sorted(results, key=itemgetter('index'))
+                    for valueoldsdocs in docsByIndex:
+                        # Iniciem creacio dels documents en punts/subpunts/acords
+                        valueolds = valueoldsdocs['object']
                         if valueolds[1].portal_type == 'genweb.rectorat.sessio':
                             cont = cont + 1
                             old_hist_session = valueolds[1]
