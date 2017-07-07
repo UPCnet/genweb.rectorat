@@ -473,17 +473,7 @@ class migrateOrgans(BrowserView):
 
                 if value[1].portal_type == 'genweb.rectorat.historicfolder':
                     old_historic_sessions = value[1].items()
-                    results = []
-                    for item in old_historic_sessions:
-                        try:
-                            results.append(dict(index=item[1].proposalPoint,
-                                                object=item[1]))
-                        except:
-                            continue
-                    docsByIndex = sorted(results, key=itemgetter('index'))
-                    for valueoldsdocs in docsByIndex:
-                        # Iniciem creacio dels documents en punts/subpunts/acords
-                        valueolds = valueoldsdocs['object']
+                    for valueolds in old_historic_sessions:
                         if valueolds[1].portal_type == 'genweb.rectorat.sessio':
                             cont = cont + 1
                             old_hist_session = valueolds[1]
