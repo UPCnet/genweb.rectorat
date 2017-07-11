@@ -8,6 +8,7 @@ from plone.namedfile.file import NamedBlobFile
 import transaction
 from zope.annotation.interfaces import IAnnotations
 from operator import itemgetter
+import logging
 import re
 
 
@@ -15,10 +16,23 @@ class migrateOrgans(BrowserView):
 
     def __call__(self):
         """ Migrate Organs from v1.0 to v2.0 """
+        date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
+        filename = 'import-' + date + '.log'
+        filename = 'import.log'  # local
+        logging.basicConfig(format='%(asctime)s %(message)s',
+                            datefmt='%m/%d/%Y %I:%M:%S %p',
+                            filename=filename,
+                            level=logging.DEBUG)
 
+        logging.info('FILE: import-' + date + '.log')
         print "--------------------------------------------------------------"
-        print "--------------- STARTING PROCES ------------------------------"
+        print "--------------- START PROCESS --------------------------------"
         print "--------------------------------------------------------------"
+        f = open(filename, 'a')
+        f.write("--------------------------------------------------------------\n")
+        f.write("---------- STARTING migration proces(" + date + ") ------\n")
+        f.write("--------------------------------------------------------------\n")
+
         portal_catalog = getToolByName(self, 'portal_catalog')
         # Default Carpeta Unitat
         name = 'Migrations'
@@ -26,7 +40,7 @@ class migrateOrgans(BrowserView):
 
         try:
             api.content.delete(portal['ca']['migrations'])
-            print " ## Deleted existing folder: " + name
+            f.write(" ## Deleted existing folder: " + name + "\n")
         except:
             None
 
@@ -36,7 +50,7 @@ class migrateOrgans(BrowserView):
             type='genweb.organs.organsfolder',
             safe_id=True,
             container=self.context)
-        print " ## Created folder: " + name
+        f.write(" ## Created folder: " + name + "\n")
         destination_folder = portal['ca']['migrations']
 
         items = portal_catalog.searchResults(
@@ -44,8 +58,11 @@ class migrateOrgans(BrowserView):
         )
 
         print " ## Found " + str(len(items)) + " Organs de Govern to migrate"
+        f.write(" ## Found " + str(len(items)) + " Organs de Govern to migrate\n")
+        print "   ## Migrating..."
+
         # creating Organs de Govern inside Carpeta Unitat
-        for item in items:
+        for item in items[:0]:
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
@@ -105,19 +122,22 @@ class migrateOrgans(BrowserView):
                     api.content.transition(obj=new_session, transition='realitzar')
                     api.content.transition(obj=new_session, transition='tancar')
                     print " ## Created Session. Origin-> " + str(old_session.absolute_url()) + " New-> " + str(new_session.absolute_url())
-                    old_annotations = IAnnotations(old_session)['genweb.rectorat.logMail']
-                    data = []
-                    index = 0
-                    for item in old_annotations:
-                        values = dict(index=index + 1,
-                                      dateMail=item['dateMail'].strftime('%d/%m/%Y %H:%M:%S'),
-                                      message=item['fromMail'].split(':')[0],
-                                      fromMail=item['fromMail'].split(':')[1],
-                                      toMail=item['toMail'])
-                        data.append(values)
-                        index = index + 1
-                    IAnnotations(new_session)['genweb.organs.logMail'] = data
-
+                    try:
+                        old_annotations = IAnnotations(old_session)['genweb.rectorat.logMail']
+                        data = []
+                        index = 0
+                        for item in old_annotations:
+                            values = dict(index=index + 1,
+                                          dateMail=item['dateMail'].strftime('%d/%m/%Y %H:%M:%S'),
+                                          message=item['fromMail'].split(':')[0],
+                                          fromMail=item['fromMail'].split(':')[1],
+                                          toMail=item['toMail'])
+                            data.append(values)
+                            index = index + 1
+                        IAnnotations(new_session)['genweb.organs.logMail'] = data
+                    except:
+                        print " ** This Session has no log entries: " + str(old_session)
+                        continue
                     old_documents = old_session.items()
                     results = []
                     for item in old_documents:
@@ -131,6 +151,12 @@ class migrateOrgans(BrowserView):
                         # Iniciem creacio dels documents en punts/subpunts/acords
                         puntsessio = valueoldsdocs['object']
                         if puntsessio.portal_type != 'genweb.rectorat.acta':
+                            # try:
+                            #     if '.' in puntsessio.proposalPoint.encode('utf-8').decode('utf-8'):
+                            #         continue
+                            # except:
+                            #     print " ** ERROR: Changed proposalpoint in: " + str(puntsessio)
+                            #     puntsessio.proposalPoint = '1'
                             if '.' in puntsessio.proposalPoint:
                                 puntId = puntsessio.proposalPoint.split('.')[0]
                                 existeix = False
@@ -572,8 +598,17 @@ class migrateOrgans(BrowserView):
                                                 transaction.commit()
                                                 print " ## Created Audio in HIST Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
 
-        print " ------------------------------------------------------------- "
-        print " -------------- END PROCES ----------------------------------- "
-        print " ------------------------------------------------------------- "
+        print "------------------------------------------------------------- "
+        print "-------------- END PROCESS ---------------------------------- "
+        print "------------------------------------------------------------- "
+        f.write("-------------------------------------------------------------")
+        f.write("----- End migration process ---------------------------------")
+        f.write("-------------------------------------------------------------")
+        f.close()
 
-        return 'OK'
+        result = []
+        with open(filename) as f:
+            line = f.read().replace('\n', '<br/>')
+            result.append(line)
+
+        return result[0]
