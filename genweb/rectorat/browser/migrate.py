@@ -59,8 +59,8 @@ class migrateOrgans(BrowserView):
         print " ## Found " + str(len(items)) + " Organs de Govern to migrate"
         f.write(" ## Found " + str(len(items)) + " Organs de Govern to migrate\n")
 
-        # creating Organs de Govern inside Carpeta Unitat
-        for item in items[:1]:
+        # creating Organs de Govern in Carpeta Unitat
+        for item in items[1:2]:
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
@@ -75,7 +75,7 @@ class migrateOrgans(BrowserView):
                 new_organ.membresOrgan = old_organ.membresOrgan.output
             new_organ.fromMail = old_organ.fromMail
             new_organ.creators = old_organ.creators
-            new_organ.creation_date = old_organ.creation_date
+            new_organ.modification_date = old_organ.modification_date
             transaction.commit()
             print " ## Created OG. Origin-> " + str(item.getURL()) + " New-> " + str(new_organ.absolute_url())
 
@@ -94,7 +94,6 @@ class migrateOrgans(BrowserView):
                     new_session.numSessioShowOnly = str(contSession).zfill(2)
                     new_session.numSessio = str(contSession).zfill(2)
                     new_session.llocConvocatoria = old_session.llocConvocatoria
-                    # old_session.ordreSessio
                     new_session.adrecaLlista = old_session.adrecaLlista
                     if old_session.membresConvocats:
                         new_session.membresConvocats = old_session.membresConvocats.output
@@ -102,7 +101,6 @@ class migrateOrgans(BrowserView):
                         new_session.membresConvidats = old_session.membresConvidats.output
                     if old_session.llistaExcusats:
                         new_session.llistaExcusats = old_session.llistaExcusats.output
-                    # ordredeldia
                     if old_session.bodyMail:
                         new_session.bodyMail = old_session.bodyMail.output
                     if old_session.signatura:
@@ -145,14 +143,22 @@ class migrateOrgans(BrowserView):
                     old_documents = old_session.items()
                     results = []
                     for item in old_documents:
-                        try:
-                            results.append(dict(index=item[1].proposalPoint,
-                                                object=item[1]))
-                        except:
-                            continue
-                    docsByIndex = sorted(results, key=itemgetter('index'))
-                    # Import ordre del dia as punt 00
+                        if hasattr(item[1], 'proposalPoint'):
+                            numeroProposal = item[1].proposalPoint
+                            # Check .- en el num de punto para borrarlo...
+                            if '-' in numeroProposal or '.' in numeroProposal:
+                                if numeroProposal[-1] == '-':
+                                    if numeroProposal[-2] == '.':
+                                        numeroProposal = numeroProposal[:-2]
+                                    else:
+                                        numeroProposal = numeroProposal[:-1]
+                                if numeroProposal[-1] == '.':
+                                    numeroProposal = numeroProposal[:-1]
 
+                            results.append(dict(index=numeroProposal, object=item[1]))
+                    docsByIndex = sorted(results, key=itemgetter('index'))
+
+                    # Import ordre del dia as punt 00
                     ordreDelDia = api.content.create(
                         id='ordre-del-dia',
                         title="Ordre del dia",
@@ -160,12 +166,15 @@ class migrateOrgans(BrowserView):
                         container=new_session,
                         safe_id=True)
                     ordreDelDia.proposalPoint = '00'
-                    ordreDelDia.estatsLlista = 'Esborrany'
+                    ordreDelDia.estatsLlista = 'Aprovat'
                     ordreDelDia.defaultContent = old_session.ordreSessio.output
+                    ordreDelDia.creators = old_session.creators
+                    ordreDelDia.modification_date = old_session.modification_date
 
                     for valueoldsdocs in docsByIndex:
                         # Iniciem creacio dels documents en punts/subpunts/acords
                         puntsessio = valueoldsdocs['object']
+                        #! TODO: mirar por el numero .- del dict de antes, no del campo...
                         if puntsessio.portal_type != 'genweb.rectorat.acta':
                             # try:
                             #     if '.' in puntsessio.proposalPoint.encode('utf-8').decode('utf-8'):
@@ -189,7 +198,9 @@ class migrateOrgans(BrowserView):
                                         container=new_session,
                                         safe_id=True)
                                     createdSubPunt.proposalPoint = puntId
-                                    createdSubPunt.estatsLlista = 'Esborrany'
+                                    createdSubPunt.estatsLlista = 'Aprovat'
+                                    createdSubPunt.creators = old_session.creators
+                                    createdSubPunt.modification_date = old_session.modification_date
 
                                     if puntsessio.agreement:
                                         # En un acord
@@ -308,8 +319,10 @@ class migrateOrgans(BrowserView):
                                             safe_id=True)
                                         new_acord.proposalPoint = puntsessio.proposalPoint
                                         new_acord.agreement = puntsessio.agreement
-                                        estat = puntsessio.estatAprovacio
+                                        new_acord.creators = puntsessio.creators
+                                        new_acord.modification_date = puntsessio.modification_date
 
+                                        estat = puntsessio.estatAprovacio
                                         if estat == 'Draft':
                                             new_acord.estatsLlista = 'Esborrany'
                                         if estat == 'Informed':
@@ -360,8 +373,10 @@ class migrateOrgans(BrowserView):
                                             container=folderObject,
                                             safe_id=True)
                                         new_punt.proposalPoint = puntsessio.proposalPoint
-                                        estat = puntsessio.estatAprovacio
+                                        new_punt.creators = puntsessio.creators
+                                        new_punt.modification_date = puntsessio.modification_date
 
+                                        estat = puntsessio.estatAprovacio
                                         if estat == 'Draft':
                                             new_punt.estatsLlista = 'Esborrany'
                                         if estat == 'Informed':
@@ -415,6 +430,8 @@ class migrateOrgans(BrowserView):
                                             safe_id=True)
                                         new_acord.proposalPoint = puntsessio.proposalPoint
                                         new_acord.agreement = puntsessio.agreement
+                                        new_acord.creators = puntsessio.creators
+                                        new_acord.modification_date = puntsessio.modification_date
                                         estat = puntsessio.estatAprovacio
 
                                         if estat == 'Draft':
@@ -437,6 +454,9 @@ class migrateOrgans(BrowserView):
                                             container=new_session,
                                             safe_id=True)
                                         new_punt.proposalPoint = puntsessio.proposalPoint
+                                        new_punt.creators = puntsessio.creators
+                                        new_punt.modification_date = puntsessio.modification_date
+
                                         estat = puntsessio.estatAprovacio
 
                                         if estat == 'Draft':
@@ -614,9 +634,10 @@ class migrateOrgans(BrowserView):
                                                 transaction.commit()
                                                 print " ## Created Audio in HIST Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
 
+        date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
         print "-------------- END PROCESS ---------------------------------- "
         print "------------------------------------------------------------- "
-        f.write(" ## END migration process\n")
+        f.write(" ## END migration proces (" + date + ")\n")
         f.write("--------------------------------------------------------------\n")
         f.close()
 
