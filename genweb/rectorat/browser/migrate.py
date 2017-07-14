@@ -114,6 +114,7 @@ class migrateOrgans(BrowserView):
                     acc.end = datetime.combine(
                         old_session.dataSessio, old_session.horaFi)
                     acc.timezone = 'Europe/Madrid'
+                    new_session.migrated = True
                     new_session.reindexObject()
                     transaction.commit()
                     api.content.transition(obj=new_session, transition='convocar')
