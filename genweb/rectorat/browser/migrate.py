@@ -29,9 +29,8 @@ class migrateOrgans(BrowserView):
         print "--------------- START PROCESS --------------------------------"
         print "--------------------------------------------------------------"
         f = open(filename, 'a')
-        f.write("--------------------------------------------------------------\n")
-        f.write("---------- STARTING migration proces(" + date + ") ------\n")
-        f.write("--------------------------------------------------------------\n")
+        f.write("\n--------------------------------------------------------------\n")
+        f.write(" ## START migration proces (" + date + ")\n")
 
         portal_catalog = getToolByName(self, 'portal_catalog')
         # Default Carpeta Unitat
@@ -59,10 +58,9 @@ class migrateOrgans(BrowserView):
 
         print " ## Found " + str(len(items)) + " Organs de Govern to migrate"
         f.write(" ## Found " + str(len(items)) + " Organs de Govern to migrate\n")
-        print "   ## Migrating..."
 
         # creating Organs de Govern inside Carpeta Unitat
-        for item in items[:0]:
+        for item in items[:1]:
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
@@ -147,6 +145,18 @@ class migrateOrgans(BrowserView):
                         except:
                             continue
                     docsByIndex = sorted(results, key=itemgetter('index'))
+                    # Import ordre del dia as punt 00
+
+                    ordreDelDia = api.content.create(
+                        id='ordre-del-dia',
+                        title="Ordre del dia",
+                        type='genweb.organs.punt',
+                        container=new_session,
+                        safe_id=True)
+                    ordreDelDia.proposalPoint = '00'
+                    ordreDelDia.estatsLlista = 'Esborrany'
+                    ordreDelDia.defaultContent = old_session.ordreSessio.output
+
                     for valueoldsdocs in docsByIndex:
                         # Iniciem creacio dels documents en punts/subpunts/acords
                         puntsessio = valueoldsdocs['object']
@@ -598,12 +608,10 @@ class migrateOrgans(BrowserView):
                                                 transaction.commit()
                                                 print " ## Created Audio in HIST Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
 
-        print "------------------------------------------------------------- "
         print "-------------- END PROCESS ---------------------------------- "
         print "------------------------------------------------------------- "
-        f.write("-------------------------------------------------------------")
-        f.write("----- End migration process ---------------------------------")
-        f.write("-------------------------------------------------------------")
+        f.write(" ## END migration process\n")
+        f.write("--------------------------------------------------------------\n")
         f.close()
 
         result = []
