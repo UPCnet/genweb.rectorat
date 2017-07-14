@@ -117,9 +117,14 @@ class migrateOrgans(BrowserView):
                     new_session.migrated = True
                     new_session.reindexObject()
                     transaction.commit()
-                    api.content.transition(obj=new_session, transition='convocar')
-                    api.content.transition(obj=new_session, transition='realitzar')
-                    api.content.transition(obj=new_session, transition='tancar')
+                    old_state = api.content.get_state(obj=old_session)
+                    # old_state == 'preparing' default is the same don't do nothing
+                    if old_state == 'convocat':
+                        api.content.transition(obj=new_session, transition='convocar')
+                    if old_state == 'closed':
+                        api.content.transition(obj=new_session, transition='convocar')
+                        api.content.transition(obj=new_session, transition='realitzar')
+                        api.content.transition(obj=new_session, transition='tancar')
                     print " ## Created Session. Origin-> " + str(old_session.absolute_url()) + " New-> " + str(new_session.absolute_url())
                     try:
                         old_annotations = IAnnotations(old_session)['genweb.rectorat.logMail']
