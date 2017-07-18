@@ -11,27 +11,31 @@ from operator import itemgetter
 import logging
 import re
 
+filename = 'import.log'  # local
+logging.basicConfig(format='%(asctime)s %(message)s',
+                    datefmt='%m/%d/%Y %I:%M:%S %p',
+                    filename=filename,
+                    level=logging.DEBUG)
+
+
+def pp(message, item, f="None"):
+    """Function to show messages in file and screen """
+    if f is "None":
+        f = open(filename, 'a')
+    if item is not None:
+        print " ## " + str(message) + " @@ " + str(item)
+        f.write(" ## " + str(message) + " @@ " + str(item) + "\n")
+    if message is "Close":
+        f.close()
+
 
 class migrateOrgans(BrowserView):
 
     def __call__(self):
         """ Migrate Organs from v1.0 to v2.0 """
         date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
-        filename = 'import-' + date + '.log'
-        filename = 'import.log'  # local
-        logging.basicConfig(format='%(asctime)s %(message)s',
-                            datefmt='%m/%d/%Y %I:%M:%S %p',
-                            filename=filename,
-                            level=logging.DEBUG)
 
-        logging.info('FILE: import-' + date + '.log')
-        print "--------------------------------------------------------------"
-        print "--------------- START PROCESS --------------------------------"
-        print "--------------------------------------------------------------"
-        f = open(filename, 'a')
-        f.write("\n--------------------------------------------------------------\n")
-        f.write(" ## START migration proces (" + date + ")\n")
-
+        pp("START migration proces", date)
         portal_catalog = getToolByName(self, 'portal_catalog')
         # Default Carpeta Unitat
         name = 'Migrations'
@@ -39,7 +43,7 @@ class migrateOrgans(BrowserView):
 
         try:
             api.content.delete(portal['ca']['migrations'])
-            f.write(" ## Deleted existing folder: " + name + "\n")
+            pp("Deleted existing folder", name)
         except:
             None
 
@@ -49,23 +53,22 @@ class migrateOrgans(BrowserView):
             type='genweb.organs.organsfolder',
             safe_id=True,
             container=self.context)
-        f.write(" ## Created folder: " + name + "\n")
+        pp("Created folder", name)
         destination_folder = portal['ca']['migrations']
 
         items = portal_catalog.searchResults(
             portal_type=['genweb.rectorat.organgovern'],
         )
-
-        print " ## Found " + str(len(items)) + " Organs de Govern to migrate"
-        f.write(" ## Found " + str(len(items)) + " Organs de Govern to migrate\n")
+        pp("Items to migrate", len(items))
 
         # creating Organs de Govern in Carpeta Unitat
-        for item in items[1:2]:
+        for item in items:
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
                 container=destination_folder,
                 safe_id=True,)
+            pp("Migrating", item.Title)
 
             old_organ = item.getObject()
             if old_organ.descripcioOrgan:
@@ -77,7 +80,7 @@ class migrateOrgans(BrowserView):
             new_organ.creators = old_organ.creators
             new_organ.modification_date = old_organ.modification_date
             transaction.commit()
-            print " ## Created OG. Origin-> " + str(item.getURL()) + " New-> " + str(new_organ.absolute_url())
+            pp("Created OG", str(item.getPath()) + " > " + str(new_organ.absolute_url_path()))
 
             contained_items = old_organ.items()
             contSession = cont = 0
@@ -123,7 +126,7 @@ class migrateOrgans(BrowserView):
                         api.content.transition(obj=new_session, transition='convocar')
                         api.content.transition(obj=new_session, transition='realitzar')
                         api.content.transition(obj=new_session, transition='tancar')
-                    print " ## Created Session. Origin-> " + str(old_session.absolute_url()) + " New-> " + str(new_session.absolute_url())
+                    pp("Created SESSION", str(old_session.absolute_url_path()) + " > " + str(new_session.absolute_url_path()))
                     try:
                         old_annotations = IAnnotations(old_session)['genweb.rectorat.logMail']
                         data = []
@@ -138,7 +141,7 @@ class migrateOrgans(BrowserView):
                             index = index + 1
                         IAnnotations(new_session)['genweb.organs.logMail'] = data
                     except:
-                        print " ** This Session has no log entries: " + str(old_session)
+                        pp("SESSION without log entries", old_session.absolute_url_path())
                         continue
                     old_documents = old_session.items()
                     results = []
@@ -167,21 +170,15 @@ class migrateOrgans(BrowserView):
                         safe_id=True)
                     ordreDelDia.proposalPoint = '00'
                     ordreDelDia.estatsLlista = 'Aprovat'
-                    ordreDelDia.defaultContent = old_session.ordreSessio.output
+                    if old_session.ordreSessio:
+                        ordreDelDia.defaultContent = old_session.ordreSessio.output
                     ordreDelDia.creators = old_session.creators
                     ordreDelDia.modification_date = old_session.modification_date
 
                     for valueoldsdocs in docsByIndex:
                         # Iniciem creacio dels documents en punts/subpunts/acords
                         puntsessio = valueoldsdocs['object']
-                        #! TODO: mirar por el numero .- del dict de antes, no del campo...
                         if puntsessio.portal_type != 'genweb.rectorat.acta':
-                            # try:
-                            #     if '.' in puntsessio.proposalPoint.encode('utf-8').decode('utf-8'):
-                            #         continue
-                            # except:
-                            #     print " ** ERROR: Changed proposalpoint in: " + str(puntsessio)
-                            #     puntsessio.proposalPoint = '1'
                             if '.' in puntsessio.proposalPoint:
                                 puntId = puntsessio.proposalPoint.split('.')[0]
                                 existeix = False
@@ -192,7 +189,6 @@ class migrateOrgans(BrowserView):
                                 if not existeix:
                                     # Si no existe lo creo como Esborrany
                                     createdSubPunt = api.content.create(
-                                        id=puntId,
                                         title=puntId,
                                         type='genweb.organs.punt',
                                         container=new_session,
@@ -223,6 +219,7 @@ class migrateOrgans(BrowserView):
                                             new_acord.estatsLlista = 'No aprovat'
                                         if estat == 'Pending':
                                             new_acord.estatsLlista = 'Derogat'
+
                                         if puntsessio.PublishedFiles:
                                             for file in puntsessio.PublishedFiles:
                                                 public_file = NamedBlobFile(
@@ -239,6 +236,7 @@ class migrateOrgans(BrowserView):
                                                 new_file.visiblefile = public_file
 
                                         if puntsessio.OriginalFiles:
+                                            pp("WARNING: Check files manually ", puntsessio.absolute_url_path())
                                             for file in puntsessio.OriginalFiles:
                                                 reserved_file = NamedBlobFile(
                                                     data=file.data,
@@ -291,6 +289,7 @@ class migrateOrgans(BrowserView):
                                                 new_file.visiblefile = public_file
 
                                         if puntsessio.OriginalFiles:
+                                            pp("WARNING: Check files manually ", puntsessio.absolute_url_path())
                                             for file in puntsessio.OriginalFiles:
                                                 reserved_file = NamedBlobFile(
                                                     data=file.data,
@@ -309,6 +308,8 @@ class migrateOrgans(BrowserView):
                                     for objecte in new_session.items():
                                         if objecte[0] == puntId:
                                             folderObject = objecte[1]
+                                    # if objecte in new_session.items():
+                                    #     folderObject = objecte[1]
                                     if puntsessio.agreement:
                                         # En un acord
                                         new_acord = api.content.create(
@@ -317,6 +318,7 @@ class migrateOrgans(BrowserView):
                                             type='genweb.organs.acord',
                                             container=folderObject,
                                             safe_id=True)
+
                                         new_acord.proposalPoint = puntsessio.proposalPoint
                                         new_acord.agreement = puntsessio.agreement
                                         new_acord.creators = puntsessio.creators
@@ -366,12 +368,20 @@ class migrateOrgans(BrowserView):
 
                                     else:
                                         # es un punt
-                                        new_punt = api.content.create(
-                                            id=puntsessio.id,
-                                            title=puntsessio.title,
-                                            type='genweb.organs.subpunt',
-                                            container=folderObject,
-                                            safe_id=True)
+                                        try:
+                                            new_punt = api.content.create(
+                                                id=puntsessio.id,
+                                                title=puntsessio.title,
+                                                type='genweb.organs.subpunt',
+                                                container=folderObject,
+                                                safe_id=True)
+                                        except:
+                                            new_punt = api.content.create(
+                                                id=puntsessio.id,
+                                                title=puntsessio.title,
+                                                type='genweb.organs.subpunt',
+                                                container=folderObject.aq_parent,
+                                                safe_id=True)
                                         new_punt.proposalPoint = puntsessio.proposalPoint
                                         new_punt.creators = puntsessio.creators
                                         new_punt.modification_date = puntsessio.modification_date
@@ -507,8 +517,7 @@ class migrateOrgans(BrowserView):
                                 old_acta.dataSessio, old_acta.horaFi)
                             new_session.reindexObject()
                             transaction.commit()
-
-                            print " ## Created Acta. Origin-> " + str(old_acta.absolute_url()) + " New-> " + str(new_acta.absolute_url())
+                            pp("Created ACTA", str(old_acta.absolute_url_path()) + " > " + str(new_acta.absolute_url_path()))
 
                             if old_acta.footer:
                                 hrefs = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', old_acta.footer.output)
@@ -531,7 +540,7 @@ class migrateOrgans(BrowserView):
                                             safe_id=True,)
                                         new_file.file = mp3_file
                                         transaction.commit()
-                                        print " ## Created Audio in Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
+                                        pp("Created AUDIO in Acta", str(audio) + " > " + str(new_acta.absolute_url_path()))
 
                 if value[1].portal_type == 'genweb.rectorat.historicfolder':
                     old_historic_sessions = value[1].items()
@@ -573,7 +582,7 @@ class migrateOrgans(BrowserView):
                             api.content.transition(obj=new_hist_session, transition='convocar')
                             api.content.transition(obj=new_hist_session, transition='realitzar')
                             api.content.transition(obj=new_hist_session, transition='tancar')
-                            print " ## Created HIST Session. Origin-> " + str(old_hist_session.absolute_url()) + " New-> " + str(new_hist_session.absolute_url())
+                            pp("Created HISTORIC SESSION", str(old_hist_session.absolute_url_path()) + " > " + str(new_hist_session.absolute_url_path()))
 
                             old_hist_actas = valueolds[1].items()
                             for valueoldsHistActas in old_hist_actas:
@@ -585,7 +594,8 @@ class migrateOrgans(BrowserView):
                                         type='genweb.organs.acta',
                                         safe_id=True,
                                         container=new_hist_session)
-                                    print " ## Created HIST Acta. Origin-> " + str(old_hist_acta.absolute_url()) + " New-> " + str(new_hist_acta.absolute_url())
+                                    pp("Created HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + " > " + str(new_hist_acta.absolute_url_path()))
+
                                     new_hist_acta.llocConvocatoria = old_hist_acta.llocConvocatoria
                                     if old_hist_acta.membresConvocats:
                                         new_hist_acta.membresConvocats = old_hist_acta.membresConvocats.output
@@ -615,7 +625,7 @@ class migrateOrgans(BrowserView):
                                         hrefs = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', old_hist_acta.footer.output)
                                         for audio in hrefs:
                                             if '.mp3' in audio:
-                                                print " ## This HIST Acta has an Audio..."
+                                                pp("Adding AUDIO to this HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + ' > ' + str(audio))
                                                 filename_path = '/' + '/'.join(str(audio).split('/')[3:])
                                                 old_file = api.content.find(path=filename_path)[0]
                                                 blob_file = old_file.getObject()
@@ -632,14 +642,12 @@ class migrateOrgans(BrowserView):
                                                     safe_id=True,)
                                                 new_file.file = mp3_file
                                                 transaction.commit()
-                                                print " ## Created Audio in HIST Acta. Origin-> " + str(audio) + " New-> " + str(new_file.absolute_url())
+                                                pp("Created AUDIO IN HISTORIC ACTA", old_hist_acta.absolute_url_path())
 
         date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
-        print "-------------- END PROCESS ---------------------------------- "
-        print "------------------------------------------------------------- "
-        f.write(" ## END migration proces (" + date + ")\n")
-        f.write("--------------------------------------------------------------\n")
-        f.close()
+
+        pp("END migration proces", date)
+        pp("Close", None)
 
         result = []
         with open(filename) as f:
