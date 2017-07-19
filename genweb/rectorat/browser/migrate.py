@@ -34,7 +34,7 @@ class migrateOrgans(BrowserView):
     def __call__(self):
         """ Migrate Organs from v1.0 to v2.0 """
         date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
-
+        pp('-------------------------------', '')
         pp("START migration proces", date)
         portal_catalog = getToolByName(self, 'portal_catalog')
         # Default Carpeta Unitat
@@ -62,7 +62,8 @@ class migrateOrgans(BrowserView):
         pp("Items to migrate", len(items))
 
         # creating Organs de Govern in Carpeta Unitat
-        for item in items:
+        for item in items[2:3]:
+            print item
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
@@ -149,14 +150,18 @@ class migrateOrgans(BrowserView):
                         if hasattr(item[1], 'proposalPoint'):
                             numeroProposal = item[1].proposalPoint
                             # Check .- en el num de punto para borrarlo...
-                            if '-' in numeroProposal or '.' in numeroProposal:
-                                if numeroProposal[-1] == '-':
-                                    if numeroProposal[-2] == '.':
-                                        numeroProposal = numeroProposal[:-2]
-                                    else:
+                            try:
+                                if '-' in numeroProposal or '.' in numeroProposal:
+                                    if numeroProposal[-1] == '-':
+                                        if numeroProposal[-2] == '.':
+                                            numeroProposal = numeroProposal[:-2]
+                                        else:
+                                            numeroProposal = numeroProposal[:-1]
+                                    if numeroProposal[-1] == '.':
                                         numeroProposal = numeroProposal[:-1]
-                                if numeroProposal[-1] == '.':
-                                    numeroProposal = numeroProposal[:-1]
+                            except:
+                                # En un acta de ESEIAAT no tienen número
+                                numeroProposal = 1
 
                             results.append(dict(index=numeroProposal, object=item[1]))
                     docsByIndex = sorted(results, key=itemgetter('index'))
@@ -480,6 +485,36 @@ class migrateOrgans(BrowserView):
                                         if estat == 'Pending':
                                             new_punt.estatsLlista = 'Derogat'
 
+                                    if puntsessio.PublishedFiles:
+                                        for file in puntsessio.PublishedFiles:
+                                            public_file = NamedBlobFile(
+                                                data=file.data,
+                                                contentType=file.contentType,
+                                                filename=file.filename
+                                            )
+                                            new_file = api.content.create(
+                                                id=file.filename,
+                                                title=file.filename,
+                                                type='genweb.organs.file',
+                                                container=new_punt,
+                                                safe_id=True,)
+                                            new_file.visiblefile = public_file
+
+                                    if puntsessio.OriginalFiles:
+                                        for file in puntsessio.OriginalFiles:
+                                            reserved_file = NamedBlobFile(
+                                                data=file.data,
+                                                contentType=file.contentType,
+                                                filename=file.filename
+                                            )
+                                            new_file = api.content.create(
+                                                id=file.filename,
+                                                title=file.filename,
+                                                type='genweb.organs.file',
+                                                container=new_punt,
+                                                safe_id=True,)
+                                            new_file.hiddenfile = reserved_file
+
                     # Acta inside session
                     old_actas = old_session.items()
                     for valueoldsactas in old_actas:
@@ -557,7 +592,6 @@ class migrateOrgans(BrowserView):
                             new_hist_session.numSessioShowOnly = str(cont).zfill(2)
                             new_hist_session.numSessio = str(cont).zfill(2)
                             new_hist_session.llocConvocatoria = old_hist_session.llocConvocatoria
-
                             new_hist_session.adrecaLlista = old_hist_session.adrecaLlista
                             if old_hist_session.membresConvocats:
                                 new_hist_session.membresConvocats = old_hist_session.membresConvocats.output
@@ -565,12 +599,10 @@ class migrateOrgans(BrowserView):
                                 new_hist_session.membresConvidats = old_hist_session.membresConvidats.output
                             if old_hist_session.llistaExcusats:
                                 new_hist_session.llistaExcusats = old_hist_session.llistaExcusats.output
-                            # ordredeldia
                             if old_hist_session.bodyMail:
                                 new_hist_session.bodyMail = old_hist_session.bodyMail.output
                             if old_hist_session.signatura:
                                 new_hist_session.signatura = old_hist_session.signatura.output
-
                             acc = IEventAccessor(new_hist_session)
                             acc.start = datetime.combine(
                                 old_hist_session.dataSessio, old_hist_session.horaInici)
@@ -578,10 +610,17 @@ class migrateOrgans(BrowserView):
                                 old_hist_session.dataSessio, old_hist_session.horaFi)
                             acc.timezone = 'Europe/Madrid'
                             new_hist_session.reindexObject()
+                            new_hist_session.migrated = True
                             transaction.commit()
-                            api.content.transition(obj=new_hist_session, transition='convocar')
-                            api.content.transition(obj=new_hist_session, transition='realitzar')
-                            api.content.transition(obj=new_hist_session, transition='tancar')
+                            old_state = api.content.get_state(obj=old_hist_session)
+                            # old_state == 'preparing' default is the same don't do nothing
+                            if old_state == 'convocat':
+                                api.content.transition(obj=new_hist_session, transition='convocar')
+                            if old_state == 'closed':
+                                api.content.transition(obj=new_hist_session, transition='convocar')
+                                api.content.transition(obj=new_hist_session, transition='realitzar')
+                                api.content.transition(obj=new_hist_session, transition='tancar')
+
                             pp("Created HISTORIC SESSION", str(old_hist_session.absolute_url_path()) + " > " + str(new_hist_session.absolute_url_path()))
 
                             old_hist_actas = valueolds[1].items()
@@ -647,6 +686,7 @@ class migrateOrgans(BrowserView):
         date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
 
         pp("END migration proces", date)
+        pp('-------------------------------', '')
         pp("Close", None)
 
         result = []

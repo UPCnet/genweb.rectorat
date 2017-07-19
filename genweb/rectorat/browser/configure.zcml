@@ -56,4 +56,13 @@
       permission="cmf.ModifyPortalContent"
     />
 
+    <!-- Used to migrate fields from v1.0 to v2.0 -->
+    <browser:page
+      for="*"
+      name="findblanks"
+      class=".findblanks.findblanks"
+      layer="..interfaces.IGenwebRectoratLayer"
+      permission="cmf.ModifyPortalContent"
+    />
+
 </configure>
