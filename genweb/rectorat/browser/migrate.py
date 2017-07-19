@@ -63,7 +63,6 @@ class migrateOrgans(BrowserView):
 
         # creating Organs de Govern in Carpeta Unitat
         for item in items[2:3]:
-            print item
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
@@ -550,9 +549,18 @@ class migrateOrgans(BrowserView):
                                 old_acta.dataSessio, old_acta.horaInici)
                             new_acta.horaFi = datetime.combine(
                                 old_acta.dataSessio, old_acta.horaFi)
-                            new_session.reindexObject()
+                            new_acta.reindexObject()
                             transaction.commit()
                             pp("Created ACTA", str(old_acta.absolute_url_path()) + " > " + str(new_acta.absolute_url_path()))
+
+                            if old_acta.OriginalFiles:
+                                file = old_acta.OriginalFiles[0]
+                                reserved_file = NamedBlobFile(
+                                    data=file.data,
+                                    contentType=file.contentType,
+                                    filename=file.filename
+                                )
+                                new_acta.file = reserved_file
 
                             if old_acta.footer:
                                 hrefs = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', old_acta.footer.output)
