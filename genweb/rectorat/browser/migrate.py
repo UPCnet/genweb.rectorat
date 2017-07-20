@@ -43,7 +43,6 @@ class migrateOrgans(BrowserView):
 
         try:
             api.content.delete(portal['ca']['migrations'])
-            pp("Deleted existing folder", name)
         except:
             None
 
@@ -53,7 +52,6 @@ class migrateOrgans(BrowserView):
             type='genweb.organs.organsfolder',
             safe_id=True,
             container=self.context)
-        pp("Created folder", name)
         destination_folder = portal['ca']['migrations']
 
         items = portal_catalog.searchResults(
@@ -61,8 +59,18 @@ class migrateOrgans(BrowserView):
         )
         pp("Items to migrate", len(items))
 
+        historic_items = portal_catalog.searchResults(
+            portal_type='genweb.rectorat.historicfolder'
+        )
+
+        for histfolder in historic_items:
+            tomove = histfolder.items()
+
+            import ipdb; ipdb.set_trace()
+            #api.content.move(source=contact, target=portal)
+
         # creating Organs de Govern in Carpeta Unitat
-        for item in items[2:3]:
+        for item in items:
             new_organ = api.content.create(
                 title=item.Title,
                 type='genweb.organs.organgovern',
@@ -83,7 +91,7 @@ class migrateOrgans(BrowserView):
             pp("Created OG", str(item.getPath()) + " > " + str(new_organ.absolute_url_path()))
 
             contained_items = old_organ.items()
-            contSession = cont = 0
+            contSession = 0
             for value in contained_items:
                 old_session = value[1]
                 if value[1].portal_type == 'genweb.rectorat.sessio':
@@ -310,18 +318,26 @@ class migrateOrgans(BrowserView):
                                 else:
                                     # print " ### El punt existeix"
                                     for objecte in new_session.items():
-                                        if objecte[0] == puntId:
+                                        if objecte[1].proposalPoint == puntId:
                                             folderObject = objecte[1]
-                                    # if objecte in new_session.items():
-                                    #     folderObject = objecte[1]
+
                                     if puntsessio.agreement:
                                         # En un acord
-                                        new_acord = api.content.create(
-                                            id=puntsessio.id,
-                                            title=puntsessio.title,
-                                            type='genweb.organs.acord',
-                                            container=folderObject,
-                                            safe_id=True)
+                                        try:
+                                            new_acord = api.content.create(
+                                                id=puntsessio.id,
+                                                title=puntsessio.title,
+                                                type='genweb.organs.acord',
+                                                container=folderObject,
+                                                safe_id=True)
+                                        except:
+                                            pp("proposalpoint con id raro", puntsessio.absolute_url_path())
+                                            new_acord = api.content.create(
+                                                id=puntsessio.id,
+                                                title=puntsessio.title,
+                                                type='genweb.organs.acord',
+                                                container=new_session,
+                                                safe_id=True)
 
                                         new_acord.proposalPoint = puntsessio.proposalPoint
                                         new_acord.agreement = puntsessio.agreement
@@ -380,12 +396,20 @@ class migrateOrgans(BrowserView):
                                                 container=folderObject,
                                                 safe_id=True)
                                         except:
-                                            new_punt = api.content.create(
-                                                id=puntsessio.id,
-                                                title=puntsessio.title,
-                                                type='genweb.organs.subpunt',
-                                                container=folderObject.aq_parent,
-                                                safe_id=True)
+                                            try:
+                                                new_punt = api.content.create(
+                                                    id=puntsessio.id,
+                                                    title=puntsessio.title,
+                                                    type='genweb.organs.subpunt',
+                                                    container=folderObject.aq_parent,
+                                                    safe_id=True)
+                                            except:
+                                                new_punt = api.content.create(
+                                                    id=puntsessio.id,
+                                                    title=puntsessio.title,
+                                                    type='genweb.organs.punt',
+                                                    container=folderObject.aq_parent,
+                                                    safe_id=True)
                                         new_punt.proposalPoint = puntsessio.proposalPoint
                                         new_punt.creators = puntsessio.creators
                                         new_punt.modification_date = puntsessio.modification_date
@@ -585,111 +609,111 @@ class migrateOrgans(BrowserView):
                                         transaction.commit()
                                         pp("Created AUDIO in Acta", str(audio) + " > " + str(new_acta.absolute_url_path()))
 
-                if value[1].portal_type == 'genweb.rectorat.historicfolder':
-                    old_historic_sessions = value[1].items()
-                    for valueolds in old_historic_sessions:
-                        if valueolds[1].portal_type == 'genweb.rectorat.sessio':
-                            cont = cont + 1
-                            old_hist_session = valueolds[1]
-                            new_hist_session = api.content.create(
-                                id=old_hist_session.id,
-                                title=old_hist_session.title,
-                                type='genweb.organs.sessio',
-                                container=new_organ,
-                                safe_id=True,)
-                            new_hist_session.numSessioShowOnly = str(cont).zfill(2)
-                            new_hist_session.numSessio = str(cont).zfill(2)
-                            new_hist_session.llocConvocatoria = old_hist_session.llocConvocatoria
-                            new_hist_session.adrecaLlista = old_hist_session.adrecaLlista
-                            if old_hist_session.membresConvocats:
-                                new_hist_session.membresConvocats = old_hist_session.membresConvocats.output
-                            if old_hist_session.membresConvidats:
-                                new_hist_session.membresConvidats = old_hist_session.membresConvidats.output
-                            if old_hist_session.llistaExcusats:
-                                new_hist_session.llistaExcusats = old_hist_session.llistaExcusats.output
-                            if old_hist_session.bodyMail:
-                                new_hist_session.bodyMail = old_hist_session.bodyMail.output
-                            if old_hist_session.signatura:
-                                new_hist_session.signatura = old_hist_session.signatura.output
-                            acc = IEventAccessor(new_hist_session)
-                            acc.start = datetime.combine(
-                                old_hist_session.dataSessio, old_hist_session.horaInici)
-                            acc.end = datetime.combine(
-                                old_hist_session.dataSessio, old_hist_session.horaFi)
-                            acc.timezone = 'Europe/Madrid'
-                            new_hist_session.reindexObject()
-                            new_hist_session.migrated = True
-                            transaction.commit()
-                            old_state = api.content.get_state(obj=old_hist_session)
-                            # old_state == 'preparing' default is the same don't do nothing
-                            if old_state == 'convocat':
-                                api.content.transition(obj=new_hist_session, transition='convocar')
-                            if old_state == 'closed':
-                                api.content.transition(obj=new_hist_session, transition='convocar')
-                                api.content.transition(obj=new_hist_session, transition='realitzar')
-                                api.content.transition(obj=new_hist_session, transition='tancar')
+                # if value[1].portal_type == 'genweb.rectorat.historicfolder':
+                #     old_historic_sessions = value[1].items()
+                #     for valueolds in old_historic_sessions:
+                #         if valueolds[1].portal_type == 'genweb.rectorat.sessio':
+                #             cont = cont + 1
+                #             old_hist_session = valueolds[1]
+                #             new_hist_session = api.content.create(
+                #                 id=old_hist_session.id,
+                #                 title=old_hist_session.title,
+                #                 type='genweb.organs.sessio',
+                #                 container=new_organ,
+                #                 safe_id=True,)
+                #             new_hist_session.numSessioShowOnly = str(cont).zfill(2)
+                #             new_hist_session.numSessio = str(cont).zfill(2)
+                #             new_hist_session.llocConvocatoria = old_hist_session.llocConvocatoria
+                #             new_hist_session.adrecaLlista = old_hist_session.adrecaLlista
+                #             if old_hist_session.membresConvocats:
+                #                 new_hist_session.membresConvocats = old_hist_session.membresConvocats.output
+                #             if old_hist_session.membresConvidats:
+                #                 new_hist_session.membresConvidats = old_hist_session.membresConvidats.output
+                #             if old_hist_session.llistaExcusats:
+                #                 new_hist_session.llistaExcusats = old_hist_session.llistaExcusats.output
+                #             if old_hist_session.bodyMail:
+                #                 new_hist_session.bodyMail = old_hist_session.bodyMail.output
+                #             if old_hist_session.signatura:
+                #                 new_hist_session.signatura = old_hist_session.signatura.output
+                #             acc = IEventAccessor(new_hist_session)
+                #             acc.start = datetime.combine(
+                #                 old_hist_session.dataSessio, old_hist_session.horaInici)
+                #             acc.end = datetime.combine(
+                #                 old_hist_session.dataSessio, old_hist_session.horaFi)
+                #             acc.timezone = 'Europe/Madrid'
+                #             new_hist_session.reindexObject()
+                #             new_hist_session.migrated = True
+                #             transaction.commit()
+                #             old_state = api.content.get_state(obj=old_hist_session)
+                #             # old_state == 'preparing' default is the same don't do nothing
+                #             if old_state == 'convocat':
+                #                 api.content.transition(obj=new_hist_session, transition='convocar')
+                #             if old_state == 'closed':
+                #                 api.content.transition(obj=new_hist_session, transition='convocar')
+                #                 api.content.transition(obj=new_hist_session, transition='realitzar')
+                #                 api.content.transition(obj=new_hist_session, transition='tancar')
 
-                            pp("Created HISTORIC SESSION", str(old_hist_session.absolute_url_path()) + " > " + str(new_hist_session.absolute_url_path()))
+                #             pp("Created HISTORIC SESSION", str(old_hist_session.absolute_url_path()) + " > " + str(new_hist_session.absolute_url_path()))
 
-                            old_hist_actas = valueolds[1].items()
-                            for valueoldsHistActas in old_hist_actas:
-                                if valueoldsHistActas[1].portal_type == 'genweb.rectorat.acta':
-                                    old_hist_acta = valueoldsHistActas[1]
-                                    new_hist_acta = api.content.create(
-                                        id=old_hist_acta.id,
-                                        title=old_hist_acta.title,
-                                        type='genweb.organs.acta',
-                                        safe_id=True,
-                                        container=new_hist_session)
-                                    pp("Created HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + " > " + str(new_hist_acta.absolute_url_path()))
+                #             old_hist_actas = valueolds[1].items()
+                #             for valueoldsHistActas in old_hist_actas:
+                #                 if valueoldsHistActas[1].portal_type == 'genweb.rectorat.acta':
+                #                     old_hist_acta = valueoldsHistActas[1]
+                #                     new_hist_acta = api.content.create(
+                #                         id=old_hist_acta.id,
+                #                         title=old_hist_acta.title,
+                #                         type='genweb.organs.acta',
+                #                         safe_id=True,
+                #                         container=new_hist_session)
+                #                     pp("Created HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + " > " + str(new_hist_acta.absolute_url_path()))
 
-                                    new_hist_acta.llocConvocatoria = old_hist_acta.llocConvocatoria
-                                    if old_hist_acta.membresConvocats:
-                                        new_hist_acta.membresConvocats = old_hist_acta.membresConvocats.output
-                                    if old_hist_acta.membresConvidats:
-                                        new_hist_acta.membresConvidats = old_hist_acta.membresConvidats.output
-                                    if old_hist_acta.llistaExcusats:
-                                        new_hist_acta.llistaExcusats = old_hist_acta.llistaExcusats.output
-                                    if old_hist_acta.llistaNoAssistens:
-                                        new_hist_acta.llistaNoAssistens = old_hist_acta.llistaNoAssistens.output
-                                    # ordredeldia
-                                    newOrdenDelDia = newActaBody = footer = ''
-                                    if old_hist_acta.ordreSessio:
-                                        newOrdenDelDia = '<hr/><h4>Ordre del dia</h4><hr/>' + old_hist_acta.ordreSessio.output
-                                    if old_hist_acta.actaBody:
-                                        newActaBody = '<hr/><h4>Acta</h4><hr/>' + old_hist_acta.actaBody.output
-                                    if old_hist_acta.footer:
-                                        footer = "<hr/><h4>Peu del Acta</h4><hr/>" + old_hist_acta.footer.output
-                                    new_hist_acta.ordenDelDia = newOrdenDelDia + newActaBody + footer
-                                    # enllacVideo
-                                    new_hist_acta.horaInici = datetime.combine(
-                                        old_hist_acta.dataSessio, old_hist_acta.horaInici)
-                                    new_hist_acta.horaFi = datetime.combine(
-                                        old_hist_acta.dataSessio, old_hist_acta.horaFi)
-                                    transaction.commit()
+                #                     new_hist_acta.llocConvocatoria = old_hist_acta.llocConvocatoria
+                #                     if old_hist_acta.membresConvocats:
+                #                         new_hist_acta.membresConvocats = old_hist_acta.membresConvocats.output
+                #                     if old_hist_acta.membresConvidats:
+                #                         new_hist_acta.membresConvidats = old_hist_acta.membresConvidats.output
+                #                     if old_hist_acta.llistaExcusats:
+                #                         new_hist_acta.llistaExcusats = old_hist_acta.llistaExcusats.output
+                #                     if old_hist_acta.llistaNoAssistens:
+                #                         new_hist_acta.llistaNoAssistens = old_hist_acta.llistaNoAssistens.output
+                #                     # ordredeldia
+                #                     newOrdenDelDia = newActaBody = footer = ''
+                #                     if old_hist_acta.ordreSessio:
+                #                         newOrdenDelDia = '<hr/><h4>Ordre del dia</h4><hr/>' + old_hist_acta.ordreSessio.output
+                #                     if old_hist_acta.actaBody:
+                #                         newActaBody = '<hr/><h4>Acta</h4><hr/>' + old_hist_acta.actaBody.output
+                #                     if old_hist_acta.footer:
+                #                         footer = "<hr/><h4>Peu del Acta</h4><hr/>" + old_hist_acta.footer.output
+                #                     new_hist_acta.ordenDelDia = newOrdenDelDia + newActaBody + footer
+                #                     # enllacVideo
+                #                     new_hist_acta.horaInici = datetime.combine(
+                #                         old_hist_acta.dataSessio, old_hist_acta.horaInici)
+                #                     new_hist_acta.horaFi = datetime.combine(
+                #                         old_hist_acta.dataSessio, old_hist_acta.horaFi)
+                #                     transaction.commit()
 
-                                    if old_hist_acta.footer:
-                                        hrefs = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', old_hist_acta.footer.output)
-                                        for audio in hrefs:
-                                            if '.mp3' in audio:
-                                                pp("Adding AUDIO to this HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + ' > ' + str(audio))
-                                                filename_path = '/' + '/'.join(str(audio).split('/')[3:])
-                                                old_file = api.content.find(path=filename_path)[0]
-                                                blob_file = old_file.getObject()
-                                                mp3_file = NamedBlobFile(
-                                                    data=blob_file.file.data,
-                                                    contentType=blob_file.file.contentType,
-                                                    filename=blob_file.file.filename
-                                                )
-                                                new_file = api.content.create(
-                                                    id=old_file.id,
-                                                    title=old_file.Title,
-                                                    type='genweb.organs.audio',
-                                                    container=new_hist_acta,
-                                                    safe_id=True,)
-                                                new_file.file = mp3_file
-                                                transaction.commit()
-                                                pp("Created AUDIO IN HISTORIC ACTA", old_hist_acta.absolute_url_path())
+                #                     if old_hist_acta.footer:
+                #                         hrefs = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', old_hist_acta.footer.output)
+                #                         for audio in hrefs:
+                #                             if '.mp3' in audio:
+                #                                 pp("Adding AUDIO to this HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + ' > ' + str(audio))
+                #                                 filename_path = '/' + '/'.join(str(audio).split('/')[3:])
+                #                                 old_file = api.content.find(path=filename_path)[0]
+                #                                 blob_file = old_file.getObject()
+                #                                 mp3_file = NamedBlobFile(
+                #                                     data=blob_file.file.data,
+                #                                     contentType=blob_file.file.contentType,
+                #                                     filename=blob_file.file.filename
+                #                                 )
+                #                                 new_file = api.content.create(
+                #                                     id=old_file.id,
+                #                                     title=old_file.Title,
+                #                                     type='genweb.organs.audio',
+                #                                     container=new_hist_acta,
+                #                                     safe_id=True,)
+                #                                 new_file.file = mp3_file
+                #                                 transaction.commit()
+                #                                 pp("Created AUDIO IN HISTORIC ACTA", old_hist_acta.absolute_url_path())
 
         date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
 
