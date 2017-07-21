@@ -11,7 +11,7 @@ from operator import itemgetter
 import logging
 import re
 
-filename = 'import.log'  # local
+filename = 'migrateOrgans.log'  # local
 logging.basicConfig(format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p',
                     filename=filename,
@@ -34,6 +34,7 @@ class migrateOrgans(BrowserView):
     def __call__(self):
         """ Migrate Organs from v1.0 to v2.0 """
         date = datetime.now().strftime("%Y/%m/%d-%H:%M:%S")
+        start = datetime.now().strftime("%Y/%m/%d-%H:%M:%S")
         pp('-------------------------------', '')
         pp("START migration proces", date)
         portal_catalog = getToolByName(self, 'portal_catalog')
@@ -66,6 +67,7 @@ class migrateOrgans(BrowserView):
                 type='genweb.organs.organgovern',
                 container=destination_folder,
                 safe_id=True,)
+            pp('-------------------------------------------------------------------------------', '')
             pp("Migrating", item.Title)
 
             old_organ = item.getObject()
@@ -78,7 +80,7 @@ class migrateOrgans(BrowserView):
             new_organ.creators = old_organ.creators
             new_organ.modification_date = old_organ.modification_date
             transaction.commit()
-            pp("Created OG", str(item.getPath()) + " > " + str(new_organ.absolute_url_path()))
+            pp("OK. OG", str(item.getPath()) + " > " + str(new_organ.absolute_url_path()))
 
             contained_items = old_organ.items()
             contSession = 0
@@ -124,7 +126,7 @@ class migrateOrgans(BrowserView):
                         api.content.transition(obj=new_session, transition='convocar')
                         api.content.transition(obj=new_session, transition='realitzar')
                         api.content.transition(obj=new_session, transition='tancar')
-                    pp("Created SESSION", str(old_session.absolute_url_path()) + " > " + str(new_session.absolute_url_path()))
+                    pp("OK. SESSION", str(old_session.absolute_url_path()) + " > " + str(new_session.absolute_url_path()))
                     try:
                         old_annotations = IAnnotations(old_session)['genweb.rectorat.logMail']
                         data = []
@@ -139,7 +141,7 @@ class migrateOrgans(BrowserView):
                             index = index + 1
                         IAnnotations(new_session)['genweb.organs.logMail'] = data
                     except:
-                        pp("SESSION without log entries", old_session.absolute_url_path())
+                        pp("ERROR. SESSION without log entries", old_session.absolute_url_path())
                         continue
                     old_documents = old_session.items()
                     results = []
@@ -170,7 +172,7 @@ class migrateOrgans(BrowserView):
                         type='genweb.organs.punt',
                         container=new_session,
                         safe_id=True)
-                    ordreDelDia.proposalPoint = '00'
+                    ordreDelDia.proposalPoint = '0'
                     ordreDelDia.estatsLlista = 'Aprovat'
                     if old_session.ordreSessio:
                         ordreDelDia.defaultContent = old_session.ordreSessio.output
@@ -238,7 +240,7 @@ class migrateOrgans(BrowserView):
                                                 new_file.visiblefile = public_file
 
                                         if puntsessio.OriginalFiles:
-                                            pp("WARNING: Check files manually ", puntsessio.absolute_url_path())
+                                            pp("WARNING. Both files", puntsessio.absolute_url_path())
                                             for file in puntsessio.OriginalFiles:
                                                 reserved_file = NamedBlobFile(
                                                     data=file.data,
@@ -291,7 +293,7 @@ class migrateOrgans(BrowserView):
                                                 new_file.visiblefile = public_file
 
                                         if puntsessio.OriginalFiles:
-                                            pp("WARNING: Check files manually ", puntsessio.absolute_url_path())
+                                            pp("WARNING. Both files", puntsessio.absolute_url_path())
                                             for file in puntsessio.OriginalFiles:
                                                 reserved_file = NamedBlobFile(
                                                     data=file.data,
@@ -306,7 +308,7 @@ class migrateOrgans(BrowserView):
                                                     safe_id=True,)
                                                 new_file.hiddenfile = reserved_file
                                 else:
-                                    # print " ### El punt existeix"
+                                    # El punt existeix"
                                     for objecte in new_session.items():
                                         if objecte[1].proposalPoint == puntId:
                                             folderObject = objecte[1]
@@ -321,7 +323,7 @@ class migrateOrgans(BrowserView):
                                                 container=folderObject,
                                                 safe_id=True)
                                         except:
-                                            pp("proposalpoint con id raro", puntsessio.absolute_url_path())
+                                            pp("ERROR. Proposalpoint con id raro", puntsessio.absolute_url_path())
                                             new_acord = api.content.create(
                                                 id=puntsessio.id,
                                                 title=puntsessio.title,
@@ -565,7 +567,7 @@ class migrateOrgans(BrowserView):
                                 old_acta.dataSessio, old_acta.horaFi)
                             new_acta.reindexObject()
                             transaction.commit()
-                            pp("Created ACTA", str(old_acta.absolute_url_path()) + " > " + str(new_acta.absolute_url_path()))
+                            pp("OK. ACTA", str(old_acta.absolute_url_path()) + " > " + str(new_acta.absolute_url_path()))
 
                             if old_acta.OriginalFiles:
                                 file = old_acta.OriginalFiles[0]
@@ -580,7 +582,6 @@ class migrateOrgans(BrowserView):
                                 hrefs = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', old_acta.footer.output)
                                 for audio in hrefs:
                                     if '.mp3' in audio:
-                                        print " ## This Acta has an Audio..."
                                         filename_path = '/' + '/'.join(str(audio).split('/')[3:])
                                         old_file = api.content.find(path=filename_path)[0]
                                         blob_file = old_file.getObject()
@@ -597,117 +598,11 @@ class migrateOrgans(BrowserView):
                                             safe_id=True,)
                                         new_file.file = mp3_file
                                         transaction.commit()
-                                        pp("Created AUDIO in Acta", str(audio) + " > " + str(new_acta.absolute_url_path()))
-
-                # if value[1].portal_type == 'genweb.rectorat.historicfolder':
-                #     old_historic_sessions = value[1].items()
-                #     for valueolds in old_historic_sessions:
-                #         if valueolds[1].portal_type == 'genweb.rectorat.sessio':
-                #             cont = cont + 1
-                #             old_hist_session = valueolds[1]
-                #             new_hist_session = api.content.create(
-                #                 id=old_hist_session.id,
-                #                 title=old_hist_session.title,
-                #                 type='genweb.organs.sessio',
-                #                 container=new_organ,
-                #                 safe_id=True,)
-                #             new_hist_session.numSessioShowOnly = str(cont).zfill(2)
-                #             new_hist_session.numSessio = str(cont).zfill(2)
-                #             new_hist_session.llocConvocatoria = old_hist_session.llocConvocatoria
-                #             new_hist_session.adrecaLlista = old_hist_session.adrecaLlista
-                #             if old_hist_session.membresConvocats:
-                #                 new_hist_session.membresConvocats = old_hist_session.membresConvocats.output
-                #             if old_hist_session.membresConvidats:
-                #                 new_hist_session.membresConvidats = old_hist_session.membresConvidats.output
-                #             if old_hist_session.llistaExcusats:
-                #                 new_hist_session.llistaExcusats = old_hist_session.llistaExcusats.output
-                #             if old_hist_session.bodyMail:
-                #                 new_hist_session.bodyMail = old_hist_session.bodyMail.output
-                #             if old_hist_session.signatura:
-                #                 new_hist_session.signatura = old_hist_session.signatura.output
-                #             acc = IEventAccessor(new_hist_session)
-                #             acc.start = datetime.combine(
-                #                 old_hist_session.dataSessio, old_hist_session.horaInici)
-                #             acc.end = datetime.combine(
-                #                 old_hist_session.dataSessio, old_hist_session.horaFi)
-                #             acc.timezone = 'Europe/Madrid'
-                #             new_hist_session.reindexObject()
-                #             new_hist_session.migrated = True
-                #             transaction.commit()
-                #             old_state = api.content.get_state(obj=old_hist_session)
-                #             # old_state == 'preparing' default is the same don't do nothing
-                #             if old_state == 'convocat':
-                #                 api.content.transition(obj=new_hist_session, transition='convocar')
-                #             if old_state == 'closed':
-                #                 api.content.transition(obj=new_hist_session, transition='convocar')
-                #                 api.content.transition(obj=new_hist_session, transition='realitzar')
-                #                 api.content.transition(obj=new_hist_session, transition='tancar')
-
-                #             pp("Created HISTORIC SESSION", str(old_hist_session.absolute_url_path()) + " > " + str(new_hist_session.absolute_url_path()))
-
-                #             old_hist_actas = valueolds[1].items()
-                #             for valueoldsHistActas in old_hist_actas:
-                #                 if valueoldsHistActas[1].portal_type == 'genweb.rectorat.acta':
-                #                     old_hist_acta = valueoldsHistActas[1]
-                #                     new_hist_acta = api.content.create(
-                #                         id=old_hist_acta.id,
-                #                         title=old_hist_acta.title,
-                #                         type='genweb.organs.acta',
-                #                         safe_id=True,
-                #                         container=new_hist_session)
-                #                     pp("Created HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + " > " + str(new_hist_acta.absolute_url_path()))
-
-                #                     new_hist_acta.llocConvocatoria = old_hist_acta.llocConvocatoria
-                #                     if old_hist_acta.membresConvocats:
-                #                         new_hist_acta.membresConvocats = old_hist_acta.membresConvocats.output
-                #                     if old_hist_acta.membresConvidats:
-                #                         new_hist_acta.membresConvidats = old_hist_acta.membresConvidats.output
-                #                     if old_hist_acta.llistaExcusats:
-                #                         new_hist_acta.llistaExcusats = old_hist_acta.llistaExcusats.output
-                #                     if old_hist_acta.llistaNoAssistens:
-                #                         new_hist_acta.llistaNoAssistens = old_hist_acta.llistaNoAssistens.output
-                #                     # ordredeldia
-                #                     newOrdenDelDia = newActaBody = footer = ''
-                #                     if old_hist_acta.ordreSessio:
-                #                         newOrdenDelDia = '<hr/><h4>Ordre del dia</h4><hr/>' + old_hist_acta.ordreSessio.output
-                #                     if old_hist_acta.actaBody:
-                #                         newActaBody = '<hr/><h4>Acta</h4><hr/>' + old_hist_acta.actaBody.output
-                #                     if old_hist_acta.footer:
-                #                         footer = "<hr/><h4>Peu del Acta</h4><hr/>" + old_hist_acta.footer.output
-                #                     new_hist_acta.ordenDelDia = newOrdenDelDia + newActaBody + footer
-                #                     # enllacVideo
-                #                     new_hist_acta.horaInici = datetime.combine(
-                #                         old_hist_acta.dataSessio, old_hist_acta.horaInici)
-                #                     new_hist_acta.horaFi = datetime.combine(
-                #                         old_hist_acta.dataSessio, old_hist_acta.horaFi)
-                #                     transaction.commit()
-
-                #                     if old_hist_acta.footer:
-                #                         hrefs = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', old_hist_acta.footer.output)
-                #                         for audio in hrefs:
-                #                             if '.mp3' in audio:
-                #                                 pp("Adding AUDIO to this HISTORIC ACTA", str(old_hist_acta.absolute_url_path()) + ' > ' + str(audio))
-                #                                 filename_path = '/' + '/'.join(str(audio).split('/')[3:])
-                #                                 old_file = api.content.find(path=filename_path)[0]
-                #                                 blob_file = old_file.getObject()
-                #                                 mp3_file = NamedBlobFile(
-                #                                     data=blob_file.file.data,
-                #                                     contentType=blob_file.file.contentType,
-                #                                     filename=blob_file.file.filename
-                #                                 )
-                #                                 new_file = api.content.create(
-                #                                     id=old_file.id,
-                #                                     title=old_file.Title,
-                #                                     type='genweb.organs.audio',
-                #                                     container=new_hist_acta,
-                #                                     safe_id=True,)
-                #                                 new_file.file = mp3_file
-                #                                 transaction.commit()
-                #                                 pp("Created AUDIO IN HISTORIC ACTA", old_hist_acta.absolute_url_path())
+                                        pp("OK. AUDIO in ACTA", str(audio) + " > " + str(new_acta.absolute_url_path()))
 
         date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
 
-        pp("END migration proces", date)
+        pp("END migration proces", start + ' > ' + date)
         pp('-------------------------------', '')
         pp("Close", None)
 

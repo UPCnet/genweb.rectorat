@@ -3,13 +3,8 @@ from Products.Five.browser import BrowserView
 from datetime import datetime
 from Products.CMFCore.utils import getToolByName
 from plone import api
-from plone.event.interfaces import IEventAccessor
-from plone.namedfile.file import NamedBlobFile
 import transaction
-from zope.annotation.interfaces import IAnnotations
-from operator import itemgetter
 import logging
-import re
 
 filename = 'moveHistoric.log'  # local
 logging.basicConfig(format='%(asctime)s %(message)s',
@@ -50,14 +45,14 @@ class moveHistoric(BrowserView):
                 destino = objc[1].aq_parent.aq_parent
                 try:
                     api.content.move(source=origen, target=destino)
-                    pp('MOVED OK', str(origen.absolute_url_path()) + ' > ' + str(destino.absolute_url_path()))
+                    pp('OK. Moved', str(origen.absolute_url_path()) + ' > ' + str(destino.absolute_url_path()))
                 except:
-                    pp('MOVING ERROR...', str(origen.absolute_url_path()) + ' > ' + str(origen.portal_type))
+                    pp('ERROR. MOVING...', str(origen.absolute_url_path()) + ' > ' + str(origen.portal_type))
         transaction.commit()
 
         date = datetime.now().strftime("%Y/%m/%d-%H:%M:%S")
         pp('-------------------------------------------------------', '')
-        pp("END. Check MOVING ERROR string", date)
+        pp("END. Check ERROR. MOVING string", date)
         pp('-------------------------------------------------------', '')
         pp("Close", None)
 
