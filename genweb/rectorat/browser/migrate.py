@@ -33,7 +33,7 @@ class migrateOrgans(BrowserView):
 
     def __call__(self):
         """ Migrate Organs from v1.0 to v2.0 """
-        date = datetime.now().strftime("%Y%m%d-%H:%M:%S")
+        date = datetime.now().strftime("%Y/%m/%d-%H:%M:%S")
         pp('-------------------------------', '')
         pp("START migration proces", date)
         portal_catalog = getToolByName(self, 'portal_catalog')
@@ -58,16 +58,6 @@ class migrateOrgans(BrowserView):
             portal_type=['genweb.rectorat.organgovern'],
         )
         pp("Items to migrate", len(items))
-
-        historic_items = portal_catalog.searchResults(
-            portal_type='genweb.rectorat.historicfolder'
-        )
-
-        for histfolder in historic_items:
-            tomove = histfolder.items()
-
-            import ipdb; ipdb.set_trace()
-            #api.content.move(source=contact, target=portal)
 
         # creating Organs de Govern in Carpeta Unitat
         for item in items:

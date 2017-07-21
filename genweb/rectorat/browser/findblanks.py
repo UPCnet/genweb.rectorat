@@ -5,7 +5,7 @@ import transaction
 import logging
 
 
-filename = 'blanks.log'  # local
+filename = 'findBlanks.log'  # local
 logging.basicConfig(format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p',
                     filename=filename,
@@ -23,7 +23,7 @@ def pp(message, item, f="None"):
         f.close()
 
 
-class findblanks(BrowserView):
+class findBlanks(BrowserView):
 
     def __call__(self):
         """ Migrate Organs from v1.0 to v2.0 """
@@ -32,14 +32,14 @@ class findblanks(BrowserView):
             context=api.portal.get(),
         )
         pp('-------------------------------', '')
-        pp('Entries with NO proposalPoint', '')
+        pp('Entries with NO proposalPoint  ', '')
         pp('-------------------------------', '')
         for item in items:
             value = item.getObject()
             if hasattr(value, 'proposalPoint'):
                 if value.proposalPoint is None:
-                    pp('Added 00', value.absolute_url())
-                    value.proposalPoint = '00'
+                    pp('Added 0', value.absolute_url_path())
+                    value.proposalPoint = '0'
                     transaction.commit()
         pp('-------------------------------', '')
         pp('Entries with - in proposalPoint', '')
@@ -49,9 +49,8 @@ class findblanks(BrowserView):
             if hasattr(value, 'proposalPoint'):
                 if '-' in value.proposalPoint:
                     value.proposalPoint = value.proposalPoint.replace('-', '')
-                    pp('Replaced -', str(value.proposalPoint))
+                    pp('Replaced -', str(value.proposalPoint) + ' > ' + value.absolute_url_path())
                     transaction.commit()
-
         pp('-------------------------------', '')
         pp('Entries with . in proposalPoint', '')
         pp('-------------------------------', '')
@@ -62,14 +61,13 @@ class findblanks(BrowserView):
                     if '.' in value.proposalPoint[-1]:
                         value.proposalPoint = value.proposalPoint[:-1]
                         transaction.commit()
-                        pp('Removed . from end ', str(value.proposalPoint) + ' > ' + value.absolute_url())
-        pp('-------------------------------', '')
+                        pp('Removed . from end ', str(value.proposalPoint) + ' > ' + value.absolute_url_path())
         items = api.content.find(
             type='genweb.organs.document',
             context=api.portal.get(),
         )
         pp('-------------------------------', '')
-        pp('    FINAL ENTRIES', '')
+        pp('    FINAL ENTRIES              ', '')
         pp('-------------------------------', '')
         for item in items:
             value = item.getObject()
@@ -77,11 +75,12 @@ class findblanks(BrowserView):
                 try:
                     pp('', str(value.proposalPoint) + ' ')
                 except:
-                    pp('Codi erroni', str(value.proposalPoint.encode('utf-8')) + ' > ' + str(value.absolute_url()))
+                    pp('Codi erroni', str(value.proposalPoint.encode('utf-8')) + ' > ' + str(value.absolute_url_path()))
                     value.proposalPoint = '0'
                     transaction.commit()
         pp('-------------------------------', '')
-
+        pp('    END                        ', '')
+        pp('-------------------------------', '')
         result = []
         with open(filename) as f:
             line = f.read()
